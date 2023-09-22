@@ -1,0 +1,10 @@
+@use "base";
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    accent-color: base.$accent;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}

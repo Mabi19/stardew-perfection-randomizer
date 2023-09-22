@@ -1,0 +1,4 @@
+@use "sass:color";
+
+$accent: rebeccapurple;
+$accent-light: color.adjust($accent, $lightness: 20%);

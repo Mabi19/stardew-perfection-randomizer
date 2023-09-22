@@ -1,0 +1,5133 @@
+{
+    "tags": {
+        "marriage_capable": [
+            "befriend_krobus",
+            "befriend_leah",
+            "befriend_emily",
+            "befriend_penny",
+            "befriend_maru",
+            "befriend_abigail",
+            "befriend_haley",
+            "befriend_alex",
+            "befriend_elliott",
+            "befriend_harvey",
+            "befriend_sam",
+            "befriend_sebastian",
+            "befriend_shane"
+        ],
+        "demetrius_fish": [
+            "catch_a_flounder",
+            "catch_a_halibut",
+            "catch_a_largemouth_bass",
+            "catch_a_sardine",
+            "catch_a_sunfish",
+            "catch_a_dorado",
+            "catch_a_rainbow_trout",
+            "catch_a_red_mullet",
+            "catch_a_tilapia",
+            "catch_a_tuna",
+            "catch_an_albacore",
+            "catch_a_midnight_carp",
+            "catch_a_salmon",
+            "catch_a_tiger_trout",
+            "catch_a_lingcod",
+            "catch_a_perch",
+            "catch_a_squid"
+        ]
+    },
+    "goals": [
+        {
+            "id": "ship_a_wild_horseradish",
+            "name": "Ship a Wild Horseradish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/90/Wild_Horseradish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_daffodil",
+            "name": "Ship a Daffodil",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4b/Daffodil.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_leek",
+            "name": "Ship a Leek",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/57/Leek.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_dandelion",
+            "name": "Ship a Dandelion",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b1/Dandelion.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_parsnip",
+            "name": "Ship a Parsnip",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/db/Parsnip.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_cave_carrot",
+            "name": "Ship a Cave Carrot",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/34/Cave_Carrot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_coconut",
+            "name": "Ship a Coconut",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2f/Coconut.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_cactus_fruit",
+            "name": "Ship a Cactus Fruit",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/32/Cactus_Fruit.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_banana",
+            "name": "Ship a Banana",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/69/Banana.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_sap",
+            "name": "Ship Sap",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/73/Sap.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_large_egg_white",
+            "name": "Ship a Large Egg (White)",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5d/Large_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_egg_white",
+            "name": "Ship an Egg (White)",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/26/Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_egg_brown",
+            "name": "Ship an Egg (Brown)",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Brown_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_large_egg_brown",
+            "name": "Ship a Large Egg (Brown)",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/91/Large_Brown_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_milk",
+            "name": "Ship Milk",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/92/Milk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_large_milk",
+            "name": "Ship Large Milk",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/67/Large_Milk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_green_bean",
+            "name": "Ship a Green Bean",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5c/Green_Bean.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_cauliflower",
+            "name": "Ship a Cauliflower",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/aa/Cauliflower.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_potato",
+            "name": "Ship a Potato",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c2/Potato.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_garlic",
+            "name": "Ship Garlic",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cc/Garlic.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_kale",
+            "name": "Ship Kale",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d1/Kale.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_rhubarb",
+            "name": "Ship Rhubarb",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Rhubarb.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_melon",
+            "name": "Ship a Melon",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/19/Melon.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_tomato",
+            "name": "Ship a Tomato",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9d/Tomato.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_morel",
+            "name": "Ship a Morel",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b1/Morel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_blueberry",
+            "name": "Ship a Blueberry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9e/Blueberry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_fiddlehead_fern",
+            "name": "Ship a Fiddlehead Fern",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/48/Fiddlehead_Fern.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_hot_pepper",
+            "name": "Ship a Hot Pepper",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Hot_Pepper.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_wheat",
+            "name": "Ship Wheat",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e2/Wheat.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_radish",
+            "name": "Ship a Radish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d5/Radish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_red_cabbage",
+            "name": "Ship a Red Cabbage",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2d/Red_Cabbage.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_starfruit",
+            "name": "Ship a Starfruit",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/db/Starfruit.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_corn",
+            "name": "Ship Corn",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f8/Corn.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_unmilled_rice",
+            "name": "Ship Unmilled Rice",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fe/Unmilled_Rice.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_eggplant",
+            "name": "Ship an Eggplant",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8f/Eggplant.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_artichoke",
+            "name": "Ship an Artichoke",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/dd/Artichoke.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_pumpkin",
+            "name": "Ship a Pumpkin",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/64/Pumpkin.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_bok_choy",
+            "name": "Ship Bok Choy",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/40/Bok_Choy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_yam",
+            "name": "Ship a Yam",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/52/Yam.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_chanterelle",
+            "name": "Ship a Chanterelle",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1d/Chanterelle.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_cranberries",
+            "name": "Ship Cranberries",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Cranberries.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_holly",
+            "name": "Ship Holly",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b8/Holly.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_beet",
+            "name": "Ship a Beet",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a4/Beet.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_ostrich_egg",
+            "name": "Ship an Ostrich Egg",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c3/Ostrich_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_salmonberry",
+            "name": "Ship a Salmonberry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/59/Salmonberry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_amaranth",
+            "name": "Ship Amaranth",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f6/Amaranth.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_pale_ale",
+            "name": "Ship a Pale Ale",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_keg"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/78/Pale_Ale.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_hops",
+            "name": "Ship Hops",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/59/Hops.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_void_egg",
+            "name": "Ship a Void Egg",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_krobus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/58/Void_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_mayonnaise",
+            "name": "Ship Mayonnaise",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4e/Mayonnaise.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_duck_mayonnaise",
+            "name": "Ship Duck Mayonnaise",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/23/Duck_Mayonnaise.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_void_mayonnaise",
+            "name": "Ship Void Mayonnaise",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f3/Void_Mayonnaise.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_clay",
+            "name": "Ship Clay",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a2/Clay.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_copper_bar",
+            "name": "Ship a Copper Bar",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "befriend_clint"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Copper_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_iron_bar",
+            "name": "Ship an Iron Bar",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "befriend_clint"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6c/Iron_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_gold_bar",
+            "name": "Ship a Gold Bar",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "befriend_clint"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4e/Gold_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_iridium_bar",
+            "name": "Ship an Iridium Bar",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c4/Iridium_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_refined_quartz",
+            "name": "Ship Refined Quartz",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "craft_a_recycling_machine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/98/Refined_Quartz.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_honey",
+            "name": "Ship Honey",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c6/Honey.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_pickles",
+            "name": "Ship Pickles",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_preserves_jar"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c7/Pickles.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_jelly",
+            "name": "Ship Jelly",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_preserves_jar"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/05/Jelly.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_beer",
+            "name": "Ship a Beer",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b3/Beer.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_wine",
+            "name": "Ship a Wine",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_keg"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/69/Wine.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_juice",
+            "name": "Ship a Juice",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_keg"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Juice.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_clam",
+            "name": "Ship a Clam",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ed/Clam.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_poppy",
+            "name": "Ship a Poppy",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/37/Poppy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_copper_ore",
+            "name": "Ship a Copper Ore",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/78/Copper_Ore.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_iron_ore",
+            "name": "Ship an Iron Ore",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/87/Iron_Ore.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_coal",
+            "name": "Ship Coal",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a7/Coal.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_gold_ore",
+            "name": "Ship a Gold Ore",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f7/Gold_Ore.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_iridium_ore",
+            "name": "Ship an Iridium Ore",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e9/Iridium_Ore.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_wood",
+            "name": "Ship Wood",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/df/Wood.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_stone",
+            "name": "Ship Stone",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d4/Stone.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_nautilus_shell",
+            "name": "Ship a Nautilus Shell",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a4/Nautilus_Shell.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_coral",
+            "name": "Ship Coral",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b1/Coral.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_rainbow_shell",
+            "name": "Ship a Rainbow Shell",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3d/Rainbow_Shell.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_spice_berry",
+            "name": "Ship a Spice Berry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c6/Spice_Berry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_sea_urchin",
+            "name": "Ship a Sea Urchin",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e7/Sea_Urchin.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_grape",
+            "name": "Ship a Grape",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c2/Grape.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_spring_onion",
+            "name": "Ship a Spring Onion",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0c/Spring_Onion.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_strawberry",
+            "name": "Ship a Strawberry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6d/Strawberry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_sweet_pea",
+            "name": "Ship a Sweet Pea",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d9/Sweet_Pea.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_common_mushroom",
+            "name": "Ship a Common Mushroom",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2e/Common_Mushroom.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_wild_plum",
+            "name": "Ship a Wild Plum",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3b/Wild_Plum.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_hazelnut",
+            "name": "Ship a Hazelnut",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/31/Hazelnut.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_blackberry",
+            "name": "Ship a Blackberry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/25/Blackberry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_winter_root",
+            "name": "Ship a Winter Root",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/11/Winter_Root.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_crystal_fruit",
+            "name": "Ship a Crystal Fruit",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/16/Crystal_Fruit.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_snow_yam",
+            "name": "Ship a Snow Yam",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3f/Snow_Yam.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_sweet_gem_berry",
+            "name": "Ship a Sweet Gem Berry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/88/Sweet_Gem_Berry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_crocus",
+            "name": "Ship a Crocus",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2f/Crocus.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_red_mushroom",
+            "name": "Ship a Red Mushroom",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e1/Red_Mushroom.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_sunflower",
+            "name": "Ship a Sunflower",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/81/Sunflower.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_purple_mushroom",
+            "name": "Ship a Purple Mushroom",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4b/Purple_Mushroom.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_cheese",
+            "name": "Ship Cheese",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Cheese.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_goat_cheese",
+            "name": "Ship Goat Cheese",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_cheese_press"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c8/Goat_Cheese.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_cloth",
+            "name": "Ship Cloth",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "craft_a_loom"
+                    },
+                    {
+                        "goal": "befriend_emily"
+                    },
+                    {
+                        "goal": "craft_a_recycling_machine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/51/Cloth.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_truffle",
+            "name": "Ship a Truffle",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f2/Truffle.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_truffle_oil",
+            "name": "Ship Truffle Oil",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_an_oil_maker"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3d/Truffle_Oil.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_coffee_bean",
+            "name": "Ship a Coffee Bean",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/33/Coffee_Bean.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_goat_milk",
+            "name": "Ship Goat Milk",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/45/Goat_Milk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_large_goat_milk",
+            "name": "Ship Large Goat Milk",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f2/Large_Goat_Milk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_wool",
+            "name": "Ship Wool",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/34/Wool.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_duck_egg",
+            "name": "Ship a Duck Egg",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/31/Duck_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_duck_feather",
+            "name": "Ship a Duck Feather",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f9/Duck_Feather.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_caviar",
+            "name": "Ship Caviar",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_sturgeon"
+                    },
+                    {
+                        "goal": "craft_a_preserves_jar"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/89/Caviar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_rabbits_foot",
+            "name": "Ship a Rabbit's Foot",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/ca/Rabbit%27s_Foot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_aged_roe",
+            "name": "Ship Aged Roe",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_preserves_jar"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0e/Aged_Roe.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_ancient_fruit",
+            "name": "Ship an Ancient Fruit",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Ancient_Fruit.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_mead",
+            "name": "Ship Mead",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_keg"
+                    },
+                    {
+                        "goal": "craft_a_bee_house"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/84/Mead.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_tulip",
+            "name": "Ship a Tulip",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cf/Tulip.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_summer_spangle",
+            "name": "Ship a Summer Spangle",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9f/Summer_Spangle.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_fairy_rose",
+            "name": "Ship a Fairy Rose",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5c/Fairy_Rose.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_blue_jazz",
+            "name": "Ship a Blue Jazz",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2f/Blue_Jazz.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_apple",
+            "name": "Ship an Apple",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7d/Apple.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_green_tea",
+            "name": "Ship Green Tea",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8f/Green_Tea.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_apricot",
+            "name": "Ship an Apricot",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fc/Apricot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_an_orange",
+            "name": "Ship an Orange",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/43/Orange.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_peach",
+            "name": "Ship a Peach",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e2/Peach.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_pomegranate",
+            "name": "Ship a Pomegranate",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Pomegranate.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_cherry",
+            "name": "Ship a Cherry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/20/Cherry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_bug_meat",
+            "name": "Ship Bug Meat",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b6/Bug_Meat.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_hardwood",
+            "name": "Ship Hardwood",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ed/Hardwood.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_maple_syrup",
+            "name": "Ship Maple Syrup",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6a/Maple_Syrup.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_oak_resin",
+            "name": "Ship Oak Resin",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/40/Oak_Resin.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_pine_tar",
+            "name": "Ship Pine Tar",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/ce/Pine_Tar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_slime",
+            "name": "Ship Slime",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/38/Slime.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_bat_wing",
+            "name": "Ship a Bat Wing",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/35/Bat_Wing.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_solar_essence",
+            "name": "Ship a Solar Essence",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f4/Solar_Essence.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_void_essence",
+            "name": "Ship a Void Essence",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1f/Void_Essence.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_fiber",
+            "name": "Ship Fiber",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/45/Fiber.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_battery_pack",
+            "name": "Ship a Battery Pack",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "craft_a_lightning_rod"
+                    },
+                    {
+                        "goal": "befriend_pam"
+                    },
+                    {
+                        "goal": "befriend_kent"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/25/Battery_Pack.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_dinosaur_mayonnaise",
+            "name": "Ship Dinosaur Mayonnaise",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c3/Dinosaur_Mayonnaise.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_roe",
+            "name": "Ship Roe",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/56/Roe.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_squid_ink",
+            "name": "Ship Squid Ink",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/ac/Squid_Ink.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_tea_leaves",
+            "name": "Ship Tea Leaves",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5b/Tea_Leaves.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_ginger",
+            "name": "Ship Ginger",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/85/Ginger.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_taro_root",
+            "name": "Ship a Taro Root",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Taro_Root.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_pineapple",
+            "name": "Ship a Pineapple",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fb/Pineapple.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_mango",
+            "name": "Ship a Mango",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/38/Mango.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_cinder_shard",
+            "name": "Ship a Cinder Shard",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fd/Cinder_Shard.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_magma_cap",
+            "name": "Ship a Magma Cap",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/77/Magma_Cap.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_bone_fragment",
+            "name": "Ship a Bone Fragment",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/97/Bone_Fragment.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_radioactive_ore",
+            "name": "Ship a Radioactive Ore",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9f/Radioactive_Ore.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "ship_a_radioactive_bar",
+            "name": "Ship a Radioactive Bar",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7e/Radioactive_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "build_an_earth_obelisk",
+            "name": "Build an Earth Obelisk",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/3/3c/Earth_Obelisk.png/100px-Earth_Obelisk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "build_a_water_obelisk",
+            "name": "Build a Water Obelisk",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/b/b7/Water_Obelisk.png/100px-Water_Obelisk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "build_a_desert_obelisk",
+            "name": "Build a Desert Obelisk",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/6/60/Desert_Obelisk.png/100px-Desert_Obelisk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "build_an_island_obelisk",
+            "name": "Build an Island Obelisk",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/1/18/Island_Obelisk.png/100px-Island_Obelisk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "build_a_gold_clock",
+            "name": "Build a Gold Clock",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/b/b5/Gold_Clock.png/100px-Gold_Clock.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_1000_slimes",
+            "name": "Slay 1000 Slimes",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bc/Green_Slime_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_150_void_spirits",
+            "name": "Slay 150 Void Spirits",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/85/Shadow_Brute_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_200_bats",
+            "name": "Slay 200 Bats",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8c/Bat_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_50_skeletons",
+            "name": "Slay 50 Skeletons",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bf/Skeleton_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_125_cave_insects",
+            "name": "Slay 125 Cave Insects",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/32/Bug_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_30_duggies",
+            "name": "Slay 30 Duggies",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/3/3a/Duggy.png/64px-Duggy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_500_dust_sprites",
+            "name": "Slay 500 Dust Sprites",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9a/Dust_Sprite.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_60_rock_crabs",
+            "name": "Slay 60 Rock Crabs",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/30/Rock_Crab_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_100_mummies",
+            "name": "Slay 100 Mummies",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/76/Mummy_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_50_pepper_rex",
+            "name": "Slay 50 Pepper Rex",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1a/Pepper_Rex.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_250_serpents",
+            "name": "Slay 250 Serpents",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cf/Serpent_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "slay_150_magma_sprites",
+            "name": "Slay 150 Magma Sprites",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Magma_Sprite_Anim.gif",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_krobus",
+            "name": "Befriend Krobus",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/71/Krobus.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_harvey",
+            "name": "Befriend Harvey",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/95/Harvey.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_leah",
+            "name": "Befriend Leah",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e6/Leah.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_linus",
+            "name": "Befriend Linus",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/31/Linus.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_demetrius",
+            "name": "Befriend Demetrius",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f9/Demetrius.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_emily",
+            "name": "Befriend Emily",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/28/Emily.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_kent",
+            "name": "Befriend Kent",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/99/Kent.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_maru",
+            "name": "Befriend Maru",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f8/Maru.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_penny",
+            "name": "Befriend Penny",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/ab/Penny.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_sandy",
+            "name": "Befriend Sandy",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4e/Sandy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_abigail",
+            "name": "Befriend Abigail",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/88/Abigail.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_alex",
+            "name": "Befriend Alex",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/04/Alex.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_caroline",
+            "name": "Befriend Caroline",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/87/Caroline.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_clint",
+            "name": "Befriend Clint",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/31/Clint.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_the_dwarf",
+            "name": "Befriend the Dwarf",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ed/Dwarf.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_elliott",
+            "name": "Befriend Elliott",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bd/Elliott.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_evelyn",
+            "name": "Befriend Evelyn",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8e/Evelyn.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_george",
+            "name": "Befriend George",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/78/George.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_gus",
+            "name": "Befriend Gus",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/52/Gus.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_jodi",
+            "name": "Befriend Jodi",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/41/Jodi.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_leo",
+            "name": "Befriend Leo",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1d/Leo.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_lewis",
+            "name": "Befriend Lewis",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2b/Lewis.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_marnie",
+            "name": "Befriend Marnie",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/52/Marnie.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_pam",
+            "name": "Befriend Pam",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/da/Pam.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_pierre",
+            "name": "Befriend Pierre",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7e/Pierre.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_robin",
+            "name": "Befriend Robin",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Robin.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_sam",
+            "name": "Befriend Sam",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/94/Sam.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_sebastian",
+            "name": "Befriend Sebastian",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a8/Sebastian.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_shane",
+            "name": "Befriend Shane",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8b/Shane.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_willy",
+            "name": "Befriend Willy",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/82/Willy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_the_wizard",
+            "name": "Befriend the Wizard",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c7/Wizard.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_haley",
+            "name": "Befriend Haley",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Haley.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_jas",
+            "name": "Befriend Jas",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/55/Jas.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "befriend_vincent",
+            "name": "Befriend Vincent",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Vincent.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "acquire_the_fair_stardrop",
+            "name": "Acquire the Fair Stardrop",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "acquire_the_floor_100_stardrop",
+            "name": "Acquire the Floor 100 Stardrop",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "acquire_the_marriage_stardrop",
+            "name": "Acquire the Marriage Stardrop",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "#marriage_capable"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "acquire_krobus_stardrop",
+            "name": "Acquire Krobus' Stardrop",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_krobus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "acquire_old_master_cannolis_stardrop",
+            "name": "Acquire Old Master Cannoli's Stardrop",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "acquire_the_museum_stardrop",
+            "name": "Acquire the Museum Stardrop",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_fried_egg",
+            "name": "Cook a Fried Egg",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/18/Fried_Egg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_an_omelet",
+            "name": "Cook an Omelet",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/12/Omelet.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_salad",
+            "name": "Cook a Salad",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_emily"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7e/Salad.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_cheese_cauliflower",
+            "name": "Cook Cheese Cauliflower",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_pam"
+                    },
+                    {
+                        "goal": "craft_a_cheese_press"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Cheese_Cauliflower.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_baked_fish",
+            "name": "Cook Baked Fish",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_sunfish"
+                    },
+                    {
+                        "goal": "catch_a_bream"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/94/Baked_Fish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_parsnip_soup",
+            "name": "Cook Parsnip Soup",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/76/Parsnip_Soup.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_vegetable_medley",
+            "name": "Cook Vegetable Medley",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0a/Vegetable_Medley.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_complete_breakfast",
+            "name": "Cook a Complete Breakfast",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3d/Complete_Breakfast.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_fried_calamari",
+            "name": "Cook Fried Calamari",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_jodi"
+                    },
+                    {
+                        "goal": "catch_a_squid"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/25/Fried_Calamari.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_strange_bun",
+            "name": "Cook a Strange Bun",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_shane"
+                    },
+                    {
+                        "goal": "catch_a_periwinkle"
+                    },
+                    {
+                        "goal": "ship_void_mayonnaise"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5e/Strange_Bun.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_lucky_lunch",
+            "name": "Cook a Lucky Lunch",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_sea_cucumber"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5d/Lucky_Lunch.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_fried_mushroom",
+            "name": "Cook a Fried Mushroom",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_demetrius"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4a/Fried_Mushroom.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_pizza",
+            "name": "Cook a Pizza",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_cheese_press"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f4/Pizza.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_bean_hotpot",
+            "name": "Cook Bean Hotpot",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_clint"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/24/Bean_Hotpot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_glazed_yams",
+            "name": "Cook Glazed Yams",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/30/Glazed_Yams.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_carp_surprise",
+            "name": "Cook Carp Surprise",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_carp"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cc/Carp_Surprise.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_hashbrowns",
+            "name": "Cook Hashbrowns",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8f/Hashbrowns.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_pancakes",
+            "name": "Cook Pancakes",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6b/Pancakes.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_salmon_dinner",
+            "name": "Cook a Salmon Dinner",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_gus"
+                    },
+                    {
+                        "goal": "catch_a_salmon"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8b/Salmon_Dinner.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_fish_taco",
+            "name": "Cook a Fish Taco",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_linus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    },
+                    {
+                        "goal": "catch_a_tuna"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d5/Fish_Taco.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_crispy_bass",
+            "name": "Cook a Crispy Bass",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_kent"
+                    },
+                    {
+                        "goal": "catch_a_largemouth_bass"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/53/Crispy_Bass.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_pepper_poppers",
+            "name": "Cook Pepper Poppers",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_shane"
+                    },
+                    {
+                        "goal": "craft_a_cheese_press"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/08/Pepper_Poppers.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_bread",
+            "name": "Cook Bread",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e1/Bread.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_tom_kha_soup",
+            "name": "Cook Tom Kha Soup",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_sandy"
+                    },
+                    {
+                        "goal": "catch_a_shrimp"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3b/Tom_Kha_Soup.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_trout_soup",
+            "name": "Cook Trout Soup",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_rainbow_trout"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/48/Trout_Soup.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_chocolate_cake",
+            "name": "Cook a Chocolate Cake",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/87/Chocolate_Cake.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_pink_cake",
+            "name": "Cook a Pink Cake",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/32/Pink_Cake.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_rhubarb_pie",
+            "name": "Cook a Rhubarb Pie",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_marnie"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/21/Rhubarb_Pie.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_cookie",
+            "name": "Cook a Cookie",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_evelyn"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/70/Cookie.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_spaghetti",
+            "name": "Cook Spaghetti",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_lewis"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/08/Spaghetti.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_fried_eel",
+            "name": "Cook a Fried Eel",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_george"
+                    },
+                    {
+                        "goal": "catch_an_eel"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/84/Fried_Eel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_spicy_eel",
+            "name": "Cook a Spicy Eel",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_george"
+                    },
+                    {
+                        "goal": "catch_an_eel"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f2/Spicy_Eel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_sashimi",
+            "name": "Cook Sashimi",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_linus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/41/Sashimi.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_maki_roll",
+            "name": "Cook a Maki Roll",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_seaweed"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b6/Maki_Roll.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_tortilla",
+            "name": "Cook a Tortilla",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d7/Tortilla.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_red_plate",
+            "name": "Cook a Red Plate",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_emily"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/45/Red_Plate.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_eggplant_parmesan",
+            "name": "Cook Eggplant Parmesan",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_lewis"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/73/Eggplant_Parmesan.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_rice_pudding",
+            "name": "Cook Rice Pudding",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_evelyn"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ec/Rice_Pudding.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_ice_cream",
+            "name": "Cook Ice Cream",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_jodi"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5d/Ice_Cream.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_blueberry_tart",
+            "name": "Cook a Blueberry Tart",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_pierre"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9b/Blueberry_Tart.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_autumns_bounty",
+            "name": "Cook Autumn's Bounty",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_demetrius"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f4/Autumn%27s_Bounty.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_pumpkin_soup",
+            "name": "Cook Pumpkin Soup",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_robin"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/59/Pumpkin_Soup.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_super_meal",
+            "name": "Cook a Super Meal",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_kent"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d2/Super_Meal.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_cranberry_sauce",
+            "name": "Cook Cranberry Sauce",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_gus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0b/Cranberry_Sauce.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_stuffing",
+            "name": "Cook Stuffing",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_pam"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9a/Stuffing.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_farmers_lunch",
+            "name": "Cook a Farmer's Lunch",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/79/Farmer%27s_Lunch.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_survival_burger",
+            "name": "Cook a Survival Burger",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/87/Survival_Burger.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_dish_o_the_sea",
+            "name": "Cook a Dish O' The Sea",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_sardine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/ff/Dish_O%27_The_Sea.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_miners_treat",
+            "name": "Cook a Miner's Treat",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/12/Miner%27s_Treat.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_roots_platter",
+            "name": "Cook a Roots Platter",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e0/Roots_Platter.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_triple_shot_espresso",
+            "name": "Cook Triple Shot Espresso",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/36/Triple_Shot_Espresso.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_seafoam_pudding",
+            "name": "Cook Seafoam Pudding",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_flounder"
+                    },
+                    {
+                        "goal": "catch_a_midnight_carp"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/33/Seafoam_Pudding.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_algae_soup",
+            "name": "Cook Algae Soup",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_clint"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/53/Algae_Soup.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_pale_broth",
+            "name": "Cook Pale Broth",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_marnie"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7e/Pale_Broth.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_plum_pudding",
+            "name": "Cook Plum Pudding",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a0/Plum_Pudding.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_artichoke_dip",
+            "name": "Cook Artichoke Dip",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/77/Artichoke_Dip.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_stir_fry",
+            "name": "Cook Stir Fry",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ed/Stir_Fry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_roasted_hazelnuts",
+            "name": "Cook Roasted Hazelnuts",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/18/Roasted_Hazelnuts.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_pumpkin_pie",
+            "name": "Cook a Pumpkin Pie",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7d/Pumpkin_Pie.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_radish_salad",
+            "name": "Cook a Radish Salad",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b9/Radish_Salad.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_fruit_salad",
+            "name": "Cook a Fruit Salad",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9e/Fruit_Salad.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_blackberry_cobbler",
+            "name": "Cook a Blackberry Cobbler",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/70/Blackberry_Cobbler.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_cranberry_candy",
+            "name": "Cook Cranberry Candy",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9d/Cranberry_Candy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_bruschetta",
+            "name": "Cook Bruschetta",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/ca/Bruschetta.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_coleslaw",
+            "name": "Cook Coleslaw",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e1/Coleslaw.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_fiddlehead_risotto",
+            "name": "Cook Fiddlehead Risotto",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2d/Fiddlehead_Risotto.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_poppyseed_muffin",
+            "name": "Cook a Poppyseed Muffin",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8e/Poppyseed_Muffin.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_chowder",
+            "name": "Cook Chowder",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_willy"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/95/Chowder.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_fish_stew",
+            "name": "Cook Fish Stew",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_willy"
+                    },
+                    {
+                        "goal": "catch_a_crayfish"
+                    },
+                    {
+                        "goal": "catch_a_periwinkle"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6f/Fish_Stew.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_escargot",
+            "name": "Cook Escargot",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_willy"
+                    },
+                    {
+                        "goal": "catch_a_snail"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/78/Escargot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_lobster_bisque",
+            "name": "Cook Lobster Bisque",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_lobster"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0a/Lobster_Bisque.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_a_maple_bar",
+            "name": "Cook a Maple Bar",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/18/Maple_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_crab_cakes",
+            "name": "Cook Crab Cakes",
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "catch_a_crab"
+                    },
+                    {
+                        "goal": "slay_60_rock_crabs"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/70/Crab_Cakes.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_shrimp_cocktail",
+            "name": "Cook Shrimp Cocktail",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_shrimp"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8e/Shrimp_Cocktail.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_ginger_ale",
+            "name": "Cook Ginger Ale",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1a/Ginger_Ale.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_banana_pudding",
+            "name": "Cook Banana Pudding",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/40/Banana_Pudding.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_mango_sticky_rice",
+            "name": "Cook Mango Sticky Rice",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_leo"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Mango_Sticky_Rice.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_poi",
+            "name": "Cook Poi",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_leo"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Poi.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_tropical_curry",
+            "name": "Cook Tropical Curry",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/32/Tropical_Curry.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "cook_squid_ink_ravioli",
+            "name": "Cook Squid Ink Ravioli",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/86/Squid_Ink_Ravioli.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_cherry_bomb",
+            "name": "Craft a Cherry Bomb",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Cherry_Bomb.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_bomb",
+            "name": "Craft a Bomb",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3b/Bomb.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_mega_bomb",
+            "name": "Craft a Mega Bomb",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4f/Mega_Bomb.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_gate",
+            "name": "Craft a Gate",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/94/Gate.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wood_fence",
+            "name": "Craft a Wood Fence",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1e/Wood_Fence.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stone_fence",
+            "name": "Craft a Stone Fence",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2d/Stone_Fence.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_iron_fence",
+            "name": "Craft an Iron Fence",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9d/Iron_Fence.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_hardwood_fence",
+            "name": "Craft a Hardwood Fence",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5c/Hardwood_Fence.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_sprinkler",
+            "name": "Craft a Sprinkler",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/08/Sprinkler.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_quality_sprinkler",
+            "name": "Craft a Quality Sprinkler",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/af/Quality_Sprinkler.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_iridium_sprinkler",
+            "name": "Craft an Iridium Sprinkler ",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/90/Iridium_Sprinkler.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_mayonnaise_machine",
+            "name": "Craft a Mayonnaise Machine",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ef/Mayonnaise_Machine.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_bee_house",
+            "name": "Craft a Bee House",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/ce/Bee_House.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_preserves_jar",
+            "name": "Craft a Preserves Jar",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1e/Preserves_Jar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_cheese_press",
+            "name": "Craft a Cheese Press",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/79/Cheese_Press.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_loom",
+            "name": "Craft a Loom",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3b/Loom.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_keg",
+            "name": "Craft a Keg",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7c/Keg.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_oil_maker",
+            "name": "Craft an Oil Maker",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c5/Oil_Maker.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_cask",
+            "name": "Craft a Cask",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7c/Cask.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_basic_fertilizer",
+            "name": "Craft Basic Fertilizer",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9b/Basic_Fertilizer.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_quality_fertilizer",
+            "name": "Craft Quality Fertilizer",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a0/Quality_Fertilizer.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_deluxe_fertilizer",
+            "name": "Craft Deluxe Fertilizer",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    },
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1c/Deluxe_Fertilizer.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_speed_gro",
+            "name": "Craft Speed Gro",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/94/Speed-Gro.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_deluxe_speedgro",
+            "name": "Craft Deluxe Speed-Gro",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6d/Deluxe_Speed-Gro.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_hyper_speedgro",
+            "name": "Craft Hyper Speed-Gro",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/53/Hyper_Speed-Gro.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_basic_retaining_soil",
+            "name": "Craft Basic Retaining Soil",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c7/Basic_Retaining_Soil.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_quality_retaining_soil",
+            "name": "Craft Quality Retaining Soil",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0a/Quality_Retaining_Soil.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_deluxe_retaining_soil",
+            "name": "Craft Deluxe Retaining Soil",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c3/Deluxe_Retaining_Soil.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_tree_fertilizer",
+            "name": "Craft Tree Fertilizer",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5d/Tree_Fertilizer.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_spring_seeds",
+            "name": "Craft Spring Seeds",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/39/Spring_Seeds.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_summer_seeds",
+            "name": "Craft Summer Seeds",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c4/Summer_Seeds.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_fall_seeds",
+            "name": "Craft Fall Seeds",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/55/Fall_Seeds.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_winter_seeds",
+            "name": "Craft Winter Seeds",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/dd/Winter_Seeds.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_ancient_seeds",
+            "name": "Craft Ancient Seeds",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ec/Ancient_Seeds.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_grass_starter",
+            "name": "Craft a Grass Starter",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/14/Grass_Starter.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_tea_sapling",
+            "name": "Craft a Tea Sapling",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/12/Tea_Sapling.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_fiber_seeds",
+            "name": "Craft Fiber Seeds",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/05/Fiber_Seeds.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wood_floor",
+            "name": "Craft a Wood Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/58/Wood_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_rustic_plank_floor",
+            "name": "Craft a Rustic Plank Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9e/Rustic_Plank_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_straw_floor",
+            "name": "Craft a Straw Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/85/Straw_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_weathered_floor",
+            "name": "Craft a Weathered Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2a/Weathered_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_crystal_floor",
+            "name": "Craft a Crystal Floor",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "ship_refined_quartz"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a4/Crystal_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stone_floor",
+            "name": "Craft a Stone Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4e/Stone_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stone_walkway_floor",
+            "name": "Craft a Stone Walkway Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/51/Stone_Walkway_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_brick_floor",
+            "name": "Craft a Brick Floor",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/29/Brick_Floor.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wood_path",
+            "name": "Craft a Wood Path",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e3/Wood_Path.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_gravel_path",
+            "name": "Craft a Gravel Path",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/15/Gravel_Path.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_cobblestone_path",
+            "name": "Craft a Cobblestone Path",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/90/Cobblestone_Path.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stepping_stone_path",
+            "name": "Craft a Stepping Stone Path",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Stepping_Stone_Path.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_crystal_path",
+            "name": "Craft a Crystal Path",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "ship_refined_quartz"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9b/Crystal_Path.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_spinner",
+            "name": "Craft a Spinner",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7b/Spinner.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_trap_bobber",
+            "name": "Craft a Trap Bobber",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/da/Trap_Bobber.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_cork_bobber",
+            "name": "Craft a Cork Bobber",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0b/Cork_Bobber.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_quality_bobber",
+            "name": "Craft a Quality Bobber",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "slay_125_cave_insects"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Quality_Bobber.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_treasure_hunter",
+            "name": "Craft a Treasure Hunter",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/79/Treasure_Hunter.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_dressed_spinner",
+            "name": "Craft a Dressed Spinner",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "ship_cloth"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e8/Dressed_Spinner.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_barbed_hook",
+            "name": "Craft a Barbed Hook",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4f/Barbed_Hook.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_magnet",
+            "name": "Craft a Magnet",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8c/Magnet.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_bait",
+            "name": "Craft Bait",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/ff/Bait.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_wild_bait",
+            "name": "Craft Wild Bait",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_linus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/da/Wild_Bait.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_magic_bait",
+            "name": "Craft Magic Bait",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/58/Magic_Bait.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_crab_pot",
+            "name": "Craft a Crab Pot",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/92/Crab_Pot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_sturdy_ring",
+            "name": "Craft a Sturdy Ring",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7e/Sturdy_Ring.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_warrior_ring",
+            "name": "Craft a Warrior Ring",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/13/Warrior_Ring.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_ring_of_yoba",
+            "name": "Craft a Ring of Yoba",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/21/Ring_of_Yoba.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_thorns_ring",
+            "name": "Craft a Thorns Ring",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5b/Thorns_Ring.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_glowstone_ring",
+            "name": "Craft a Glowstone Ring",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/65/Glowstone_Ring.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_iridium_band",
+            "name": "Craft an Iridium Band",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/77/Iridium_Band.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_field_snack",
+            "name": "Craft a Field Snack",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Field_Snack.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_bug_steak",
+            "name": "Craft a Bug Steak",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b7/Bug_Steak.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_life_elixir",
+            "name": "Craft a Life Elixir",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Life_Elixir.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_oil_of_garlic",
+            "name": "Craft Oil of Garlic",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4b/Oil_of_Garlic.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_monster_musk",
+            "name": "Craft Monster Musk",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/af/Monster_Musk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_fairy_dust",
+            "name": "Craft Fairy Dust",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fc/Fairy_Dust.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_beach_warp_totem",
+            "name": "Craft a Beach Warp Totem",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2f/Warp_Totem_Beach.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_mountains_warp_totem",
+            "name": "Craft a Mountains Warp Totem",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d8/Warp_Totem_Mountains.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_farm_warp_totem",
+            "name": "Craft a Farm Warp Totem",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "ship_honey"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e4/Warp_Totem_Farm.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_desert_warp_totem",
+            "name": "Craft a Desert Warp Totem",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/83/Warp_Totem_Desert.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_island_warp_totem",
+            "name": "Craft an Island Warp Totem",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b9/Warp_Totem_Island.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_rain_totem",
+            "name": "Craft a Rain Totem",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "ship_truffle_oil"
+                    },
+                    {
+                        "goal": "craft_a_tapper"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f7/Rain_Totem.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_torch",
+            "name": "Craft a Torch",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b2/Torch.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_campfire",
+            "name": "Craft a Campfire",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Campfire.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wooden_brazier",
+            "name": "Craft a Wooden Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/34/Wooden_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stone_brazier",
+            "name": "Craft a Stone Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1a/Stone_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_gold_brazier",
+            "name": "Craft a Gold Brazier",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b7/Gold_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_carved_brazier",
+            "name": "Craft a Carved Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3c/Carved_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stump_brazier",
+            "name": "Craft a Stump Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f2/Stump_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_barrel_brazier",
+            "name": "Craft a Barrel Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/78/Barrel_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_skull_brazier",
+            "name": "Craft a Skull Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e6/Skull_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_marble_brazier",
+            "name": "Craft a Marble Brazier",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e0/Marble_Brazier.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wood_lamppost",
+            "name": "Craft a Wood Lamp-post",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c8/Wood_Lamp-post.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_iron_lamppost",
+            "name": "Craft an Iron Lamp-post",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b0/Iron_Lamp-post.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_jackolantern",
+            "name": "Craft a Jack-O-Lantern",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/17/Jack-O-Lantern.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_charcoal_kiln",
+            "name": "Craft a Charcoal Kiln",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/76/Charcoal_Kiln.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_crystalarium",
+            "name": "Craft a Crystalarium",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/63/Crystalarium.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_furnace",
+            "name": "Craft a Furnace",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0f/Furnace.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_lightning_rod",
+            "name": "Craft a Lightning Rod",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/62/Lightning_Rod.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_solar_panel",
+            "name": "Craft a Solar Panel",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "ship_a_taro_root"
+                    },
+                    {
+                        "goal": "ship_a_pineapple"
+                    },
+                    {
+                        "goal": "ship_ginger"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5d/Solar_Panel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_recycling_machine",
+            "name": "Craft a Recycling Machine",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/26/Recycling_Machine.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_seed_maker",
+            "name": "Craft a Seed Maker",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/19/Seed_Maker.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_slime_incubator",
+            "name": "Craft a Slime Incubator",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c0/Slime_Incubator.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_ostrich_incubator",
+            "name": "Craft an Ostrich Incubator",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/51/Ostrich_Incubator.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_slime_eggpress",
+            "name": "Craft a Slime Egg-Press",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/79/Slime_Egg-Press.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_tapper",
+            "name": "Craft a Tapper",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/da/Tapper.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_heavy_tapper",
+            "name": "Craft a Heavy Tapper",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0c/Heavy_Tapper.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_worm_bin",
+            "name": "Craft a Worm Bin",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/71/Worm_Bin.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_bone_mill",
+            "name": "Craft a Bone Mill",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cc/Bone_Mill.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_geode_crusher",
+            "name": "Craft a Geode Crusher",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/02/Geode_Crusher.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_tub_o_flowers",
+            "name": "Craft a Tub o' Flowers",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d9/Tub_o%27_Flowers.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wicked_statue",
+            "name": "Craft a Wicked Statue",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_krobus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4a/Wicked_Statue.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_flute_block",
+            "name": "Craft a Flute Block",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_robin"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/31/Flute_Block.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_drum_block",
+            "name": "Craft a Drum Block",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_robin"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/dc/Drum_Block.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_chest",
+            "name": "Craft a Chest",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b3/Chest.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stone_chest",
+            "name": "Craft a Stone Chest",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1b/Stone_Chest.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_wood_sign",
+            "name": "Craft a Wood Sign",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/ce/Wood_Sign.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_stone_sign",
+            "name": "Craft a Stone Sign",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f3/Stone_Sign.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_dark_sign",
+            "name": "Craft a Dark Sign",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_krobus"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/72/Dark_Sign.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_garden_pot",
+            "name": "Craft a Garden Pot",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "ship_refined_quartz"
+                    },
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2c/Garden_Pot.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_scarecrow",
+            "name": "Craft a Scarecrow",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/75/Scarecrow.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_deluxe_scarecrow",
+            "name": "Craft a Deluxe Scarecrow",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/59/Deluxe_Scarecrow.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_staircase",
+            "name": "Craft a Staircase",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8c/Staircase.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_explosive_ammo",
+            "name": "Craft Explosive Ammo",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f3/Explosive_Ammo.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_an_iron_bar_transmute",
+            "name": "Craft an Iron Bar (Transmute)",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6c/Iron_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_gold_bar_transmute",
+            "name": "Craft a Gold Bar (Transmute)",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/4e/Gold_Bar.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_minijukebox",
+            "name": "Craft a Mini-Jukebox",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "befriend_gus"
+                    },
+                    {
+                        "goal": "craft_a_furnace"
+                    },
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/02/Mini-Jukebox.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_miniobelisk",
+            "name": "Craft a Mini-Obelisk",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "craft_a_furnace"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c9/Mini-Obelisk.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_farm_computer",
+            "name": "Craft a Farm Computer",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "#demetrius_fish"
+                    },
+                    {
+                        "goal": "ship_refined_quartz"
+                    },
+                    {
+                        "goal": "ship_a_battery_pack"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f8/Farm_Computer.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_hopper",
+            "name": "Craft a Hopper",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/81/Hopper.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "craft_a_cookout_kit",
+            "name": "Craft a Cookout Kit",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/91/Cookout_Kit.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_pufferfish",
+            "name": "Catch a Pufferfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/ba/Pufferfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_an_anchovy",
+            "name": "Catch an Anchovy",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/79/Anchovy.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_tuna",
+            "name": "Catch a Tuna",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c5/Tuna.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_sardine",
+            "name": "Catch a Sardine",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/04/Sardine.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_bream",
+            "name": "Catch a Bream",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/82/Bream.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_largemouth_bass",
+            "name": "Catch a Largemouth Bass",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/11/Largemouth_Bass.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_smallmouth_bass",
+            "name": "Catch a Smallmouth Bass",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Smallmouth_Bass.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_rainbow_trout",
+            "name": "Catch a Rainbow Trout",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/14/Rainbow_Trout.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_salmon",
+            "name": "Catch a Salmon",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e0/Salmon.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_walleye",
+            "name": "Catch a Walleye",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/05/Walleye.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_perch",
+            "name": "Catch a Perch",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/43/Perch.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_carp",
+            "name": "Catch a Carp",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a8/Carp.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_catfish",
+            "name": "Catch a Catfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/99/Catfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_pike",
+            "name": "Catch a Pike",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/31/Pike.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_sunfish",
+            "name": "Catch a Sunfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/56/Sunfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_red_mullet",
+            "name": "Catch a Red Mullet",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f2/Red_Mullet.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_herring",
+            "name": "Catch a Herring",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Herring.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_an_eel",
+            "name": "Catch an Eel",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/91/Eel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_an_octopus",
+            "name": "Catch an Octopus",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5a/Octopus.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_red_snapper",
+            "name": "Catch a Red Snapper",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d3/Red_Snapper.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_squid",
+            "name": "Catch a Squid",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/81/Squid.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_sea_cucumber",
+            "name": "Catch a Sea Cucumber",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a9/Sea_Cucumber.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_super_cucumber",
+            "name": "Catch a Super Cucumber",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d5/Super_Cucumber.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_ghostfish",
+            "name": "Catch a Ghostfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/72/Ghostfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_stonefish",
+            "name": "Catch a Stonefish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/03/Stonefish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_an_ice_pip",
+            "name": "Catch an Ice Pip",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/63/Ice_Pip.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_lava_eel",
+            "name": "Catch a Lava Eel",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/12/Lava_Eel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_sandfish",
+            "name": "Catch a Sandfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bb/Sandfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_scorpion_carp",
+            "name": "Catch a Scorpion Carp",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/76/Scorpion_Carp.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_flounder",
+            "name": "Catch a Flounder",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/85/Flounder.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_midnight_carp",
+            "name": "Catch a Midnight Carp",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/33/Midnight_Carp.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_sturgeon",
+            "name": "Catch a Sturgeon",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/42/Sturgeon.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_tiger_trout",
+            "name": "Catch a Tiger Trout",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Tiger_Trout.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_bullhead",
+            "name": "Catch a Bullhead",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/db/Bullhead.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_tilapia",
+            "name": "Catch a Tilapia",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/73/Tilapia.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_chub",
+            "name": "Catch a Chub",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bd/Chub.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_dorado",
+            "name": "Catch a Dorado",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/18/Dorado.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_an_albacore",
+            "name": "Catch an Albacore",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e1/Albacore.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_shad",
+            "name": "Catch a Shad",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ef/Shad.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_lingcod",
+            "name": "Catch a Lingcod",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/87/Lingcod.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_halibut",
+            "name": "Catch a Halibut",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/02/Halibut.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_woodskip",
+            "name": "Catch a Woodskip",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/97/Woodskip.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_void_salmon",
+            "name": "Catch a Void Salmon",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/ad/Void_Salmon.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_slimejack",
+            "name": "Catch a Slimejack",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/34/Slimejack.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_stingray",
+            "name": "Catch a Stingray",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/3a/Stingray.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_lionfish",
+            "name": "Catch a Lionfish",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bb/Lionfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_blue_discus",
+            "name": "Catch a Blue Discus",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ee/Blue_Discus.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_midnight_squid",
+            "name": "Catch a Midnight Squid",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/83/Midnight_Squid.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_spook_fish",
+            "name": "Catch a Spook Fish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8c/Spook_Fish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_blobfish",
+            "name": "Catch a Blobfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/7f/Blobfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_the_crimsonfish",
+            "name": "Catch the Crimsonfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/dc/Crimsonfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_the_angler",
+            "name": "Catch the Angler",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/bf/Angler.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_the_legend",
+            "name": "Catch the Legend",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/10/Legend.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_the_glacierfish",
+            "name": "Catch the Glacierfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fd/Glacierfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_the_mutant_carp",
+            "name": "Catch the Mutant Carp",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cb/Mutant_Carp.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_lobster",
+            "name": "Catch a Lobster",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9f/Lobster.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_crayfish",
+            "name": "Catch a Crayfish",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/53/Crayfish.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_crab",
+            "name": "Catch a Crab",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/63/Crab.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_cockle",
+            "name": "Catch a Cockle",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/ad/Cockle.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_mussel",
+            "name": "Catch a Mussel",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/aa/Mussel.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_shrimp",
+            "name": "Catch a Shrimp",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/91/Shrimp.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_snail",
+            "name": "Catch a Snail",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d2/Snail.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_a_periwinkle",
+            "name": "Catch a Periwinkle",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1d/Periwinkle.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_an_oyster",
+            "name": "Catch an Oyster",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/54/Oyster.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_seaweed",
+            "name": "Catch Seaweed",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/13/Seaweed.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_green_algae",
+            "name": "Catch Green Algae",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6d/Green_Algae.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "catch_white_algae",
+            "name": "Catch White Algae",
+            "prerequisites": {},
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f7/White_Algae.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "enter_the_walnut_room",
+            "name": "Enter the Walnut Room",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "complete_the_community_center"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b4/Mr._Qi.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "finish_golden_walnuts",
+            "name": "Finish Golden Walnuts",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "enter_the_walnut_room"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/54/Golden_Walnut.png",
+            "multiplicity": 1,
+            "xp": {}
+        },
+        {
+            "id": "complete_the_community_center",
+            "name": "Complete the Community Center",
+            "prerequisites": {
+                "all": [
+                    {
+                        "goal": "catch_a_sunfish"
+                    },
+                    {
+                        "goal": "catch_a_catfish"
+                    },
+                    {
+                        "goal": "catch_a_tiger_trout"
+                    },
+                    {
+                        "goal": "catch_a_shad"
+                    },
+                    {
+                        "goal": "catch_a_largemouth_bass"
+                    },
+                    {
+                        "goal": "catch_a_carp"
+                    },
+                    {
+                        "goal": "catch_a_bullhead"
+                    },
+                    {
+                        "goal": "catch_a_sturgeon"
+                    },
+                    {
+                        "goal": "catch_a_sardine"
+                    },
+                    {
+                        "goal": "catch_a_tuna"
+                    },
+                    {
+                        "goal": "catch_a_red_snapper"
+                    },
+                    {
+                        "goal": "catch_a_tilapia"
+                    },
+                    {
+                        "goal": "catch_a_walleye"
+                    },
+                    {
+                        "goal": "catch_a_bream"
+                    },
+                    {
+                        "goal": "catch_an_eel"
+                    },
+                    {
+                        "goal": "catch_a_pufferfish"
+                    },
+                    {
+                        "goal": "catch_a_sandfish"
+                    },
+                    {
+                        "goal": "catch_a_woodskip"
+                    },
+                    {
+                        "goal": "catch_a_chub"
+                    }
+                ]
+            },
+            "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a8/Community_Center.png",
+            "multiplicity": 1,
+            "xp": {}
+        }
+    ]
+}
