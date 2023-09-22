@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { loadCompletedGoals } from '~/utils/goals';
+const state = useAppState();
 
-const template = await loadTemplate("hardcore");
-if (!template) {
-    throw new Error("bad template");
-}
-const { tags, goals } = loadCompletedGoals(template);
+const goals = state.value.goals;
+
+watch([state.value.goals], () => {
+    console.log("state changed");
+})
 </script>

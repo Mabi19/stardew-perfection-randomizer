@@ -35,20 +35,10 @@ const templates: Record<string, Template> = {
     hardcore: hardcoreTemplate as unknown as Template,
 };
 
-export async function getPredefinedTemplate(templateName: string) {
+export function getPredefinedTemplate(templateName: string) {
     if (templateName in templates) {
         return templates[templateName];
     }
 
     return null;
-}
-
-export function loadCompletedGoals(template: Template): {
-    tags: Ref<Record<string, string[]>>;
-    goals: Ref<Goal[]>;
-} {
-    return {
-        tags: ref(template.tags),
-        goals: ref(template.goals.map((goal) => ({ ...goal, complete: 0 }))),
-    };
 }
