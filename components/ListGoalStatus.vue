@@ -1,16 +1,44 @@
 <template>
     <span class="status">
-        <input v-if="goal.multiplicity == 1" type="checkbox" :checked="Boolean(goal.complete)">
+        <input v-if="goal.multiplicity == 1" type="checkbox" :checked="Boolean(goal.complete)" @change="handleCheckbox">
         <span class="status-badge" v-else>
-            <input class="completion-input" type="number" min="0" :max="goal.multiplicity" :value="goal.complete">/{{ goal.multiplicity }}
+            <input
+                class="completion-input"
+                type="number"
+                min="0"
+                :max="goal.multiplicity"
+                :value="goal.complete"
+                @input="handleInput"
+            >/{{ goal.multiplicity }}
         </span>
     </span>
 </template>
 
 <script setup lang="ts">
-const _props = defineProps<{
+const props = defineProps<{
     goal: Goal
 }>()
+
+const emit = defineEmits<{
+    (event: "update", goalID: string, completion: number): void
+}>();
+
+function handleCheckbox(event: Event) {
+    sendEvent(Number((event.target as HTMLInputElement).checked))
+}
+
+function handleInput(event: Event) {
+    sendEvent(Number((event.target as HTMLInputElement).value));
+}
+
+function sendEvent(state: number) {
+    const numericValue = typeof state == "number" ? state : Number(state);
+    if (isNaN(numericValue) || numericValue < 0 || numericValue > props.goal.multiplicity) {
+        return;
+    }
+
+    emit('update', props.goal.id, numericValue);
+}
 </script>
 
 <style scoped lang="scss">
@@ -45,6 +73,6 @@ const _props = defineProps<{
 }
 
 .completion-input:invalid {
-    border-color: red;
+    outline: 2px solid red;
 }
 </style>

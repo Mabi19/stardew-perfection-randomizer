@@ -1,6 +1,6 @@
 <template>
     <ul class="goal-list">
-        <ListGoal v-for="goal in goals" :goal="goal" :key="goal.id"></ListGoal>
+        <ListGoal v-for="goal in goals" :goal="goal" :key="goal.id" @update="console.log"></ListGoal>
     </ul>
 </template>
 
