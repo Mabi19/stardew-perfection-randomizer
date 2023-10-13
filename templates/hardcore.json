@@ -1680,7 +1680,7 @@
             "xp": {}
         },
         {
-            "id": "gain_a_farming_level",
+            "id": "level:farming",
             "name": "Gain a Farming Level",
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/82/Farming_Skill_Icon.png",
@@ -1688,7 +1688,7 @@
             "xp": {}
         },
         {
-            "id": "gain_a_mining_level",
+            "id": "level:mining",
             "name": "Gain a Mining Level",
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2f/Mining_Skill_Icon.png",
@@ -1696,7 +1696,7 @@
             "xp": {}
         },
         {
-            "id": "gain_a_foraging_level",
+            "id": "level:foraging",
             "name": "Gain a Foraging Level",
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Foraging_Skill_Icon.png",
@@ -1704,7 +1704,7 @@
             "xp": {}
         },
         {
-            "id": "gain_a_fishing_level",
+            "id": "level:fishing",
             "name": "Gain a Fishing Level",
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e7/Fishing_Skill_Icon.png",
@@ -1712,7 +1712,7 @@
             "xp": {}
         },
         {
-            "id": "gain_a_combat_level",
+            "id": "level:combat",
             "name": "Gain a Combat Level",
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cf/Combat_Skill_Icon.png",
@@ -2367,7 +2367,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 3
                     }
                 ]
@@ -2382,7 +2382,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 2
                     }
                 ]
@@ -2397,7 +2397,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     },
                     {
@@ -2415,7 +2415,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 3
                     }
                 ]
@@ -2430,7 +2430,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 3
                     }
                 ]
@@ -2453,7 +2453,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 9
                     },
                     {
@@ -2759,7 +2759,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 9
                     }
                 ]
@@ -2774,7 +2774,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 1
                     }
                 ]
@@ -2789,7 +2789,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 6
                     }
                 ]
@@ -2804,7 +2804,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 8
                     }
                 ]
@@ -2835,7 +2835,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 2
                     }
                 ]
@@ -2850,7 +2850,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 4
                     }
                 ]
@@ -2865,7 +2865,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 6
                     }
                 ]
@@ -2880,7 +2880,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 2
                     }
                 ]
@@ -2895,7 +2895,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 6
                     }
                 ]
@@ -2910,7 +2910,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 9
                     }
                 ]
@@ -2925,7 +2925,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 2
                     }
                 ]
@@ -2940,7 +2940,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 3
                     }
                 ]
@@ -2955,7 +2955,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 4
                     }
                 ]
@@ -2970,7 +2970,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 6
                     }
                 ]
@@ -2985,7 +2985,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 7
                     }
                 ]
@@ -3000,7 +3000,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 8
                     }
                 ]
@@ -3015,7 +3015,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 8
                     }
                 ]
@@ -3038,7 +3038,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 1
                     }
                 ]
@@ -3053,7 +3053,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 9
                     }
                 ]
@@ -3082,7 +3082,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 3
                     }
                 ]
@@ -3097,7 +3097,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 8
                     }
                 ]
@@ -3126,7 +3126,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 4
                     }
                 ]
@@ -3141,7 +3141,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 7
                     }
                 ]
@@ -3164,7 +3164,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 7
                     }
                 ]
@@ -3179,7 +3179,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 1
                     }
                 ]
@@ -3194,7 +3194,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 4
                     }
                 ]
@@ -3209,7 +3209,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 6
                     }
                 ]
@@ -3224,7 +3224,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 7
                     }
                 ]
@@ -3383,7 +3383,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 6
                     }
                 ]
@@ -3398,7 +3398,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 6
                     }
                 ]
@@ -3413,7 +3413,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 7
                     }
                 ]
@@ -3442,7 +3442,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 7
                     }
                 ]
@@ -3457,7 +3457,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 8
                     }
                 ]
@@ -3472,7 +3472,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 8
                     }
                 ]
@@ -3487,7 +3487,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 9
                     }
                 ]
@@ -3502,7 +3502,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 2
                     }
                 ]
@@ -3545,7 +3545,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -3560,7 +3560,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 1
                     }
                 ]
@@ -3575,7 +3575,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 4
                     }
                 ]
@@ -3590,7 +3590,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 7
                     }
                 ]
@@ -3605,7 +3605,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 7
                     }
                 ]
@@ -3620,7 +3620,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 4
                     }
                 ]
@@ -3635,7 +3635,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 9
                     }
                 ]
@@ -3650,7 +3650,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 1
                     }
                 ]
@@ -3665,7 +3665,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 1
                     }
                 ]
@@ -3680,7 +3680,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 2
                     }
                 ]
@@ -3695,7 +3695,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 6
                     }
                 ]
@@ -3726,7 +3726,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 6
                     }
                 ]
@@ -3741,7 +3741,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 7
                     }
                 ]
@@ -3756,7 +3756,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 8
                     }
                 ]
@@ -3787,7 +3787,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 9
                     },
                     {
@@ -3909,7 +3909,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 4
                     }
                 ]
@@ -3924,7 +3924,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 9
                     }
                 ]
@@ -3947,7 +3947,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 6
                     }
                 ]
@@ -3982,7 +3982,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 4
                     }
                 ]
@@ -3997,7 +3997,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 9
                     }
                 ]
@@ -4012,7 +4012,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 8
                     }
                 ]
@@ -4035,7 +4035,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 6
                     }
                 ]
@@ -4050,7 +4050,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 3
                     }
                 ]
@@ -4079,7 +4079,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 8
                     }
                 ]
@@ -4225,7 +4225,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_farming_level",
+                        "goal": "level:farming",
                         "multiplicity": 1
                     }
                 ]
@@ -4248,7 +4248,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 2
                     }
                 ]
@@ -4263,7 +4263,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_combat_level",
+                        "goal": "level:combat",
                         "multiplicity": 8
                     }
                 ]
@@ -4278,7 +4278,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 4
                     }
                 ]
@@ -4293,7 +4293,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_mining_level",
+                        "goal": "level:mining",
                         "multiplicity": 7
                     }
                 ]
@@ -4330,7 +4330,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 10
                     },
                     {
@@ -4362,7 +4362,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_foraging_level",
+                        "goal": "level:foraging",
                         "multiplicity": 9
                     }
                 ]
@@ -4877,7 +4877,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 1
                     }
                 ]
@@ -4904,7 +4904,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 6
                     }
                 ]
@@ -4921,7 +4921,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 2
                     }
                 ]
@@ -4948,7 +4948,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -4965,7 +4965,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -4982,7 +4982,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -4999,7 +4999,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -5016,7 +5016,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -5033,7 +5033,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -5050,7 +5050,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -5067,7 +5067,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]
@@ -5084,7 +5084,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "gain_a_fishing_level",
+                        "goal": "level:fishing",
                         "multiplicity": 3
                     }
                 ]

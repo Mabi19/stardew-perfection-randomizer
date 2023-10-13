@@ -1,17 +1,30 @@
 <template>
-    <span class="status">
-        <input v-if="goal.multiplicity == 1" type="checkbox" :checked="Boolean(goal.complete)" @change="handleCheckbox">
-        <span class="status-badge" v-else>
+    <td class="status">
+        <!-- Do not allow editing the current goal -->
+        <template v-if="store.currentGoalID != goal.id">
             <input
-                class="completion-input"
-                type="number"
-                min="0"
-                :max="goal.multiplicity"
-                :value="goal.complete"
-                @input="handleInput"
-            >/{{ goal.multiplicity }}
+                v-if="goal.multiplicity == 1"
+                type="checkbox"
+                :checked="Boolean(store.completion[goal.id])"
+                :id="`goal:${goal.id}`"
+                @change="handleCheckbox"
+            >
+            <span class="status-badge" v-else>
+                <input
+                    class="completion-input"
+                    type="number"
+                    min="0"
+                    :max="goal.multiplicity"
+                    :value="store.completion[goal.id]"
+                    :id="`goal:${goal.id}`"
+                    @input="handleInput"
+                >/{{ goal.multiplicity }}
+            </span>
+        </template>
+        <span class="status-badge" title="Cancel or finish this goal to edit its completion." v-else>
+            current
         </span>
-    </span>
+    </td>
 </template>
 
 <script setup lang="ts">
@@ -19,25 +32,29 @@ const props = defineProps<{
     goal: Goal
 }>()
 
-const emit = defineEmits<{
-    (event: "update", goalID: string, completion: number): void
-}>();
+// For performance, the completion is not injected into the goals data, but stored separately
+// so, we need to get it manually
+const store = useAppStore();
 
 function handleCheckbox(event: Event) {
-    sendEvent(Number((event.target as HTMLInputElement).checked))
+    update(Number((event.target as HTMLInputElement).checked))
 }
 
 function handleInput(event: Event) {
-    sendEvent(Number((event.target as HTMLInputElement).value));
+    const value = (event.target as HTMLInputElement).value;
+    if (value == "") {
+        return;
+    }
+    update(Number(value));
 }
 
-function sendEvent(state: number) {
+function update(state: number) {
     const numericValue = typeof state == "number" ? state : Number(state);
     if (isNaN(numericValue) || numericValue < 0 || numericValue > props.goal.multiplicity) {
         return;
     }
 
-    emit('update', props.goal.id, numericValue);
+    store.completion[props.goal.id] = state;
 }
 </script>
 
@@ -47,6 +64,7 @@ function sendEvent(state: number) {
 .status {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
     align-items: center;
 }
 
@@ -60,7 +78,6 @@ function sendEvent(state: number) {
 }
 
 .completion-input {
-    appearance: textfield;
     border-radius: 4px;
     border: none;
     width: 2ch;
@@ -70,6 +87,14 @@ function sendEvent(state: number) {
 
     background-color: base.$accent-light;
     color: white;
+
+    appearance: textfield;
+    &::-webkit-inner-spin-button {
+        display: none;
+    }
+    &::-webkit-outer-spin-button {
+        display: none;
+    }
 }
 
 .completion-input:invalid {

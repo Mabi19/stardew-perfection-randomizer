@@ -19,9 +19,7 @@ export interface TemplateGoal {
     xp: Record<string, number>;
 }
 
-export interface Goal extends TemplateGoal {
-    complete: number;
-}
+export interface Goal extends TemplateGoal {}
 
 export interface Template {
     tags: Record<string, string[]>;
@@ -35,7 +33,7 @@ const templates: Record<string, Template> = {
     hardcore: hardcoreTemplate as unknown as Template,
 };
 
-export function getPredefinedTemplate(templateName: string) {
+export function getTemplate(templateName: string) {
     if (templateName in templates) {
         return templates[templateName];
     }

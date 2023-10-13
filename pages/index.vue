@@ -1,15 +1,6 @@
 <template>
     <div>
-        <GoalList :goals="goals"></GoalList>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/goals">Goals</a>
     </div>
 </template>
-
-<script setup lang="ts">
-const state = useAppState();
-
-const goals = state.value.goals;
-
-watch([state.value.goals], () => {
-    console.log("state changed");
-})
-</script>

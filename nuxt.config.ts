@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
+    ssr: false,
     app: {
         head: {
             link: [
@@ -18,4 +19,5 @@ export default defineNuxtConfig({
         },
     },
     css: ["~/assets/global.scss"],
+    modules: ["@pinia/nuxt"],
 });
