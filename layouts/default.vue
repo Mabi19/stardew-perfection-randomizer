@@ -15,8 +15,11 @@
 @use "~/assets/base";
 .layout {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     overflow: hidden;
+
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .top-bar {
@@ -34,6 +37,8 @@
 }
 
 .content {
-    margin: 1rem;
+    padding: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 </style>
