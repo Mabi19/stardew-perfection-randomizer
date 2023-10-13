@@ -46,7 +46,9 @@ export const useAppStore = defineStore("state", () => {
     function rollGoal() {
         // TODO: all the checks from the original spreadsheet
         const eligibleGoals = Object.values(goals.value).filter(
-            (goal) => goal.id != currentGoalID.value,
+            (goal) =>
+                goal.id != currentGoalID.value &&
+                completion.value[goal.id] < goal.multiplicity,
         );
         const index = Math.floor(Math.random() * eligibleGoals.length);
         currentGoalID.value = eligibleGoals[index].id;
