@@ -1,17 +1,32 @@
 <template>
     <div class="dashboard">
         <div class="main">
-            <span>Current Goal: </span>
+            <div>Current Goal:</div>
             <Goal
                 class="cur-goal-name"
                 v-if="store.currentGoal"
                 :goal="store.currentGoal"
                 :show-repeat-number="true"
             />
-            <span v-else>null</span>
+            <Goal class="cur-goal-name" v-else :goal="nullGoal" />
             <div class="controls">
-                <button @click="rollGoal">Generate Goal</button>
-                <button @click="finishGoal">Finish Goal</button>
+                <template v-if="store.currentGoalID">
+                    <AppButton icon="done" @click="finishGoal">
+                        Finish Goal
+                    </AppButton>
+                    <AppButton
+                        icon="block"
+                        type="destructive"
+                        @click="cancelGoal"
+                    >
+                        Cancel Goal
+                    </AppButton>
+                </template>
+                <template v-else>
+                    <AppButton icon="casino" @click="rollGoal">
+                        Generate Goal
+                    </AppButton>
+                </template>
             </div>
         </div>
         <div class="completion">
@@ -21,7 +36,18 @@
 </template>
 
 <script setup lang="ts">
+import NullGoalIcon from "~/assets/null-goal-icon.png";
+
 const store = useAppStore();
+
+const nullGoal: Goal = {
+    id: "null_placeholder",
+    name: "No Goal Active!",
+    imageURL: NullGoalIcon,
+    prerequisites: {},
+    xp: {},
+    multiplicity: 0,
+};
 
 function rollGoal() {
     store.rollGoal();
@@ -29,6 +55,11 @@ function rollGoal() {
 
 function finishGoal() {
     store.finishGoal();
+}
+
+function cancelGoal() {
+    // TODO: check for confirmation
+    store.cancelGoal();
 }
 
 const progressFill = computed(() => ({
@@ -39,8 +70,22 @@ const progressFill = computed(() => ({
 <style scoped lang="scss">
 @use "~/assets/base";
 
+.dashboard {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+}
+
 .main {
     flex-grow: 1;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 1.25rem;
 }
 
 .cur-goal-name {
@@ -48,10 +93,11 @@ const progressFill = computed(() => ({
     font-weight: bold;
 }
 
-.dashboard {
+.controls {
     display: flex;
     flex-flow: column nowrap;
-    height: 100%;
+    align-items: center;
+    gap: 1rem;
 }
 
 .progress-bar {
