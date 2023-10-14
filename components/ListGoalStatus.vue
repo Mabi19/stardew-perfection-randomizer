@@ -1,6 +1,5 @@
 <template>
     <td class="status">
-        <!-- Do not allow editing the current goal -->
         <template v-if="store.currentGoalID != goal.id">
             <input
                 v-if="goal.multiplicity == 1"
