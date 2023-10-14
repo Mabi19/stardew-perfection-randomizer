@@ -11,7 +11,7 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
     goal: Goal,
-    showRepeatNumber: boolean,
+    showRepeatNumber?: boolean,
 }>(), {
     showRepeatNumber: false
 });
