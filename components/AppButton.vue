@@ -8,7 +8,7 @@
 <script setup lang="ts">
 const props = withDefaults(
     defineProps<{
-        type: "default" | "destructive";
+        type?: "default" | "destructive";
         icon?: string;
     }>(),
     {
@@ -38,6 +38,11 @@ const props = withDefaults(
     flex-flow: row nowrap;
     align-items: center;
     gap: 0.4rem;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
 }
 
 .button.default {
