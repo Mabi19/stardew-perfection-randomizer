@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div class="dashboard">
         <div class="status">
-            Current Goal: {{ store.currentGoal }}
+            <span>Current Goal: </span>
+            <Goal class="current-goal" v-if="store.currentGoal" :goal="store.currentGoal" :show-repeat-number="true"/>
+            <span v-else>null</span>
         </div>
         <div class="controls">
             <button @click="rollGoal">Generate Goal</button>
@@ -16,3 +18,15 @@ function rollGoal() {
     store.rollGoal();
 }
 </script>
+
+<style scoped lang="scss">
+.current-goal {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.dashboard {
+    display: grid;
+    place-items: center;
+}
+</style>

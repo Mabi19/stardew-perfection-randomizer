@@ -2,7 +2,7 @@
     <tr class="goal">
         <ListGoalStatus :goal="goal"></ListGoalStatus>
         <td class="name">
-            <label :for="`goal:${goal.id}`">{{ goal.name }}</label>
+            <label :for="`goal:${goal.id}`"><Goal :goal="goal" /></label>
         </td>
     </tr>
 </template>

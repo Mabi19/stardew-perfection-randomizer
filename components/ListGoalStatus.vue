@@ -9,7 +9,7 @@
                 :id="`goal:${goal.id}`"
                 @change="handleCheckbox"
             >
-            <span class="status-badge" v-else>
+            <span class="badge" v-else>
                 <input
                     class="completion-input"
                     type="number"
@@ -18,10 +18,10 @@
                     :value="store.completion[goal.id]"
                     :id="`goal:${goal.id}`"
                     @input="handleInput"
-                >/{{ goal.multiplicity }}
+                ><span>/{{ goal.multiplicity }}</span>
             </span>
         </template>
-        <span class="status-badge" title="Cancel or finish this goal to edit its completion." v-else>
+        <span class="badge" title="Cancel or finish this goal to edit its completion." v-else>
             current
         </span>
     </td>
@@ -66,15 +66,6 @@ function update(state: number) {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-}
-
-.status-badge {
-    background-color: base.$accent;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 16px;
-    font-weight: bold;
-    font-size: 0.8em;
 }
 
 .completion-input {

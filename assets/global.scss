@@ -11,3 +11,15 @@ body {
 *, *::after, *::before {
     box-sizing: border-box;
 }
+
+.badge {
+    background-color: base.$accent;
+    color: white;
+    padding: 0.16em 0.48em;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: 0.8em;
+    * {
+        vertical-align: middle;
+    }
+}
