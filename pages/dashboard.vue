@@ -1,36 +1,50 @@
 <template>
     <div class="dashboard">
         <div class="main">
-            <div>Current Goal:</div>
-            <Goal
-                class="cur-goal-name"
-                v-if="store.currentGoal"
-                :goal="store.currentGoal"
-                :show-repeat-number="true"
-            />
-            <Goal class="cur-goal-name" v-else :goal="nullGoal" />
-            <div class="controls">
-                <template v-if="store.currentGoalID">
-                    <AppButton icon="done" @click="finishGoal">
+            <template v-if="!isFinished">
+                <div>Current Goal:</div>
+                <Goal
+                    class="cur-goal-name"
+                    v-if="store.currentGoal"
+                    :goal="store.currentGoal"
+                    :show-repeat-number="true"
+                />
+                <Goal class="cur-goal-name" v-else :goal="nullGoal" />
+
+                <div class="controls">
+                    <AppButton
+                        v-if="store.currentGoalID"
+                        icon="done"
+                        @click="finishGoal"
+                    >
                         Finish Goal
                     </AppButton>
+                    <AppButton v-else icon="casino" @click="rollGoal">
+                        Generate Goal
+                    </AppButton>
+                    <!-- to prevent layout shift, change the visibility -->
                     <AppButton
                         icon="block"
                         type="destructive"
                         @click="cancelGoal"
+                        :style="{
+                            visibility: store.currentGoalID
+                                ? 'visible'
+                                : 'hidden',
+                        }"
                     >
                         Cancel Goal
                     </AppButton>
-                </template>
-                <template v-else>
-                    <AppButton icon="casino" @click="rollGoal">
-                        Generate Goal
-                    </AppButton>
-                </template>
-            </div>
+                </div>
+            </template>
+            <div class="completed" v-else>All goals completed! 🎉</div>
         </div>
         <div class="completion">
-            <div class="progress-bar" :style="progressFill"></div>
+            <div
+                class="progress-bar"
+                :class="{ full: isFinished }"
+                :style="progressFill"
+            ></div>
         </div>
     </div>
 </template>
@@ -65,6 +79,8 @@ function cancelGoal() {
 const progressFill = computed(() => ({
     "--fill": `${(100 * store.completedCount) / store.totalCount}%`,
 }));
+
+const isFinished = computed(() => store.completedCount == store.totalCount);
 </script>
 
 <style scoped lang="scss">
@@ -83,9 +99,9 @@ const progressFill = computed(() => ({
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
 
     font-size: 1.25rem;
+    padding: 0.5rem;
 }
 
 .cur-goal-name {
@@ -98,6 +114,13 @@ const progressFill = computed(() => ({
     flex-flow: column nowrap;
     align-items: center;
     gap: 1rem;
+
+    margin-top: 1.5rem;
+}
+
+.completed {
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 .progress-bar {
