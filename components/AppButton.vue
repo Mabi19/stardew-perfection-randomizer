@@ -30,6 +30,9 @@ const props = withDefaults(
     padding: 0.5rem 0.75rem;
     border-radius: 0.25rem;
     transition: background-color 0.2s ease;
+    &:hover {
+        opacity: 0.9;
+    }
 
     display: flex;
     flex-flow: row nowrap;
@@ -40,8 +43,10 @@ const props = withDefaults(
 .button.default {
     background-color: base.$accent;
     color: whitesmoke;
-    &:hover {
-        background-color: color.adjust(base.$accent, $lightness: 10%);
-    }
+}
+
+.button.destructive {
+    background-color: rgb(230, 86, 60);
+    color: whitesmoke;
 }
 </style>
