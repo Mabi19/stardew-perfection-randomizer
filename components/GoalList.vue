@@ -15,11 +15,3 @@
 <script setup lang="ts">
 const store = useAppStore();
 </script>
-
-<style scoped lang="scss">
-.goal-list {
-    // display: flex;
-    // flex-flow: column nowrap;
-    gap: 2px;
-}
-</style>

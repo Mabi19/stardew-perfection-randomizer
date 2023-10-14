@@ -37,7 +37,6 @@
 }
 
 .content {
-    padding: 1rem;
     flex-grow: 1;
     overflow-y: auto;
 }

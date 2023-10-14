@@ -8,7 +8,7 @@
                 :checked="Boolean(store.completion[goal.id])"
                 :id="`goal:${goal.id}`"
                 @change="handleCheckbox"
-            >
+            />
             <span class="badge" v-else>
                 <input
                     class="completion-input"
@@ -18,10 +18,14 @@
                     :value="store.completion[goal.id]"
                     :id="`goal:${goal.id}`"
                     @input="handleInput"
-                ><span>/{{ goal.multiplicity }}</span>
+                /><span>/{{ goal.multiplicity }}</span>
             </span>
         </template>
-        <span class="badge" title="Cancel or finish this goal to edit its completion." v-else>
+        <span
+            class="badge"
+            title="Cancel or finish this goal to edit its completion."
+            v-else
+        >
             current
         </span>
     </td>
@@ -29,15 +33,15 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    goal: Goal
-}>()
+    goal: Goal;
+}>();
 
 // For performance, the completion is not injected into the goals data, but stored separately
 // so, we need to get it manually
 const store = useAppStore();
 
 function handleCheckbox(event: Event) {
-    update(Number((event.target as HTMLInputElement).checked))
+    update(Number((event.target as HTMLInputElement).checked));
 }
 
 function handleInput(event: Event) {
@@ -50,7 +54,11 @@ function handleInput(event: Event) {
 
 function update(state: number) {
     const numericValue = typeof state == "number" ? state : Number(state);
-    if (isNaN(numericValue) || numericValue < 0 || numericValue > props.goal.multiplicity) {
+    if (
+        isNaN(numericValue) ||
+        numericValue < 0 ||
+        numericValue > props.goal.multiplicity
+    ) {
         return;
     }
 

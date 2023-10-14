@@ -32,6 +32,20 @@ export const useAppStore = defineStore("state", () => {
         return (goals.value?.[currentGoalID.value] ?? null) as Goal | null;
     });
 
+    const completedCount = computed(() =>
+        Object.values(completion.value).reduce(
+            (sum, current) => sum + current,
+            0,
+        ),
+    );
+
+    const totalCount = computed(() =>
+        templateData.value.goals.reduce(
+            (sum, goal) => sum + goal.multiplicity,
+            0,
+        ),
+    );
+
     // TODO: actions for saving, finishing goals, etc.
 
     watch(
@@ -54,6 +68,23 @@ export const useAppStore = defineStore("state", () => {
         currentGoalID.value = eligibleGoals[index].id;
     }
 
+    function cancelGoal() {
+        currentGoalID.value = null;
+    }
+
+    function finishGoal() {
+        if (currentGoal.value == null) return;
+
+        if (
+            completion.value[currentGoal.value.id] <
+            currentGoal.value.multiplicity
+        ) {
+            completion.value[currentGoal.value.id] += 1;
+        }
+
+        cancelGoal();
+    }
+
     return {
         // state & getters
         currentTemplateName,
@@ -62,7 +93,11 @@ export const useAppStore = defineStore("state", () => {
         completion,
         goals,
         currentGoal,
+        completedCount,
+        totalCount,
         // actions
         rollGoal,
+        cancelGoal,
+        finishGoal,
     };
 });

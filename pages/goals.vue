@@ -1,12 +1,11 @@
 <template>
-    <div>
+    <div class="goals-wrapper">
         <GoalList></GoalList>
     </div>
 </template>
 
-<script setup lang="ts">
-import { useAppStore } from '~/composables/app-store';
-
-const store = useAppStore();
-
-</script>
+<style scoped lang="scss">
+.goals-wrapper {
+    padding: 1rem;
+}
+</style>
