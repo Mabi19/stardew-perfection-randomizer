@@ -40,6 +40,7 @@ const store = useAppStore();
     width: 1em;
     height: 1em;
     object-fit: contain;
+    image-rendering: crisp-edges;
 
     margin-right: 0.3em;
 }
