@@ -1,50 +1,60 @@
 <template>
     <div class="dashboard">
         <div class="main">
-            <template v-if="!isFinished">
-                <div>Current Goal:</div>
-                <Goal
-                    class="cur-goal-name"
-                    v-if="store.currentGoal"
-                    :goal="store.currentGoal"
-                    :show-repeat-number="true"
-                />
-                <Goal class="cur-goal-name" v-else :goal="nullGoal" />
+            <div class="goal-area">
+                <template v-if="!isFinished">
+                    <div class="current-goal-title">Current Goal:</div>
+                    <Goal
+                        class="main-goal"
+                        v-if="store.currentGoal"
+                        :goal="store.currentGoal"
+                        :show-repeat-number="true"
+                    />
+                    <Goal class="main-goal" v-else :goal="nullGoal" />
 
-                <div class="controls">
-                    <AppButton
-                        v-if="store.currentGoalID"
-                        icon="done"
-                        @click="finishGoal"
-                    >
-                        Finish Goal
-                    </AppButton>
-                    <AppButton v-else icon="casino" @click="rollGoal">
-                        Generate Goal
-                    </AppButton>
-                    <!-- to prevent layout shift, change the visibility -->
-                    <AppButton
-                        icon="block"
-                        type="destructive"
-                        @click="cancelGoal"
-                        :style="{
-                            visibility: store.currentGoalID
-                                ? 'visible'
-                                : 'hidden',
-                        }"
-                    >
-                        Cancel Goal
-                    </AppButton>
-                </div>
-            </template>
-            <div class="completed" v-else>All goals completed! 🎉</div>
+                    <div class="controls">
+                        <AppButton
+                            v-if="store.currentGoalID"
+                            icon="done"
+                            @click="finishGoal"
+                        >
+                            Finish Goal
+                        </AppButton>
+                        <AppButton v-else icon="casino" @click="rollGoal">
+                            Generate Goal
+                        </AppButton>
+                        <!-- to prevent layout shift, change the visibility -->
+                        <AppButton
+                            icon="block"
+                            type="destructive"
+                            @click="cancelGoal"
+                            :style="{
+                                visibility: store.currentGoalID
+                                    ? 'visible'
+                                    : 'hidden',
+                            }"
+                        >
+                            Cancel Goal
+                        </AppButton>
+                    </div>
+                </template>
+                <div class="main-goal" v-else>All goals completed! 🎉</div>
+            </div>
         </div>
         <div class="completion">
-            <div
-                class="progress-bar"
-                :class="{ full: isFinished }"
-                :style="progressFill"
-            ></div>
+            <div class="label">
+                Completed Goals: {{ store.completedCount }}/{{
+                    store.totalCount
+                }}
+                ({{
+                    numberFormatter.format(
+                        (100 * store.completedCount) / store.totalCount,
+                    )
+                }}%)
+            </div>
+            <ChallengeProgressBar
+                :fill="store.completedCount / store.totalCount"
+            />
         </div>
     </div>
 </template>
@@ -76,11 +86,11 @@ function cancelGoal() {
     store.cancelGoal();
 }
 
-const progressFill = computed(() => ({
-    "--fill": `${(100 * store.completedCount) / store.totalCount}%`,
-}));
-
 const isFinished = computed(() => store.completedCount == store.totalCount);
+
+const numberFormatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 1,
+});
 </script>
 
 <style scoped lang="scss">
@@ -90,6 +100,13 @@ const isFinished = computed(() => store.completedCount == store.totalCount);
     display: flex;
     flex-flow: column nowrap;
     height: 100%;
+
+    background: url("~/assets/background-light.png");
+    image-rendering: crisp-edges;
+    background-position: 50% 50%;
+    background-size: cover;
+
+    font-size: 1.25rem;
 }
 
 .main {
@@ -100,11 +117,21 @@ const isFinished = computed(() => store.completedCount == store.totalCount);
     justify-content: center;
     align-items: center;
 
-    font-size: 1.25rem;
     padding: 0.5rem;
 }
 
-.cur-goal-name {
+.goal-area {
+    background-color: rgb(214, 247, 214);
+    border: 2px solid #599159;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.current-goal-title {
+    text-align: center;
+}
+
+.main-goal {
     font-size: 3rem;
     font-weight: bold;
 }
@@ -118,88 +145,14 @@ const isFinished = computed(() => store.completedCount == store.totalCount);
     margin-top: 1.5rem;
 }
 
-.completed {
-    font-size: 3rem;
-    font-weight: bold;
-}
+.completion .label {
+    color: whitesmoke;
+    background-color: rgba(10, 10, 10, 0.85);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 
-.progress-bar {
-    width: 100%;
-    transform: translateX(calc(-100% + var(--fill)));
-    transition:
-        transform 1s ease-out,
-        border-top-right-radius 1s ease-out,
-        background 1s ease-out;
-
-    height: 0.5rem;
-    border-top-right-radius: 0.5rem;
-
-    background: base.$accent;
-
-    // this is needed for the full bar gradient to be contained within
-    // (it is absolute-positioned, so we need a new stacking context)
-    contain: layout;
-}
-
-.progress-bar::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0.5rem;
-
-    opacity: 0;
-    transition: opacity 1s ease-out;
-
-    background: linear-gradient(
-        to right,
-        hsl(0deg, 100%, 70%),
-        hsl(10deg, 100%, 70%),
-        hsl(20deg, 100%, 70%),
-        hsl(30deg, 100%, 70%),
-        hsl(40deg, 100%, 70%),
-        hsl(50deg, 100%, 70%),
-        hsl(60deg, 100%, 70%),
-        hsl(70deg, 100%, 70%),
-        hsl(80deg, 100%, 70%),
-        hsl(90deg, 100%, 70%),
-        hsl(100deg, 100%, 70%),
-        hsl(110deg, 100%, 70%),
-        hsl(120deg, 100%, 70%),
-        hsl(130deg, 100%, 70%),
-        hsl(140deg, 100%, 70%),
-        hsl(150deg, 100%, 70%),
-        hsl(160deg, 100%, 70%),
-        hsl(170deg, 100%, 70%),
-        hsl(180deg, 100%, 70%),
-        hsl(190deg, 100%, 70%),
-        hsl(200deg, 100%, 70%),
-        hsl(210deg, 100%, 70%),
-        hsl(220deg, 100%, 70%),
-        hsl(230deg, 100%, 70%),
-        hsl(240deg, 100%, 70%),
-        hsl(250deg, 100%, 70%),
-        hsl(260deg, 100%, 70%),
-        hsl(270deg, 100%, 70%),
-        hsl(280deg, 100%, 70%),
-        hsl(290deg, 100%, 70%),
-        hsl(300deg, 100%, 70%),
-        hsl(310deg, 100%, 70%),
-        hsl(320deg, 100%, 70%),
-        hsl(330deg, 100%, 70%),
-        hsl(340deg, 100%, 70%),
-        hsl(350deg, 100%, 70%),
-        hsl(360deg, 100%, 70%)
-    );
-}
-
-.progress-bar.full {
-    transform: none;
-    border-top-right-radius: 0;
-}
-
-.progress-bar.full::after {
-    opacity: 1;
+    width: fit-content;
+    margin-inline: auto;
+    margin-bottom: 0.5rem;
 }
 </style>
