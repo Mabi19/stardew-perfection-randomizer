@@ -24,8 +24,6 @@ const store = useAppStore();
 
 <style scoped lang="scss">
 .goal-wrapper {
-    text-align: center;
-
     * {
         display: inline;
         vertical-align: middle;

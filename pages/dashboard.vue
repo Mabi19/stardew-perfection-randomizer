@@ -102,6 +102,8 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     height: 100%;
 
     background: url("~/assets/background-light.png");
+    // TODO: Summit image for 100% completion
+
     image-rendering: crisp-edges;
     background-position: 50% 50%;
     background-size: cover;
@@ -134,6 +136,7 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
 .main-goal {
     font-size: 3rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .controls {
