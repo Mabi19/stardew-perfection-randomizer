@@ -1,6 +1,11 @@
 import { defineStore } from "pinia";
 
 export const useRandomizerStore = defineStore("randomizer", () => {
+    const profile = localStorage.getItem("currentProfile");
+    if (!profile) {
+        throw new Error("No profile selected");
+    }
+
     // TODO: load from save
     // Tied to the currently loaded save file.
     const currentTemplateName = ref("hardcore");
