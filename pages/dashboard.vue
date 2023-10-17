@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import NullGoalIcon from "~/assets/null-goal-icon.png";
 
-const store = useAppStore();
+const store = useRandomizerStore();
 
 const nullGoal: Goal = {
     id: "null_placeholder",

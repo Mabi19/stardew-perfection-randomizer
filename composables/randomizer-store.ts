@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useAppStore = defineStore("state", () => {
+export const useRandomizerStore = defineStore("randomizer", () => {
     // TODO: load from save
     // Tied to the currently loaded save file.
     const currentTemplateName = ref("hardcore");

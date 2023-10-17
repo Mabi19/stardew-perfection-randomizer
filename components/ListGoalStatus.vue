@@ -37,7 +37,7 @@ const props = defineProps<{
 
 // For performance, the completion is not injected into the goals data, but stored separately
 // so, we need to get it manually
-const store = useAppStore();
+const store = useRandomizerStore();
 
 function handleCheckbox(event: Event) {
     update(Number((event.target as HTMLInputElement).checked));

@@ -19,7 +19,7 @@ const props = withDefaults(
     },
 );
 
-const store = useAppStore();
+const store = useRandomizerStore();
 </script>
 
 <style scoped lang="scss">

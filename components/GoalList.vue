@@ -13,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-const store = useAppStore();
+const store = useRandomizerStore();
 </script>
