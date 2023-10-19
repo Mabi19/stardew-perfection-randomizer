@@ -7,29 +7,27 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     }
 
     // TODO: load from save
-    // Tied to the currently loaded save file.
-    const currentTemplateName = ref("hardcore");
-    const currentGoalID = ref<string | null>(null);
+    const serializedProfileData = localStorage.getItem(`profile:${profile}`);
+    if (!serializedProfileData) {
+        throw new Error("Invalid save data");
+    }
+    const data = deserializeSaveData(serializedProfileData);
 
-    const templateData = computed<Template>(
-        () => getTemplate(currentTemplateName.value)!,
-    );
+    // Tied to the currently loaded save file.
+    const currentTemplateName = ref(data.templateName);
+    const currentGoalID = ref<string | null>(data.currentGoalID);
+
+    const templateData = computed<Template>(() => getTemplate(currentTemplateName.value)!);
     if (!templateData.value) {
         throw new Error(`Could not find template ${currentTemplateName.value}`);
     }
 
     // This is also tied to the current state of the save file.
-    const completion = ref(
-        Object.fromEntries(
-            templateData.value!.goals.map((goal) => [goal.id, 0]),
-        ),
-    );
+    const completion = ref(data.completion);
 
     // we're not adding the completion in here for performance
     const goals = computed(() =>
-        Object.fromEntries(
-            templateData.value!.goals.map((goal) => [goal.id, goal as Goal]),
-        ),
+        Object.fromEntries(templateData.value!.goals.map((goal) => [goal.id, goal as Goal])),
     );
 
     const currentGoal = computed(() => {
@@ -38,25 +36,29 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     });
 
     const completedCount = computed(() =>
-        Object.values(completion.value).reduce(
-            (sum, current) => sum + current,
-            0,
-        ),
+        Object.values(completion.value).reduce((sum, current) => sum + current, 0),
     );
 
     const totalCount = computed(() =>
-        templateData.value.goals.reduce(
-            (sum, goal) => sum + goal.multiplicity,
-            0,
-        ),
+        templateData.value.goals.reduce((sum, goal) => sum + goal.multiplicity, 0),
     );
-
-    // TODO: actions for saving, finishing goals, etc.
 
     watch(
         [currentGoalID, completion],
-        () => {
-            console.log("saving");
+        async () => {
+            // This is just a rough test for now.
+            // some rough tests show that regular save gen is really fast (like, a millisecond)
+            // saves will be ~150 kB max, so if we allow up to 5 profiles, we're still good
+            console.time("save");
+
+            const saveData = serializeSaveData({
+                currentGoalID: currentGoalID.value,
+                templateName: currentTemplateName.value,
+                completion: completion.value,
+            });
+            localStorage.setItem(`profile:${profile}`, saveData);
+
+            console.timeEnd("save");
         },
         // I'm not sure why this is required.
         { deep: true },
@@ -80,10 +82,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     function finishGoal() {
         if (currentGoal.value == null) return;
 
-        if (
-            completion.value[currentGoal.value.id] <
-            currentGoal.value.multiplicity
-        ) {
+        if (completion.value[currentGoal.value.id] < currentGoal.value.multiplicity) {
             completion.value[currentGoal.value.id] += 1;
         }
 
