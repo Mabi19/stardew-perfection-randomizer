@@ -1,7 +1,7 @@
 import hardcoreTemplate from "~/templates/hardcore.json";
 import standardTemplate from "~/templates/standard.json";
 
-interface Prerequisite {
+export interface Prerequisite {
     goal: string;
     multiplicity?: number;
 }

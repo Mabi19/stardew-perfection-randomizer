@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+const xpThresholds = [0, 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000, 9999999];
+
 export const useRandomizerStore = defineStore("randomizer", () => {
     const profile = localStorage.getItem("currentProfile");
     if (!profile) {
@@ -64,13 +66,43 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         { deep: true },
     );
 
+    function isPrerequisiteMet(prerequisite: Prerequisite) {
+        const requiredCompletion = prerequisite.multiplicity ?? 1;
+
+        if (prerequisite.goal.startsWith("#")) {
+            // this is a tag
+            const tagName = prerequisite.goal.slice(1);
+            const tagGoals = templateData.value.tags[tagName];
+            return tagGoals.some((tagGoal) => completion.value[tagGoal] >= requiredCompletion);
+        } else {
+            return completion.value[prerequisite.goal] >= requiredCompletion;
+        }
+    }
+
     function rollGoal() {
-        // TODO: all the checks from the original spreadsheet
-        const eligibleGoals = Object.values(goals.value).filter(
-            (goal) =>
-                goal.id != currentGoalID.value &&
-                completion.value[goal.id] < goal.multiplicity,
-        );
+        const eligibleGoals = Object.values(goals.value)
+            .filter((goal) => {
+                // do not roll the current goal
+                if (goal.id == currentGoalID.value) return false;
+                // do not roll completed goals
+                if (completion.value[goal.id] >= goal.multiplicity) return false;
+
+                // check for prerequisites
+                const reqs = goal.prerequisites;
+                if (reqs.all) {
+                    if (!reqs.all.every((prerequisite) => isPrerequisiteMet(prerequisite)))
+                        return false;
+                } else if (reqs.any) {
+                    if (!reqs.any.some((prerequisite) => isPrerequisiteMet(prerequisite)))
+                        return false;
+                }
+
+                // TODO: check for XP values
+
+                return true;
+            })
+            // weigh goals by their remaining multiplicity
+            .flatMap((goal) => new Array(goal.multiplicity - completion.value[goal.id]).fill(goal));
         const index = Math.floor(Math.random() * eligibleGoals.length);
         currentGoalID.value = eligibleGoals[index].id;
     }
@@ -85,6 +117,8 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         if (completion.value[currentGoal.value.id] < currentGoal.value.multiplicity) {
             completion.value[currentGoal.value.id] += 1;
         }
+
+        // TODO: if skill goal, set new XP value
 
         cancelGoal();
     }
