@@ -20,11 +20,7 @@
                 /><span>/{{ goal.multiplicity }}</span>
             </span>
         </template>
-        <span
-            class="badge"
-            title="Cancel or finish this goal to edit its completion."
-            v-else
-        >
+        <span class="badge" title="Cancel or finish this goal to edit its completion." v-else>
             current
         </span>
     </td>
@@ -53,15 +49,19 @@ function handleInput(event: Event) {
 
 function update(state: number) {
     const numericValue = typeof state == "number" ? state : Number(state);
-    if (
-        isNaN(numericValue) ||
-        numericValue < 0 ||
-        numericValue > props.goal.multiplicity
-    ) {
+    if (isNaN(numericValue) || numericValue < 0 || numericValue > props.goal.multiplicity) {
         return;
     }
 
     store.completion[props.goal.id] = state;
+
+    // If this is a level up goal, update the XP values
+    // This isn't great code (Ideally I'd be watching on setting level up completions),
+    // but there isn't an easy way to do that
+    const matches = props.goal.id.match(/^level:(.+)$/);
+    if (matches) {
+        store.updatePredictedXPLevelUp(matches[1]);
+    }
 }
 </script>
 
