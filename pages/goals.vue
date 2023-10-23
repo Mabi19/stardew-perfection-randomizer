@@ -4,6 +4,12 @@
     </div>
 </template>
 
+<script setup lang="ts">
+useHead({
+    title: "Goals",
+});
+</script>
+
 <style scoped lang="scss">
 .goals-wrapper {
     padding: 1rem;

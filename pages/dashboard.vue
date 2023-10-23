@@ -49,6 +49,10 @@
 <script setup lang="ts">
 import NullGoalIcon from "~/assets/null-goal-icon.png";
 
+useHead({
+    title: "Dashboard",
+});
+
 const store = useRandomizerStore();
 
 const nullGoal: Goal = {
