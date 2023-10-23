@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <div class="dashboard" :class="{ complete: isFinished }">
         <div class="main">
             <div class="goal-area">
                 <template v-if="!isFinished">
@@ -13,11 +13,7 @@
                     <Goal class="main-goal" v-else :goal="nullGoal" />
 
                     <div class="controls">
-                        <AppButton
-                            v-if="store.currentGoalID"
-                            icon="done"
-                            @click="finishGoal"
-                        >
+                        <AppButton v-if="store.currentGoalID" icon="done" @click="finishGoal">
                             Finish Goal
                         </AppButton>
                         <AppButton v-else icon="casino" @click="rollGoal">
@@ -29,9 +25,7 @@
                             type="destructive"
                             @click="cancelGoal"
                             :style="{
-                                visibility: store.currentGoalID
-                                    ? 'visible'
-                                    : 'hidden',
+                                visibility: store.currentGoalID ? 'visible' : 'hidden',
                             }"
                         >
                             Cancel Goal
@@ -43,18 +37,11 @@
         </div>
         <div class="completion">
             <div class="label">
-                Completed Goals: {{ store.completedCount }}/{{
-                    store.totalCount
-                }}
-                ({{
-                    numberFormatter.format(
-                        (100 * store.completedCount) / store.totalCount,
-                    )
+                Completed Goals: {{ store.completedCount }}/{{ store.totalCount }} ({{
+                    numberFormatter.format((100 * store.completedCount) / store.totalCount)
                 }}%)
             </div>
-            <ChallengeProgressBar
-                :fill="store.completedCount / store.totalCount"
-            />
+            <ChallengeProgressBar :fill="store.completedCount / store.totalCount" />
         </div>
     </div>
 </template>
@@ -102,13 +89,38 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     height: 100%;
 
     background: url("~/assets/background-light.png");
-    // TODO: Summit image for 100% completion
-
     image-rendering: crisp-edges;
     background-position: 50% 50%;
     background-size: cover;
 
     font-size: 1.25rem;
+
+    position: relative;
+}
+
+.dashboard::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    background: url("~/assets/background-complete.png");
+
+    image-rendering: crisp-edges;
+    background-position: 50% 50%;
+    background-size: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease-out;
+
+    z-index: 1;
+}
+
+.dashboard.complete::after {
+    opacity: 1;
 }
 
 .main {
@@ -120,6 +132,8 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     align-items: center;
 
     padding: 0.5rem;
+
+    z-index: 2;
 }
 
 .goal-area {
@@ -146,6 +160,10 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     gap: 1rem;
 
     margin-top: 1.5rem;
+}
+
+.completion {
+    z-index: 2;
 }
 
 .completion .label {
