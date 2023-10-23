@@ -1,6 +1,6 @@
 <template>
     <div class="goal-wrapper">
-        <img :src="goal.imageURL" class="icon" alt="Goal icon" />
+        <img :src="goal.imageURL" class="icon" role="presentation" loading="lazy" />
         <span>{{ goal.name }}</span>
         <span class="badge" v-if="showRepeatNumber && goal.multiplicity > 1"
             >#{{ store.completion[goal.id] + 1 }}</span
