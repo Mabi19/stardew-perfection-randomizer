@@ -1,6 +1,91 @@
 <template>
-    <div>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/goals">Goals</a>
+    <p>
+        The Randomizer is a Stardew Valley challenge, originally created by
+        <a href="https://www.youtube.com/@ArgonMatrix">ArgonMatrix</a>, where the goal is to
+        complete Perfection - one goal at a time, in a randomly decided order!
+    </p>
+    <p>
+        There are two rulesets: Standard and Hardcore. In both rulesets, you must adhere to the
+        order the Randomizer gives you (that is, not do goals out of order).
+        <a href="https://docs.google.com/document/d/1eu1PWh9xQ46SOiqoCPrO1E9AzS56V-u0KHSYXiY568s">
+            You can find the rules described in more detail here.
+        </a>
+    </p>
+    <table class="comparison">
+        <thead>
+            <tr>
+                <th>Standard Mode</th>
+                <th>Hardcore Mode</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Minimizes excessive grinds</td>
+                <td>Will take a very long time</td>
+            </tr>
+            <tr>
+                <td>Strictly Perfection (481 total goals)</td>
+                <td>Perfection + extra tasks (564 total goals)</td>
+            </tr>
+            <tr>
+                <td>Gain skill levels and upgrade your tools freely</td>
+                <td>Gaining skills and upgrading tools is restricted by goals</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Ready to take the challenge?</p>
+    <div class="start">
+        <AppButton @click="showCreateDialog" icon="start">Start your adventure!</AppButton>
     </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+    layout: "homepage",
+});
+
+function showCreateDialog() {
+    alert("This is the creation dialog. Yeah.");
+}
+</script>
+
+<style scoped lang="scss">
+.comparison {
+    margin: auto;
+
+    // border: 1px solid black;
+    outline: 1px solid black;
+    border-collapse: collapse;
+
+    max-width: 100%;
+
+    th {
+        padding: 0.5rem;
+        background-color: rgb(195, 152, 231);
+        text-align: center;
+    }
+
+    th:not(:last-child) {
+        border-right: 1px solid black;
+    }
+
+    td {
+        padding: 0.5rem;
+        text-align: center;
+        border: 1px solid rgb(150, 150, 150);
+    }
+
+    tr:nth-child(2n) {
+        background-color: rgb(191, 236, 191);
+    }
+
+    tr:nth-child(2n + 1) {
+        background-color: rgb(207, 245, 207);
+    }
+}
+
+.start {
+    display: grid;
+    place-items: center;
+}
+</style>

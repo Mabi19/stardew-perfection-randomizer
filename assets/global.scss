@@ -23,3 +23,12 @@ body {
         vertical-align: middle;
     }
 }
+
+.layout {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
