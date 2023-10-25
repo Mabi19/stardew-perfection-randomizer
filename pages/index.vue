@@ -20,6 +20,10 @@
         </thead>
         <tbody>
             <tr>
+                <td>A more casual experience</td>
+                <td>Requires extensive game knowledge</td>
+            </tr>
+            <tr>
                 <td>Minimizes excessive grinds</td>
                 <td>Will take a very long time</td>
             </tr>
