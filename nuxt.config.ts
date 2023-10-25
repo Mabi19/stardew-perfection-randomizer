@@ -20,6 +20,10 @@ export default defineNuxtConfig({
                     href: "https://fonts.googleapis.com/icon?family=Material+Icons",
                     rel: "stylesheet",
                 },
+                {
+                    href: "/stardew-perfection-randomizer/icon.png",
+                    rel: "icon",
+                },
             ],
         },
     },

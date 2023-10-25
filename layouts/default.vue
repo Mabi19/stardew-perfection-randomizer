@@ -1,38 +1,39 @@
 <template>
     <div class="layout">
-        <div class="top-bar">
-            <span>[logo] Stardew Perfection Randomizer</span>
-            <NuxtLink to="/dashboard">Dashboard</NuxtLink>
-            <NuxtLink to="/goals">Goals</NuxtLink>
-        </div>
-        <div class="content">
-            <slot/>
-        </div>
+        <NavBar>
+            <img src="~/assets/logo.webp" alt="Randomizer logo" />
+            <span class="app-name">Stardew Perfection Randomizer</span>
+            <div class="divider"></div>
+            <NuxtLink to="/dashboard"
+                ><span class="material-icons">flag</span><span>Dashboard</span></NuxtLink
+            >
+            <NuxtLink to="/goals"
+                ><span class="material-icons">list</span><span>Goals</span></NuxtLink
+            >
+            <div class="fill"></div>
+            <div class="divider"></div>
+            <NuxtLink to="/settings"
+                ><span class="material-icons">settings</span
+                ><span class="small-hide">Settings</span></NuxtLink
+            >
+        </NavBar>
+        <main class="content">
+            <slot />
+        </main>
     </div>
 </template>
 
 <style scoped lang="scss">
 @use "~/assets/base";
-.layout {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
 
-    display: flex;
-    flex-flow: column nowrap;
-}
+@media (max-width: 750px) {
+    .app-name,
+    .small-hide {
+        display: none;
+    }
 
-.top-bar {
-    background-color: base.$accent;
-    color: whitesmoke;
-    padding: 1rem;
-
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 8px;
-
-    a {
-        color: whitesmoke;
+    .divider {
+        margin: 0 0.2rem;
     }
 }
 
