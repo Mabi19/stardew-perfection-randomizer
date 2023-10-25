@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     ssr: false,
     app: {
+        baseURL: "/stardew-perfection-randomizer/",
         head: {
             link: [
                 { rel: "preconnect", href: "https://fonts.googleapis.com" },
