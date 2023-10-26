@@ -44,7 +44,11 @@
         <AppButton @click="showCreateDialog" icon="start">Start your adventure!</AppButton>
     </div>
 
-    <ProfileCreateDialog :open="dialogOpen" @close="dialogOpen = false" />
+    <ProfileCreateDialog
+        :open="dialogOpen"
+        :in-protected-area="false"
+        @close="dialogOpen = false"
+    />
 </template>
 
 <script setup lang="ts">

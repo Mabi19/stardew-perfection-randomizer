@@ -8,7 +8,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         throw new Error("No profile selected");
     }
 
-    // TODO: load from save
     const serializedProfileData = localStorage.getItem(`profile:${profile}`);
     if (!serializedProfileData) {
         throw new Error("Invalid save data");
@@ -19,6 +18,24 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     const currentTemplateName = ref(data.templateName);
     const currentGoalID = ref<string | null>(data.currentGoalID);
     const predictedSkillXP = ref<Record<string, number>>(data.predictedSkillXP);
+
+    function reloadSave() {
+        // This is a bit hacky, but I don't really have a good way to do this
+        const profile = localStorage.getItem("currentProfile");
+        if (!profile) {
+            throw new Error("No profile selected");
+        }
+
+        const serializedProfileData = localStorage.getItem(`profile:${profile}`);
+        if (!serializedProfileData) {
+            throw new Error("Invalid save data");
+        }
+        const data = deserializeSaveData(serializedProfileData);
+
+        currentTemplateName.value = data.templateName;
+        currentGoalID.value = data.currentGoalID;
+        predictedSkillXP.value = data.predictedSkillXP;
+    }
 
     const templateData = computed<Template>(() => getTemplate(currentTemplateName.value)!);
     if (!templateData.value) {
@@ -174,5 +191,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         rollGoal,
         cancelGoal,
         finishGoal,
+        reloadSave,
     };
 });

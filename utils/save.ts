@@ -22,8 +22,6 @@ export function serializeSaveData(data: SavedData) {
         JSON.stringify(data.completion),
     ];
 
-    console.log(data.predictedSkillXP);
-
     const result = parts.join(";");
 
     return result;

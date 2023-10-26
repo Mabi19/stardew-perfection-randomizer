@@ -1,30 +1,34 @@
 <template>
     <Dialog title="Create a Profile" :open="open" @close="passEvent">
-        <ol class="task-list">
-            <li>
-                <label for="template">Select the template</label>
-                <select id="template" v-model="template" autofocus>
-                    <option value="standard">Standard Mode</option>
-                    <option value="hardcore">Hardcore Mode</option>
-                </select>
-            </li>
-            <li>
-                <label for="profile-name">Name your profile</label>
-                <input
-                    id="profile-name"
-                    :placeholder="defaultProfileName"
-                    v-model="profileName"
-                    ref="nameInput"
-                />
-            </li>
-        </ol>
-        <AppButton icon="add">Create</AppButton>
+        <form @submit.prevent="submitForm">
+            <ol class="task-list">
+                <li>
+                    <label for="template">Select the template</label>
+                    <select id="template" v-model="template" autofocus>
+                        <option value="standard">Standard Mode</option>
+                        <option value="hardcore">Hardcore Mode</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="profile-name">Name your profile</label>
+                    <input
+                        id="profile-name"
+                        :placeholder="defaultProfileName"
+                        maxlength="32"
+                        v-model="profileName"
+                        ref="nameInput"
+                    />
+                </li>
+            </ol>
+            <AppButton icon="add">Create</AppButton>
+        </form>
     </Dialog>
 </template>
 
 <script setup lang="ts">
-const _props = defineProps<{
+const props = defineProps<{
     open: boolean;
+    inProtectedArea: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -34,6 +38,8 @@ const emit = defineEmits<{
 function passEvent() {
     emit("close");
 }
+
+const store = props.inProtectedArea ? useRandomizerStore() : null;
 
 const template = ref("standard");
 const profileName = ref("");
@@ -52,9 +58,21 @@ const defaultProfileName = computed(() => {
 
 const nameInput = ref<HTMLInputElement | null>(null);
 
-watch(nameInput, () => {
+watch(profileName, () => {
     // TODO: check validity
+    if (profileName.value.length % 2 == 0) {
+        nameInput.value?.setCustomValidity("Test invalid");
+    } else {
+        nameInput.value?.setCustomValidity("");
+    }
 });
+
+function submitForm() {
+    createProfile(store, {
+        template: template.value,
+        profileName: profileName.value,
+    });
+}
 </script>
 
 <style scoped lang="scss">
