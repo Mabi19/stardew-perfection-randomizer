@@ -43,6 +43,8 @@
     <div class="start">
         <AppButton @click="showCreateDialog" icon="start">Start your adventure!</AppButton>
     </div>
+
+    <ProfileCreateDialog :open="dialogOpen" @close="dialogOpen = false" />
 </template>
 
 <script setup lang="ts">
@@ -50,8 +52,10 @@ definePageMeta({
     layout: "homepage",
 });
 
+const dialogOpen = ref(false);
+
 function showCreateDialog() {
-    alert("This is the creation dialog. Yeah.");
+    dialogOpen.value = true;
 }
 </script>
 
