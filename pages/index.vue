@@ -1,15 +1,17 @@
 <template>
     <p>
         The Randomizer is a Stardew Valley challenge, originally created by
-        <a href="https://www.youtube.com/@ArgonMatrix">ArgonMatrix</a>, where the goal is to
-        complete Perfection - one goal at a time, in a randomly decided order!
+        <NuxtLink to="https://www.youtube.com/@ArgonMatrix">ArgonMatrix</NuxtLink>, where the goal
+        is to complete Perfection - one goal at a time, in a randomly decided order!
     </p>
     <p>
         There are two rulesets: Standard and Hardcore. In both rulesets, you must adhere to the
         order the Randomizer gives you (that is, not do goals out of order).
-        <a href="https://docs.google.com/document/d/1eu1PWh9xQ46SOiqoCPrO1E9AzS56V-u0KHSYXiY568s">
+        <NuxtLink
+            to="https://docs.google.com/document/d/1eu1PWh9xQ46SOiqoCPrO1E9AzS56V-u0KHSYXiY568s"
+        >
             You can find the rules described in more detail here.
-        </a>
+        </NuxtLink>
     </p>
     <table class="comparison">
         <thead>
