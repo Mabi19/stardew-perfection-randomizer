@@ -34,3 +34,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
 }
+
+input:invalid {
+    outline: 2px solid red;
+}
