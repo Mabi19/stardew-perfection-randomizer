@@ -51,8 +51,8 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     );
 
     const currentGoal = computed(() => {
-        // @ts-ignore: TS is ignoring my optional chaining here for some reason
-        return (goals.value?.[currentGoalID.value] ?? null) as Goal | null;
+        // @ts-ignore: TS is ignoring my nullish coalescing here for some reason
+        return (goals.value[currentGoalID.value] ?? null) as Goal | null;
     });
 
     const completedCount = computed(() =>
