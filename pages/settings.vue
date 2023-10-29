@@ -14,11 +14,20 @@
 
         <h2>Profile Management</h2>
         <div>coming soon™</div>
+
+        <h2>Debug Info</h2>
+        <h3>XP Prediction</h3>
+        <pre><code>{{ JSON.stringify(randomizer.predictedSkillXP) }}</code></pre>
+        <h3>Version</h3>
+        <div>{{ config.version }} ({{ config.buildID }})</div>
     </div>
 </template>
 
 <script setup lang="ts">
+const randomizer = useRandomizerStore();
 const settings = useSettingsStore();
+
+const config = useAppConfig();
 </script>
 
 <style scoped lang="scss">

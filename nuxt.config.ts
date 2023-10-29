@@ -1,7 +1,19 @@
+import { readFileSync } from "node:fs";
+import { execSync } from "node:child_process";
+
+const packageJSON = readFileSync("./package.json", "utf-8");
+const packageInfo = JSON.parse(packageJSON);
+
+const commitID = execSync('git log --format="%H" -n 1').toString("utf8").slice(0, 7);
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
     ssr: false,
+    appConfig: {
+        version: packageInfo.version,
+        buildID: commitID,
+    },
     app: {
         baseURL: "/stardew-perfection-randomizer/",
         head: {
