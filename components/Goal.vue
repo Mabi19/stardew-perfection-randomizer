@@ -38,7 +38,7 @@ const store = useRandomizerStore();
     width: 1em;
     height: 1em;
     object-fit: contain;
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 
     margin-right: 0.3em;
 }

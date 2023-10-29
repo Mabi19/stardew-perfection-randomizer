@@ -93,7 +93,7 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     height: 100%;
 
     background: url("~/assets/background-light.png");
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
     background-position: 50% 50%;
     background-size: cover;
 
@@ -113,7 +113,7 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
 
     background: url("~/assets/background-complete.png");
 
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
     background-position: 50% 50%;
     background-size: cover;
 
