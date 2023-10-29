@@ -19,7 +19,7 @@
     gap: 4px;
 
     * {
-        padding: 0.4rem 0.2rem;
+        margin: 0.4rem 0.2rem;
     }
 
     // duplicate the class name to raise specificity
