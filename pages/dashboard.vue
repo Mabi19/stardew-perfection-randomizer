@@ -140,6 +140,21 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     z-index: 2;
 }
 
+.completion {
+    z-index: 2;
+}
+
+.completion .label {
+    color: whitesmoke;
+    background-color: rgba(10, 10, 10, 0.85);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    width: fit-content;
+    margin-inline: auto;
+    margin-bottom: 0.5rem;
+}
+
 .goal-area {
     background-color: rgb(214, 247, 214);
     border: 2px solid #599159;
@@ -166,18 +181,13 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
     margin-top: 1.5rem;
 }
 
-.completion {
-    z-index: 2;
-}
+.dark-theme {
+    .goal-area {
+        background-color: rgb(43, 49, 43);
+    }
 
-.completion .label {
-    color: whitesmoke;
-    background-color: rgba(10, 10, 10, 0.85);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-
-    width: fit-content;
-    margin-inline: auto;
-    margin-bottom: 0.5rem;
+    .dashboard {
+        background-image: url("~/assets/background-dark.png");
+    }
 }
 </style>

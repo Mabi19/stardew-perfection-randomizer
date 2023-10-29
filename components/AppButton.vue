@@ -54,4 +54,15 @@ const props = withDefaults(
     background-color: rgb(230, 86, 60);
     color: whitesmoke;
 }
+
+.dark-theme {
+    .button:hover {
+        opacity: 1;
+        filter: brightness(1.15);
+    }
+
+    .button.destructive {
+        background-color: rgb(209, 83, 61);
+    }
+}
 </style>

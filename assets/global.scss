@@ -10,6 +10,12 @@ body {
     line-height: 1.4;
 }
 
+.dark-theme {
+    color-scheme: dark;
+    background-color: #222;
+    color: whitesmoke;
+}
+
 *, *::after, *::before {
     box-sizing: border-box;
 }

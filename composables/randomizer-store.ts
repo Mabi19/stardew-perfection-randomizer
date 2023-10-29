@@ -66,7 +66,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     watch(
         [currentGoalID, predictedSkillXP, completion],
         async () => {
-            // This is just a rough test for now.
             // some rough tests show that regular save gen is really fast (like, a millisecond)
             // saves will be ~150 kB max, so if we allow up to 5 profiles, we're still good
             console.time("save");

@@ -98,6 +98,28 @@ function showCreateDialog() {
     }
 }
 
+.dark-theme {
+    .comparison {
+        outline: 1px solid whitesmoke;
+
+        th {
+            background-color: rgb(112, 86, 134);
+        }
+
+        th:not(:last-child) {
+            border-right-color: whitesmoke;
+        }
+
+        tr:nth-child(2n) {
+            background-color: rgb(52, 58, 52);
+        }
+
+        tr:nth-child(2n + 1) {
+            background-color: rgb(68, 78, 68);
+        }
+    }
+}
+
 .start {
     display: grid;
     place-items: center;

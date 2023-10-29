@@ -88,6 +88,10 @@ function closeDialog() {
     background: whitesmoke;
 }
 
+.dark-theme .content {
+    background-color: #222;
+}
+
 .v-enter-active {
     animation: fade 0.3s ease-out;
 
