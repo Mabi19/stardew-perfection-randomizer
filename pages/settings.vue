@@ -13,7 +13,7 @@
         </div>
 
         <h2>Profile Management</h2>
-        <div>current profile: ... all your profiles: ...</div>
+        <div>coming soon™</div>
     </div>
 </template>
 
