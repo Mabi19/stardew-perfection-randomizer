@@ -60,7 +60,7 @@ const nameInput = ref<HTMLInputElement | null>(null);
 
 watch(profileName, () => {
     // TODO: check validity
-    if (profileName.value.length % 2 == 0) {
+    if (false) {
         nameInput.value?.setCustomValidity("Test invalid");
     } else {
         nameInput.value?.setCustomValidity("");
