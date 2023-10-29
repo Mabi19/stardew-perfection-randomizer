@@ -7,7 +7,6 @@ export function useMediaQuery(query: string) {
     mediaQuery.addEventListener(
         "change",
         () => {
-            console.log(`media query ${query} updated!`);
             result.value = window.matchMedia(query).matches;
         },
         {

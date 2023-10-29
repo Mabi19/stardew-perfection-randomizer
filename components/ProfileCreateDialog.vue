@@ -70,7 +70,7 @@ watch(profileName, () => {
 function submitForm() {
     createProfile(store, {
         template: template.value,
-        profileName: profileName.value,
+        profileName: profileName.value || defaultProfileName.value,
     });
 }
 </script>
