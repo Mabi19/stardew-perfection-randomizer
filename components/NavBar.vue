@@ -22,7 +22,9 @@
         padding: 0.4rem 0.2rem;
     }
 
-    a {
+    // duplicate the class name to raise specificity
+    // (in dark mode, links are .dark-mode a:link/:visited)
+    &.nav-bar a {
         color: whitesmoke;
         text-decoration: none;
         height: 100%;

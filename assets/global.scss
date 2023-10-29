@@ -10,10 +10,26 @@ body {
     line-height: 1.4;
 }
 
+a:link {
+    color: rgb(2, 95, 189);
+}
+
+a:visited {
+    color: rgb(89, 2, 189);
+}
+
 .dark-theme {
     color-scheme: dark;
     background-color: #222;
     color: whitesmoke;
+
+    a:link {
+        color: rgb(132, 179, 226);
+    }
+
+    a:visited {
+        color: rgb(188, 140, 243);
+    }
 }
 
 *, *::after, *::before {
