@@ -46,6 +46,10 @@ a:visited {
     * {
         vertical-align: middle;
     }
+
+    &.alt {
+        background-color: base.$secondary;
+    }
 }
 
 .layout {
