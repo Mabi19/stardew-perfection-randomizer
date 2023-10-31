@@ -56,7 +56,7 @@ const props = withDefaults(
 }
 
 .dark-theme {
-    .button:hover {
+    .button:hover:not(:disabled) {
         opacity: 1;
         filter: brightness(1.15);
     }
