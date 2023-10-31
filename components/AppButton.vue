@@ -51,7 +51,7 @@ const props = withDefaults(
 }
 
 .button.destructive {
-    background-color: rgb(230, 86, 60);
+    background-color: base.$secondary-red;
     color: whitesmoke;
 }
 

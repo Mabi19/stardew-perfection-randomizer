@@ -47,8 +47,12 @@ a:visited {
         vertical-align: middle;
     }
 
-    &.alt {
-        background-color: base.$secondary;
+    &.green {
+        background-color: base.$secondary-green;
+    }
+
+    &.red {
+        background-color: base.$secondary-red;
     }
 }
 
