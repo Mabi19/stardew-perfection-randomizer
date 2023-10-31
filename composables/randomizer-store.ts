@@ -3,12 +3,13 @@ import { defineStore } from "pinia";
 const xpThresholds = [0, 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000, 9999999];
 
 export const useRandomizerStore = defineStore("randomizer", () => {
-    const profile = localStorage.getItem("currentProfile");
-    if (!profile) {
+    const profiles = useProfilesStore();
+
+    if (!profiles.current) {
         throw new Error("No profile selected");
     }
 
-    const serializedProfileData = localStorage.getItem(`profile:${profile}`);
+    const serializedProfileData = localStorage.getItem(`profile:${profiles.current}`);
     if (!serializedProfileData) {
         throw new Error("Invalid save data");
     }
@@ -16,26 +17,29 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
     // Tied to the currently loaded save file.
     const currentTemplateName = ref(data.templateName);
-    const currentGoalID = ref<string | null>(data.currentGoalID);
-    const predictedSkillXP = ref<Record<string, number>>(data.predictedSkillXP);
+    const currentGoalID = ref(data.currentGoalID);
+    const predictedSkillXP = ref(data.predictedSkillXP);
 
-    function reloadSave() {
-        // This is a bit hacky, but I don't really have a good way to do this
-        const profile = localStorage.getItem("currentProfile");
-        if (!profile) {
-            throw new Error("No profile selected");
-        }
+    watch(
+        () => profiles.current,
+        () => {
+            // This is a bit hacky, but I don't really have a good way to do this
+            // (Computed getters don't work here because I need to set them)
+            if (!profiles.current) {
+                throw new Error("No profile selected");
+            }
 
-        const serializedProfileData = localStorage.getItem(`profile:${profile}`);
-        if (!serializedProfileData) {
-            throw new Error("Invalid save data");
-        }
-        const data = deserializeSaveData(serializedProfileData);
+            const serializedProfileData = localStorage.getItem(`profile:${profiles.current}`);
+            if (!serializedProfileData) {
+                throw new Error("Invalid save data");
+            }
+            const data = deserializeSaveData(serializedProfileData);
 
-        currentTemplateName.value = data.templateName;
-        currentGoalID.value = data.currentGoalID;
-        predictedSkillXP.value = data.predictedSkillXP;
-    }
+            currentTemplateName.value = data.templateName;
+            currentGoalID.value = data.currentGoalID;
+            predictedSkillXP.value = data.predictedSkillXP;
+        },
+    );
 
     const templateData = computed<Template>(() => getTemplate(currentTemplateName.value)!);
     if (!templateData.value) {
@@ -76,7 +80,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
                 predictedSkillXP: predictedSkillXP.value,
                 completion: completion.value,
             });
-            localStorage.setItem(`profile:${profile}`, saveData);
+            localStorage.setItem(`profile:${profiles.current}`, saveData);
 
             console.timeEnd("save");
         },
@@ -190,6 +194,5 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         rollGoal,
         cancelGoal,
         finishGoal,
-        reloadSave,
     };
 });

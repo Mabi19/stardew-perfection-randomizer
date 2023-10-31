@@ -7,12 +7,21 @@ interface Profile {
 
 export const useProfilesStore = defineStore("profiles", () => {
     const profiles = ref<Profile[]>([]);
+    const current = ref<string | null>(localStorage.getItem("currentProfile"));
+
+    watch(current, () => {
+        if (current.value) {
+            localStorage.setItem("currentProfile", current.value);
+        } else {
+            localStorage.removeItem("currentProfile");
+        }
+    });
 
     function profileExists(name: string) {
         return Boolean(profiles.value.find((existingProfile) => existingProfile.name == name));
     }
 
-    function createProfile(store: ReturnType<typeof useRandomizerStore> | null, options: Profile) {
+    function createProfile(options: Profile) {
         const templateData = getTemplate(options.template);
 
         if (!templateData) {
@@ -28,19 +37,18 @@ export const useProfilesStore = defineStore("profiles", () => {
             completion,
         };
 
+        profiles.value.push(options);
+        current.value = options.name;
+
         const serialized = serializeSaveData(data);
-        localStorage.setItem("currentProfile", options.name);
         localStorage.setItem(`profile:${options.name}`, serialized);
 
-        profiles.value.push(options);
-
-        // if there is no store, we don't need to reload it
-        store?.reloadSave();
         navigateTo("/dashboard");
     }
 
     return {
         profiles,
+        current,
         // actions
         profileExists,
         createProfile,

@@ -28,7 +28,6 @@
 <script setup lang="ts">
 const props = defineProps<{
     open: boolean;
-    inProtectedArea: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -38,8 +37,6 @@ const emit = defineEmits<{
 function passEvent() {
     emit("close");
 }
-
-const randomizerStore = props.inProtectedArea ? useRandomizerStore() : null;
 const profilesStore = useProfilesStore();
 
 const template = ref("standard");
@@ -51,7 +48,7 @@ const defaultProfileName = computed(() => {
         hardcore: "Hardcore",
     };
 
-    // Check for already existing profiles.
+    // Check for already existing profile names.
     let iter = 0;
     let name = "";
     do {
@@ -79,7 +76,7 @@ watch(profileName, () => {
 });
 
 function submitForm() {
-    profilesStore.createProfile(randomizerStore, {
+    profilesStore.createProfile({
         template: template.value,
         name: profileName.value || defaultProfileName.value,
     });
