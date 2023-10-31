@@ -2,6 +2,7 @@
 
 $accent: rebeccapurple;
 $accent-light: color.adjust($accent, $lightness: 20%);
+$accent-background: color.adjust(color.change($accent, $alpha: 0.35), $saturation: 30%, $lightness: 25%);
 
 $secondary-green: #4aa14a;
 $secondary-red: rgb(230, 86, 60);

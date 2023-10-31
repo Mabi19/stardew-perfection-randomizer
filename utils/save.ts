@@ -5,6 +5,11 @@ interface SavedData {
     completion: Record<string, number>;
 }
 
+export interface Profile {
+    name: string;
+    template: string;
+}
+
 // Base64 utilities, mostly used as an escape hatch for controlling user input
 const Base64 = {
     encodeString(data: string) {

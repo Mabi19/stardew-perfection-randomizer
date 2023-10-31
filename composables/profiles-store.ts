@@ -1,13 +1,12 @@
 import { defineStore } from "pinia";
 
-interface Profile {
-    name: string;
-    template: string;
-}
-
 export const useProfilesStore = defineStore("profiles", () => {
-    const profiles = ref<Profile[]>([]);
+    const allProfiles = ref<Profile[]>(JSON.parse(localStorage.getItem("allProfiles") ?? "[]"));
     const current = ref<string | null>(localStorage.getItem("currentProfile"));
+
+    watch(allProfiles, () => {
+        localStorage.setItem("allProfiles", JSON.stringify(allProfiles.value));
+    });
 
     watch(current, () => {
         if (current.value) {
@@ -18,7 +17,7 @@ export const useProfilesStore = defineStore("profiles", () => {
     });
 
     function profileExists(name: string) {
-        return Boolean(profiles.value.find((existingProfile) => existingProfile.name == name));
+        return Boolean(allProfiles.value.find((existingProfile) => existingProfile.name == name));
     }
 
     function createProfile(options: Profile) {
@@ -37,7 +36,7 @@ export const useProfilesStore = defineStore("profiles", () => {
             completion,
         };
 
-        profiles.value.push(options);
+        allProfiles.value.push(options);
         current.value = options.name;
 
         const serialized = serializeSaveData(data);
@@ -47,7 +46,7 @@ export const useProfilesStore = defineStore("profiles", () => {
     }
 
     return {
-        profiles,
+        allProfiles,
         current,
         // actions
         profileExists,

@@ -56,10 +56,10 @@ const defaultProfileName = computed(() => {
 
         name = `${
             templateNames[template.value as keyof typeof templateNames] || "<unknown>"
-        }${iterPart} Randomizer`;
+        } Randomizer${iterPart}`;
 
         iter++;
-    } while (!profilesStore.profileExists(name));
+    } while (profilesStore.profileExists(name));
 
     return name;
 });
