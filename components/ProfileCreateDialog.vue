@@ -1,5 +1,5 @@
 <template>
-    <Dialog title="Create a Profile" :open="open" @close="passEvent">
+    <AppDialog title="Create a Profile" :open="open" @close="passEvent">
         <form @submit.prevent="submitForm">
             <ol class="task-list">
                 <li>
@@ -22,7 +22,7 @@
             </ol>
             <AppButton icon="add">Create</AppButton>
         </form>
-    </Dialog>
+    </AppDialog>
 </template>
 
 <script setup lang="ts">
