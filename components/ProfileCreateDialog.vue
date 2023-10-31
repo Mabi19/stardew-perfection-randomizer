@@ -39,7 +39,8 @@ function passEvent() {
     emit("close");
 }
 
-const store = props.inProtectedArea ? useRandomizerStore() : null;
+const randomizerStore = props.inProtectedArea ? useRandomizerStore() : null;
+const profilesStore = useProfilesStore();
 
 const template = ref("standard");
 const profileName = ref("");
@@ -50,27 +51,37 @@ const defaultProfileName = computed(() => {
         hardcore: "Hardcore",
     };
 
-    // TODO: check current profiles to uniquify
-    return `${
-        templateNames[template.value as keyof typeof templateNames] || "<unknown>"
-    } Randomizer`;
+    // Check for already existing profiles.
+    let iter = 0;
+    let name = "";
+    do {
+        const iterPart = iter ? ` (#${iter + 1})` : "";
+
+        name = `${
+            templateNames[template.value as keyof typeof templateNames] || "<unknown>"
+        }${iterPart} Randomizer`;
+
+        iter++;
+    } while (!profilesStore.profileExists(name));
+
+    return name;
 });
 
 const nameInput = ref<HTMLInputElement | null>(null);
 
 watch(profileName, () => {
     // TODO: check validity
-    if (false) {
-        nameInput.value?.setCustomValidity("Test invalid");
+    if (profilesStore.profileExists(profileName.value)) {
+        nameInput.value?.setCustomValidity("Name already in use");
     } else {
         nameInput.value?.setCustomValidity("");
     }
 });
 
 function submitForm() {
-    createProfile(store, {
+    profilesStore.createProfile(randomizerStore, {
         template: template.value,
-        profileName: profileName.value || defaultProfileName.value,
+        name: profileName.value || defaultProfileName.value,
     });
 }
 </script>
