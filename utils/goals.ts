@@ -33,7 +33,7 @@ const templates: Record<string, Template> = {
     hardcore: hardcoreTemplate as unknown as Template,
 };
 
-export function getTemplate(templateName: string) {
+export function getPredefinedTemplate(templateName: string) {
     if (templateName in templates) {
         return templates[templateName];
     }

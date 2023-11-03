@@ -21,7 +21,7 @@ export const useProfilesStore = defineStore("profiles", () => {
     }
 
     function createProfile(options: Profile) {
-        const templateData = getTemplate(options.template);
+        const templateData = getPredefinedTemplate(options.template);
 
         if (!templateData) {
             throw new Error("Unknown template");

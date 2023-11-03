@@ -41,7 +41,14 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         },
     );
 
-    const templateData = computed<Template>(() => getTemplate(currentTemplateName.value)!);
+    const templateData = computed<Template>(() => {
+        if (currentTemplateName.value == "custom") {
+            const serializedTemplate = localStorage.getItem(`profileTemplate:${profiles.current}`);
+            return JSON.parse(serializedTemplate ?? "null");
+        }
+
+        return getPredefinedTemplate(currentTemplateName.value)!;
+    });
     if (!templateData.value) {
         throw new Error(`Could not find template ${currentTemplateName.value}`);
     }
