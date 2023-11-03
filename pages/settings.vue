@@ -30,6 +30,10 @@
             <ProfileName
                 :profile="{ name: profiles.current!, template: randomizer.currentTemplateName }"
             />
+            <div class="spacer"></div>
+            <AppButton icon="file_download" @click="exportProfile" type="positive"
+                >Export backup</AppButton
+            >
         </div>
 
         <template v-if="nonCurrentProfiles.length != 0">
@@ -75,6 +79,47 @@ function showProfileCreateDialog() {
 
 function switchProfile() {
     // TODO
+}
+
+async function exportProfile() {
+    const saveData = localStorage.getItem(`profile:${profiles.current}`);
+    if (!saveData) {
+        throw new Error("Could not load current profile");
+    }
+
+    const encoder = new TextEncoder();
+    const encodedHeader = encoder.encode("sdvpr_v1_packed;");
+
+    const encodedSaveData = encoder.encode(saveData);
+    const compressedSaveData = await ByteArrayUtils.compressData(encodedSaveData);
+    const saveDataLength = ByteArrayUtils.encodeInteger(compressedSaveData.size);
+
+    const templateParts: BlobPart[] = [];
+    const template = localStorage.getItem(`profileTemplate:${profiles.current}`);
+    if (template) {
+        const encodedTemplate = encoder.encode(template);
+        const compressedTemplate = await ByteArrayUtils.compressData(encodedTemplate);
+        const templateLength = ByteArrayUtils.encodeInteger(compressedTemplate.size);
+
+        templateParts.push(templateLength);
+        templateParts.push(compressedTemplate);
+    } else {
+        // 0 bytes
+        templateParts.push(ByteArrayUtils.encodeInteger(0));
+    }
+
+    const blob = new Blob([encodedHeader, ...templateParts, saveDataLength, compressedSaveData], {
+        type: "application/octet-stream",
+    });
+    const blobURL = URL.createObjectURL(blob);
+
+    console.log(blobURL);
+
+    const link = document.createElement("a");
+    link.href = blobURL;
+    link.download = `${profiles.current}.randomizer`;
+    link.click();
+    URL.revokeObjectURL(blobURL);
 }
 
 function deleteProfile() {
