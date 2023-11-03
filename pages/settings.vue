@@ -36,14 +36,18 @@
             >
         </div>
 
-        <template v-if="nonCurrentProfiles.length != 0">
+        <template v-if="nonCurrentProfiles.length > 0">
             <h3>Other Profiles</h3>
             <div v-for="profile in nonCurrentProfiles" class="profile">
                 <ProfileName :profile="profile" />
                 <div class="spacer"></div>
-                <AppButton icon="keyboard_arrow_right" @click="switchProfile" type="positive"
-                    >Switch</AppButton
+                <AppButton
+                    icon="keyboard_arrow_right"
+                    @click="switchProfile(profile.name)"
+                    type="positive"
                 >
+                    Switch
+                </AppButton>
                 <AppButton icon="delete" @click="deleteProfile" type="destructive">
                     Delete
                 </AppButton>
@@ -77,8 +81,8 @@ function showProfileCreateDialog() {
     profileDialogOpen.value = true;
 }
 
-function switchProfile() {
-    // TODO
+function switchProfile(newProfile: string) {
+    profiles.current = newProfile;
 }
 
 async function exportProfile() {
