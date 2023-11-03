@@ -8,6 +8,13 @@ body {
     min-height: 100vh;
 
     line-height: 1.4;
+
+    --text: black;
+    --background: #ffffff;
+    --background-light: #eee;
+
+    background-color: var(--background);
+    color: var(--text);
 }
 
 a:link {
@@ -20,8 +27,10 @@ a:visited {
 
 .dark-theme {
     color-scheme: dark;
-    background-color: #222;
-    color: whitesmoke;
+
+    --text: whitesmoke;
+    --background: #222;
+    --background-light: #333;
 
     a:link {
         color: rgb(132, 179, 226);

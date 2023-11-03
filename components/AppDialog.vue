@@ -89,7 +89,7 @@ function closeDialog() {
 }
 
 .dark-theme .content {
-    background-color: #222;
+    background-color: var(--background);
 }
 
 .v-enter-active {
