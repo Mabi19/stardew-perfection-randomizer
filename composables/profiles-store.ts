@@ -4,9 +4,13 @@ export const useProfilesStore = defineStore("profiles", () => {
     const allProfiles = ref<Profile[]>(JSON.parse(localStorage.getItem("allProfiles") ?? "[]"));
     const current = ref<string | null>(localStorage.getItem("currentProfile"));
 
-    watch(allProfiles, () => {
-        localStorage.setItem("allProfiles", JSON.stringify(allProfiles.value));
-    });
+    watch(
+        allProfiles,
+        () => {
+            localStorage.setItem("allProfiles", JSON.stringify(allProfiles.value));
+        },
+        { deep: true },
+    );
 
     watch(current, () => {
         if (current.value) {

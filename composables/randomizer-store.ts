@@ -38,6 +38,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
             currentTemplateName.value = data.templateName;
             currentGoalID.value = data.currentGoalID;
             predictedSkillXP.value = data.predictedSkillXP;
+            completion.value = data.completion;
         },
     );
 
