@@ -5,7 +5,7 @@ export interface Prerequisite {
     goal: string;
     multiplicity?: number;
 }
-interface Prerequisites {
+export interface Prerequisites {
     any?: Prerequisite[];
     all?: Prerequisite[];
 }

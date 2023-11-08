@@ -22,8 +22,16 @@
             >
                 Create new profile
             </AppButton>
+            <AppButton
+                icon="file_upload"
+                @click="showImportDialog"
+                :disabled="profiles.allProfiles.length >= 5"
+            >
+                Import data
+            </AppButton>
             <em v-if="profiles.allProfiles.length >= 5">You have reached the profile limit!</em>
         </div>
+        <div class="row"></div>
 
         <h3>Current Profile</h3>
         <div class="profile">
@@ -31,9 +39,9 @@
                 :profile="{ name: profiles.current!, template: randomizer.currentTemplateName }"
             />
             <div class="spacer"></div>
-            <AppButton icon="file_download" @click="exportProfile" type="positive"
-                >Export backup</AppButton
-            >
+            <AppButton icon="file_download" @click="exportProfile" type="positive">
+                Export backup
+            </AppButton>
         </div>
 
         <template v-if="nonCurrentProfiles.length > 0">
@@ -55,6 +63,7 @@
         </template>
 
         <ProfileCreateDialog :open="profileDialogOpen" @close="profileDialogOpen = false" />
+        <DataImportDialog :open="importDialogOpen" @close="importDialogOpen = false" />
 
         <h2>Debug Info</h2>
         <h3>XP Prediction</h3>
@@ -76,9 +85,19 @@ const nonCurrentProfiles = computed(() =>
 );
 
 const profileDialogOpen = ref(false);
+const importDialogOpen = ref(false);
+
+const importDialogLoaded = ref(false);
+watch(importDialogOpen, () => {
+    importDialogLoaded.value ||= importDialogOpen.value;
+});
 
 function showProfileCreateDialog() {
     profileDialogOpen.value = true;
+}
+
+function showImportDialog() {
+    importDialogOpen.value = true;
 }
 
 function switchProfile(newProfile: string) {
