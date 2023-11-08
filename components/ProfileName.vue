@@ -13,6 +13,7 @@ const props = defineProps<{
 const badgeColors: Record<string, string> = {
     standard: "green",
     hardcore: "red",
+    custom: "blue",
 };
 
 const badgeColor = computed(() => badgeColors[props.profile.template]);
