@@ -63,6 +63,10 @@ a:visited {
     &.red {
         background-color: base.$secondary-red;
     }
+
+    &.blue {
+        background-color: base.$secondary-blue;
+    }
 }
 
 .layout {
