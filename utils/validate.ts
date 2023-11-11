@@ -128,6 +128,13 @@ export function validateTemplate(template: Template) {
         }
     }
 
+    // tag references
+    for (const references of Object.values(template.tags)) {
+        if (!references.every((reference) => validIDs.has(reference))) {
+            return false;
+        }
+    }
+
     console.timeEnd("template validation");
     return true;
 }
@@ -167,6 +174,12 @@ export function validateProfileData(profile: string, customTemplate?: Template) 
                 xp > 0,
         )
     ) {
+        return false;
+    }
+
+    // The completion keys should be the exact same as the goal IDs
+    // checking for equal lengths and each completion key having a goal
+    if (template.goals.length != Object.keys(parsedProfile.completion).length) {
         return false;
     }
 
