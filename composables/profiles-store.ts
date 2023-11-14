@@ -49,11 +49,27 @@ export const useProfilesStore = defineStore("profiles", () => {
         navigateTo("/dashboard");
     }
 
+    // Check for already existing profile names.
+    function findGoodProfileName(baseName: string) {
+        let iter = 0;
+        let name = "";
+        do {
+            const iterPart = iter ? ` (#${iter + 1})` : "";
+
+            name = `${baseName}${iterPart}`;
+
+            iter++;
+        } while (profileExists(baseName));
+
+        return name;
+    }
+
     return {
         allProfiles,
         current,
         // actions
         profileExists,
         createProfile,
+        findGoodProfileName,
     };
 });

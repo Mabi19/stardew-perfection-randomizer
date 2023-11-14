@@ -49,25 +49,14 @@ const defaultProfileName = computed(() => {
     };
 
     // Check for already existing profile names.
-    let iter = 0;
-    let name = "";
-    do {
-        const iterPart = iter ? ` (#${iter + 1})` : "";
-
-        name = `${
-            templateNames[template.value as keyof typeof templateNames] || "<unknown>"
-        } Randomizer${iterPart}`;
-
-        iter++;
-    } while (profilesStore.profileExists(name));
-
-    return name;
+    return profilesStore.findGoodProfileName(
+        `${templateNames[template.value as keyof typeof templateNames] || "<unknown>"} Randomizer`,
+    );
 });
 
 const nameInput = ref<HTMLInputElement | null>(null);
 
 watch(profileName, () => {
-    // TODO: check validity
     if (profilesStore.profileExists(profileName.value)) {
         nameInput.value?.setCustomValidity("Name already in use");
     } else {
