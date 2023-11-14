@@ -15,7 +15,7 @@
                         id="profile-name"
                         :placeholder="defaultProfileName"
                         maxlength="32"
-                        v-model="profileName"
+                        v-model.trim="profileName"
                         ref="nameInput"
                     />
                 </li>
