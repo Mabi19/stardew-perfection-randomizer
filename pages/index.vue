@@ -124,7 +124,8 @@ function showImportDialog() {
 }
 
 .start {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.5rem;
 }
 </style>
