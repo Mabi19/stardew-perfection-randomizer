@@ -34,31 +34,39 @@
         <div class="row"></div>
 
         <h3>Current Profile</h3>
-        <div class="profile">
-            <ProfileName
-                :profile="{ name: profiles.current!, template: randomizer.currentTemplateName }"
-            />
-            <div class="spacer"></div>
-            <AppButton icon="file_download" @click="exportProfile" type="positive">
-                Export backup
-            </AppButton>
+        <div class="profiles-wrapper">
+            <div class="profile">
+                <ProfileName
+                    :profile="{ name: profiles.current!, template: randomizer.currentTemplateName }"
+                />
+                <div class="spacer"></div>
+                <AppButton icon="file_download" @click="exportProfile" type="positive">
+                    Export backup
+                </AppButton>
+            </div>
         </div>
 
         <template v-if="nonCurrentProfiles.length > 0">
             <h3>Other Profiles</h3>
-            <div v-for="profile in nonCurrentProfiles" class="profile">
-                <ProfileName :profile="profile" />
-                <div class="spacer"></div>
-                <AppButton
-                    icon="keyboard_arrow_right"
-                    @click="switchProfile(profile.name)"
-                    type="positive"
-                >
-                    Switch
-                </AppButton>
-                <AppButton icon="delete" @click="deleteProfile" type="destructive">
-                    Delete
-                </AppButton>
+            <div class="profiles-wrapper">
+                <div v-for="profile in nonCurrentProfiles" class="profile">
+                    <ProfileName :profile="profile" />
+                    <div class="spacer"></div>
+                    <AppButton
+                        icon="keyboard_arrow_right"
+                        @click="switchProfile(profile.name)"
+                        type="positive"
+                    >
+                        Switch
+                    </AppButton>
+                    <AppButton
+                        icon="delete"
+                        @click="deleteProfile(profile.name)"
+                        type="destructive"
+                    >
+                        Delete
+                    </AppButton>
+                </div>
             </div>
         </template>
 
@@ -166,6 +174,12 @@ function deleteProfile() {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    gap: 0.5rem;
+}
+
+.profiles-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
     gap: 0.5rem;
 }
 
