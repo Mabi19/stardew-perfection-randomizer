@@ -1,5 +1,11 @@
 import { defineStore } from "pinia";
 
+interface ProfileImportData {
+    name: string;
+    profileData: string;
+    templateData: string | null;
+}
+
 export const useProfilesStore = defineStore("profiles", () => {
     const allProfiles = ref<Profile[]>(JSON.parse(localStorage.getItem("allProfiles") ?? "[]"));
     const current = ref<string | null>(localStorage.getItem("currentProfile"));
@@ -22,6 +28,23 @@ export const useProfilesStore = defineStore("profiles", () => {
 
     function profileExists(name: string) {
         return Boolean(allProfiles.value.find((existingProfile) => existingProfile.name == name));
+    }
+
+    function importProfile(data: ProfileImportData) {
+        localStorage.setItem(`profile:${data.name}`, data.profileData);
+        if (data.templateData) {
+            localStorage.setItem(`profileTemplate:${data.name}`, data.templateData);
+        }
+
+        allProfiles.value.push({
+            name: data.name,
+            // parsing the profile data again could be skipped,
+            // but this isn't done often at all
+            template: deserializeSaveData(data.profileData).templateName,
+        });
+        current.value = data.name;
+
+        navigateTo("/dashboard");
     }
 
     function createProfile(options: Profile) {
@@ -69,6 +92,7 @@ export const useProfilesStore = defineStore("profiles", () => {
         current,
         // actions
         profileExists,
+        importProfile,
         createProfile,
         findGoodProfileName,
     };

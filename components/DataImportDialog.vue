@@ -28,7 +28,20 @@
                 </template>
                 <template v-else-if="parsedFile?.type == 'backup'">Loaded backup file!</template>
             </div>
-            <AppButton icon="add" :disabled="parsedFile != null">Import</AppButton>
+
+            <label for="imported-profile-name">Name your profile</label>
+            <input
+                id="imported-profile-name"
+                type="text"
+                maxlength="32"
+                v-model="profileName"
+                ref="nameInput"
+                :placeholder="defaultProfileName"
+            />
+
+            <AppButton icon="add" :disabled="!parsedFile || parsedFile.type == 'invalid'">
+                Import
+            </AppButton>
         </form>
     </AppDialog>
 </template>
@@ -46,15 +59,11 @@ function passEvent() {
     emit("close");
 }
 
-interface ParsedFile {
-    readonly type: string;
-}
-
-class InvalidFile implements ParsedFile {
+class InvalidFile {
     readonly type = "invalid";
 }
 
-class ParsedBackupFile implements ParsedFile {
+class ParsedBackupFile {
     readonly type = "backup";
 
     template: string | null;
@@ -110,6 +119,8 @@ class ParsedBackupFile implements ParsedFile {
     }
 }
 
+type ParsedFile = InvalidFile | ParsedBackupFile;
+
 const BACKUP_HEADER = new TextEncoder().encode("sdvpr_v1_packed;");
 
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -124,6 +135,22 @@ async function updateFileInput() {
 
 // Can't use computed here because async
 const parsedFile = ref<ParsedFile | null>(null);
+
+const profilesStore = useProfilesStore();
+const profileName = ref("");
+const nameInput = ref<HTMLInputElement | null>();
+watch(profileName, () => {
+    if (profilesStore.profileExists(profileName.value)) {
+        nameInput.value?.setCustomValidity("Name already in use");
+    } else {
+        nameInput.value?.setCustomValidity("");
+    }
+});
+const defaultProfileName = computed(() => {
+    const baseName = file.value?.name?.split(".")?.[0];
+    if (!baseName) return undefined;
+    return profilesStore.findGoodProfileName(baseName);
+});
 
 watch(fileContents, async () => {
     console.log("parsing file");
@@ -162,7 +189,17 @@ async function handleFileDrop(event: DragEvent) {
     fileContents.value = (await file.value?.arrayBuffer()) ?? null;
 }
 
-function submitForm() {}
+function submitForm() {
+    if (!parsedFile.value || parsedFile.value.type == "invalid") {
+        return;
+    }
+
+    profilesStore.importProfile({
+        name: (profileName.value || defaultProfileName.value)!.trim(),
+        profileData: parsedFile.value.profile,
+        templateData: parsedFile.value.template,
+    });
+}
 </script>
 
 <style scoped lang="scss">
@@ -200,6 +237,12 @@ function submitForm() {}
     &.dragging {
         border-color: base.$secondary-green;
     }
+}
+
+#imported-profile-name {
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
 .description {
