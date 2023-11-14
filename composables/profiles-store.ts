@@ -72,6 +72,24 @@ export const useProfilesStore = defineStore("profiles", () => {
         navigateTo("/dashboard");
     }
 
+    function deleteProfile(name: string) {
+        if (current.value == name) {
+            throw new Error("Can't delete current profile");
+        }
+
+        if (!profileExists(name)) {
+            throw new Error("Profile does not exist");
+        }
+
+        // localStorage is idempotent, so we can always delete the template even if it does not exist
+        localStorage.removeItem(`profile:${name}`);
+        localStorage.removeItem(`profileTemplate:${name}`);
+
+        // remove the profile from the profiles list
+        allProfiles.value = allProfiles.value.filter((profile) => profile.name != name);
+        // we don't have to change the current profile name because deleting the current profile is not allowed
+    }
+
     // Check for already existing profile names.
     function findGoodProfileName(baseName: string) {
         let iter = 0;
@@ -94,6 +112,7 @@ export const useProfilesStore = defineStore("profiles", () => {
         profileExists,
         importProfile,
         createProfile,
+        deleteProfile,
         findGoodProfileName,
     };
 });

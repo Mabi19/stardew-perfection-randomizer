@@ -153,8 +153,13 @@ async function exportProfile() {
     URL.revokeObjectURL(blobURL);
 }
 
-function deleteProfile() {
-    // TODO
+function deleteProfile(name: string) {
+    // TODO: make this into a nice dialog
+    if (!window.confirm(`Are you sure you want to delete the profile '${name}'?`)) {
+        return;
+    }
+
+    profiles.deleteProfile(name);
 }
 </script>
 
