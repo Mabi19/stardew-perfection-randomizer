@@ -64,11 +64,11 @@ const nullGoal: Goal = {
     multiplicity: 0,
 };
 
-// Try to prevent accidental double-clicks by adding a cooldown to the buttons
+// Try to prevent accidental double-clicks by adding a short cooldown to the buttons
 const isOnCooldown = ref(false);
 function setCooldown() {
     isOnCooldown.value = true;
-    setTimeout(() => (isOnCooldown.value = false), 3000);
+    setTimeout(() => (isOnCooldown.value = false), 1000);
 }
 
 function rollGoal() {
