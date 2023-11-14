@@ -42,9 +42,11 @@
     <p>Ready to take the challenge?</p>
     <div class="start">
         <AppButton @click="showCreateDialog" icon="start">Start your adventure!</AppButton>
+        <AppButton @click="showImportDialog" icon="file_upload">Import data</AppButton>
     </div>
 
-    <ProfileCreateDialog :open="dialogOpen" @close="dialogOpen = false" />
+    <ProfileCreateDialog :open="createDialogOpen" @close="createDialogOpen = false" />
+    <DataImportDialog :open="importDialogOpen" @close="importDialogOpen = false" />
 </template>
 
 <script setup lang="ts">
@@ -52,10 +54,15 @@ definePageMeta({
     layout: "homepage",
 });
 
-const dialogOpen = ref(false);
+const createDialogOpen = ref(false);
+const importDialogOpen = ref(false);
 
 function showCreateDialog() {
-    dialogOpen.value = true;
+    createDialogOpen.value = true;
+}
+
+function showImportDialog() {
+    importDialogOpen.value = true;
 }
 </script>
 
