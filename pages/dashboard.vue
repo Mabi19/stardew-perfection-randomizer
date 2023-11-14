@@ -64,17 +64,38 @@ const nullGoal: Goal = {
     multiplicity: 0,
 };
 
+// Try to prevent accidental double-clicks by adding a cooldown to the buttons
+const isOnCooldown = ref(false);
+function setCooldown() {
+    isOnCooldown.value = true;
+    setTimeout(() => (isOnCooldown.value = false), 3000);
+}
+
 function rollGoal() {
+    if (isOnCooldown.value) {
+        return;
+    }
+
     store.rollGoal();
+    setCooldown();
 }
 
 function finishGoal() {
+    if (isOnCooldown.value) {
+        return;
+    }
     store.finishGoal();
+    setCooldown();
 }
 
 function cancelGoal() {
     // TODO: check for confirmation
+    if (isOnCooldown.value) {
+        return;
+    }
+
     store.cancelGoal();
+    setCooldown();
 }
 
 const isFinished = computed(() => store.completedCount == store.totalCount);
