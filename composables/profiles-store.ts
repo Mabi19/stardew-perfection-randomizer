@@ -100,7 +100,7 @@ export const useProfilesStore = defineStore("profiles", () => {
             name = `${baseName}${iterPart}`;
 
             iter++;
-        } while (profileExists(baseName));
+        } while (profileExists(name));
 
         return name;
     }
