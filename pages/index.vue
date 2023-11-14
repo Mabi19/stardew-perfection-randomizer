@@ -126,6 +126,7 @@ function showImportDialog() {
 .start {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
     gap: 0.5rem;
 }
 </style>
