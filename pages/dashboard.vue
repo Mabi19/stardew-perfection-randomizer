@@ -68,7 +68,7 @@ const nullGoal: Goal = {
 const isOnCooldown = ref(false);
 function setCooldown() {
     isOnCooldown.value = true;
-    setTimeout(() => (isOnCooldown.value = false), 1000);
+    setTimeout(() => (isOnCooldown.value = false), 500);
 }
 
 function rollGoal() {
