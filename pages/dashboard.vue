@@ -43,11 +43,17 @@
             </div>
             <ChallengeProgressBar :fill="store.completedCount / store.totalCount" />
         </div>
+        <GoalNotificationArea
+            ref="notificationArea"
+            :show-undo-button="undoContext.stack.length > 0"
+            @undo-button="undo"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
 import NullGoalIcon from "~/assets/null-goal-icon.png";
+import { GoalNotificationArea } from "#components";
 
 useHead({
     title: "Dashboard",
@@ -64,6 +70,9 @@ const nullGoal: Goal = {
     multiplicity: 0,
 };
 
+const notificationArea = ref<InstanceType<typeof GoalNotificationArea> | null>(null);
+const undoContext = new UndoContext(store);
+
 // Try to prevent accidental double-clicks by adding a short cooldown to the buttons
 const isOnCooldown = ref(false);
 function setCooldown() {
@@ -76,26 +85,46 @@ function rollGoal() {
         return;
     }
 
+    undoContext.hookGenerate();
+
     store.rollGoal();
     setCooldown();
+
+    notificationArea.value?.send("Generated", store.goals[store.currentGoalID!]);
 }
 
 function finishGoal() {
     if (isOnCooldown.value) {
         return;
     }
+
+    undoContext.hookFinish();
+
+    const goalID = store.currentGoalID!;
+
     store.finishGoal();
     setCooldown();
+
+    notificationArea.value?.send("Finished", store.goals[goalID]);
 }
 
 function cancelGoal() {
-    // TODO: check for confirmation
     if (isOnCooldown.value) {
         return;
     }
 
+    undoContext.hookCancel();
+
+    const goalID = store.currentGoalID!;
+
     store.cancelGoal();
     setCooldown();
+
+    notificationArea.value?.send("Canceled", store.goals[goalID]);
+}
+
+function undo() {
+    undoContext.undo();
 }
 
 const isFinished = computed(() => store.completedCount == store.totalCount);
