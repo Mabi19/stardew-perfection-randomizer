@@ -12,17 +12,11 @@ body {
     --text: black;
     --background: #ffffff;
     --background-light: #eee;
+    --link: rgb(2, 95, 189);
+    --link-visited: rgb(89, 2, 189);
 
     background-color: var(--background);
     color: var(--text);
-}
-
-a:link {
-    color: rgb(2, 95, 189);
-}
-
-a:visited {
-    color: rgb(89, 2, 189);
 }
 
 .dark-theme {
@@ -32,14 +26,18 @@ a:visited {
     --background: #222;
     --background-light: #333;
 
-    a:link {
-        color: rgb(132, 179, 226);
-    }
-
-    a:visited {
-        color: rgb(188, 140, 243);
-    }
+    --link: rgb(132, 179, 226);
+    --link-visited: rgb(188, 140, 243);
 }
+
+a:link {
+    color: var(--link);
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
 
 *, *::after, *::before {
     box-sizing: border-box;
