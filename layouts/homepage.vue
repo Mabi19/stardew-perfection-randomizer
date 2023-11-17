@@ -3,6 +3,7 @@
         <NavBar>
             <img src="~/assets/logo.webp" alt="Randomizer logo" />
             <span class="app-name">Stardew Perfection Randomizer</span>
+            <span class="badge green small-hide">BETA</span>
         </NavBar>
         <main class="content">
             <slot />
