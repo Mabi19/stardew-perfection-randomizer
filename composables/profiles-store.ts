@@ -30,7 +30,7 @@ export const useProfilesStore = defineStore("profiles", () => {
         return Boolean(allProfiles.value.find((existingProfile) => existingProfile.name == name));
     }
 
-    function importProfile(data: ProfileImportData) {
+    async function importProfile(data: ProfileImportData) {
         localStorage.setItem(`profile:${data.name}`, data.profileData);
         if (data.templateData) {
             localStorage.setItem(`profileTemplate:${data.name}`, data.templateData);
@@ -44,10 +44,10 @@ export const useProfilesStore = defineStore("profiles", () => {
         });
         current.value = data.name;
 
-        navigateTo("/dashboard");
+        await navigateTo("/dashboard");
     }
 
-    function createProfile(options: Profile) {
+    async function createProfile(options: Profile) {
         const templateData = getPredefinedTemplate(options.template);
 
         if (!templateData) {
@@ -69,7 +69,7 @@ export const useProfilesStore = defineStore("profiles", () => {
         const serialized = serializeSaveData(data);
         localStorage.setItem(`profile:${options.name}`, serialized);
 
-        navigateTo("/dashboard");
+        await navigateTo("/dashboard");
     }
 
     function deleteProfile(name: string) {
