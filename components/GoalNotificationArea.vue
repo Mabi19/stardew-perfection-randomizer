@@ -37,9 +37,16 @@ let nextID = 0;
 
 function send(type: string, goal: Goal) {
     notifications.value.push({ id: nextID, type, goal });
-    nextID++;
 
-    setTimeout(() => notifications.value.shift(), 5000);
+    const id = nextID;
+    setTimeout(() => {
+        const index = notifications.value.findIndex((notification) => notification.id == id);
+        if (index != -1) {
+            notifications.value.splice(index, 1);
+        }
+    }, 5000);
+
+    nextID++;
 }
 
 function handleUndoButton() {
