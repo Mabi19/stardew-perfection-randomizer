@@ -38,6 +38,25 @@ a:visited {
     color: var(--link-visited);
 }
 
+a:active {
+    filter: brightness(120%);
+}
+
+.link {
+    border: none;
+    background: inherit;
+    font: inherit;
+
+    color: var(--link);
+    text-decoration: underline;
+
+    cursor: pointer;
+
+    &:active {
+        filter: brightness(120%);
+    }
+}
+
 
 *, *::after, *::before {
     box-sizing: border-box;
