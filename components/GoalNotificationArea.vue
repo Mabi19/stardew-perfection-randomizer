@@ -93,6 +93,9 @@ defineExpose({
 .inline-goal {
     display: inline;
     font-weight: bold;
+    :deep(span) {
+        vertical-align: baseline;
+    }
 }
 
 .notification,
