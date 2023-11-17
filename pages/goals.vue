@@ -1,5 +1,6 @@
 <template>
     <div class="part row">
+        <!-- TODO: bind this to Ctrl+F -->
         <label for="filter">Filter goals:</label>
         <input id="filter" type="search" v-model="searchTerm" />
     </div>
