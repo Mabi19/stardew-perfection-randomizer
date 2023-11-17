@@ -124,6 +124,7 @@ function cancelGoal() {
 }
 
 function undo() {
+    // TODO: bind this to Ctrl+Z
     undoContext.undo();
 }
 
