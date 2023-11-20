@@ -87,14 +87,43 @@ defineExpose({
     }
 }
 
+@keyframes notification-progress {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .notification {
     background-color: var(--background-light);
     padding: 0.5rem;
+    // add space for bottom bar
+    padding-bottom: 0.75rem;
     border-radius: 0.5rem;
-    border: 2px solid base.$panel-border;
+    // border: 2px solid base.$panel-border;
 
     width: 25rem;
     max-width: 100%;
+
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        height: 0.25rem;
+        background-color: base.$secondary-green;
+
+        animation: notification-progress 8s linear;
+    }
 }
 
 .inline-goal {
