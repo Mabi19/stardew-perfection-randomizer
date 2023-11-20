@@ -44,7 +44,7 @@ function send(type: string, goal: Goal) {
         if (index != -1) {
             notifications.value.splice(index, 1);
         }
-    }, 5000);
+    }, 8000);
 
     nextID++;
 }
