@@ -5,7 +5,7 @@
                 <AppButton :disabled="undoCount == 0" icon="undo" @click="handleUndoButton">
                     Undo
                 </AppButton>
-                <AppButton :disabled="redoCount == 0" icon="undo" @click="handleRedoButton">
+                <AppButton :disabled="redoCount == 0" icon="redo" @click="handleRedoButton">
                     Redo
                 </AppButton>
             </div>
