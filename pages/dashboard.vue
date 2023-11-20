@@ -45,8 +45,10 @@
         </div>
         <GoalNotificationArea
             ref="notificationArea"
-            :show-undo-button="undoContext.stack.length > 0"
+            :undo-count="historyContext.undoStack.length"
+            :redo-count="historyContext.redoStack.length"
             @undo-button="undo"
+            @redo-button="redo"
         />
     </div>
 </template>
@@ -71,7 +73,7 @@ const nullGoal: Goal = {
 };
 
 const notificationArea = ref<InstanceType<typeof GoalNotificationArea> | null>(null);
-const undoContext = new UndoContext(store);
+const historyContext = new HistoryContext(store);
 
 // Try to prevent accidental double-clicks by adding a short cooldown to the buttons
 const isOnCooldown = ref(false);
@@ -85,9 +87,12 @@ function rollGoal() {
         return;
     }
 
-    undoContext.hookGenerate();
+    const previousGoalID = store.currentGoalID;
 
     store.rollGoal();
+    // this needs extra context in the form of the previous goal
+    historyContext.hookGenerate(previousGoalID);
+
     setCooldown();
 
     notificationArea.value?.send("Generated", store.goals[store.currentGoalID!]);
@@ -98,7 +103,7 @@ function finishGoal() {
         return;
     }
 
-    undoContext.hookFinish();
+    historyContext.hookFinish();
 
     const goalID = store.currentGoalID!;
 
@@ -113,7 +118,7 @@ function cancelGoal() {
         return;
     }
 
-    undoContext.hookCancel();
+    historyContext.hookCancel();
 
     const goalID = store.currentGoalID!;
 
@@ -125,7 +130,18 @@ function cancelGoal() {
 
 function undo() {
     // TODO: bind this to Ctrl+Z
-    undoContext.undo();
+    historyContext.undo();
+}
+
+function redo() {
+    // TODO: bind this to Ctrl+Y
+    // TODO: emit a notification
+    const effect = historyContext.redo();
+
+    if (effect) {
+        // something was redone, generate a notification
+        notificationArea.value?.send(`(Redo) ${effect.type}`, store.goals[effect.goalID]);
+    }
 }
 
 const isFinished = computed(() => store.completedCount == store.totalCount);

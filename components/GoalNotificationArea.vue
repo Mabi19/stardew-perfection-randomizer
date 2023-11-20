@@ -1,15 +1,14 @@
 <template>
     <div class="notification-area">
         <TransitionGroup>
-            <AppButton
-                :key="-1"
-                v-if="props.showUndoButton"
-                icon="undo"
-                class="undo-button"
-                @click="handleUndoButton"
-            >
-                Undo
-            </AppButton>
+            <div class="button-group" :key="-1" v-if="showHistoryButtons">
+                <AppButton :disabled="undoCount == 0" icon="undo" @click="handleUndoButton">
+                    Undo
+                </AppButton>
+                <AppButton :disabled="redoCount == 0" icon="undo" @click="handleRedoButton">
+                    Redo
+                </AppButton>
+            </div>
             <div class="notification" v-for="notification in notifications" :key="notification.id">
                 {{ notification.type }} goal <Goal :goal="notification.goal" class="inline-goal" />
             </div>
@@ -25,11 +24,13 @@ interface AppNotification {
 }
 
 const props = defineProps<{
-    showUndoButton: boolean;
+    undoCount: number;
+    redoCount: number;
 }>();
 
 const emit = defineEmits<{
     (event: "undoButton"): void;
+    (event: "redoButton"): void;
 }>();
 
 const notifications = ref<AppNotification[]>([]);
@@ -49,11 +50,18 @@ function send(type: string, goal: Goal) {
     nextID++;
 }
 
+const showHistoryButtons = computed(() => props.undoCount > 0 || props.redoCount > 0);
+
 function handleUndoButton() {
     // The ability to undo is not tied to the top notification.
     // However, if one exists, it should be popped off to signify that the task is undone.
+    // We don't have to check here because the latest undo-generating event (including redos) gets the newest, or top, notification.
     notifications.value.pop();
     emit("undoButton");
+}
+
+function handleRedoButton() {
+    emit("redoButton");
 }
 
 defineExpose({
@@ -135,8 +143,14 @@ defineExpose({
 }
 
 .notification,
-.undo-button {
+.button-group {
     box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+.button-group {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
 }
 
 .v-move,
