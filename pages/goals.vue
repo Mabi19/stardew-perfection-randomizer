@@ -1,8 +1,7 @@
 <template>
     <div class="part row">
-        <!-- TODO: bind this to Ctrl+F -->
         <label for="filter">Filter goals:</label>
-        <input id="filter" type="search" v-model="searchTerm" />
+        <input id="filter" type="search" v-model="searchTerm" ref="searchBox" />
     </div>
     <div class="part">
         <GoalList :search-term="searchTerm"></GoalList>
@@ -15,6 +14,9 @@ useHead({
 });
 
 const searchTerm = ref("");
+const searchBox = ref<HTMLInputElement | null>(null);
+
+useKeyboardShortcut(KEY_MODIFIERS.CTRL, "F", () => searchBox.value?.focus());
 </script>
 
 <style scoped lang="scss">
