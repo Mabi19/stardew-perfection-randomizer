@@ -11,7 +11,7 @@
                 @dragleave="isDragging = false"
             >
                 <span v-if="file">{{ file.name }}</span
-                ><span v-else>Choose a backup file...</span>
+                ><span v-else>Choose a backup or spreadsheet export file...</span>
             </label>
             <input
                 type="file"
@@ -59,6 +59,9 @@ function passEvent() {
     emit("close");
 }
 
+const BACKUP_HEADER = new TextEncoder().encode("sdvpr_v1_packed;");
+const SPREADSHEET_HEADER = new TextEncoder().encode("PK");
+
 class InvalidFile {
     readonly type = "invalid";
 }
@@ -77,6 +80,7 @@ class ParsedBackupFile {
     static async parse(data: Uint8Array) {
         // strip the magic string
         data = data.slice(BACKUP_HEADER.length);
+
         const templateSize = ByteArrayUtils.decodeInteger(data.slice(0, 4));
         const compressedTemplate = data.slice(4, 4 + templateSize);
         if (compressedTemplate.length != templateSize) {
@@ -119,9 +123,19 @@ class ParsedBackupFile {
     }
 }
 
-type ParsedFile = InvalidFile | ParsedBackupFile;
+class ParsedSpreadsheetFile {
+    readonly type = "spreadsheet";
 
-const BACKUP_HEADER = new TextEncoder().encode("sdvpr_v1_packed;");
+    static async parse(data: Uint8Array) {
+        const module = await import("~~/spreadsheet-import/parse");
+
+        module.parseSpreadsheet(data);
+
+        return new ParsedSpreadsheetFile();
+    }
+}
+
+type ParsedFile = InvalidFile | ParsedBackupFile | ParsedSpreadsheetFile;
 
 const fileInput = ref<HTMLInputElement | null>(null);
 const isDragging = ref(false);
@@ -173,6 +187,24 @@ watch(fileContents, async () => {
     if (isBackup) {
         try {
             parsedFile.value = await ParsedBackupFile.parse(view);
+            console.log(parsedFile.value);
+        } catch (e) {
+            console.log(e);
+            parsedFile.value = new InvalidFile();
+        }
+        return;
+    }
+
+    let isSpreadsheet = true;
+    for (let i = 0; i < SPREADSHEET_HEADER.length; i++) {
+        if (view[i] !== SPREADSHEET_HEADER[i]) {
+            isSpreadsheet = false;
+        }
+    }
+
+    if (isSpreadsheet) {
+        try {
+            parsedFile.value = await ParsedSpreadsheetFile.parse(view);
             console.log(parsedFile.value);
         } catch (e) {
             console.log(e);
