@@ -82,6 +82,10 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+    title: "Settings",
+});
+
 const randomizer = useRandomizerStore();
 const settings = useSettingsStore();
 const profiles = useProfilesStore();
