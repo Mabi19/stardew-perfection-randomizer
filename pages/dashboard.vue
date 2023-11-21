@@ -72,6 +72,12 @@ const nullGoal: Goal = {
     multiplicity: 0,
 };
 
+const isFinished = computed(() => store.completedCount == store.totalCount);
+
+const numberFormatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 1,
+});
+
 const notificationArea = ref<InstanceType<typeof GoalNotificationArea> | null>(null);
 const historyContext = new HistoryContext(store);
 
@@ -144,11 +150,8 @@ function redo() {
     }
 }
 
-const isFinished = computed(() => store.completedCount == store.totalCount);
-
-const numberFormatter = new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 1,
-});
+useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Z", () => notificationArea.value?.handleUndoAction());
+useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handleRedoAction());
 </script>
 
 <style scoped lang="scss">

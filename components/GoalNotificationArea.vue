@@ -2,10 +2,10 @@
     <div class="notification-area">
         <TransitionGroup>
             <div class="button-group" :key="-1" v-if="showHistoryButtons">
-                <AppButton :disabled="undoCount == 0" icon="undo" @click="handleUndoButton">
+                <AppButton :disabled="undoCount == 0" icon="undo" @click="handleUndoAction">
                     Undo
                 </AppButton>
-                <AppButton :disabled="redoCount == 0" icon="redo" @click="handleRedoButton">
+                <AppButton :disabled="redoCount == 0" icon="redo" @click="handleRedoAction">
                     Redo
                 </AppButton>
             </div>
@@ -52,7 +52,7 @@ function send(type: string, goal: Goal) {
 
 const showHistoryButtons = computed(() => props.undoCount > 0 || props.redoCount > 0);
 
-function handleUndoButton() {
+function handleUndoAction() {
     // The ability to undo is not tied to the top notification.
     // However, if one exists, it should be popped off to signify that the task is undone.
     // We don't have to check here because the latest undo-generating event (including redos) gets the newest, or top, notification.
@@ -60,12 +60,14 @@ function handleUndoButton() {
     emit("undoButton");
 }
 
-function handleRedoButton() {
+function handleRedoAction() {
     emit("redoButton");
 }
 
 defineExpose({
     send,
+    handleUndoAction,
+    handleRedoAction,
 });
 </script>
 
