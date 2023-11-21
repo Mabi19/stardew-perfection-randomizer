@@ -13,6 +13,7 @@ export function useKeyboardShortcut(modifiers: number, key: string, callback: ()
         }
 
         if (event.key.toUpperCase() == key) {
+            event.preventDefault();
             callback();
         }
     });
