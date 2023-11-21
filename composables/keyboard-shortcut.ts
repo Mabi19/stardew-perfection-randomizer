@@ -2,7 +2,7 @@ export const KEY_MODIFIERS = {
     CTRL: 1,
 };
 
-export function useKeyboardShortcut(key: string, modifiers: number, callback: () => void) {
+export function useKeyboardShortcut(modifiers: number, key: string, callback: () => void) {
     const abortController = new AbortController();
 
     document.addEventListener("keydown", (event) => {
@@ -12,7 +12,7 @@ export function useKeyboardShortcut(key: string, modifiers: number, callback: ()
             applies = applies && event.ctrlKey;
         }
 
-        if (event.key == key) {
+        if (event.key.toUpperCase() == key) {
             callback();
         }
     });
