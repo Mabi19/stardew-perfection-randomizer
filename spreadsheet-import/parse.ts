@@ -8,8 +8,38 @@ function convertNameToID(name: string) {
         .replaceAll(/[^a-z0-9_]+/g, "");
 }
 
-function parsePrerequisites(prerequisites: string) {
-    throw new Error("Parsing prerequisites not implemented");
+function parsePrerequisites(
+    prerequisites: string,
+    goalsByName: Record<string, TemplateGoal>,
+): Prerequisites {
+    const TAGS: Record<string, string> = {
+        "Catch a Valid Fish": "#demetrius_fish",
+        "Befriend a Marriage Candidate": "#marriage_capable",
+    };
+
+    // The original spreadsheet only supports one or the other
+    const prerequisitesType = prerequisites.includes("|") ? "|" : "&";
+    const rawRequirements = prerequisites.split(prerequisitesType);
+    const prerequisiteGoals = rawRequirements.map((reqGoalName) => {
+        reqGoalName = reqGoalName.trim();
+
+        // Skill goals: these have a multiplicity after them
+        const skillMatch = reqGoalName.match(/^(Farming|Mining|Foraging|Fishing|Combat) ([0-9]+)$/);
+        if (skillMatch) {
+            const [_full, skill, level] = skillMatch;
+            return {
+                goal: `level:${skill.toLowerCase()}`,
+                multiplicity: parseInt(level),
+            };
+        }
+
+        const targetID = TAGS[reqGoalName] ?? goalsByName[reqGoalName]?.id;
+        if (!targetID) {
+            throw new Error("Invalid prerequisite");
+        }
+        return { goal: targetID } as Prerequisite;
+    });
+    return prerequisitesType == "|" ? { any: prerequisiteGoals } : { all: prerequisiteGoals };
 }
 
 function parseImageFormula(formula: string) {
@@ -108,24 +138,26 @@ export function parseSpreadsheet(data: Uint8Array) {
     }));
 
     // deduplicate goals and track completion
+
     const spreadsheetGoals: Record<string, TemplateGoal> = {};
     const completion: Record<string, number> = {};
     for (const rawGoal of rawSpreadsheetGoals) {
         if (!(rawGoal.name in spreadsheetGoals)) {
+            // We're going through unknown here because there are no prerequisites (only rawPrerequisites),
+            // as they need to be processed later
+            // the data gets fixed in a sec
             spreadsheetGoals[rawGoal.name] = {
                 // if an ID for this goal exists, use it
                 // otherwise generate
                 id: baseGoalsByName[rawGoal.name]?.id ?? convertNameToID(rawGoal.name),
                 name: rawGoal.name,
                 imageURL: parseImageFormula(rawGoal.imageFormula ?? "") ?? "",
-                // always parse prerequisites
-                prerequisites:
-                    baseGoalsByName[rawGoal.name]?.prerequisites ??
-                    parsePrerequisites(rawGoal.prerequisites ?? ""),
+                // leave the prerequisites for later
+                rawPrerequisites: rawGoal.prerequisites ?? "",
                 multiplicity: 0,
                 // this is hardcoded, so we can only provide an empty object as backup
                 xp: baseGoalsByName[rawGoal.name]?.xp ?? {},
-            };
+            } as unknown as TemplateGoal;
         }
 
         spreadsheetGoals[rawGoal.name].multiplicity += 1;
@@ -139,6 +171,14 @@ export function parseSpreadsheet(data: Uint8Array) {
         if (rawGoal.complete) {
             completion[goalID] += 1;
         }
+    }
+
+    // Modify prerequisites in-place with all the goals in the table
+    for (const goal of Object.values(spreadsheetGoals)) {
+        // @ts-ignore: Since this isn't the correct type yet, there are errors
+        goal.prerequisites = parsePrerequisites(goal.rawPrerequisites, spreadsheetGoals);
+        // @ts-ignore
+        delete goal.rawPrerequisites;
     }
 
     if (!objectsEqual(spreadsheetGoals, baseGoalsByName)) {
