@@ -1,7 +1,5 @@
 import { defineStore } from "pinia";
 
-const xpThresholds = [0, 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000, 9999999];
-
 export const useRandomizerStore = defineStore("randomizer", () => {
     const profiles = useProfilesStore();
 
@@ -117,7 +115,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
         // we're not substituting the XP threshold here because we're about to set it
         const previousXP = predictedSkillXP.value[skill] ?? 0;
-        const newXP = Math.max(previousXP, xpThresholds[completion.value[goalID]]);
+        const newXP = Math.max(previousXP, skillXPValues[completion.value[goalID]]);
         predictedSkillXP.value[skill] = newXP;
     }
 
@@ -143,9 +141,9 @@ export const useRandomizerStore = defineStore("randomizer", () => {
                 for (const [skill, impliedXP] of Object.entries(goal.xp)) {
                     const level = completion.value[skill];
                     // if there is no saved XP prediction, use the current level as a baseline
-                    let currentXP = predictedSkillXP.value[skill] ?? xpThresholds[level];
+                    let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level];
                     currentXP += impliedXP;
-                    if (currentXP >= xpThresholds[level + 1]) {
+                    if (currentXP >= skillXPValues[level + 1]) {
                         return false;
                     }
                 }
@@ -178,7 +176,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
         // add implied XP to the prediction
         for (const [skill, impliedXP] of Object.entries(currentGoal.value.xp)) {
-            let currentXP = predictedSkillXP.value[skill] ?? xpThresholds[completion.value[skill]];
+            let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[completion.value[skill]];
             currentXP += impliedXP;
             predictedSkillXP.value[skill] = currentXP;
         }
