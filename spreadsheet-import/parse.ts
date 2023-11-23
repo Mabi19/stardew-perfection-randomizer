@@ -158,7 +158,7 @@ export function parseSpreadsheet(data: Uint8Array) {
                 // otherwise generate
                 id: baseGoalsByName[rawGoal.name]?.id ?? convertNameToID(rawGoal.name),
                 name: rawGoal.name,
-                imageURL: parseImageFormula(rawGoal.imageFormula ?? "") ?? "",
+                imageURL: parseImageFormula(rawGoal.imageFormula ?? "") ?? undefined,
                 // leave the prerequisites for later
                 rawPrerequisites: rawGoal.prerequisites ?? "",
                 multiplicity: 0,

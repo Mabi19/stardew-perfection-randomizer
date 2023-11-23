@@ -14,7 +14,7 @@ export interface TemplateGoal {
     id: string;
     name: string;
     prerequisites: Prerequisites;
-    imageURL: string;
+    imageURL?: string;
     multiplicity: number;
     xp: Record<string, number>;
 }

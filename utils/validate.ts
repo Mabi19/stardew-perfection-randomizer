@@ -65,9 +65,9 @@ export function validateTemplate(template: Template) {
             (goal) =>
                 typeof goal.id == "string" &&
                 isValidGoalID(goal.id) &&
-                // valid URL
-                typeof goal.imageURL == "string" &&
-                expectNoThrow(() => new URL(goal.imageURL)) &&
+                // valid URL or nothing
+                (goal.imageURL == undefined || typeof goal.imageURL == "string") &&
+                expectNoThrow(() => goal.imageURL == undefined || new URL(goal.imageURL)) &&
                 // positive integer
                 typeof goal.multiplicity == "number" &&
                 goal.multiplicity > 0 &&
