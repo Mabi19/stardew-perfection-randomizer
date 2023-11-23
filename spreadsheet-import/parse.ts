@@ -107,8 +107,9 @@ export function parseSpreadsheet(data: Uint8Array) {
         complete: row[3]?.v == "Y",
     }));
 
-    // deduplicate goals
+    // deduplicate goals and track completion
     const spreadsheetGoals: Record<string, TemplateGoal> = {};
+    const completion: Record<string, number> = {};
     for (const rawGoal of rawSpreadsheetGoals) {
         if (!(rawGoal.name in spreadsheetGoals)) {
             spreadsheetGoals[rawGoal.name] = {
@@ -129,12 +130,80 @@ export function parseSpreadsheet(data: Uint8Array) {
 
         spreadsheetGoals[rawGoal.name].multiplicity += 1;
 
-        // TODO: track completion
+        // completion
+        const goalID = spreadsheetGoals[rawGoal.name].id;
+        if (!(goalID in completion)) {
+            completion[goalID] = 0;
+        }
+
+        if (rawGoal.complete) {
+            completion[goalID] += 1;
+        }
     }
 
     if (!objectsEqual(spreadsheetGoals, baseGoalsByName)) {
         throw new Error("Template seems to be customized, which is not supported yet");
     }
+    // TODO: set this when custom template support is implemented
+    const isCustom = false;
 
-    console.log(spreadsheetGoals);
+    const currentGoalIndex = Number(metadata["!data"]![1][1].v!);
+    const currentGoalID = currentGoalIndex
+        ? spreadsheetGoals[rawSpreadsheetGoals[currentGoalIndex - 2].name].id
+        : null;
+
+    // The spreadsheet stores XP remaining, but this version stores total XP
+    // so, convert
+    const predictedSkillXP: Record<string, number> = {};
+    // only hardcore mode has XP tracking
+    if (randomizerType == "hardcore") {
+        const LEVEL_ROWS = [
+            ["farming", 3],
+            ["mining", 4],
+            ["foraging", 5],
+            ["fishing", 6],
+            ["combat", 7],
+        ] as const;
+
+        const skillLevels: Record<string, number> = {};
+        for (const [skill, row] of LEVEL_ROWS) {
+            skillLevels[skill] = Number(metadata["!data"]![row][1].v!);
+        }
+
+        const XP_THRESHOLD_ROWS = [
+            ["fishing", 11],
+            ["combat", 12],
+        ] as const;
+
+        for (const [skill, row] of XP_THRESHOLD_ROWS) {
+            const level = skillLevels[skill];
+
+            if (level == 10) {
+                // set the total XP manually to not go out of bounds
+                predictedSkillXP[skill] = skillXPValues[10];
+            } else {
+                const xpRemaining = Number(metadata["!data"]![row][1].v!);
+                predictedSkillXP[skill] = skillXPValues[level + 1] - xpRemaining;
+            }
+        }
+    }
+
+    // re-use the existing serialization function
+
+    const profileObject = {
+        currentGoalID,
+        // TODO: handle custom here
+        templateName: randomizerType,
+        predictedSkillXP,
+        completion,
+    };
+
+    const profileString = serializeSaveData(profileObject);
+    const transposedGoals = Object.fromEntries(
+        Object.values(spreadsheetGoals).map((goal) => [goal.id, goal]),
+    );
+    // only include the template when it's needed
+    const templateString = isCustom ? JSON.stringify(transposedGoals) : null;
+
+    return { profileString, templateString };
 }

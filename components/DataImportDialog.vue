@@ -126,12 +126,20 @@ class ParsedBackupFile {
 class ParsedSpreadsheetFile {
     readonly type = "spreadsheet";
 
+    template: string | null;
+    profile: string;
+
+    constructor(template: string | null, profile: string) {
+        this.template = template;
+        this.profile = profile;
+    }
+
     static async parse(data: Uint8Array) {
         const module = await import("~~/spreadsheet-import/parse");
 
-        module.parseSpreadsheet(data);
+        const { profileString, templateString } = module.parseSpreadsheet(data);
 
-        return new ParsedSpreadsheetFile();
+        return new ParsedSpreadsheetFile(templateString, profileString);
     }
 }
 
@@ -187,7 +195,6 @@ watch(fileContents, async () => {
     if (isBackup) {
         try {
             parsedFile.value = await ParsedBackupFile.parse(view);
-            console.log(parsedFile.value);
         } catch (e) {
             console.log(e);
             parsedFile.value = new InvalidFile();
@@ -205,7 +212,6 @@ watch(fileContents, async () => {
     if (isSpreadsheet) {
         try {
             parsedFile.value = await ParsedSpreadsheetFile.parse(view);
-            console.log(parsedFile.value);
         } catch (e) {
             console.log(e);
             parsedFile.value = new InvalidFile();
