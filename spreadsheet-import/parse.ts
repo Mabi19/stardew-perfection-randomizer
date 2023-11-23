@@ -1,4 +1,5 @@
 import { read } from "xlsx";
+import { DEFAULT_TAGS } from "./tags";
 
 function convertNameToID(name: string) {
     return name
@@ -240,11 +241,13 @@ export function parseSpreadsheet(data: Uint8Array) {
     };
 
     const profileString = serializeSaveData(profileObject);
-    const transposedGoals = Object.fromEntries(
-        Object.values(spreadsheetGoals).map((goal) => [goal.id, goal]),
-    );
+
     // only include the template when it's needed
-    const templateString = isCustom ? JSON.stringify(transposedGoals) : null;
+    const template: Template = {
+        tags: DEFAULT_TAGS,
+        goals: Object.values(spreadsheetGoals),
+    };
+    const templateString = isCustom ? JSON.stringify(template) : null;
 
     return { profileString, templateString };
 }
