@@ -17,6 +17,10 @@ function parsePrerequisites(
         "Befriend a Marriage Candidate": "#marriage_capable",
     };
 
+    if (prerequisites.trim() == "") {
+        return {};
+    }
+
     // The original spreadsheet only supports one or the other
     const prerequisitesType = prerequisites.includes("|") ? "|" : "&";
     const rawRequirements = prerequisites.split(prerequisitesType);
@@ -35,7 +39,7 @@ function parsePrerequisites(
 
         const targetID = TAGS[reqGoalName] ?? goalsByName[reqGoalName]?.id;
         if (!targetID) {
-            throw new Error("Invalid prerequisite");
+            throw new Error(`Invalid prerequisites '${reqGoalName}'`);
         }
         return { goal: targetID } as Prerequisite;
     });
@@ -119,6 +123,8 @@ export function parseSpreadsheet(data: Uint8Array) {
         randomizerType = "standard";
     } else if (testCell.v == "Combat XP Threshold") {
         randomizerType = "hardcore";
+    } else {
+        throw new Error("Could not recognize spreadsheet format");
     }
 
     console.log(randomizerType);
@@ -181,13 +187,9 @@ export function parseSpreadsheet(data: Uint8Array) {
         delete goal.rawPrerequisites;
     }
 
-    if (!objectsEqual(spreadsheetGoals, baseGoalsByName)) {
-        throw new Error("Template seems to be customized, which is not supported yet");
-    }
-    // TODO: set this when custom template support is implemented
-    const isCustom = false;
+    const isCustom = !objectsEqual(spreadsheetGoals, baseGoalsByName);
 
-    const currentGoalIndex = Number(metadata["!data"]![1][1].v!);
+    const currentGoalIndex = Number(metadata["!data"]![1]?.[1]?.v);
     const currentGoalID = currentGoalIndex
         ? spreadsheetGoals[rawSpreadsheetGoals[currentGoalIndex - 2].name].id
         : null;
@@ -232,8 +234,7 @@ export function parseSpreadsheet(data: Uint8Array) {
 
     const profileObject = {
         currentGoalID,
-        // TODO: handle custom here
-        templateName: randomizerType,
+        templateName: isCustom ? "custom" : randomizerType,
         predictedSkillXP,
         completion,
     };
