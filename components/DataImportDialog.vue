@@ -10,7 +10,7 @@
                 class="file-input"
                 :class="{ dragging: isDragging || file }"
                 @drop.prevent="handleFileDrop"
-                @dragover.prevent=""
+                @dragover.prevent="isDragging = true"
                 @dragenter="isDragging = true"
                 @dragleave="isDragging = false"
             >
