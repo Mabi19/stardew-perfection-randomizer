@@ -1,5 +1,9 @@
 <template>
     <AppDialog title="Import Data" :open="open" @close="passEvent">
+        <p class="explanation">
+            To import your data from the spreadsheet version, select File &rarr; Download &rarr;
+            Microsoft Excel (.xlsx) and select the resulting file below.
+        </p>
         <form @submit.prevent="submitForm">
             <label
                 for="file-input"
@@ -251,6 +255,8 @@ function submitForm() {
 }
 
 .file-input {
+    margin: auto;
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -285,5 +291,9 @@ function submitForm() {
 
 .description {
     margin: 0.5rem 0;
+}
+
+.explanation {
+    margin-top: 0;
 }
 </style>
