@@ -14,7 +14,7 @@ export function useKeyboardShortcut(modifiers: number, key: string, callback: ()
                 applies = applies && event.ctrlKey;
             }
 
-            if (event.key.toUpperCase() == key) {
+            if (applies && event.key.toUpperCase() == key) {
                 event.preventDefault();
                 callback();
             }
