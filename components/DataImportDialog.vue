@@ -143,6 +143,18 @@ class ParsedSpreadsheetFile {
 
         const { profileString, templateString } = module.parseSpreadsheet(data);
 
+        let parsedTemplate = undefined;
+        if (templateString) {
+            parsedTemplate = JSON.parse(templateString);
+            if (!validateTemplate(parsedTemplate)) {
+                throw new Error("Converted template does not validate");
+            }
+        }
+
+        if (!validateProfileData(profileString, parsedTemplate)) {
+            throw new Error("Converted profile does not validate");
+        }
+
         return new ParsedSpreadsheetFile(templateString, profileString);
     }
 }
