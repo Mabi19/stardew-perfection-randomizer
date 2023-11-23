@@ -169,9 +169,9 @@ export function validateProfileData(profile: string, customTemplate?: Template) 
                 // check for corresponding level goal
                 typeof skill == "string" &&
                 validGoals.has(`level:${skill}`) &&
-                // XP has to be positive
+                // XP has to be nonnegative
                 typeof xp == "number" &&
-                xp > 0,
+                xp >= 0,
         )
     ) {
         return false;
