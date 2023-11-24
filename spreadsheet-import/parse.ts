@@ -48,7 +48,8 @@ function parsePrerequisites(
 }
 
 function parseImageFormula(formula: string) {
-    return formula.match(/^IMAGE\(\"(.+)\"\)$/)?.[1];
+    const matches = formula.match(/IMAGE\(\"(.+)\"\)/i);
+    return matches?.[1];
 }
 
 function objectsEqual(obj1: unknown, obj2: unknown) {
