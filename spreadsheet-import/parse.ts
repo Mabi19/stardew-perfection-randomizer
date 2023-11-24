@@ -104,7 +104,7 @@ function objectsEqual(obj1: unknown, obj2: unknown) {
 export function parseSpreadsheet(data: Uint8Array) {
     console.log("parsing spreadsheet");
 
-    const workbook = read(data, { dense: true });
+    const workbook = read(data, { dense: true, cellHTML: false, cellText: false });
 
     if (
         !(
