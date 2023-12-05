@@ -37,7 +37,33 @@ export default defineNuxtConfig({
                     rel: "icon",
                 },
             ],
-            meta: [{ name: "theme-color", content: "#663399" }],
+            meta: [
+                { name: "theme-color", content: "#663399" },
+                {
+                    name: "color-scheme",
+                    content: "light dark",
+                },
+                {
+                    name: "description",
+                    content:
+                        "A Stardew Valley challenge about achieving Perfection one step at a time",
+                },
+                // Open Graph metedata
+                // TODO: More Open Graph metadata
+                {
+                    property: "og:description",
+                    content:
+                        "A Stardew Valley challenge about achieving Perfection one step at a time",
+                },
+                {
+                    property: "og:type",
+                    content: "website",
+                },
+                {
+                    property: "og:image",
+                    content: "/stardew-perfection-randomizer/icon.png",
+                },
+            ],
             htmlAttrs: {
                 lang: "en-US",
             },
