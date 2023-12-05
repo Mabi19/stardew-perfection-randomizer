@@ -49,7 +49,11 @@ export default defineNuxtConfig({
                         "A Stardew Valley challenge about achieving Perfection one step at a time",
                 },
                 // Open Graph metedata
-                // TODO: More Open Graph metadata
+                {
+                    property: "og:title",
+                    // TODO: figure out how to do this with the dynamic title
+                    content: "Stardew Perfection Randomizer",
+                },
                 {
                     property: "og:description",
                     content:
