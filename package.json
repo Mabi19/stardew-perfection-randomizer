@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@vite-pwa/nuxt": "^0.3.4",
     "nuxt": "^3.8.2",
     "prettier": "^3.1.0",
     "sass": "^1.69.5"

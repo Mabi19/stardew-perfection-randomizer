@@ -37,8 +37,33 @@ export default defineNuxtConfig({
                     rel: "icon",
                 },
             ],
+            meta: [{ name: "theme-color", content: "#663399" }],
+            htmlAttrs: {
+                lang: "en-US",
+            },
         },
     },
     css: ["~/assets/global.scss"],
-    modules: ["@pinia/nuxt"],
+    modules: ["@pinia/nuxt", "@vite-pwa/nuxt"],
+    pwa: {
+        registerType: "autoUpdate",
+        manifest: {
+            name: "Stardew Perfection Randomizer",
+            short_name: "SDVPR",
+            id: "stardew-perfection-randomizer",
+            description: "A Stardew Valley challenge about achieving Perfection one step at a time",
+            theme_color: "#663399",
+            icons: [
+                {
+                    src: "/stardew-perfection-randomizer/icon.png",
+                    sizes: "256x256",
+                    type: "image/png",
+                    purpose: "any",
+                },
+            ],
+        },
+        devOptions: {
+            enabled: true,
+        },
+    },
 });
