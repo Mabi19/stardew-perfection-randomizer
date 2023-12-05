@@ -64,8 +64,8 @@
                         @click="deleteProfile(profile.name)"
                         type="destructive"
                     >
-                        Delete
-                    </AppButton>
+                        Delete </AppButton
+                    >.
                 </div>
             </div>
         </template>
@@ -73,11 +73,24 @@
         <ProfileCreateDialog :open="profileDialogOpen" @close="profileDialogOpen = false" />
         <DataImportDialog :open="importDialogOpen" @close="importDialogOpen = false" />
 
-        <h2>Debug Info</h2>
-        <h3>XP Prediction</h3>
-        <pre><code>{{ JSON.stringify(randomizer.predictedSkillXP) }}</code></pre>
+        <h2>About</h2>
+        <p>
+            This web app is based on the spreadsheet version of the randomizer made by
+            <NuxtLink to="https://www.youtube.com/@ArgonMatrix">ArgonMatrix</NuxtLink>.
+        </p>
+        <p>
+            You can find the
+            <NuxtLink to="https://github.com/Mabi19/stardew-perfection-randomizer"
+                >source code for this app on GitHub</NuxtLink
+            >.
+        </p>
         <h3>Version</h3>
-        <div>{{ config.version }} ({{ config.buildID }})</div>
+        <p>{{ config.version }} ({{ config.buildID }})</p>
+        <details>
+            <summary>Debug Info</summary>
+            <h3>XP Prediction</h3>
+            <pre><code>{{ JSON.stringify(randomizer.predictedSkillXP) }}</code></pre>
+        </details>
     </div>
 </template>
 
