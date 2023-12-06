@@ -90,6 +90,24 @@ export default defineNuxtConfig({
                     type: "image/png",
                     purpose: "any",
                 },
+                {
+                    src: "/stardew-perfection-randomizer/icon-2x.png",
+                    sizes: "512x512",
+                    type: "image/png",
+                    purpose: "any",
+                },
+                {
+                    src: "/stardew-perfection-randomizer/icon-4x.png",
+                    sizes: "1024x1024",
+                    type: "image/png",
+                    purpose: "any",
+                },
+                {
+                    src: "/stardew-perfection-randomizer/icon-maskable.png",
+                    sizes: "512x512",
+                    type: "image/png",
+                    purpose: "maskable",
+                },
             ],
         },
         devOptions: {
