@@ -40,14 +40,21 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         },
     );
 
-    const templateData = computed<Template>(() => {
-        if (currentTemplateName.value == "custom") {
-            const serializedTemplate = localStorage.getItem(`profileTemplate:${profiles.current}`);
-            return JSON.parse(serializedTemplate ?? "null");
-        }
-
-        return getPredefinedTemplate(currentTemplateName.value)!;
-    });
+    const templateData = shallowRef<Template>(undefined as unknown as Template);
+    watch(
+        currentTemplateName,
+        () => {
+            if (currentTemplateName.value == "custom") {
+                const serializedTemplate = localStorage.getItem(
+                    `profileTemplate:${profiles.current}`,
+                );
+                templateData.value = JSON.parse(serializedTemplate ?? "null");
+            } else {
+                templateData.value = getPredefinedTemplate(currentTemplateName.value)!;
+            }
+        },
+        { immediate: true },
+    );
     if (!templateData.value) {
         throw new Error(`Could not find template ${currentTemplateName.value}`);
     }
