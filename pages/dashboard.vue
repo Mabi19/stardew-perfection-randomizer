@@ -172,6 +172,12 @@ useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handl
     position: relative;
 }
 
+@media screen and (min-width: 1500px) {
+    .dashboard {
+        font-size: 1.75rem;
+    }
+}
+
 .dashboard::after {
     content: "";
 
@@ -237,7 +243,7 @@ useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handl
 }
 
 .main-goal {
-    font-size: 3rem;
+    font-size: 2.5em;
     font-weight: bold;
     text-align: center;
 }

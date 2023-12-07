@@ -115,7 +115,7 @@ defineExpose({
     border-radius: 0.5rem;
     // border: 2px solid base.$panel-border;
 
-    width: 25rem;
+    width: 25em;
     max-width: 100%;
 
     position: relative;
