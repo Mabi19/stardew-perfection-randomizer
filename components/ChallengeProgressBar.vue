@@ -29,8 +29,8 @@ const isFull = computed(() => props.fill == 1);
         border-top-right-radius 1s ease-out,
         background 1s ease-out;
 
-    height: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    height: 0.5em;
+    border-top-right-radius: 0.5em;
 
     background: base.$accent;
 
@@ -45,7 +45,7 @@ const isFull = computed(() => props.fill == 1);
     top: 0;
     left: 0;
     width: 100%;
-    height: 0.5rem;
+    height: 0.5em;
 
     opacity: 0;
     transition: opacity 1s ease-out;
