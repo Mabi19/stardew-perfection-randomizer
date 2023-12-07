@@ -223,19 +223,19 @@ useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handl
 .completion .label {
     color: whitesmoke;
     background-color: rgba(10, 10, 10, 0.85);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.25em;
+    border-radius: 0.25em;
 
     width: fit-content;
     margin-inline: auto;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5em;
 }
 
 .goal-area {
     background-color: rgb(214, 247, 214);
     border: 2px solid #599159;
-    border-radius: 1rem;
-    padding: 1rem;
+    border-radius: 0.75em;
+    padding: 0.75em;
 }
 
 .current-goal-title {
@@ -252,9 +252,9 @@ useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handl
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75em;
 
-    margin-top: 1.5rem;
+    margin-top: 1.25em;
 }
 
 .dark-theme {
