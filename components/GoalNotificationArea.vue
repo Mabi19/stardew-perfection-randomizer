@@ -145,7 +145,7 @@ defineExpose({
 }
 
 .notification,
-.button-group {
+.button-group > button {
     box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.4);
 }
 
