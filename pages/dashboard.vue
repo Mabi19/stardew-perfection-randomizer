@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard" :class="{ complete: isFinished }">
+    <div ref="dashboardElem" class="dashboard" :class="{ complete: isFinished }">
         <div class="main">
             <div class="goal-area">
                 <template v-if="!isFinished">
@@ -50,12 +50,14 @@
             @undo-button="undo"
             @redo-button="redo"
         />
+        <canvas ref="effectsCanvasElem" class="effects-overlay" role="presentation"></canvas>
     </div>
 </template>
 
 <script setup lang="ts">
 import NullGoalIcon from "~/assets/null-goal-icon.png";
 import { GoalNotificationArea } from "#components";
+import { DashboardEffectContext } from "#imports";
 
 useHead({
     title: "Dashboard",
@@ -110,6 +112,7 @@ function finishGoal() {
     }
 
     historyContext.hookFinish();
+    effectContext.value?.finishGoalHook();
 
     const goalID = store.currentGoalID!;
 
@@ -152,6 +155,33 @@ function redo() {
 
 useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Z", () => notificationArea.value?.handleUndoAction());
 useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handleRedoAction());
+
+// effects
+const dashboardElem = ref<HTMLDivElement | null>(null);
+const effectsCanvasElem = ref<HTMLCanvasElement | null>(null);
+
+const effectContext = shallowRef<DashboardEffectContext | null>(null);
+
+onMounted(() => {
+    if (!dashboardElem.value || !effectsCanvasElem.value) {
+        console.error("Could not get effect elements");
+        return;
+    }
+
+    effectContext.value = new DashboardEffectContext(
+        effectsCanvasElem.value,
+        dashboardElem.value,
+        useSettingsStore(),
+    );
+
+    watch(
+        [() => store.completedCount, () => store.totalCount],
+        () => {
+            effectContext.value?.updateFinishPercent(store.completedCount / store.totalCount);
+        },
+        { immediate: true },
+    );
+});
 </script>
 
 <style scoped lang="scss">
@@ -255,6 +285,17 @@ useKeyboardShortcut(KEY_MODIFIERS.CTRL, "Y", () => notificationArea.value?.handl
     gap: 0.75em;
 
     margin-top: 1.25em;
+}
+
+.effects-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+
+    pointer-events: none;
 }
 
 .dark-theme {
