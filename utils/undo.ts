@@ -67,6 +67,7 @@ class FinishUndoEntry extends HistoryEntry {
     }
 
     undo(randomizer: RandomizerStore) {
+        randomizer.completion[this.goalID] -= 1;
         randomizer.currentGoalID = this.goalID;
         randomizer.predictedSkillXP = this.xp;
     }
