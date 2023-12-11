@@ -29,7 +29,7 @@ export const useSettingsStore = defineStore("settings", () => {
     );
 
     const particles = computed(() =>
-        systemPrefersReducedMotion ? "disabled" : selectedParticles.value,
+        systemPrefersReducedMotion.value ? "disabled" : selectedParticles.value,
     );
 
     return {
