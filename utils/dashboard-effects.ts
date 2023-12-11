@@ -4,7 +4,16 @@ import { ConfettiParticle } from "./effects/ConfettiParticle";
 
 export class DashboardEffectContext extends BaseEffectContext {
     finishGoalHook() {
-        for (let i = 0; i < 15; i++) {
+        const amounts = {
+            disabled: 0,
+            low: 8,
+            medium: 15,
+            high: 25,
+        } as const;
+
+        const count = amounts[this.settings.particles];
+
+        for (let i = 0; i < count; i++) {
             this.particles.push(new PurpleBlobParticle());
         }
 
@@ -12,7 +21,16 @@ export class DashboardEffectContext extends BaseEffectContext {
     }
 
     completeHook() {
-        for (let i = 0; i < 250; i++) {
+        const amounts = {
+            disabled: 0,
+            low: 125,
+            medium: 250,
+            high: 400,
+        } as const;
+
+        const count = amounts[this.settings.particles];
+
+        for (let i = 0; i < count; i++) {
             this.particles.push(new ConfettiParticle());
         }
 
