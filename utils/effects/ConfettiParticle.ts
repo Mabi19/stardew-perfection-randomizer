@@ -61,6 +61,9 @@ export class ConfettiParticle extends Particle {
         this.vx -= 3 * deltaTime * this.vx;
         this.vy -= 3 * deltaTime * this.vy;
 
+        // gravity
+        this.vy += 0.001 * deltaTime;
+
         // https://gamedev.stackexchange.com/questions/108920/applying-angular-velocity-to-quaternion
         this.orientation = normalizeQuaternion(
             addQuaternions(
