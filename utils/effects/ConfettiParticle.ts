@@ -92,7 +92,7 @@ export class ConfettiParticle extends Particle {
 
     draw(context: BaseEffectContext) {
         context.draw.fillStyle = `hsla(${this.hue}deg, 100%, 60%, ${
-            clamp(0, LIFESPAN - this.age, 1.5) / 2
+            clamp(0, LIFESPAN - this.age, 1.8) / 2
         })`;
         context.draw.beginPath();
         const firstVert = this.transformVert(confettiVerts[0], context);
