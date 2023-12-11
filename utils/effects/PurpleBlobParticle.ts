@@ -25,7 +25,7 @@ export class PurpleBlobParticle extends Particle {
         // only move down
         const dy = Math.abs(barYPosition - this.y);
         const length = Math.sqrt(dx ** 2 + dy ** 2);
-        this.vx = lerp(this.vx, dx / length, 3 * deltaTime);
+        this.vx = lerp(this.vx, dx / length, 2 * deltaTime);
         this.vy = lerp(this.vy, dy / length, 2 * deltaTime);
 
         this.x += this.vx * deltaTime;
