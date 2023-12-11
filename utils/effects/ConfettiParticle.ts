@@ -10,17 +10,6 @@ const confettiVerts = [
 
 const LIFESPAN = 10;
 
-// TODO: facing angles
-// orientation as unit quaternion
-// angular velocity is also a quaternion but with no real part
-// resources:
-// https://math.stackexchange.com/questions/40164/how-do-you-rotate-a-vector-by-a-unit-quaternion
-// https://gamedev.stackexchange.com/questions/108920/applying-angular-velocity-to-quaternion
-
-// Potential tweaks:
-// - Adjust firing angle and position (narrower angles, wider range of start points?)
-// - Make them a bit smaller (perhaps adjust based on canvas size?)
-
 const CONFETTI_SPREAD_ANGLE = Math.PI / 3;
 
 export class ConfettiParticle extends Particle {
