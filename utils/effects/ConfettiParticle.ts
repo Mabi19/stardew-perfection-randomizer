@@ -1,3 +1,4 @@
+import { scaleQuaternion } from "../math";
 import { Particle, BaseEffectContext } from "./BaseContext";
 
 const confettiVerts = [
@@ -17,7 +18,6 @@ const LIFESPAN = 10;
 // https://gamedev.stackexchange.com/questions/108920/applying-angular-velocity-to-quaternion
 
 // Potential tweaks:
-// - Reduce lightness to make the confetti more vibrant
 // - Adjust firing angle and position (narrower angles, wider range of start points?)
 // - Make them a bit smaller (perhaps adjust based on canvas size?)
 
@@ -26,6 +26,9 @@ export class ConfettiParticle extends Particle {
     y: number;
     vx: number;
     vy: number;
+
+    orientation: Quaternion;
+    angularVelocity: Quaternion;
 
     age: number;
     hue: number;
@@ -40,6 +43,12 @@ export class ConfettiParticle extends Particle {
         this.vx = Math.sin(velAngle) * 0.01 * velMult;
         this.vy = -Math.cos(velAngle) * 0.01 * velMult;
 
+        this.orientation = randomUnitQuaternion();
+        this.angularVelocity = scaleQuaternion(
+            { w: 0, ...randomPointOnSphere() },
+            5 + Math.random() * 3,
+        );
+
         this.age = 0;
         this.hue = Math.floor(Math.random() * 10) * 36;
     }
@@ -52,14 +61,29 @@ export class ConfettiParticle extends Particle {
         this.vx -= 3 * deltaTime * this.vx;
         this.vy -= 3 * deltaTime * this.vy;
 
+        // https://gamedev.stackexchange.com/questions/108920/applying-angular-velocity-to-quaternion
+        this.orientation = normalizeQuaternion(
+            addQuaternions(
+                this.orientation,
+                hamiltonProduct(
+                    scaleQuaternion(this.angularVelocity, deltaTime / 2),
+                    this.orientation,
+                ),
+            ),
+        );
+
         return this.age > LIFESPAN;
     }
 
     transformVert(vert: { x: number; y: number }, context: BaseEffectContext) {
+        // rotate
+        const rotated = rotatePoint(vert, this.orientation);
+
+        // scale and translate
         // transform vert offsets by the height always, but positions by width/height
         return {
-            x: vert.x * context.sizeInfo.height + this.x * context.sizeInfo.width,
-            y: vert.y * context.sizeInfo.height + this.y * context.sizeInfo.height,
+            x: rotated.x * context.sizeInfo.height + this.x * context.sizeInfo.width,
+            y: rotated.y * context.sizeInfo.height + this.y * context.sizeInfo.height,
         };
     }
 
