@@ -16,6 +16,11 @@ const LIFESPAN = 10;
 // https://math.stackexchange.com/questions/40164/how-do-you-rotate-a-vector-by-a-unit-quaternion
 // https://gamedev.stackexchange.com/questions/108920/applying-angular-velocity-to-quaternion
 
+// Potential tweaks:
+// - Reduce lightness to make the confetti more vibrant
+// - Adjust firing angle and position (narrower angles, wider range of start points?)
+// - Make them a bit smaller (perhaps adjust based on canvas size?)
+
 export class ConfettiParticle extends Particle {
     x: number;
     y: number;
@@ -59,7 +64,7 @@ export class ConfettiParticle extends Particle {
     }
 
     draw(context: BaseEffectContext) {
-        context.draw.fillStyle = `hsla(${this.hue}deg, 100%, 70%, ${
+        context.draw.fillStyle = `hsla(${this.hue}deg, 100%, 60%, ${
             clamp(0, LIFESPAN - this.age, 1.5) / 2
         })`;
         context.draw.beginPath();
