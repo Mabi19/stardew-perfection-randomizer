@@ -178,6 +178,11 @@ onMounted(() => {
         [() => store.completedCount, () => store.totalCount],
         () => {
             effectContext.value?.updateFinishPercent(store.completedCount / store.totalCount);
+
+            // completion confetti
+            if (store.completedCount == store.totalCount) {
+                effectContext.value?.completeHook();
+            }
         },
         { immediate: true },
     );
