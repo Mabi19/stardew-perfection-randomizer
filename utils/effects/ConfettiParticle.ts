@@ -2,10 +2,10 @@ import { scaleQuaternion } from "../math";
 import { Particle, BaseEffectContext } from "./BaseContext";
 
 const confettiVerts = [
-    { x: -0.004, y: -0.00666 },
-    { x: 0.004, y: -0.00666 },
-    { x: 0.004, y: 0.00666 },
-    { x: -0.004, y: 0.00666 },
+    { x: -0.005, y: -0.008 },
+    { x: 0.005, y: -0.008 },
+    { x: 0.005, y: 0.008 },
+    { x: -0.005, y: 0.008 },
 ];
 
 const LIFESPAN = 10;
@@ -20,6 +20,8 @@ const LIFESPAN = 10;
 // Potential tweaks:
 // - Adjust firing angle and position (narrower angles, wider range of start points?)
 // - Make them a bit smaller (perhaps adjust based on canvas size?)
+
+const CONFETTI_SPREAD_ANGLE = Math.PI / 3;
 
 export class ConfettiParticle extends Particle {
     x: number;
@@ -38,8 +40,8 @@ export class ConfettiParticle extends Particle {
         this.x = 0.4 + Math.random() * 0.2;
         this.y = 0.8 + Math.random() * 0.2;
 
-        const velMult = 0.3 + Math.random() * 1.2;
-        const velAngle = (Math.random() * Math.PI) / 2 - Math.PI / 4;
+        const velMult = 0.3 + Math.random() * 1.3;
+        const velAngle = (Math.random() - 0.5) * CONFETTI_SPREAD_ANGLE;
         this.vx = Math.sin(velAngle) * 0.01 * velMult;
         this.vy = -Math.cos(velAngle) * 0.01 * velMult;
 
@@ -62,7 +64,7 @@ export class ConfettiParticle extends Particle {
         this.vy -= 3 * deltaTime * this.vy;
 
         // gravity
-        this.vy += 0.001 * deltaTime;
+        this.vy += 0.0015 * deltaTime;
 
         // https://gamedev.stackexchange.com/questions/108920/applying-angular-velocity-to-quaternion
         this.orientation = normalizeQuaternion(
@@ -92,7 +94,7 @@ export class ConfettiParticle extends Particle {
 
     draw(context: BaseEffectContext) {
         context.draw.fillStyle = `hsla(${this.hue}deg, 100%, 60%, ${
-            clamp(0, LIFESPAN - this.age, 1.8) / 2
+            clamp(0, LIFESPAN - this.age, 1.75) / 2
         })`;
         context.draw.beginPath();
         const firstVert = this.transformVert(confettiVerts[0], context);
