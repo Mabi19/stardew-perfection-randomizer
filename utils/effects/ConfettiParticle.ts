@@ -2,10 +2,10 @@ import { scaleQuaternion } from "../math";
 import { Particle, BaseEffectContext } from "./BaseContext";
 
 const confettiVerts = [
-    { x: -0.006, y: -0.01 },
-    { x: 0.006, y: -0.01 },
-    { x: 0.006, y: 0.01 },
-    { x: -0.006, y: 0.01 },
+    { x: -0.004, y: -0.00666 },
+    { x: 0.004, y: -0.00666 },
+    { x: 0.004, y: 0.00666 },
+    { x: -0.004, y: 0.00666 },
 ];
 
 const LIFESPAN = 10;
