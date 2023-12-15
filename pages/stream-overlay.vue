@@ -82,15 +82,15 @@ main {
 
     display: grid;
     place-items: center;
-}
 
-.icon-frame img {
-    width: 100%;
-    height: 100%;
-    padding: 2px;
-    object-fit: contain;
+    img {
+        width: 100%;
+        height: 100%;
+        padding: 2px;
+        object-fit: contain;
 
-    background-color: #ffd284;
+        background-color: #ffd284;
+    }
 }
 
 .goal-name-wrapper {
