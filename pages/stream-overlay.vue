@@ -1,10 +1,7 @@
 <template>
     <main>
         <div class="icon-frame">
-            <img
-                src="/stardew-perfection-randomizer/_nuxt/assets/null-goal-icon.png"
-                ref="goalIcon"
-            />
+            <img src="~/assets/null-goal-icon.png" ref="goalIcon" />
         </div>
         <div class="goal-name-wrapper">
             <div class="goal-name-background">
