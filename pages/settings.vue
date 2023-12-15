@@ -80,6 +80,14 @@
             </div>
         </template>
 
+        <h2>Stream Overlay</h2>
+        <p>
+            This app supports rendering a stream overlay in an auxiliary window, based on
+            ArgonMatrix's templates. It includes cropping guides (red border) and a green background
+            for chromakeying.
+        </p>
+        <AppButton icon="layers" @click="openOverlay">Open stream overlay</AppButton>
+
         <ProfileCreateDialog :open="profileDialogOpen" @close="profileDialogOpen = false" />
         <DataImportDialog :open="importDialogOpen" @close="importDialogOpen = false" />
 
@@ -187,6 +195,14 @@ function deleteProfile(name: string) {
     }
 
     profiles.deleteProfile(name);
+}
+
+function openOverlay() {
+    window.open(
+        new URL("/stardew-perfection-randomizer/stream-overlay/", document.location.origin),
+        undefined,
+        "popup=yes,width=500,height=100",
+    );
 }
 </script>
 
