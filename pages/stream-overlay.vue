@@ -16,6 +16,10 @@ definePageMeta({
     layout: false,
 });
 
+useHead({
+    title: "Stream Overlay",
+});
+
 const channel = new BroadcastChannel("sdvpr:stream_overlay");
 
 const goalIcon = ref<HTMLImageElement | null>(null);
