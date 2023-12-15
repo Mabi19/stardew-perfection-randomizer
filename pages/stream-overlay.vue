@@ -18,6 +18,26 @@
 definePageMeta({
     layout: false,
 });
+
+const channel = new BroadcastChannel("sdvpr:stream_overlay");
+
+const goalIcon = ref<HTMLImageElement | null>(null);
+const goalName = ref<HTMLDivElement | null>(null);
+
+channel.addEventListener("message", (ev) => {
+    console.log(ev.data);
+    if (goalIcon.value && goalName.value) {
+        goalIcon.value.src = ev.data.imageURL;
+
+        if (ev.data.imageURL === null) {
+            goalIcon.value?.classList.add("invisible");
+        } else {
+            goalIcon.value?.classList.remove("invisible");
+        }
+
+        goalName.value.textContent = ev.data.name;
+    }
+});
 </script>
 
 <style lang="scss">

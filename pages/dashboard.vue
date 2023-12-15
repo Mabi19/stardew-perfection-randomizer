@@ -187,6 +187,16 @@ onMounted(() => {
         { immediate: true },
     );
 });
+
+// overlay
+const channel = new BroadcastChannel("sdvpr:stream_overlay");
+watch(
+    () => store.currentGoal,
+    () => {
+        channel.postMessage(store.currentGoal ?? nullGoal);
+    },
+    { immediate: true },
+);
 </script>
 
 <style scoped lang="scss">
