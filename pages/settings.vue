@@ -201,7 +201,7 @@ function openOverlay() {
     window.open(
         new URL("/stardew-perfection-randomizer/stream-overlay/", document.location.origin),
         undefined,
-        "popup=yes,width=500,height=100",
+        "popup=yes,width=506,height=102",
     );
 }
 </script>

@@ -42,6 +42,9 @@ channel.addEventListener("message", (ev) => {
 </script>
 
 <style lang="scss">
+// TODO: add some padding to goal area to help with chromakeying
+// also consider scale adjustment
+
 body {
     background-color: rgb(100, 20, 0);
     padding: 0;
@@ -59,8 +62,9 @@ main {
     flex-flow: row nowrap;
     align-items: center;
 
-    height: 98px;
-    width: 500px;
+    height: 102px;
+    padding: 2px;
+    width: 506px;
     overflow: hidden;
 }
 
