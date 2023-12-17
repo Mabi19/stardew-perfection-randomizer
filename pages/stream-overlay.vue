@@ -128,7 +128,7 @@ main {
 
 #goal-name {
     font-family: "Stardew Valley";
-    font-size: 25px;
+    font-size: 26px;
     text-align: center;
 
     padding: 0 4px;
