@@ -146,7 +146,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
                 // check for XP values
                 for (const [skill, impliedXP] of Object.entries(goal.xp)) {
-                    const level = completion.value[skill];
+                    const level = completion.value[`level:${skill}`];
                     // if there is no saved XP prediction, use the current level as a baseline
                     let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level];
                     currentXP += impliedXP;
@@ -183,7 +183,8 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
         // add implied XP to the prediction
         for (const [skill, impliedXP] of Object.entries(currentGoal.value.xp)) {
-            let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[completion.value[skill]];
+            let currentXP =
+                predictedSkillXP.value[skill] ?? skillXPValues[completion.value[`level:${skill}`]];
             currentXP += impliedXP;
             predictedSkillXP.value[skill] = currentXP;
         }
