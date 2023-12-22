@@ -92,8 +92,8 @@ main {
     place-items: center;
 
     img {
-        width: 100%;
-        height: 100%;
+        width: 64px;
+        height: 64px;
         padding: 2px;
         object-fit: contain;
 
