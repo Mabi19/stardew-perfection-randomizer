@@ -130,6 +130,10 @@ main {
     font-family: "Stardew Valley";
     font-size: 26px;
     text-align: center;
+    text-shadow:
+        #eb9b55 -2px 2px 1px,
+        #dd9454 -1px 1px 0px,
+        #be7e4c -0.5px -0.5px 1px;
 
     padding: 0 4px;
 
