@@ -1,5 +1,10 @@
 <template>
     <div ref="dashboardElem" class="dashboard" :class="{ complete: isFinished }">
+        <div class="legacy-warning">
+            This is the <strong>legacy</strong> version of the Randomizer. Please migrate your data
+            to the <a href="https://mabi.land/stardew-perfection-randomizer/">new version</a> before
+            2023-02-01 by exporting backups and importing them in the new version.
+        </div>
         <div class="main">
             <div class="goal-area">
                 <template v-if="!isFinished">
@@ -201,6 +206,20 @@ watch(
 
 <style scoped lang="scss">
 @use "~/assets/base";
+
+.legacy-warning {
+    background-color: base.$secondary-red;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    padding: 2px;
+    z-index: 2;
+
+    a {
+        color: rgb(219, 219, 219) !important;
+    }
+}
 
 .dashboard {
     display: flex;
