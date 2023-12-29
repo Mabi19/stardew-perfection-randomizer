@@ -10,4 +10,4 @@ better looking version, so I made this.
 
 If you're interested in starting a Randomizer challenge,
 you can use the version of the app
-[published here](https://mabi.tmpinc.io/stardew-perfection-randomizer/).
+[published here](https://mabi.land/stardew-perfection-randomizer/).
