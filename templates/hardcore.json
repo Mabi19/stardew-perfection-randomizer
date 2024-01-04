@@ -462,7 +462,9 @@
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f3/Void_Mayonnaise.png",
             "multiplicity": 1,
-            "xp": {}
+            "xp": {
+                "fishing": 3
+            }
         },
         {
             "id": "ship_clay",
@@ -1902,7 +1904,9 @@
             },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5e/Strange_Bun.png",
             "multiplicity": 1,
-            "xp": {}
+            "xp": {
+                "fishing": 3
+            }
         },
         {
             "id": "cook_a_lucky_lunch",
