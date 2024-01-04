@@ -50,6 +50,25 @@
             @undo-button="undo"
             @redo-button="redo"
         />
+        <AppButton class="help-button" icon="info" @click="helpDialog = true">Stuck?</AppButton>
+        <AppDialog title="Help" :open="helpDialog" @close="helpDialog = false">
+            <p>
+                The Randomizer attempts to select goals that will always be completable. However,
+                this may require usage of obscure game mechanics or exploits, like fishing for Void
+                Mayonnaise or chair glitching.
+            </p>
+            <p>
+                If you're stuck, you can try looking at the tips-and-tricks document (coming
+                soon&trade;) or asking for help in
+                <a href="https://discord.gg/nxqNcCaJ93">ArgonMatrix's Discord server</a>.
+            </p>
+            <p>
+                Note that the Randomizer isn't perfect, and may rarely give impossible goals. If
+                you're sure that you're unable to progress, or just want to reroll, use the "Cancel
+                Goal" button and generate again.
+            </p>
+        </AppDialog>
+
         <canvas ref="effectsCanvasElem" class="effects-overlay" role="presentation"></canvas>
     </div>
 </template>
@@ -197,6 +216,9 @@ watch(
     },
     { immediate: true },
 );
+
+// help dialog
+const helpDialog = ref(false);
 </script>
 
 <style scoped lang="scss">
@@ -300,6 +322,13 @@ watch(
     gap: 0.75em;
 
     margin-top: 1.25em;
+}
+
+.help-button {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    z-index: 2;
 }
 
 .effects-overlay {
