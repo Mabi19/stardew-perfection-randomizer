@@ -44,6 +44,8 @@ function closeDialog() {
 
     display: grid;
     place-items: center;
+
+    z-index: 100;
 }
 
 .dialog {
