@@ -96,9 +96,13 @@ function objectsEqual(obj1: unknown, obj2: unknown) {
             }
 
             // @ts-ignore
-            return objectsEqual(obj1[key], obj2[key]);
+            if (!objectsEqual(obj1[key], obj2[key])) {
+                return false;
+            }
         }
     }
+
+    return true;
 }
 
 export function parseSpreadsheet(data: Uint8Array) {
