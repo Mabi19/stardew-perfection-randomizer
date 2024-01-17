@@ -3,7 +3,7 @@
         <div class="legacy-warning">
             This is the <strong>legacy</strong> version of the Randomizer. Please migrate your data
             to the <a href="https://mabi.land/stardew-perfection-randomizer/">new version</a> before
-            2023-02-01 by exporting backups and importing them in the new version.
+            2024-02-01 by exporting backups and importing them in the new version.
         </div>
         <div class="main">
             <div class="goal-area">
