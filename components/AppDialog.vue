@@ -1,5 +1,5 @@
 <template>
-    <Teleport to="body">
+    <Teleport to="#modals">
         <Transition>
             <div class="darkenator" v-if="open" @click="closeDialog">
                 <div class="dialog" @click.stop>
