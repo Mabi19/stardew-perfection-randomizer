@@ -8,7 +8,9 @@ export default defineNuxtRouteMiddleware((to) => {
         }
     } else {
         if (!hasSaveFile) {
-            return navigateTo("/");
+            return navigateTo("https://mabi.land/stardew-perfection-randomizer/", {
+                external: true,
+            });
         }
     }
 });
