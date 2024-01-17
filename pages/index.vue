@@ -41,8 +41,12 @@
     </table>
     <p>Ready to take the challenge?</p>
     <div class="start">
-        <AppButton @click="showCreateDialog" icon="start">Start your adventure!</AppButton>
-        <AppButton @click="showImportDialog" icon="file_upload">Import data</AppButton>
+        <AppButton @click="showCreateDialog" icon="start" :disabled="true"
+            >Start your adventure!</AppButton
+        >
+        <AppButton @click="showImportDialog" icon="file_upload" :disabled="true"
+            >Import data</AppButton
+        >
     </div>
 
     <ProfileCreateDialog :open="createDialogOpen" @close="createDialogOpen = false" />
@@ -64,6 +68,11 @@ function showCreateDialog() {
 function showImportDialog() {
     importDialogOpen.value = true;
 }
+
+// Legacy: Redirect to the new version from the dashboard
+navigateTo("https://mabi.land/stardew-perfection-randomizer/", {
+    external: true,
+});
 </script>
 
 <style scoped lang="scss">
