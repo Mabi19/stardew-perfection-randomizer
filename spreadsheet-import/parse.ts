@@ -150,9 +150,9 @@ export function parseSpreadsheet(data: Uint8Array) {
 
     const baseGoalsByName = Object.fromEntries(baseTemplate.goals.map((goal) => [goal.name, goal]));
     const rawSpreadsheetGoals = workbook.Sheets["List of Goals"]["!data"]!.slice(1).map((row) => ({
-        name: row[0].v!.toString(),
+        name: row[0].v!.toString().trim(),
         prerequisites: row[1]?.v?.toString(),
-        imageFormula: row[2]?.f?.toString(),
+        imageFormula: row[2]?.f?.toString().trim(),
         complete: row[3]?.v == "Y",
     }));
 
