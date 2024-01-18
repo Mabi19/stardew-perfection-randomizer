@@ -2,8 +2,15 @@ import { read } from "xlsx";
 import { DEFAULT_TAGS } from "./tags";
 
 function convertNameToID(name: string) {
+    name = name.trim();
+
+    const levelGoalMatch = name.match(/^Gain an? ([A-Za-z]+) Level$/);
+    if (levelGoalMatch) {
+        const [_full, skill] = levelGoalMatch;
+        return `level:${skill.toLowerCase()}`;
+    }
+
     return name
-        .trim()
         .replaceAll(" ", "_")
         .toLowerCase()
         .replaceAll(/[^a-z0-9_]+/g, "");
@@ -29,7 +36,7 @@ function parsePrerequisites(
         reqGoalName = reqGoalName.trim();
 
         // Skill goals: these have a multiplicity after them
-        const skillMatch = reqGoalName.match(/^([A-Z][a-z]+) ([0-9]+)$/);
+        const skillMatch = reqGoalName.match(/^([A-Za-z]+) ([0-9]+)$/);
         if (skillMatch) {
             const [_full, skill, level] = skillMatch;
             return {
