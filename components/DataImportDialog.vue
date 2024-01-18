@@ -29,6 +29,7 @@
             <div class="description" v-else>
                 <template v-if="parsedFile?.type == 'invalid'">
                     Error: could not read file.
+                    <code>{{ parsedFile.errorInfo ?? "(no extended error information)" }}</code>
                 </template>
                 <template v-else-if="parsedFile?.type == 'backup'">Loaded backup file!</template>
             </div>
@@ -68,6 +69,11 @@ const SPREADSHEET_HEADER = new TextEncoder().encode("PK");
 
 class InvalidFile {
     readonly type = "invalid";
+    errorInfo?: string;
+
+    constructor(error?: string) {
+        this.errorInfo = error;
+    }
 }
 
 class ParsedBackupFile {
@@ -115,7 +121,7 @@ class ParsedBackupFile {
         if (decompressedTemplate) {
             parsedTemplate = JSON.parse(decompressedTemplate);
             if (!validateTemplate(parsedTemplate)) {
-                throw new Error("Invalid template");
+                throw new Error("Template did not validate.");
             }
         }
 
@@ -143,6 +149,8 @@ class ParsedSpreadsheetFile {
 
         const { profileString, templateString } = module.parseSpreadsheet(data);
 
+        const parsedFile = new ParsedSpreadsheetFile(templateString, profileString);
+
         let parsedTemplate = undefined;
         if (templateString) {
             parsedTemplate = JSON.parse(templateString);
@@ -155,8 +163,39 @@ class ParsedSpreadsheetFile {
             throw new Error("Converted profile does not validate");
         }
 
-        return new ParsedSpreadsheetFile(templateString, profileString);
+        return parsedFile;
     }
+}
+
+async function importFileContents(fileContents: ArrayBuffer) {
+    const view = new Uint8Array(fileContents);
+
+    // test for backup magic
+    let isBackup = true;
+    for (let i = 0; i < BACKUP_HEADER.length; i++) {
+        if (view[i] !== BACKUP_HEADER[i]) {
+            isBackup = false;
+        }
+    }
+
+    if (isBackup) {
+        parsedFile.value = await ParsedBackupFile.parse(view);
+        return;
+    }
+
+    let isSpreadsheet = true;
+    for (let i = 0; i < SPREADSHEET_HEADER.length; i++) {
+        if (view[i] !== SPREADSHEET_HEADER[i]) {
+            isSpreadsheet = false;
+        }
+    }
+
+    if (isSpreadsheet) {
+        parsedFile.value = await ParsedSpreadsheetFile.parse(view);
+        return;
+    }
+
+    parsedFile.value = new InvalidFile();
 }
 
 type ParsedFile = InvalidFile | ParsedBackupFile | ParsedSpreadsheetFile;
@@ -198,44 +237,12 @@ watch(fileContents, async () => {
         return;
     }
 
-    const view = new Uint8Array(fileContents.value);
-
-    // test for backup magic
-    let isBackup = true;
-    for (let i = 0; i < BACKUP_HEADER.length; i++) {
-        if (view[i] !== BACKUP_HEADER[i]) {
-            isBackup = false;
-        }
+    try {
+        await importFileContents(fileContents.value);
+    } catch (e) {
+        const message = (e as Error).message;
+        parsedFile.value = new InvalidFile(message);
     }
-
-    if (isBackup) {
-        try {
-            parsedFile.value = await ParsedBackupFile.parse(view);
-        } catch (e) {
-            console.log(e);
-            parsedFile.value = new InvalidFile();
-        }
-        return;
-    }
-
-    let isSpreadsheet = true;
-    for (let i = 0; i < SPREADSHEET_HEADER.length; i++) {
-        if (view[i] !== SPREADSHEET_HEADER[i]) {
-            isSpreadsheet = false;
-        }
-    }
-
-    if (isSpreadsheet) {
-        try {
-            parsedFile.value = await ParsedSpreadsheetFile.parse(view);
-        } catch (e) {
-            console.log(e);
-            parsedFile.value = new InvalidFile();
-        }
-        return;
-    }
-
-    parsedFile.value = new InvalidFile();
 });
 
 async function handleFileDrop(event: DragEvent) {

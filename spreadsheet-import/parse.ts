@@ -145,7 +145,7 @@ export function parseSpreadsheet(data: Uint8Array) {
     const baseTemplate = getPredefinedTemplate(randomizerType);
 
     if (!baseTemplate) {
-        throw new Error("Could not get template");
+        throw new Error("Could not get base template");
     }
 
     const baseGoalsByName = Object.fromEntries(baseTemplate.goals.map((goal) => [goal.name, goal]));
