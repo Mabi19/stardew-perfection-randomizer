@@ -29,7 +29,7 @@ function parsePrerequisites(
         reqGoalName = reqGoalName.trim();
 
         // Skill goals: these have a multiplicity after them
-        const skillMatch = reqGoalName.match(/^(Farming|Mining|Foraging|Fishing|Combat) ([0-9]+)$/);
+        const skillMatch = reqGoalName.match(/^([A-Z][a-z]+) ([0-9]+)$/);
         if (skillMatch) {
             const [_full, skill, level] = skillMatch;
             return {
