@@ -23,6 +23,7 @@
             <AppButton icon="add">Create</AppButton>
         </form>
     </AppDialog>
+    <TemplateEditor :active="open" />
 </template>
 
 <script setup lang="ts">
