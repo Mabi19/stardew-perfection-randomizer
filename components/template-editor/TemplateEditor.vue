@@ -10,6 +10,12 @@ const props = defineProps<{
     active: boolean;
 }>();
 
+defineExpose();
+
+function start(template: Template) {}
+
+// unload guards
+
 function unloadHandler(ev: BeforeUnloadEvent) {
     ev.preventDefault();
     ev.returnValue = true;
@@ -23,7 +29,7 @@ watchEffect(() => {
     }
 });
 
-const jsNavigationHook = useRouter().beforeResolve((to) => {
+const removeJSNavigationHook = useRouter().beforeResolve((_to) => {
     if (props.active) {
         if (!window.confirm("You have unsaved changes! Are you sure you want to exit?")) {
             return false;
@@ -33,7 +39,7 @@ const jsNavigationHook = useRouter().beforeResolve((to) => {
 
 onUnmounted(() => {
     window.removeEventListener("beforeunload", unloadHandler);
-    jsNavigationHook();
+    removeJSNavigationHook();
 });
 </script>
 

@@ -22,19 +22,21 @@ export interface TemplateGoal {
 export interface Goal extends TemplateGoal {}
 
 export interface Template {
+    ruleset?: "hardcore" | "standard";
     tags: Record<string, string[]>;
     goals: TemplateGoal[];
 }
 
 const templates: Record<string, Template> = {
-    standard: standardTemplate,
-    // Something really weird is happening with the types here
-    // so force it to behave
+    // The auto-generated JSON types don't quite match here
+    // so force them to behave
+    standard: standardTemplate as unknown as Template,
     hardcore: hardcoreTemplate as unknown as Template,
 };
 
 export function getPredefinedTemplate(templateName: string) {
     if (templateName in templates) {
+        // TODO: dynamically fetch the templates
         return templates[templateName];
     }
 
