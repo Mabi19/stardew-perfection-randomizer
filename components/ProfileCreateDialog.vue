@@ -13,6 +13,7 @@
                         <option value="standard">Standard Mode</option>
                         <option value="hardcore">Hardcore Mode</option>
                     </select>
+                    <AppButton @click="openTemplateEditor()" icon="edit">Customize</AppButton>
                 </li>
                 <li>
                     <label for="profile-name">Name your profile</label>
@@ -76,6 +77,12 @@ function submitForm() {
         name: profileName.value || defaultProfileName.value,
     });
 }
+
+// template editor stuff
+const templateEditorActive = ref(false);
+function openTemplateEditor() {
+    templateEditorActive.value = true;
+}
 </script>
 
 <style scoped lang="scss">
@@ -93,9 +100,13 @@ function submitForm() {
 
         select,
         input {
-            margin-top: 0.2rem;
+            margin-top: 0.25rem;
             display: block;
             width: 100%;
+        }
+
+        :deep(button) {
+            margin-top: 0.5rem;
         }
     }
 }
