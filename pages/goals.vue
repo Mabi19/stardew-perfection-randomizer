@@ -3,6 +3,7 @@
         <label for="filter">Filter goals:</label>
         <input id="filter" type="search" v-model="searchTerm" ref="searchBox" />
     </div>
+    <!-- TODO: display template ruleset -->
     <div class="part">
         <GoalList :search-term="searchTerm"></GoalList>
     </div>

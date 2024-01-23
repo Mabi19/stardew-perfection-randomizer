@@ -3,7 +3,7 @@
         <div class="overlay-hack" v-if="template != null">
             <div class="row">
                 <AppButton icon="save" @click="saveAndQuit">Save and quit</AppButton>
-                <AppButton type="destructive" icon="cancel" @click="quitWithoutSaving"
+                <AppButton type="destructive" icon="close" @click="quitWithoutSaving"
                     >Quit without saving</AppButton
                 >
             </div>
