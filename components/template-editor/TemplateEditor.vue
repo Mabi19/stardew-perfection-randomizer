@@ -15,8 +15,4 @@ const props = defineProps<{
 .overlay-hack-active .layout > .content {
     display: none;
 }
-
-.overlay-hack-active #modals {
-    display: none;
-}
 </style>

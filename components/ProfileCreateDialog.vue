@@ -1,5 +1,10 @@
 <template>
-    <AppDialog title="Create a Profile" :open="open" @close="passEvent">
+    <AppDialog
+        title="Create a Profile"
+        :open="open"
+        @close="passEvent"
+        v-if="!templateEditorActive"
+    >
         <form @submit.prevent="submitForm">
             <ol class="task-list">
                 <li>
@@ -23,7 +28,7 @@
             <AppButton icon="add">Create</AppButton>
         </form>
     </AppDialog>
-    <TemplateEditor :active="open" />
+    <TemplateEditor :active="templateEditorActive" />
 </template>
 
 <script setup lang="ts">
