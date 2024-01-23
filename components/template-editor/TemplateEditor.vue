@@ -29,7 +29,7 @@ const emit = defineEmits<{
     finish: [newTemplate: Template];
 }>();
 
-const template = ref<Template | null>();
+const template = ref<Template | null>(null);
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
