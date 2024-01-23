@@ -74,8 +74,8 @@
                         @click="deleteProfile(profile.name)"
                         type="destructive"
                     >
-                        Delete </AppButton
-                    >.
+                        Delete
+                    </AppButton>
                 </div>
             </div>
         </template>
