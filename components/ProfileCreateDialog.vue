@@ -85,7 +85,7 @@ function submitForm() {
 // template editor stuff
 const templateEditorActive = ref(false);
 const templateEditor = ref<InstanceType<typeof TemplateEditor> | null>(null);
-const customTemplate = ref<Template | null>(null);
+const customTemplate = shallowRef<Template | null>(null);
 function openTemplateEditor() {
     templateEditorActive.value = true;
     const templateToOpen =

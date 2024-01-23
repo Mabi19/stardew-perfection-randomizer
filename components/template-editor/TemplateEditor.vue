@@ -36,9 +36,15 @@ function start(baseTemplate: Template) {
 }
 
 function saveAndQuit() {
-    // TODO: check for template validity
     if (template.value) {
-        emit("finish", template.value);
+        if (!validateTemplate(template.value)) {
+            // TODO: Rework this into a custom dialog
+            window.alert("Template is invalid.");
+            return;
+        }
+
+        // go through JSON to get rid of reactivity
+        emit("finish", JSON.parse(JSON.stringify(template.value)));
         template.value = null;
     }
 }
