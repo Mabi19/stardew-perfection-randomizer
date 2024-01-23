@@ -42,9 +42,6 @@ channel.addEventListener("message", (ev) => {
 </script>
 
 <style lang="scss">
-// TODO: add some padding to goal area to help with chromakeying
-// also consider scale adjustment
-
 body {
     background-color: rgb(100, 20, 0);
     padding: 0;

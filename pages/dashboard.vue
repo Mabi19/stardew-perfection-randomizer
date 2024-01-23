@@ -157,13 +157,10 @@ function cancelGoal() {
 }
 
 function undo() {
-    // TODO: bind this to Ctrl+Z
     historyContext.undo();
 }
 
 function redo() {
-    // TODO: bind this to Ctrl+Y
-    // TODO: emit a notification
     const effect = historyContext.redo();
 
     if (effect) {
