@@ -11,8 +11,13 @@ const props = defineProps<{
 }>();
 </script>
 
-<style>
-.overlay-hack-active .layout > .content {
+<style scoped lang="scss">
+.overlay-hack {
+    padding: 1rem;
+}
+
+// Hide everything while the template editor's active.
+:global(.overlay-hack-active .layout) {
     display: none;
 }
 </style>

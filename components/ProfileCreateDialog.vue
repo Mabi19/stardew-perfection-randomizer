@@ -29,7 +29,7 @@
             <AppButton icon="add">Create</AppButton>
         </form>
     </AppDialog>
-    <TemplateEditor :active="templateEditorActive" />
+    <TemplateEditor :active="templateEditorActive" v-if="templateEditorActive" />
 </template>
 
 <script setup lang="ts">
