@@ -1,18 +1,51 @@
 <template>
     <Teleport to="body">
-        <div class="overlay-hack">XD</div>
+        <div class="overlay-hack" v-if="template != null">
+            <div class="row">
+                <AppButton icon="save" @click="saveAndQuit">Save and quit</AppButton>
+                <AppButton type="destructive" icon="cancel" @click="quitWithoutSaving"
+                    >Quit without saving</AppButton
+                >
+            </div>
+            <div class="row">
+                <label for="template-ruleset">Ruleset</label>
+                <select id="template-ruleset" v-model="template.ruleset">
+                    <option value="hardcore">Hardcore</option>
+                    <option value="standard">Standard</option>
+                    <option :value="undefined">Unspecified</option>
+                </select>
+            </div>
+        </div>
     </Teleport>
-    <Body class="overlay-hack-active" v-if="active" />
+    <Body class="overlay-hack-active" v-if="template != null" />
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    active: boolean;
+defineExpose({
+    start,
+});
+
+const emit = defineEmits<{
+    finish: [newTemplate: Template];
 }>();
 
-defineExpose();
+const template = ref<Template | null>();
 
-function start(template: Template) {}
+function start(baseTemplate: Template) {
+    template.value = structuredClone(baseTemplate);
+}
+
+function saveAndQuit() {
+    // TODO: check for template validity
+    if (template.value) {
+        emit("finish", template.value);
+        template.value = null;
+    }
+}
+
+function quitWithoutSaving() {
+    // pop up "Are you sure?" dialog
+}
 
 // unload guards
 
@@ -22,7 +55,7 @@ function unloadHandler(ev: BeforeUnloadEvent) {
 }
 
 watchEffect(() => {
-    if (props.active) {
+    if (template.value) {
         window.addEventListener("beforeunload", unloadHandler);
     } else {
         window.removeEventListener("beforeunload", unloadHandler);
@@ -30,7 +63,7 @@ watchEffect(() => {
 });
 
 const removeJSNavigationHook = useRouter().beforeResolve((_to) => {
-    if (props.active) {
+    if (template.value) {
         if (!window.confirm("You have unsaved changes! Are you sure you want to exit?")) {
             return false;
         }
@@ -46,6 +79,16 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .overlay-hack {
     padding: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+}
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 // Hide everything while the template editor's active.
