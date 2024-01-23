@@ -329,6 +329,8 @@ const helpDialog = ref(false);
     top: 0.5em;
     left: 0.5em;
     z-index: 2;
+
+    box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.4);
 }
 
 .effects-overlay {
