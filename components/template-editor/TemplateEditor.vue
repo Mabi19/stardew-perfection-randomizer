@@ -9,6 +9,32 @@
 const props = defineProps<{
     active: boolean;
 }>();
+
+function unloadHandler(ev: BeforeUnloadEvent) {
+    ev.preventDefault();
+    ev.returnValue = true;
+}
+
+watchEffect(() => {
+    if (props.active) {
+        window.addEventListener("beforeunload", unloadHandler);
+    } else {
+        window.removeEventListener("beforeunload", unloadHandler);
+    }
+});
+
+const jsNavigationHook = useRouter().beforeResolve((to) => {
+    if (props.active) {
+        if (!window.confirm("You have unsaved changes! Are you sure you want to exit?")) {
+            return false;
+        }
+    }
+});
+
+onUnmounted(() => {
+    window.removeEventListener("beforeunload", unloadHandler);
+    jsNavigationHook();
+});
 </script>
 
 <style scoped lang="scss">
