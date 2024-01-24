@@ -5,7 +5,7 @@
             <label :for="`goal:${goal.id}`"><Goal :goal="goal" /></label>
         </td>
         <td class="info">
-            <button class="info-button material-icons" @click="openDialog">more_horiz</button>
+            <button class="plain-button material-icons" @click="openDialog">more_horiz</button>
         </td>
     </tr>
 </template>
@@ -24,18 +24,3 @@ function openDialog() {
     emit("infoClick", props.goal);
 }
 </script>
-
-<style scoped lang="scss">
-.info-button {
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: unset;
-    cursor: pointer;
-    font-size: 1.25rem;
-
-    &:hover {
-        opacity: 0.7;
-    }
-}
-</style>

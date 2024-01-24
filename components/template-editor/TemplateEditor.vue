@@ -15,6 +15,23 @@
                     <option :value="undefined">Unspecified</option>
                 </select>
             </div>
+            <h2 class="header">Goals</h2>
+            <table class="goal-list">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="small-hide">ID</th>
+                        <th><!-- edit button --></th>
+                        <th><!-- delete button --></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <TemplateEditorGoal
+                        v-for="goal in template.goals"
+                        :goal="goal"
+                    ></TemplateEditorGoal>
+                </tbody>
+            </table>
         </div>
     </Teleport>
     <Body class="overlay-hack-active" v-if="template != null" />
@@ -95,6 +112,17 @@ onUnmounted(() => {
     flex-flow: row wrap;
     align-items: center;
     gap: 0.5rem;
+}
+
+.header {
+    margin: 0.25rem 0;
+}
+
+.goal-list {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: max-content;
+    max-width: 100%;
 }
 
 // Hide everything while the template editor's active.
