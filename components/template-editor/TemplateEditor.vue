@@ -47,6 +47,26 @@ const emit = defineEmits<{
 }>();
 
 const template = ref<Template | null>(null);
+const reverseDependencies = computed(() => {
+    if (!template.value) {
+        return {};
+    }
+
+    const result: Record<string, string[]> = {};
+    for (const goal of template.value.goals) {
+        const id = goal.id;
+        const prerequisites = goal.prerequisites.all ?? goal.prerequisites.any ?? [];
+        for (const req of prerequisites) {
+            const target = req.goal;
+            if (!(target in result)) {
+                result[target] = [];
+            }
+            result[target].push(id);
+        }
+    }
+
+    return result;
+});
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
