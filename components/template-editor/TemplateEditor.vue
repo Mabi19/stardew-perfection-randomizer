@@ -38,6 +38,8 @@
 </template>
 
 <script setup lang="ts">
+import { reverseGoalDependencies } from "./reverse-dep-inject";
+
 defineExpose({
     start,
 });
@@ -47,7 +49,7 @@ const emit = defineEmits<{
 }>();
 
 const template = ref<Template | null>(null);
-const reverseDependencies = computed(() => {
+const reverseDeps = computed(() => {
     if (!template.value) {
         return {};
     }
@@ -65,8 +67,19 @@ const reverseDependencies = computed(() => {
         }
     }
 
+    for (const [name, values] of Object.entries(template.value.tags)) {
+        const referenceName = `#${name}`;
+        for (const target of values) {
+            if (!(target in result)) {
+                result[target] = [];
+            }
+            result[target].push(referenceName);
+        }
+    }
+
     return result;
 });
+provide(reverseGoalDependencies, reverseDeps);
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
