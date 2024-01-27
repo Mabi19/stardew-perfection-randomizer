@@ -9,18 +9,23 @@
         </td>
 
         <td>
-            <button class="plain-button material-icons">edit</button>
+            <PlainIconButton icon="edit" />
         </td>
         <td>
-            <button class="plain-button material-icons">delete</button>
+            <PlainIconButton icon="delete" :disabled="!canMutate" />
         </td>
     </tr>
 </template>
 
 <script setup lang="ts">
+import { reverseGoalDependencies } from "./reverse-dep-inject";
+
 const props = defineProps<{
     goal: Goal;
 }>();
+
+const reverseDependencies = inject(reverseGoalDependencies)!;
+const canMutate = computed(() => !(props.goal.id in reverseDependencies.value));
 </script>
 
 <style scoped lang="scss">
