@@ -10,6 +10,7 @@ body {
     line-height: 1.4;
 
     --text: black;
+    --text-light: #6d6d6d;
     --background: #ffffff;
     --background-light: #eee;
     --link: rgb(2, 95, 189);
@@ -23,6 +24,7 @@ body {
     color-scheme: dark;
 
     --text: whitesmoke;
+    --text-light: #75757a;
     --background: #222;
     --background-light: #333;
 
@@ -86,18 +88,6 @@ a:active {
     }
 }
 
-.plain-button {
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: unset;
-    cursor: pointer;
-    font-size: 1.25rem;
-
-    &:hover {
-        opacity: 0.7;
-    }
-}
 .layout {
     width: 100%;
     height: 100vh;
