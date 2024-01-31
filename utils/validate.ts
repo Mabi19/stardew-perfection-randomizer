@@ -11,8 +11,8 @@ function isValidGoalID(id: string) {
     return Boolean(id.match(/^[A-Za-z0-9:_]+$/));
 }
 
-function isValidPrerequisites(reqs: Prerequisites) {
-    if (typeof reqs != "object") return false;
+function isValidPrerequisites(reqs: PrerequisiteGroup) {
+    if (typeof reqs != "object" || Array.isArray(reqs)) return false;
 
     // empty prerequisites list
     if (!("all" in reqs || "any" in reqs)) {
@@ -23,16 +23,44 @@ function isValidPrerequisites(reqs: Prerequisites) {
     if ("all" in reqs != "any" in reqs) {
         // we have just verified this
         const reqsList = (reqs.all ?? reqs.any) as Prerequisite[];
-        return reqsList.every(
-            (requirement) =>
-                typeof requirement == "object" &&
+        return reqsList.every((requirement) => {
+            if (typeof requirement != "object") {
+                return false;
+            }
+
+            if (
+                "goal" in requirement &&
                 typeof requirement.goal == "string" &&
                 (typeof requirement.multiplicity == "number" ||
-                    typeof requirement.multiplicity == "undefined"),
-        );
+                    typeof requirement.multiplicity == "undefined")
+            ) {
+                return true;
+            }
+
+            if ("all" in requirement || "any" in requirement) {
+                if (isValidPrerequisites(requirement)) {
+                    return true;
+                }
+            }
+        });
     }
 
     return false;
+}
+
+// Slightly modified version
+function* traversePrerequisites(reqs: Prerequisite): Generator<SinglePrerequisite, void, void> {
+    if ("goal" in reqs) {
+        // single goal
+        // tags: just yield it, contents are checked separately
+        yield reqs;
+    } else {
+        // prerequisite list
+        const list = reqs.all ?? reqs.any ?? [];
+        for (const req of list) {
+            yield* traversePrerequisites(req);
+        }
+    }
 }
 
 export function validateTemplate(template: Template) {
@@ -58,7 +86,6 @@ export function validateTemplate(template: Template) {
     }
 
     // goals is a TemplateGoal[]
-
     if (
         !Array.isArray(template.goals) ||
         !template.goals.every(
@@ -109,8 +136,7 @@ export function validateTemplate(template: Template) {
             }
         }
 
-        const prerequisites = goal.prerequisites.all ?? goal.prerequisites.any ?? [];
-        for (const req of prerequisites) {
+        for (const req of traversePrerequisites(goal.prerequisites)) {
             if (!validIDs.has(req.goal)) {
                 return false;
             }

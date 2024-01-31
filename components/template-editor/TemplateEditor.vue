@@ -48,6 +48,29 @@ const emit = defineEmits<{
     finish: [newTemplate: Template];
 }>();
 
+// Traverse the prerequisite tree, returning all of the dependencies of this set of prerequisites
+// (including tags and their contents)
+function* traversePrerequisites(reqs: Prerequisite): Generator<string, void, void> {
+    if ("goal" in reqs) {
+        // single goal
+        if (reqs.goal.startsWith("#")) {
+            // tag: yield it and its contents (both are required)
+            yield reqs.goal;
+            for (const goal of template.value!.tags[reqs.goal.slice(1)]) {
+                yield goal;
+            }
+        } else {
+            yield reqs.goal;
+        }
+    } else {
+        // prerequisite list
+        const list = reqs.all ?? reqs.any ?? [];
+        for (const req of list) {
+            yield* traversePrerequisites(req);
+        }
+    }
+}
+
 const template = ref<Template | null>(null);
 const reverseDeps = computed(() => {
     if (!template.value) {
@@ -57,9 +80,7 @@ const reverseDeps = computed(() => {
     const result: Record<string, string[]> = {};
     for (const goal of template.value.goals) {
         const id = goal.id;
-        const prerequisites = goal.prerequisites.all ?? goal.prerequisites.any ?? [];
-        for (const req of prerequisites) {
-            const target = req.goal;
+        for (const target of traversePrerequisites(goal.prerequisites)) {
             if (!(target in result)) {
                 result[target] = [];
             }

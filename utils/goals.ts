@@ -1,11 +1,13 @@
 import hardcoreTemplate from "~/templates/hardcore.json";
 import standardTemplate from "~/templates/standard.json";
 
-export interface Prerequisite {
+export interface SinglePrerequisite {
     goal: string;
     multiplicity?: number;
 }
-export interface Prerequisites {
+export type Prerequisite = SinglePrerequisite | PrerequisiteGroup;
+
+export interface PrerequisiteGroup {
     any?: Prerequisite[];
     all?: Prerequisite[];
 }
@@ -13,7 +15,7 @@ export interface Prerequisites {
 export interface TemplateGoal {
     id: string;
     name: string;
-    prerequisites: Prerequisites;
+    prerequisites: PrerequisiteGroup;
     imageURL?: string;
     multiplicity: number;
     xp: Record<string, number>;
