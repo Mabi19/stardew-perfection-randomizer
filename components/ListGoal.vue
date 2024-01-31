@@ -5,7 +5,7 @@
             <label :for="`goal:${goal.id}`"><Goal :goal="goal" /></label>
         </td>
         <td class="info">
-            <button class="plain-button material-icons" @click="openDialog">more_horiz</button>
+            <PlainIconButton @click="openDialog" icon="more_horiz" />
         </td>
     </tr>
 </template>
