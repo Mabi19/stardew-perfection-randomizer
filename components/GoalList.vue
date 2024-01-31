@@ -73,6 +73,10 @@
                 </div>
                 <span v-else>&lt;none&gt;</span>
             </div>
+            <div>
+                <strong>Currently eligible:</strong>
+                <span>{{ store.isEligible(infoGoal) ? "✅ Yes" : "❌ No" }}</span>
+            </div>
             <div class="button-box">
                 <AppButton
                     icon="tune"
