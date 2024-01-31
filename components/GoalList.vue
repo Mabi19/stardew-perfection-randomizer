@@ -38,29 +38,9 @@
             </div>
             <div>
                 <strong>Prerequisites:</strong>
-                <div class="prerequisites" v-if="infoGoalReqs">
-                    <span>
-                        {{ infoGoal.prerequisites.all ? "All" : "Any" }} of these goals must be met:
-                    </span>
-                    <ul>
-                        <li v-for="req in infoGoalReqs">
-                            <Goal
-                                v-if="store.goals[req.goal]"
-                                :goal="store.goals[req.goal]"
-                                class="inline"
-                            />
-                            <!-- this is required for tags to work -->
-                            <code v-else>{{ req.goal }}</code>
-                            <span
-                                v-if="req.multiplicity && req.multiplicity > 1"
-                                class="inline-goal-mult"
-                            >
-                                (x{{ req.multiplicity }})
-                            </span>
-                        </li>
-                    </ul>
+                <div class="prerequisites" v-if="infoGoal.prerequisites">
+                    <GoalListPrerequisites :prerequisites="infoGoal.prerequisites" />
                 </div>
-                <span v-else>&lt;none&gt;</span>
             </div>
             <div>
                 <strong>Implied XP:</strong>
@@ -113,10 +93,6 @@ const filteredGoals = computed(() => {
 });
 
 const infoGoal = ref<Goal | null>(null);
-const infoGoalReqs = computed(() => {
-    if (infoGoal.value == null) return null;
-    return infoGoal.value.prerequisites.all ?? infoGoal.value.prerequisites.any ?? null;
-});
 
 function openGoalInfo(goal: Goal) {
     infoGoal.value = goal;
@@ -140,7 +116,13 @@ function isEmpty(o: {}) {
     margin-top: 1rem;
 }
 
-.prerequisites,
+.prerequisites {
+    margin-left: 1rem;
+    :deep(ul) {
+        margin: 0;
+        padding-left: 2rem;
+    }
+}
 .implied-xp {
     ul {
         margin: 0;
@@ -148,15 +130,7 @@ function isEmpty(o: {}) {
     }
 }
 
-.inline {
-    display: inline;
-}
-
 .capitalize {
     text-transform: capitalize;
-}
-
-.inline-goal-mult {
-    vertical-align: middle;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <tr class="goal">
         <td>
-            <Goal :goal="goal" class="inline"></Goal>
+            <Goal :goal="goal" class="unwrap"></Goal>
         </td>
 
         <td class="small-hide">
@@ -38,7 +38,7 @@ const canMutate = computed(() => !(props.goal.id in reverseDependencies.value));
     padding: 0.25rem;
 }
 
-.inline {
+.unwrap {
     display: contents;
 }
 </style>
