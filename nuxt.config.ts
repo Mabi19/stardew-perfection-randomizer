@@ -74,7 +74,7 @@ export default defineNuxtConfig({
         },
     },
     css: ["~/assets/global.scss"],
-    modules: ["@pinia/nuxt", "@vite-pwa/nuxt"],
+    modules: ["@pinia/nuxt", "@vite-pwa/nuxt", "@nuxt/test-utils/module"],
     pwa: {
         registerType: "autoUpdate",
         manifest: {
