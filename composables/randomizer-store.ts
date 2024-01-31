@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import type { SinglePrerequisite } from "~/utils/goals";
 
 export const useRandomizerStore = defineStore("randomizer", () => {
     const profiles = useProfilesStore();
@@ -114,7 +113,13 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         predictedSkillXP.value[skill] = newXP;
     }
 
-    function isPrerequisiteMet(prerequisite: Prerequisite): boolean {
+    function isPrerequisiteMet(
+        prerequisite: Prerequisite,
+        // The function to aggregate tag contents with.
+        // All prerequisites supply Array.prototype.every,
+        // and any prerequisites supply Array.prototype.some.
+        aggregateHandler?: typeof Array.prototype.some,
+    ): boolean {
         if ("goal" in prerequisite) {
             // single prerequisite
 
@@ -124,16 +129,27 @@ export const useRandomizerStore = defineStore("randomizer", () => {
                 // this is a tag
                 const tagName = prerequisite.goal.slice(1);
                 const tagGoals = templateData.value.tags[tagName];
-                return tagGoals.some((tagGoal) => completion.value[tagGoal] >= requiredCompletion);
+                if (!aggregateHandler) {
+                    throw new Error("Cannot evaluate tag prerequisite without context");
+                }
+
+                return aggregateHandler.call(
+                    tagGoals,
+                    (tagGoal) => completion.value[tagGoal] >= requiredCompletion,
+                );
             } else {
                 return completion.value[prerequisite.goal] >= requiredCompletion;
             }
         } else {
             // prerequisite group
             if (prerequisite.all) {
-                return prerequisite.all.every((prerequisite) => isPrerequisiteMet(prerequisite));
+                return prerequisite.all.every((prerequisite) =>
+                    isPrerequisiteMet(prerequisite, Array.prototype.every),
+                );
             } else if (prerequisite.any) {
-                return prerequisite.any.some((prerequisite) => isPrerequisiteMet(prerequisite));
+                return prerequisite.any.some((prerequisite) =>
+                    isPrerequisiteMet(prerequisite, Array.prototype.some),
+                );
             }
         }
         // empty prerequisite

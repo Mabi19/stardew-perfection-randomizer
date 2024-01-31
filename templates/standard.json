@@ -1922,7 +1922,7 @@
             "id": "acquire_the_marriage_stardrop",
             "name": "Acquire the Marriage Stardrop",
             "prerequisites": {
-                "all": [
+                "any": [
                     {
                         "goal": "#marriage_capable"
                     }
@@ -4432,13 +4432,17 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "#demetrius_fish"
-                    },
-                    {
                         "goal": "ship_refined_quartz"
                     },
                     {
                         "goal": "ship_a_battery_pack"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#demetrius_fish"
+                            }
+                        ]
                     }
                 ]
             },

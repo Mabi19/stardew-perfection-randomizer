@@ -1742,7 +1742,7 @@
             "id": "acquire_the_marriage_stardrop",
             "name": "Acquire the Marriage Stardrop",
             "prerequisites": {
-                "all": [
+                "any": [
                     {
                         "goal": "#marriage_capable"
                     }
@@ -4339,7 +4339,11 @@
                         "multiplicity": 10
                     },
                     {
-                        "goal": "#demetrius_fish"
+                        "any": [
+                            {
+                                "goal": "#demetrius_fish"
+                            }
+                        ]
                     }
                 ]
             },
