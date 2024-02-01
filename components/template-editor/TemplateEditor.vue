@@ -72,6 +72,13 @@ function* traversePrerequisites(reqs: Prerequisite): Generator<string, void, voi
     }
 }
 
+function* getGoalDependencies(goal: Goal) {
+    for (const skill of Object.keys(goal.xp)) {
+        yield `level:${skill}`;
+    }
+    yield* traversePrerequisites(goal.prerequisites);
+}
+
 const template = ref<Template | null>(null);
 const reverseDeps = computed(() => {
     if (!template.value) {
@@ -81,7 +88,7 @@ const reverseDeps = computed(() => {
     const result: Record<string, string[]> = {};
     for (const goal of template.value.goals) {
         const id = goal.id;
-        for (const target of traversePrerequisites(goal.prerequisites)) {
+        for (const target of getGoalDependencies(goal)) {
             if (!(target in result)) {
                 result[target] = [];
             }
