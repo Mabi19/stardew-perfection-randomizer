@@ -19,13 +19,15 @@ const props = defineProps<{
     cursor: pointer;
     font-size: 1.25rem;
 
-    &:hover:not(:disabled) {
+    &:hover {
         opacity: 0.7;
     }
 
-    &:disabled {
+    &:disabled,
+    &.disabled {
         color: var(--text-light);
         cursor: not-allowed;
+        opacity: 1;
     }
 }
 </style>

@@ -27,8 +27,9 @@
                 </thead>
                 <tbody>
                     <TemplateEditorGoal
-                        v-for="goal in template.goals"
+                        v-for="(goal, idx) in template.goals"
                         :goal="goal"
+                        @delete="handleDelete(idx)"
                     ></TemplateEditorGoal>
                 </tbody>
             </table>
@@ -121,7 +122,14 @@ function saveAndQuit() {
 }
 
 function quitWithoutSaving() {
-    // pop up "Are you sure?" dialog
+    // TODO: pop up "Are you sure?" dialog
+}
+
+// editing actions
+
+function handleDelete(goalIndex: number) {
+    // const idx = template.value!.goals.findIndex((goal) => goal.id == goalID);
+    template.value!.goals.splice(goalIndex, 1);
 }
 
 // unload guards
