@@ -85,14 +85,14 @@ const reverseDeps = computed(() => {
         return {};
     }
 
-    const result: Record<string, string[]> = {};
+    const result: Record<string, Set<string>> = {};
     for (const goal of template.value.goals) {
         const id = goal.id;
         for (const target of getGoalDependencies(goal)) {
             if (!(target in result)) {
-                result[target] = [];
+                result[target] = new Set();
             }
-            result[target].push(id);
+            result[target].add(id);
         }
     }
 
@@ -100,9 +100,9 @@ const reverseDeps = computed(() => {
         const referenceName = `#${name}`;
         for (const target of values) {
             if (!(target in result)) {
-                result[target] = [];
+                result[target] = new Set();
             }
-            result[target].push(referenceName);
+            result[target].add(referenceName);
         }
     }
 

@@ -37,7 +37,7 @@ const reverseDependencies = inject(reverseGoalDependencies)!;
 const canMutate = computed(() => !(props.goal.id in reverseDependencies.value));
 const cannotDeleteMessage = computed(() => {
     if (!canMutate.value) {
-        return `This goal is required by ${reverseDependencies.value[props.goal.id]
+        return `This goal is required by ${Array.from(reverseDependencies.value[props.goal.id])
             .map((id) => "`" + id + "`")
             .join(", ")}.`;
     } else {
