@@ -29,17 +29,20 @@
                     <TemplateEditorGoal
                         v-for="(goal, idx) in template.goals"
                         :goal="goal"
+                        @edit="handleEdit(idx)"
                         @delete="handleDelete(idx)"
                     ></TemplateEditorGoal>
                 </tbody>
             </table>
         </div>
     </Teleport>
+    <TemplateEditorGoalDialog v-if="template" :template="template" ref="goalDialog" />
     <Body class="overlay-hack-active" v-if="template != null" />
 </template>
 
 <script setup lang="ts">
 import { reverseGoalDependencies } from "./reverse-dep-inject";
+import { TemplateEditorGoalDialog } from "#components";
 
 defineExpose({
     start,
@@ -109,6 +112,7 @@ const reverseDeps = computed(() => {
     return result;
 });
 provide(reverseGoalDependencies, reverseDeps);
+const goalDialog = ref<InstanceType<typeof TemplateEditorGoalDialog> | null>();
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
@@ -134,8 +138,11 @@ function quitWithoutSaving() {
 
 // editing actions
 
+function handleEdit(goalIndex: number) {
+    goalDialog.value!.setBaseGoal(template.value!.goals[goalIndex]);
+}
+
 function handleDelete(goalIndex: number) {
-    // const idx = template.value!.goals.findIndex((goal) => goal.id == goalID);
     template.value!.goals.splice(goalIndex, 1);
 }
 

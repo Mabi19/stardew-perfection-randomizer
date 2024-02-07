@@ -30,6 +30,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
+    edit: [];
     delete: [];
 }>();
 
@@ -46,7 +47,7 @@ const cannotDeleteMessage = computed(() => {
 });
 
 function editGoal() {
-    console.log(canMutate.value, cannotDeleteMessage.value);
+    emit("edit");
 }
 
 function deleteGoal() {
