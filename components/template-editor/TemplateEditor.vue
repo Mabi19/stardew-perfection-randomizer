@@ -176,13 +176,6 @@ onUnmounted(() => {
     gap: 0.5rem;
 }
 
-.row {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .header {
     margin: 0.25rem 0;
 }
