@@ -9,7 +9,10 @@
                 <span>Image URL:</span>
                 <input type="url" v-model="goal.imageURL" placeholder="<none>" />
             </div>
-            <!-- TODO: image preview -->
+            <div class="image-preview indent">
+                <em>preview:</em>
+                <img :src="goal.imageURL" alt="Icon preview" />
+            </div>
             <div class="row">
                 <span>Multiplicity:</span>
                 <input type="number" v-model="goal.multiplicity" placeholder="1" min="1" max="99" />
@@ -61,6 +64,11 @@ const vInvalid: Directive<HTMLInputElement, string | boolean> = (el, binding) =>
 };
 
 const goal = ref<Goal | null>(null);
+const debouncedImageURL = ref("");
+watch(
+    () => goal.value?.imageURL,
+    debounce(() => (debouncedImageURL.value = goal.value?.imageURL ?? ""), undefined, {}),
+);
 
 function setBaseGoal(newGoal: Goal) {
     // deep clone
