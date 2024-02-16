@@ -33,7 +33,7 @@
             </ul>
 
             <details>
-                <summary>Add new XP requirement</summary>
+                <summary>Create XP requirement</summary>
                 <fieldset>
                     <div class="row">
                         <label for="new-xp-skill">Skill:</label>
@@ -54,7 +54,7 @@
                             class="amount"
                         />
                     </div>
-                    <AppButton icon="add">Add requirement</AppButton>
+                    <AppButton icon="add" type="positive" small>Add</AppButton>
                 </fieldset>
             </details>
         </div>
