@@ -1,6 +1,6 @@
 <template>
     <AppDialog :title="`Edit ${goal?.id}`" :open="goal != null" @close="goal = null">
-        <form @submit.prevent="test" v-if="goal">
+        <form @submit.prevent="test" v-if="goal" ref="form">
             <div class="row">
                 <span>Name:</span>
                 <input type="text" v-model="goal.name" required minlength="3" />
@@ -17,34 +17,64 @@
                 <span>Multiplicity:</span>
                 <input type="number" v-model="goal.multiplicity" placeholder="1" min="1" max="99" />
             </div>
-            <div class="xp">
-                <div>
-                    Implied XP:
-                    <template v-if="Object.keys(goal.xp).length == 0">&lt;none&gt;</template>
-                </div>
-                <ul>
-                    <li v-for="(amount, skill) in goal.xp" class="xp-entry">
-                        <span>{{ skill }}: {{ amount }}</span>
-                        <PlainIconButton icon="delete" @click="deleteXPRequirement(skill)" />
-                    </li>
-                </ul>
-                <!-- TODO: adding XP requirements -->
-            </div>
-            <!-- TODO: prerequisites -->
-
-            <AppButton icon="save">Save</AppButton>
         </form>
+        <!-- Outside the form to prevent automatic validation -->
+        <!-- TODO: hide this in a -->
+        <div class="xp" v-if="goal">
+            <div>
+                Implied XP:
+                <template v-if="Object.keys(goal.xp).length == 0">&lt;none&gt;</template>
+            </div>
+            <ul>
+                <li v-for="(amount, skill) in goal.xp" class="xp-entry">
+                    <span>{{ skill }}: {{ amount }}</span>
+                    <PlainIconButton icon="delete" @click="deleteXPRequirement(skill)" />
+                </li>
+            </ul>
+
+            <details>
+                <summary>Add new XP requirement</summary>
+                <fieldset>
+                    <div class="row">
+                        <label for="new-xp-skill">Skill:</label>
+                        <select id="new-xp-skill">
+                            <option :value="null">Choose a skill</option>
+                            <option :value="skill" v-for="skill in skills">{{ skill }}</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <label for="new-xp-multiplicity">Level:</label>
+                        <input
+                            id="new-xp-multiplicity"
+                            type="number"
+                            v-model="newXPMultiplicity"
+                            placeholder="1"
+                            min="1"
+                            max="99"
+                            class="amount"
+                        />
+                    </div>
+                    <AppButton icon="add">Add requirement</AppButton>
+                </fieldset>
+            </details>
+        </div>
+        <!-- TODO: prerequisites -->
+        <AppButton icon="save" @click="form?.requestSubmit()">Save</AppButton>
     </AppDialog>
 </template>
 
 <script setup lang="ts">
 import type { Directive } from "vue";
+import { debounce } from "lodash-es";
 
 defineExpose({ setBaseGoal });
 
 const props = defineProps<{
     template: Template;
 }>();
+
+// get the form
+const form = ref<HTMLFormElement | null>(null);
 
 // template-derived helpers
 const skills = computed(() =>
@@ -77,6 +107,8 @@ function setBaseGoal(newGoal: Goal) {
 
 // editing actions
 
+const newXPGoalID = ref("");
+const newXPMultiplicity = ref<number | string>("");
 function deleteXPRequirement(skill: string) {
     delete goal.value!.xp[skill];
 }
@@ -95,8 +127,26 @@ function test() {
     width: 4em;
 }
 
-.xp ul {
-    margin: 0;
+.indent {
+    margin-left: 0.75em;
+}
+
+.image-preview {
+    * {
+        vertical-align: middle;
+    }
+    img {
+        margin-left: 0.5em;
+        height: 1.5em;
+    }
+}
+
+.xp {
+    margin: 0.5rem 0;
+
+    ul {
+        margin: 0;
+    }
 }
 
 .xp-entry {

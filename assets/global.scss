@@ -117,3 +117,8 @@ input:invalid {
 code {
     font-size: 1rem;
 }
+
+fieldset {
+    border: 2px dashed var(--text);
+    border-radius: 4px;
+}
