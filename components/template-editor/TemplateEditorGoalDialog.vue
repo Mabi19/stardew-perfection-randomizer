@@ -19,7 +19,6 @@
             </div>
         </form>
         <!-- Outside the form to prevent automatic validation -->
-        <!-- TODO: hide this in a -->
         <div class="xp" v-if="goal">
             <div>
                 Implied XP:
@@ -34,12 +33,14 @@
 
             <details>
                 <summary>Create XP requirement</summary>
-                <fieldset>
+                <form @submit.prevent="addXPRequirement" class="sub-form">
                     <div class="row">
                         <label for="new-xp-skill">Skill:</label>
-                        <select id="new-xp-skill">
-                            <option :value="null">Choose a skill</option>
-                            <option :value="skill" v-for="skill in skills">{{ skill }}</option>
+                        <select id="new-xp-skill" v-model="newXPSkill">
+                            <option :value="null">No skill selected!</option>
+                            <option :value="skill" v-for="(_goalIdx, skill) in skills">
+                                {{ skill }}
+                            </option>
                         </select>
                     </div>
                     <div class="row">
@@ -50,12 +51,14 @@
                             v-model="newXPMultiplicity"
                             placeholder="1"
                             min="1"
-                            max="99"
+                            :max="newXPMaxMult"
                             class="amount"
                         />
                     </div>
-                    <AppButton icon="add" type="positive" small>Add</AppButton>
-                </fieldset>
+                    <AppButton icon="add" type="positive" small :disabled="newXPSkill == null"
+                        >Add</AppButton
+                    >
+                </form>
             </details>
         </div>
         <!-- TODO: prerequisites -->
@@ -77,11 +80,16 @@ const props = defineProps<{
 const form = ref<HTMLFormElement | null>(null);
 
 // template-derived helpers
-const skills = computed(() =>
-    props.template.goals
-        .filter((goal) => goal.id.startsWith("level:"))
-        .map((goal) => goal.id.slice("level:".length)),
-);
+const skills = computed(() => {
+    const result: Record<string, { goalIndex: number }> = {};
+    for (let i = 0; i < props.template.goals.length; i++) {
+        const goal = props.template.goals[i];
+        if (goal.id.startsWith("level:")) {
+            result[goal.id.slice("level:".length)] = { goalIndex: i };
+        }
+    }
+    return result;
+});
 
 const vInvalid: Directive<HTMLInputElement, string | boolean> = (el, binding) => {
     if (typeof binding.value === "boolean") {
@@ -107,11 +115,19 @@ function setBaseGoal(newGoal: Goal) {
 
 // editing actions
 
-const newXPGoalID = ref("");
+const newXPSkill = ref<string | null>(null);
 const newXPMultiplicity = ref<number | string>("");
+const newXPMaxMult = computed(() => {
+    if (!newXPSkill.value) {
+        return;
+    }
+
+    return props.template.goals[skills.value[newXPSkill.value].goalIndex].multiplicity;
+});
 function deleteXPRequirement(skill: string) {
     delete goal.value!.xp[skill];
 }
+function addXPRequirement() {}
 
 function test() {
     alert("test called");
@@ -129,6 +145,12 @@ function test() {
 
 .indent {
     margin-left: 0.75em;
+}
+
+.sub-form {
+    border: 2px dashed var(--text);
+    border-radius: 4px;
+    padding: 0.5rem;
 }
 
 .image-preview {
