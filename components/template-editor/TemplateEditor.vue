@@ -1,48 +1,51 @@
 <template>
     <Teleport to="body">
         <div class="overlay-hack" v-if="template != null">
-            <div class="row">
-                <AppButton icon="save" @click="saveAndQuit">Save and quit</AppButton>
-                <AppButton type="destructive" icon="close" @click="quitWithoutSaving"
-                    >Quit without saving</AppButton
-                >
+            <div class="main-view">
+                <div class="row">
+                    <AppButton icon="save" @click="saveAndQuit">Save and quit</AppButton>
+                    <AppButton type="destructive" icon="close" @click="quitWithoutSaving"
+                        >Quit without saving</AppButton
+                    >
+                </div>
+                <div class="row">
+                    <label for="template-ruleset">Ruleset</label>
+                    <select id="template-ruleset" v-model="template.ruleset">
+                        <option value="hardcore">Hardcore</option>
+                        <option value="standard">Standard</option>
+                        <option :value="undefined">Unspecified</option>
+                    </select>
+                </div>
+                <h2 class="header">Goals</h2>
+                <table class="goal-list">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th class="small-hide">ID</th>
+                            <th><!-- edit button --></th>
+                            <th><!-- delete button --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <TemplateEditorGoal
+                            v-for="(goal, idx) in template.goals"
+                            :goal="goal"
+                            @edit="handleEdit(idx)"
+                            @delete="handleDelete(idx)"
+                        ></TemplateEditorGoal>
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-                <label for="template-ruleset">Ruleset</label>
-                <select id="template-ruleset" v-model="template.ruleset">
-                    <option value="hardcore">Hardcore</option>
-                    <option value="standard">Standard</option>
-                    <option :value="undefined">Unspecified</option>
-                </select>
-            </div>
-            <h2 class="header">Goals</h2>
-            <table class="goal-list">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th class="small-hide">ID</th>
-                        <th><!-- edit button --></th>
-                        <th><!-- delete button --></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <TemplateEditorGoal
-                        v-for="(goal, idx) in template.goals"
-                        :goal="goal"
-                        @edit="handleEdit(idx)"
-                        @delete="handleDelete(idx)"
-                    ></TemplateEditorGoal>
-                </tbody>
-            </table>
+
+            <TemplateEditorPane v-if="template" :template="template" ref="goalDialog" />
         </div>
     </Teleport>
-    <TemplateEditorGoalDialog v-if="template" :template="template" ref="goalDialog" />
     <Body class="overlay-hack-active" v-if="template != null" />
 </template>
 
 <script setup lang="ts">
 import { reverseGoalDependencies } from "./reverse-dep-inject";
-import { TemplateEditorGoalDialog } from "#components";
+import { TemplateEditorPane } from "#components";
 
 defineExpose({
     start,
@@ -112,7 +115,7 @@ const reverseDeps = computed(() => {
     return result;
 });
 provide(reverseGoalDependencies, reverseDeps);
-const goalDialog = ref<InstanceType<typeof TemplateEditorGoalDialog> | null>();
+const goalDialog = ref<InstanceType<typeof TemplateEditorPane> | null>();
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
@@ -177,10 +180,22 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .overlay-hack {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-view {
     padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
     gap: 0.5rem;
+    flex-grow: 1;
+
+    overflow: auto;
 }
 
 .header {

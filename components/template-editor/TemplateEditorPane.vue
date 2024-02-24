@@ -1,6 +1,9 @@
 <template>
-    <AppDialog :title="`Edit ${goal?.id}`" :open="goal != null" @close="goal = null">
-        <form @submit.prevent="test" v-if="goal" ref="form">
+    <div class="pane">
+        <div class="header" v-if="goal">
+            Editing <code>{{ goal.id }}</code>
+        </div>
+        <div class="pane-content" v-if="goal">
             <div class="row">
                 <span>Name:</span>
                 <input type="text" v-model="goal.name" required minlength="3" />
@@ -17,58 +20,59 @@
                 <span>Multiplicity:</span>
                 <input type="number" v-model="goal.multiplicity" placeholder="1" min="1" max="99" />
             </div>
-        </form>
-        <!-- Outside the form to prevent automatic validation -->
-        <div class="xp" v-if="goal">
-            <div>
-                Implied XP:
-                <template v-if="Object.keys(goal.xp).length == 0">&lt;none&gt;</template>
-            </div>
-            <ul>
-                <li v-for="(amount, skill) in goal.xp" class="xp-entry">
-                    <span>{{ skill }}: {{ amount }}</span>
-                    <PlainIconButton icon="delete" @click="deleteXPRequirement(skill)" />
-                </li>
-            </ul>
+            <div class="xp" v-if="goal">
+                <div>
+                    Implied XP:
+                    <template v-if="Object.keys(goal.xp).length == 0">&lt;none&gt;</template>
+                </div>
+                <ul>
+                    <li v-for="(amount, skill) in goal.xp" class="xp-entry">
+                        <span>{{ skill }}: {{ amount }}</span>
+                        <PlainIconButton icon="delete" @click="deleteXPRequirement(skill)" />
+                    </li>
+                </ul>
 
-            <details>
-                <summary>Create XP requirement</summary>
-                <form @submit.prevent="addXPRequirement" class="sub-form">
-                    <div class="row">
-                        <label for="new-xp-skill">Skill:</label>
-                        <select id="new-xp-skill" v-model="newXPSkill">
-                            <option :value="null">No skill selected!</option>
-                            <option :value="skill" v-for="(_goalIdx, skill) in skills">
-                                {{ skill }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <label for="new-xp-multiplicity">Level:</label>
-                        <input
-                            id="new-xp-multiplicity"
-                            type="number"
-                            v-model="newXPMultiplicity"
-                            placeholder="1"
-                            min="1"
-                            :max="newXPMaxMult"
-                            class="amount"
-                        />
-                    </div>
-                    <AppButton icon="add" type="positive" small :disabled="newXPSkill == null"
-                        >Add</AppButton
-                    >
-                </form>
-            </details>
+                <details>
+                    <summary>Create XP requirement</summary>
+                    <form @submit.prevent="addXPRequirement" class="sub-form">
+                        <div class="row">
+                            <label for="new-xp-skill">Skill:</label>
+                            <select id="new-xp-skill" v-model="newXPSkill">
+                                <option :value="null">No skill selected!</option>
+                                <option :value="skill" v-for="(_goalIdx, skill) in skills">
+                                    {{ skill }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="new-xp-multiplicity">Level:</label>
+                            <input
+                                id="new-xp-multiplicity"
+                                type="number"
+                                v-model="newXPMultiplicity"
+                                placeholder="1"
+                                min="1"
+                                :max="newXPMaxMult"
+                                class="amount"
+                            />
+                        </div>
+                        <AppButton icon="add" type="positive" small :disabled="newXPSkill == null"
+                            >Add</AppButton
+                        >
+                    </form>
+                </details>
+            </div>
         </div>
+        <div class="pane-content centered" v-else>Nothing selected</div>
         <!-- TODO: prerequisites -->
-        <AppButton icon="save" @click="form?.requestSubmit()">Save</AppButton>
-    </AppDialog>
+    </div>
 </template>
 
 <script setup lang="ts">
 import type { Directive } from "vue";
 import { debounce } from "lodash-es";
+
+// TODO: make this all reactive and auto-save
 
 defineExpose({ setBaseGoal });
 
@@ -128,13 +132,31 @@ function deleteXPRequirement(skill: string) {
     delete goal.value!.xp[skill];
 }
 function addXPRequirement() {}
-
-function test() {
-    alert("test called");
-}
 </script>
 
 <style scoped lang="scss">
+@use "~/assets/base";
+
+.pane {
+    width: 400px;
+
+    background-color: var(--background-light);
+    border-left: 2px solid var(--text-light);
+}
+
+.pane-content {
+    padding: 1rem;
+}
+
+.centered {
+    text-align: center;
+}
+
+.header {
+    padding: 1rem;
+    background-color: base.$accent;
+}
+
 .row input {
     width: 20em;
 }
