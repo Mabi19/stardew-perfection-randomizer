@@ -4,7 +4,7 @@
             <div class="main-view">
                 <div class="row">
                     <AppButton icon="save" @click="saveAndQuit">Save and quit</AppButton>
-                    <AppButton type="destructive" icon="close" @click="quitWithoutSaving"
+                    <AppButton type="destructive" icon="block" @click="quitWithoutSaving"
                         >Quit without saving</AppButton
                     >
                 </div>
