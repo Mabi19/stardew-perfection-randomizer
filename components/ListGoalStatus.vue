@@ -10,7 +10,6 @@
             />
             <span class="badge" v-else>
                 <input
-                    class="completion-input"
                     type="number"
                     min="0"
                     :max="goal.multiplicity"
@@ -93,9 +92,5 @@ function update(state: number) {
     &::-webkit-outer-spin-button {
         display: none;
     }
-}
-
-.completion-input:invalid {
-    outline: 2px solid red;
 }
 </style>
