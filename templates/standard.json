@@ -3068,7 +3068,7 @@
         },
         {
             "id": "craft_an_iridium_sprinkler",
-            "name": "Craft an Iridium Sprinkler ",
+            "name": "Craft an Iridium Sprinkler",
             "prerequisites": {
                 "all": [
                     {
