@@ -9,7 +9,7 @@
         </td>
 
         <td>
-            <PlainIconButton icon="edit" @click="editGoal" />
+            <PlainIconButton icon="edit" @click="editGoal" title="Edit goal" />
         </td>
         <td>
             <PlainIconButton

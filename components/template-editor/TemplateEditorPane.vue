@@ -69,7 +69,11 @@
                 <ul>
                     <li v-for="(amount, skill) in goal.xp" class="xp-entry">
                         <span>{{ skill }}: {{ amount }}</span>
-                        <PlainIconButton icon="delete" @click="deleteXPRequirement(skill)" />
+                        <PlainIconButton
+                            icon="delete"
+                            @click="deleteXPRequirement(skill)"
+                            title="Delete XP requirement"
+                        />
                     </li>
                 </ul>
             </div>
