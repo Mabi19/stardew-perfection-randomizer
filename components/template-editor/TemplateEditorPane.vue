@@ -77,6 +77,13 @@
                     </li>
                 </ul>
             </div>
+            <div class="prerequisites" v-if="goal">
+                Prerequisites:
+                <template v-if="Object.keys(goal.prerequisites).length == 0">&lt;none&gt;</template>
+                <div class="indent">
+                    <TemplateEditorPrerequisites :value="goal.prerequisites" />
+                </div>
+            </div>
         </div>
         <div class="pane-content centered" v-else>Nothing selected</div>
         <!-- TODO: prerequisites -->
