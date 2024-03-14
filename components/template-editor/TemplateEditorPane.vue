@@ -18,6 +18,7 @@
             </div>
             <div class="row">
                 <span>Multiplicity:</span>
+                <!-- TODO: prevent setting this too low -->
                 <input type="number" v-model="goal.multiplicity" placeholder="1" min="1" max="99" />
             </div>
             <div class="xp" v-if="goal">
@@ -100,13 +101,39 @@
             </div>
         </div>
         <div class="pane-content centered" v-else>Nothing selected</div>
-        <!-- TODO: prerequisites -->
     </div>
+
+    <AppDialog
+        title="Create prerequisite"
+        :open="prerequisiteDialogActive"
+        @close="cancelPrerequisiteCreate"
+    >
+        <form @submit.prevent="finishPrerequisiteCreate">
+            <div class="row">
+                <label for="new-prerequisite-goal">Goal:</label>
+                <TemplateEditorGoalPicker :template v-model="prerequisiteGoalID" />
+            </div>
+            <div class="row">
+                <label for="new-prerequisite-multiplicity">Multiplicity:</label>
+                <!-- TODO: prevent setting this too high -->
+                <input
+                    type="number"
+                    id="new-prerequisite-multiplicity"
+                    v-model.number="prerequisiteMultiplicity"
+                    :disabled="prerequisiteIsTag"
+                    :placeholder="prerequisiteIsTag ? undefined : '1'"
+                    min="1"
+                />
+            </div>
+
+            <AppButton icon="add">Create</AppButton>
+        </form>
+    </AppDialog>
 </template>
 
 <script setup lang="ts">
-import type { Directive } from "vue";
 import { debounce } from "lodash-es";
+import { prerequisiteCreationFunc } from "./template-editor-injects";
 
 // TODO: make this all reactive and auto-save
 
@@ -130,16 +157,6 @@ const skills = computed(() => {
     }
     return result;
 });
-
-const vInvalid: Directive<HTMLInputElement, string | boolean> = (el, binding) => {
-    if (typeof binding.value === "boolean") {
-        el.setCustomValidity(binding.value ? "Value is invalid" : "");
-    } else {
-        el.setCustomValidity(binding.value);
-    }
-
-    el.reportValidity();
-};
 
 const goal = ref<Goal | null>(null);
 const debouncedImageURL = ref("");
@@ -201,6 +218,49 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
 
     goal.value.prerequisites = newData;
 }
+
+const prerequisiteDialogActive = ref(false);
+let prerequisiteDialogCallbacks: {
+    resolve: (v: SinglePrerequisite) => void;
+    reject: () => void;
+} | null = null;
+const prerequisiteGoalID = ref("");
+const prerequisiteMultiplicity = ref<string | number>("");
+
+const prerequisiteIsTag = computed(() => prerequisiteGoalID.value.startsWith("#"));
+watchEffect(() => {
+    if (prerequisiteIsTag.value) {
+        prerequisiteMultiplicity.value = "";
+    }
+});
+
+// Extracted out to minimize amount of dialogs in the DOM
+function createPrerequisite(): Promise<SinglePrerequisite> {
+    return new Promise((resolve, reject) => {
+        prerequisiteDialogActive.value = true;
+        prerequisiteDialogCallbacks = { resolve, reject };
+    });
+}
+
+function finishPrerequisiteCreate() {
+    prerequisiteDialogActive.value = false;
+    const result: SinglePrerequisite = { goal: prerequisiteGoalID.value };
+    if (
+        !prerequisiteIsTag.value &&
+        typeof prerequisiteMultiplicity.value == "number" &&
+        prerequisiteMultiplicity.value > 0
+    ) {
+        result.multiplicity = prerequisiteMultiplicity.value;
+    }
+    prerequisiteDialogCallbacks?.resolve(result);
+}
+
+function cancelPrerequisiteCreate() {
+    prerequisiteDialogActive.value = false;
+    prerequisiteDialogCallbacks?.reject();
+}
+
+provide(prerequisiteCreationFunc, createPrerequisite);
 </script>
 
 <style scoped lang="scss">
@@ -285,7 +345,7 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
         align-items: center;
     }
     .init-button {
-        margin-left: 0.25rem;
+        margin-left: 1rem;
     }
 
     .top-level {

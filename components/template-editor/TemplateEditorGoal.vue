@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { reverseGoalDependencies } from "./reverse-dep-inject";
+import { reverseGoalDependencies } from "./template-editor-injects";
 
 const props = defineProps<{
     goal: Goal;
@@ -34,6 +34,8 @@ const emit = defineEmits<{
     delete: [];
 }>();
 
+// TODO: do this via props for performance
+// (this also allows for this injection key to be dropped)
 const reverseDependencies = inject(reverseGoalDependencies)!;
 const canMutate = computed(() => !(props.goal.id in reverseDependencies.value));
 const cannotDeleteMessage = computed(() => {

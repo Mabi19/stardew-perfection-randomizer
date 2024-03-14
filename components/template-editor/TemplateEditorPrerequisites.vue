@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+import { prerequisiteCreationFunc } from "./template-editor-injects";
+
 const props = defineProps<{
     value: PrerequisiteGroup;
 }>();
@@ -76,7 +78,11 @@ function createFolder() {
     emit("update", newData);
 }
 
-function createPrerequisite() {}
+const triggerPrerequisiteDialog = inject(prerequisiteCreationFunc)!;
+
+function createPrerequisite() {
+    triggerPrerequisiteDialog();
+}
 </script>
 
 <style scoped lang="scss">

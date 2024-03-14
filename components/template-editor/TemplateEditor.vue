@@ -37,14 +37,14 @@
                 </table>
             </div>
 
-            <TemplateEditorPane v-if="template" :template="template" ref="goalDialog" />
+            <TemplateEditorPane v-if="template" :template :reverse-deps ref="goalDialog" />
         </div>
     </Teleport>
     <Body class="overlay-hack-active" v-if="template != null" />
 </template>
 
 <script setup lang="ts">
-import { reverseGoalDependencies } from "./reverse-dep-inject";
+import { reverseGoalDependencies } from "./template-editor-injects";
 import { TemplateEditorPane } from "#components";
 
 defineExpose({
