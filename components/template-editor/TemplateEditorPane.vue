@@ -78,9 +78,18 @@
                 </ul>
             </div>
             <div class="prerequisites" v-if="goal">
-                Prerequisites:
-                <template v-if="Object.keys(goal.prerequisites).length == 0">&lt;none&gt;</template>
-                <div class="indent">
+                <div class="first-line">
+                    <template v-if="Object.keys(goal.prerequisites).length == 0">
+                        <span>Prerequisites: &lt;none&gt;</span>
+                        <PlainIconButton
+                            icon="create_new_folder"
+                            class="init-button"
+                            @click="initPrerequisites"
+                        />
+                    </template>
+                    <span v-else>Prerequisites:</span>
+                </div>
+                <div class="indent" v-if="Object.keys(goal.prerequisites).length > 0">
                     <TemplateEditorPrerequisites :value="goal.prerequisites" />
                 </div>
             </div>
@@ -171,6 +180,14 @@ function cancelXPForm() {
     newXPAmount.value = "";
     newXPVisible.value = false;
 }
+
+function initPrerequisites() {
+    if (!goal.value) {
+        return;
+    }
+
+    goal.value.prerequisites = { all: [] };
+}
 </script>
 
 <style scoped lang="scss">
@@ -245,6 +262,17 @@ function cancelXPForm() {
 .xp-entry {
     & > * {
         vertical-align: middle;
+    }
+}
+
+.prerequisites {
+    .first-line {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+    .init-button {
+        margin-left: 0.25rem;
     }
 }
 </style>
