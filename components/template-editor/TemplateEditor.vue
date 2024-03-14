@@ -37,7 +37,7 @@
                 </table>
             </div>
 
-            <TemplateEditorPane v-if="template" :template :reverse-deps ref="goalDialog" />
+            <TemplateEditorPane v-if="template" :template ref="goalDialog" />
         </div>
     </Teleport>
     <Body class="overlay-hack-active" v-if="template != null" />

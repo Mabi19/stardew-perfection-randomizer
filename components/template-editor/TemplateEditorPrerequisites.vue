@@ -42,8 +42,10 @@ const type = computed(() => {
     }
 });
 
-// Modify the data in-place, then pass it up
-function passUpdate(idx: number, newData: Prerequisite) {
+// To simplify data flow, all updates are performed on copies and propagated up,
+// so that the prerequisites are only set in one place.
+// This helper function allows for modifying the data easily under this paradigm.
+function updateData(handler: (workCopy: Prerequisite[]) => void) {
     // get the list of children
     let workCopy: Prerequisite[];
     if (props.value.all) {
@@ -57,8 +59,8 @@ function passUpdate(idx: number, newData: Prerequisite) {
     // clone
     workCopy = JSON.parse(JSON.stringify(workCopy));
 
-    // swap out the data
-    workCopy.splice(idx, 1, newData);
+    // call handler
+    handler(workCopy);
 
     // wrap it again
     if (props.value.all) {
@@ -66,6 +68,14 @@ function passUpdate(idx: number, newData: Prerequisite) {
     } else if (props.value.any) {
         emit("update", { any: workCopy });
     }
+}
+
+// Modify the data in-place, then pass it up
+function passUpdate(idx: number, newData: Prerequisite) {
+    updateData((workCopy) => {
+        // swap out the data in our copy
+        workCopy[idx] = newData;
+    });
 }
 
 function createFolder() {
@@ -81,7 +91,13 @@ function createFolder() {
 const triggerPrerequisiteDialog = inject(prerequisiteCreationFunc)!;
 
 function createPrerequisite() {
-    triggerPrerequisiteDialog();
+    triggerPrerequisiteDialog()
+        .then((newVal) => {
+            updateData((workCopy) => {
+                workCopy.push(newVal);
+            });
+        })
+        .catch(/* do nothing */);
 }
 </script>
 
