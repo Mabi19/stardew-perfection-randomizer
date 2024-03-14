@@ -10,7 +10,7 @@ const props = withDefaults(
     defineProps<{
         type?: "default" | "positive" | "destructive";
         icon?: string;
-        small: boolean;
+        small?: boolean;
     }>(),
     {
         type: "default",
