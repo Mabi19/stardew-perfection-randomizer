@@ -89,9 +89,14 @@
                     </template>
                     <span v-else>Prerequisites:</span>
                 </div>
-                <div class="indent" v-if="Object.keys(goal.prerequisites).length > 0">
-                    <TemplateEditorPrerequisites :value="goal.prerequisites" />
-                </div>
+                <ul class="indent top-level" v-if="Object.keys(goal.prerequisites).length > 0">
+                    <li>
+                        <TemplateEditorPrerequisites
+                            :value="goal.prerequisites"
+                            @update="handlePrerequisiteUpdate"
+                        />
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="pane-content centered" v-else>Nothing selected</div>
@@ -188,6 +193,14 @@ function initPrerequisites() {
 
     goal.value.prerequisites = { all: [] };
 }
+
+function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
+    if (!goal.value) {
+        return;
+    }
+
+    goal.value.prerequisites = newData;
+}
 </script>
 
 <style scoped lang="scss">
@@ -273,6 +286,12 @@ function initPrerequisites() {
     }
     .init-button {
         margin-left: 0.25rem;
+    }
+
+    .top-level {
+        margin-block: 0;
+        padding: 0;
+        list-style-position: inside;
     }
 }
 </style>
