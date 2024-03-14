@@ -10,6 +10,7 @@
             />
             <span class="badge" v-else>
                 <input
+                    class="completion-input"
                     type="number"
                     min="0"
                     :max="goal.multiplicity"
