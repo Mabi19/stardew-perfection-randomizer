@@ -11,7 +11,7 @@
             <div class="divider" />
             <PlainIconButton
                 icon="delete"
-                title="Delete prerequisite group"
+                :title="`Delete prerequisite group${childCount > 0 ? ' (needs to be empty)' : ''}`"
                 :disabled="childCount > 0"
                 @click="deleteThisGroup"
             />
