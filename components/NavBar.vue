@@ -5,7 +5,7 @@
 </template>
 
 <!-- Not scoped because we want to style stuff inside the navbar -->
-<style lang="scss">
+<style scoped lang="scss">
 @use "~/assets/base";
 
 .nav-bar {
