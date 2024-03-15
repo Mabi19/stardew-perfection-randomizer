@@ -25,7 +25,7 @@ const props = defineProps<{
 
     &:disabled,
     &.disabled {
-        color: var(--text-light);
+        color: var(--text-dim);
         cursor: not-allowed;
         opacity: 1;
     }

@@ -16,7 +16,12 @@
                         <option :value="undefined">Unspecified</option>
                     </select>
                 </div>
+
                 <h2 class="header">Goals</h2>
+                <div class="row">
+                    <AppButton icon="add" @click="createNewGoal">Create new goal</AppButton>
+                </div>
+
                 <table class="goal-list">
                     <thead>
                         <tr>
@@ -40,8 +45,9 @@
             <TemplateEditorPane
                 v-if="template"
                 :template
-                ref="goalDialog"
+                ref="goalPane"
                 @finish-editing="replaceGoal"
+                @finish-create="addNewGoal"
             />
         </div>
     </Teleport>
@@ -121,7 +127,7 @@ const reverseDeps = computed(() => {
     return result;
 });
 provide(reverseGoalDependencies, reverseDeps);
-const goalDialog = ref<InstanceType<typeof TemplateEditorPane> | null>();
+const goalPane = ref<InstanceType<typeof TemplateEditorPane> | null>();
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
@@ -151,8 +157,12 @@ function quitWithoutSaving() {
 
 // editing actions
 
+function createNewGoal() {
+    goalPane.value!.createNewGoal();
+}
+
 function handleEdit(goalIndex: number) {
-    goalDialog.value!.setBaseGoal(template.value!.goals[goalIndex]);
+    goalPane.value!.setBaseGoal(template.value!.goals[goalIndex]);
 }
 
 function handleDelete(goalIndex: number) {
@@ -165,6 +175,10 @@ function replaceGoal(goal: Goal) {
     const existingIdx = template.value!.goals.findIndex((testGoal) => testGoal.id == goal.id);
     console.assert(existingIdx != -1, "Could not find goal to replace");
     template.value!.goals[existingIdx] = goal;
+}
+
+function addNewGoal(goal: Goal) {
+    template.value!.goals.push(goal);
 }
 
 // unload guards

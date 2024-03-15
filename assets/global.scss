@@ -10,7 +10,8 @@ body {
     line-height: 1.4;
 
     --text: black;
-    --text-light: #6d6d6d;
+    --text-dim: #6d6d6d;
+    --text-light: #333;
     --background: #ffffff;
     --background-light: #eee;
     --link: rgb(2, 95, 189);
@@ -24,7 +25,8 @@ body {
     color-scheme: dark;
 
     --text: whitesmoke;
-    --text-light: #75757a;
+    --text-dim: #75757a;
+    --text-light: #d0d0d0;
     --background: #222;
     --background-light: #333;
 
@@ -86,6 +88,12 @@ a:active {
     &.blue {
         background-color: base.$secondary-blue;
     }
+}
+
+.note {
+    font-size: small;
+    font-style: italic;
+    color: var(--text-light);
 }
 
 .row {
