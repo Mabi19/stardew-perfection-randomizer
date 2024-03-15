@@ -1,6 +1,12 @@
 <template>
     <div class="prereq-header">
-        <span>{{ type }} of:</span>
+        <span>
+            <select :value="type" @change="changeGroupType">
+                <option value="all">All</option>
+                <option value="any">Any</option>
+            </select>
+            <span> of:</span>
+        </span>
         <div class="header-buttons">
             <PlainIconButton
                 icon="create_new_folder"
@@ -120,6 +126,24 @@ function createGroup() {
 
 function deleteThisGroup() {
     emit("delete");
+}
+
+function changeGroupType(ev: Event) {
+    if (!ev.target) {
+        return;
+    }
+    const value = (ev.target as HTMLSelectElement).value;
+    if (value == type.value) {
+        return;
+    }
+
+    if (props.value.all) {
+        const data = JSON.parse(JSON.stringify(props.value.all));
+        emit("update", { [value]: data });
+    } else if (props.value.any) {
+        const data = JSON.parse(JSON.stringify(props.value.any));
+        emit("update", { [value]: data });
+    }
 }
 
 const triggerPrerequisiteDialog = inject(prerequisiteCreationFunc)!;
