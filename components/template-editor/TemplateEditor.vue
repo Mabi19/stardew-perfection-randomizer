@@ -37,7 +37,12 @@
                 </table>
             </div>
 
-            <TemplateEditorPane v-if="template" :template ref="goalDialog" />
+            <TemplateEditorPane
+                v-if="template"
+                :template
+                ref="goalDialog"
+                @finish-editing="replaceGoal"
+            />
         </div>
     </Teleport>
     <Body class="overlay-hack-active" v-if="template != null" />
@@ -152,6 +157,14 @@ function handleEdit(goalIndex: number) {
 
 function handleDelete(goalIndex: number) {
     template.value!.goals.splice(goalIndex, 1);
+}
+
+// pane finish handlers
+
+function replaceGoal(goal: Goal) {
+    const existingIdx = template.value!.goals.findIndex((testGoal) => testGoal.id == goal.id);
+    console.assert(existingIdx != -1, "Could not find goal to replace");
+    template.value!.goals[existingIdx] = goal;
 }
 
 // unload guards

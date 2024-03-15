@@ -3,7 +3,7 @@
         <div class="header" v-if="goal">
             Editing <code>{{ goal.id }}</code>
         </div>
-        <div class="pane-content" v-if="goal">
+        <form class="pane-content" v-if="goal" @submit.prevent="applyChanges">
             <div class="row">
                 <span>Name:</span>
                 <input type="text" v-model="goal.name" required minlength="3" />
@@ -107,7 +107,7 @@
                     >Cancel</AppButton
                 >
             </div>
-        </div>
+        </form>
         <div class="pane-content centered" v-else>Nothing selected</div>
     </div>
 
@@ -151,6 +151,10 @@ const props = defineProps<{
     template: Template;
 }>();
 
+const emit = defineEmits<{
+    finishEditing: [goal: Goal];
+}>();
+
 // get the form
 const form = ref<HTMLFormElement | null>(null);
 
@@ -176,6 +180,12 @@ watch(
 function setBaseGoal(newGoal: Goal) {
     // deep clone
     goal.value = JSON.parse(JSON.stringify(newGoal));
+}
+
+function applyChanges() {
+    // clone to get rid of reactivity
+    emit("finishEditing", JSON.parse(JSON.stringify(goal.value)));
+    goal.value = null;
 }
 
 function cancelEditing() {
