@@ -101,6 +101,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="row">
+                <AppButton icon="save">Save</AppButton>
+                <AppButton icon="block" type="destructive" @click.prevent="cancelEditing"
+                    >Cancel</AppButton
+                >
+            </div>
         </div>
         <div class="pane-content centered" v-else>Nothing selected</div>
     </div>
@@ -170,6 +176,10 @@ watch(
 function setBaseGoal(newGoal: Goal) {
     // deep clone
     goal.value = JSON.parse(JSON.stringify(newGoal));
+}
+
+function cancelEditing() {
+    goal.value = null;
 }
 
 // editing actions
@@ -341,6 +351,8 @@ provide(prerequisiteCreationFunc, createPrerequisite);
 }
 
 .prerequisites {
+    margin-bottom: 1rem;
+
     .first-line {
         display: flex;
         flex-flow: row nowrap;
