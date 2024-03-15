@@ -30,7 +30,11 @@
             <AppButton icon="add">Create</AppButton>
         </form>
     </AppDialog>
-    <TemplateEditor ref="templateEditor" @finish="finishTemplateEditor" />
+    <TemplateEditor
+        ref="templateEditor"
+        @finish="finishTemplateEditor"
+        @cancel="cancelTemplateEditor"
+    />
 </template>
 
 <script setup lang="ts">
@@ -96,9 +100,13 @@ function openTemplateEditor() {
 }
 
 function finishTemplateEditor(newTemplate: Template) {
-    templateEditorActive.value = false;
+    cancelTemplateEditor();
     customTemplate.value = newTemplate;
     template.value = "custom";
+}
+
+function cancelTemplateEditor() {
+    templateEditorActive.value = false;
 }
 </script>
 

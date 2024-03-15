@@ -53,6 +53,7 @@ defineExpose({
 
 const emit = defineEmits<{
     finish: [newTemplate: Template];
+    cancel: [];
 }>();
 
 // Traverse the prerequisite tree, returning all of the dependencies of this set of prerequisites
@@ -137,6 +138,10 @@ function saveAndQuit() {
 
 function quitWithoutSaving() {
     // TODO: pop up "Are you sure?" dialog
+    if (window.confirm("Are you sure you want to quit?")) {
+        template.value = null;
+        emit("cancel");
+    }
 }
 
 // editing actions
@@ -166,7 +171,7 @@ watchEffect(() => {
 
 const removeJSNavigationHook = useRouter().beforeResolve((_to) => {
     if (template.value) {
-        if (!window.confirm("You have unsaved changes! Are you sure you want to exit?")) {
+        if (!window.confirm("You have unsaved changes! Are you sure you want to quit?")) {
             return false;
         }
     }
