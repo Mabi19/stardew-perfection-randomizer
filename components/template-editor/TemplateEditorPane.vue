@@ -85,6 +85,7 @@
                         <PlainIconButton
                             icon="create_new_folder"
                             class="init-button"
+                            title="Create prerequisite group"
                             @click="initPrerequisites"
                         />
                     </template>
@@ -95,6 +96,7 @@
                         <TemplateEditorPrerequisites
                             :value="goal.prerequisites"
                             @update="handlePrerequisiteUpdate"
+                            @delete="goal.prerequisites = {}"
                         />
                     </li>
                 </ul>

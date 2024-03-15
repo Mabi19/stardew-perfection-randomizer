@@ -1,4 +1,5 @@
 <!-- TODO: disqualify current goal -->
+<!-- TODO: disqualify already present goals (only on this level though) -->
 <template>
     <input
         type="text"

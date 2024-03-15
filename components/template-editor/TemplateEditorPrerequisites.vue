@@ -5,20 +5,39 @@
             <PlainIconButton
                 icon="create_new_folder"
                 title="Create prerequisite group"
-                @click="createFolder"
+                @click="createGroup"
             />
             <PlainIconButton icon="add" title="Create prerequisite" @click="createPrerequisite" />
+            <div class="divider" />
+            <PlainIconButton
+                icon="delete"
+                title="Delete prerequisite group"
+                :disabled="childCount > 0"
+                @click="deleteThisGroup"
+            />
         </div>
     </div>
     <ul class="prereq-list">
         <li v-for="(req, idx) in value.all ?? value.any ?? []">
-            <template v-if="'goal' in req"
-                >{{ req.goal }}
-                <template v-if="!req.goal.startsWith('#')"
-                    >x{{ req.multiplicity ?? 1 }}</template
-                ></template
-            >
-            <TemplateEditorPrerequisites :value="req" v-else @update="passUpdate(idx, $event)" />
+            <span v-if="'goal' in req" class="prerequisite">
+                <span
+                    >{{ req.goal }}
+                    <template v-if="!req.goal.startsWith('#')"
+                        >x{{ req.multiplicity ?? 1 }}</template
+                    ></span
+                >
+                <PlainIconButton
+                    icon="delete"
+                    title="Delete prerequisite"
+                    @click="deleteChild(idx)"
+                />
+            </span>
+            <TemplateEditorPrerequisites
+                :value="req"
+                v-else
+                @update="passUpdate(idx, $event)"
+                @delete="deleteChild(idx)"
+            />
         </li>
     </ul>
 </template>
@@ -32,6 +51,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
     update: [data: PrerequisiteGroup];
+    delete: [];
 }>();
 
 const type = computed(() => {
@@ -40,6 +60,10 @@ const type = computed(() => {
     } else {
         return "any";
     }
+});
+
+const childCount = computed(() => {
+    return props.value.all?.length ?? props.value.any?.length ?? 0;
 });
 
 // To simplify data flow, all updates are performed on copies and propagated up,
@@ -78,7 +102,13 @@ function passUpdate(idx: number, newData: Prerequisite) {
     });
 }
 
-function createFolder() {
+function deleteChild(idx: number) {
+    updateData((workCopy) => {
+        workCopy.splice(idx, 1);
+    });
+}
+
+function createGroup() {
     const newData = JSON.parse(JSON.stringify(props.value));
     if (newData.all) {
         newData.all.push({ all: [] });
@@ -86,6 +116,10 @@ function createFolder() {
         newData.any.push({ all: [] });
     }
     emit("update", newData);
+}
+
+function deleteThisGroup() {
+    emit("delete");
 }
 
 const triggerPrerequisiteDialog = inject(prerequisiteCreationFunc)!;
@@ -102,11 +136,19 @@ function createPrerequisite() {
 </script>
 
 <style scoped lang="scss">
-.prereq-header {
+.prereq-header,
+.prerequisite {
     display: inline-flex;
     flex-flow: row nowrap;
     align-items: center;
+}
+
+.prereq-header {
     gap: 1rem;
+}
+
+.prerequisite {
+    gap: 0.25rem;
 }
 
 .header-buttons {
@@ -120,5 +162,11 @@ function createPrerequisite() {
     margin: 0;
     padding-left: 1rem;
     list-style-position: inside;
+}
+
+.divider {
+    height: 1rem;
+    border-right: 1px solid #a48cb9;
+    padding: 0;
 }
 </style>
