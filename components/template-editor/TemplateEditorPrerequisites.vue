@@ -162,6 +162,10 @@ function createPrerequisite() {
     margin: 0;
     padding-left: 1rem;
     list-style-position: inside;
+
+    li {
+        width: max-content;
+    }
 }
 
 .divider {

@@ -285,10 +285,16 @@ provide(prerequisiteCreationFunc, createPrerequisite);
 
     background-color: var(--background-light);
     border-left: 2px solid var(--text-light);
+
+    max-height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .pane-content {
     padding: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .centered {
@@ -366,6 +372,7 @@ provide(prerequisiteCreationFunc, createPrerequisite);
         margin-block: 0;
         padding: 0;
         list-style-position: inside;
+        overflow-x: auto;
     }
 }
 </style>
