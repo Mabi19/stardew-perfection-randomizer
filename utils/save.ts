@@ -45,7 +45,7 @@ export function deserializeSaveData(stringified: string): SavedData {
         throw new Error("Unknown save format");
     }
 
-    // TODO: error check these
+    // TODO: autofix/error-check these
 
     const predictedSkillXP: Record<string, number> = JSON.parse(predictedSkillXPString);
     const completion: Record<string, number> = JSON.parse(completionString);

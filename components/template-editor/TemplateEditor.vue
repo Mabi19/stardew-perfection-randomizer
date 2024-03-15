@@ -148,7 +148,6 @@ function saveAndQuit() {
 }
 
 function quitWithoutSaving() {
-    // TODO: pop up "Are you sure?" dialog
     if (window.confirm("Are you sure you want to quit?")) {
         template.value = null;
         emit("cancel");
