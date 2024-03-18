@@ -1,4 +1,9 @@
 <template>
+    <Panel type="warning">
+        <strong>The Randomizer does not yet include Stardew Valley 1.6 content.</strong>
+        The new content is not understood well enough yet to formalize Perfection's interlocking
+        requirements. Stay tuned for updates!
+    </Panel>
     <p>
         The Randomizer is a Stardew Valley challenge, originally created by
         <NuxtLink to="https://www.youtube.com/@ArgonMatrix">ArgonMatrix</NuxtLink>, where the goal
