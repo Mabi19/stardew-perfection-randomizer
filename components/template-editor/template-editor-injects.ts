@@ -1,1 +1,3 @@
-export const prerequisiteCreationFunc = Symbol() as InjectionKey<() => Promise<SinglePrerequisite>>;
+export const prerequisiteCreationFunc = Symbol() as InjectionKey<
+    (thisLevelDependencies: string[]) => Promise<SinglePrerequisite>
+>;

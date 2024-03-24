@@ -1,5 +1,3 @@
-<!-- TODO: disqualify current goal -->
-<!-- TODO: disqualify already present goals (only on this level though) -->
 <template>
     <input
         type="text"
@@ -18,6 +16,7 @@ import { vInvalid } from "#imports";
 
 const props = defineProps<{
     template: Template;
+    disqualified: Set<string>;
 }>();
 
 const selectedGoal = defineModel<string>({ required: true });
@@ -26,11 +25,19 @@ const eligibleGoals = computed(() => {
     const result: Record<string, string> = {};
 
     for (const goal of props.template.goals) {
+        if (props.disqualified.has(goal.id)) {
+            continue;
+        }
+
         result[goal.id] = goal.name;
     }
 
     for (const tagID of Object.keys(props.template.tags)) {
         const annotatedID = `#${tagID}`;
+        if (props.disqualified.has(annotatedID)) {
+            continue;
+        }
+
         result[annotatedID] = annotatedID;
     }
 

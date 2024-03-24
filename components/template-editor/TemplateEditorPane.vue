@@ -141,7 +141,11 @@
         <form @submit.prevent="finishPrerequisiteCreate">
             <div class="row">
                 <label for="new-prerequisite-goal">Goal:</label>
-                <TemplateEditorGoalPicker :template v-model="prerequisiteGoalID" />
+                <TemplateEditorGoalPicker
+                    :template
+                    :disqualified="prerequisiteDisqualified"
+                    v-model="prerequisiteGoalID"
+                />
             </div>
             <div class="row">
                 <label for="new-prerequisite-multiplicity">Multiplicity:</label>
@@ -315,6 +319,8 @@ let prerequisiteDialogCallbacks: {
     resolve: (v: SinglePrerequisite) => void;
     reject: () => void;
 } | null = null;
+
+const prerequisiteDisqualified = ref(new Set<string>());
 const prerequisiteGoalID = ref("");
 const prerequisiteMultiplicity = ref<string | number>("");
 
@@ -326,9 +332,10 @@ watchEffect(() => {
 });
 
 // Extracted out to minimize amount of dialogs in the DOM
-function createPrerequisite(): Promise<SinglePrerequisite> {
+function createPrerequisite(thisLevelDependencies: string[]): Promise<SinglePrerequisite> {
     return new Promise((resolve, reject) => {
         prerequisiteDialogActive.value = true;
+        prerequisiteDisqualified.value = new Set([goal.value!.id, ...thisLevelDependencies]);
         prerequisiteDialogCallbacks = { resolve, reject };
     });
 }

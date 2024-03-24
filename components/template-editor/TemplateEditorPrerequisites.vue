@@ -149,7 +149,12 @@ function changeGroupType(ev: Event) {
 const triggerPrerequisiteDialog = inject(prerequisiteCreationFunc)!;
 
 function createPrerequisite() {
-    triggerPrerequisiteDialog()
+    // track goals that are already included in this group to disqualify
+    const thisLevelDependencies = (props.value.all ?? props.value.any ?? [])
+        .filter((req) => "goal" in req)
+        .map((req) => (req as SinglePrerequisite).goal);
+
+    triggerPrerequisiteDialog(thisLevelDependencies)
         .then((newVal) => {
             updateData((workCopy) => {
                 workCopy.push(newVal);
