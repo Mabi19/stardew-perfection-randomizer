@@ -14,7 +14,7 @@
         <td>
             <PlainIconButton
                 icon="delete"
-                :class="{ disabled: !canMutate }"
+                :class="{ disabled: deleteBlocked }"
                 :title="cannotDeleteMessage"
                 @click="deleteGoal"
             />
@@ -23,10 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { reverseGoalDependencies } from "./template-editor-injects";
-
 const props = defineProps<{
     goal: Goal;
+    requiredBy?: Set<string>;
 }>();
 
 const emit = defineEmits<{
@@ -34,13 +33,13 @@ const emit = defineEmits<{
     delete: [];
 }>();
 
-// TODO: do this via props for performance
-// (this also allows for this injection key to be dropped)
-const reverseDependencies = inject(reverseGoalDependencies)!;
-const canMutate = computed(() => !(props.goal.id in reverseDependencies.value));
+const deleteBlocked = computed(() => {
+    return props.requiredBy && props.requiredBy.size > 0;
+});
+
 const cannotDeleteMessage = computed(() => {
-    if (!canMutate.value) {
-        return `This goal is required by ${Array.from(reverseDependencies.value[props.goal.id])
+    if (deleteBlocked.value) {
+        return `This goal is required by ${Array.from(props.requiredBy!)
             .map((id) => "`" + id + "`")
             .join(", ")}.`;
     } else {
@@ -54,7 +53,7 @@ function editGoal() {
 
 function deleteGoal() {
     // TODO: replace these with custom dialogs
-    if (!canMutate.value) {
+    if (deleteBlocked.value) {
         alert(cannotDeleteMessage.value);
     } else {
         if (confirm(`Are you sure you want to delete \`${props.goal.id}\`?`)) {

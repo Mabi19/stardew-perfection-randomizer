@@ -35,6 +35,7 @@
                         <TemplateEditorGoal
                             v-for="(goal, idx) in template.goals"
                             :goal="goal"
+                            :required-by="reverseDeps[goal.id]"
                             @edit="handleEdit(idx)"
                             @delete="handleDelete(idx)"
                         ></TemplateEditorGoal>
@@ -55,7 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import { reverseGoalDependencies } from "./template-editor-injects";
 import { TemplateEditorPane } from "#components";
 
 defineExpose({
@@ -126,7 +126,6 @@ const reverseDeps = computed(() => {
 
     return result;
 });
-provide(reverseGoalDependencies, reverseDeps);
 const goalPane = ref<InstanceType<typeof TemplateEditorPane> | null>();
 
 function start(baseTemplate: Template) {
