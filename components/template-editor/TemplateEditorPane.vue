@@ -49,8 +49,10 @@
                         icon="add"
                         title="Add an XP requirement"
                         @click="newXPVisible = !newXPVisible"
+                        :disabled="isLevelGoal"
                     />
                 </div>
+                <div v-if="isLevelGoal">Level goals cannot have implied XP.</div>
                 <form
                     @submit.prevent="addXPRequirement"
                     class="sub-form"
@@ -197,6 +199,8 @@ const skills = computed(() => {
 
 const goal = ref<Goal | null>(null);
 const isNewGoal = ref(false);
+const isLevelGoal = computed(() => goal.value?.id?.startsWith("level:") ?? false);
+
 const debouncedImageURL = ref("");
 const defaultGoalID = computed(() => {
     if (!goal.value) {
