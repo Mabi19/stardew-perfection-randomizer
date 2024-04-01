@@ -17,30 +17,41 @@
                     </select>
                 </div>
 
-                <h2 class="header">Goals</h2>
-                <div class="row">
-                    <AppButton icon="add" @click="createNewGoal">Create new goal</AppButton>
-                </div>
+                <TabSwitcher :options="['Goals', 'Tags']" v-model="currentTab" />
 
-                <table class="goal-list">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th class="small-hide">ID</th>
-                            <th><!-- edit button --></th>
-                            <th><!-- delete button --></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <TemplateEditorGoal
-                            v-for="(goal, idx) in template.goals"
-                            :goal="goal"
-                            :required-by="reverseDeps[goal.id]"
-                            @edit="handleEdit(idx)"
-                            @delete="handleDelete(idx)"
-                        ></TemplateEditorGoal>
-                    </tbody>
-                </table>
+                <template v-if="currentTab == 'Goals'">
+                    <h2 class="header">Goals</h2>
+                    <div class="row">
+                        <AppButton icon="add" @click="createNewGoal">Create new goal</AppButton>
+                    </div>
+
+                    <table class="goal-list">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th class="small-hide">ID</th>
+                                <th><!-- edit button --></th>
+                                <th><!-- delete button --></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <TemplateEditorGoal
+                                v-for="(goal, idx) in template.goals"
+                                :goal="goal"
+                                :required-by="reverseDeps[goal.id]"
+                                @edit="handleEdit(idx)"
+                                @delete="handleDelete(idx)"
+                            ></TemplateEditorGoal>
+                        </tbody>
+                    </table>
+                </template>
+                <template v-else>
+                    <h2 class="header">Tags</h2>
+                    <div class="row">
+                        <AppButton icon="add" @click="createNewTag">Create new tag</AppButton>
+                    </div>
+                    <TemplateEditorTagList :reverseDeps v-model="template.tags" />
+                </template>
             </div>
 
             <TemplateEditorPane
@@ -66,6 +77,8 @@ const emit = defineEmits<{
     finish: [newTemplate: Template];
     cancel: [];
 }>();
+
+const currentTab = ref("Goals");
 
 // Traverse the prerequisite tree, returning all of the dependencies of this set of prerequisites
 // (including tags and their contents)
@@ -127,6 +140,7 @@ const reverseDeps = computed(() => {
     return result;
 });
 const goalPane = ref<InstanceType<typeof TemplateEditorPane> | null>();
+watch(currentTab, () => goalPane.value?.cancelEditing());
 
 function start(baseTemplate: Template) {
     template.value = structuredClone(baseTemplate);
@@ -177,6 +191,12 @@ function replaceGoal(goal: Goal) {
 
 function addNewGoal(goal: Goal) {
     template.value!.goals.push(goal);
+}
+
+// tag things
+
+function createNewTag() {
+    // TODO
 }
 
 // unload guards

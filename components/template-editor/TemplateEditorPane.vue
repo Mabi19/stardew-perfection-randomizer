@@ -171,7 +171,7 @@
 import { debounce } from "lodash-es";
 import { prerequisiteCreationFunc } from "./template-editor-injects";
 
-defineExpose({ setBaseGoal, createNewGoal });
+defineExpose({ setBaseGoal, createNewGoal, cancelEditing });
 
 const props = defineProps<{
     template: Template;
