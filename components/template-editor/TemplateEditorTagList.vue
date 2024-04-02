@@ -3,8 +3,9 @@
         <TemplateEditorTag
             v-for="(contents, name) in tags"
             :name
-            :contents
+            v-model="tags[name]"
             :required-by="reverseDeps[`#${name}`]"
+            :template
         />
     </ul>
 </template>
@@ -12,6 +13,7 @@
 <script setup lang="ts">
 const props = defineProps<{
     reverseDeps: Record<string, Set<string>>;
+    template: Template;
 }>();
 
 const tags = defineModel<Record<string, string[]>>({ required: true });

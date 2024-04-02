@@ -18,16 +18,30 @@
 </template>
 
 <script setup lang="ts">
+import { goalSelectorFunc } from "./template-editor-injects";
+
 const props = defineProps<{
     name: string;
-    contents: string[];
     requiredBy: Set<string>;
+    template: Template;
 }>();
 
+const contents = defineModel<string[]>({ required: true });
 const open = ref(false);
 
+const triggerGoalSelector = inject(goalSelectorFunc)!;
+
+const disqualifiedGoals = computed(
+    () => new Set([...Object.keys(props.template.tags), ...contents.value]),
+);
 function addEntry() {
     open.value = true;
+
+    triggerGoalSelector(disqualifiedGoals.value, false)
+        .then(({ goal }) => {
+            contents.value.push(goal);
+        })
+        .catch(/* do nothing */);
 }
 </script>
 

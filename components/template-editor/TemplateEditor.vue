@@ -50,7 +50,7 @@
                     <div class="row">
                         <AppButton icon="add" @click="createNewTag">Create new tag</AppButton>
                     </div>
-                    <TemplateEditorTagList :reverseDeps v-model="template.tags" />
+                    <TemplateEditorTagList :reverseDeps :template v-model="template.tags" />
                 </template>
             </div>
 
