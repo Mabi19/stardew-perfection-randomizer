@@ -32,7 +32,11 @@ const open = ref(false);
 const triggerGoalSelector = inject(goalSelectorFunc)!;
 
 const disqualifiedGoals = computed(
-    () => new Set([...Object.keys(props.template.tags), ...contents.value]),
+    () =>
+        new Set([
+            ...Object.keys(props.template.tags).map((tagName) => `#${tagName}`),
+            ...contents.value,
+        ]),
 );
 function addEntry() {
     open.value = true;
