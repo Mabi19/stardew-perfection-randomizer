@@ -30,7 +30,7 @@ const currentOption = defineModel<string>({ required: true });
 .wrapper {
     background-color: var(--background-light);
     border-radius: 1rem;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem;
 
     display: flex;
     flex-flow: row wrap;
