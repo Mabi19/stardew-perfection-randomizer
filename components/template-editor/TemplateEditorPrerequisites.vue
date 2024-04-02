@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { prerequisiteCreationFunc } from "./template-editor-injects";
+import { currentEditedGoal, goalSelectorFunc } from "./template-editor-injects";
 
 const props = defineProps<{
     value: PrerequisiteGroup;
@@ -146,7 +146,8 @@ function changeGroupType(ev: Event) {
     }
 }
 
-const triggerPrerequisiteDialog = inject(prerequisiteCreationFunc)!;
+const triggerPrerequisiteDialog = inject(goalSelectorFunc)!;
+const editedGoal = inject(currentEditedGoal)!;
 
 function createPrerequisite() {
     // track goals that are already included in this group to disqualify
@@ -154,7 +155,7 @@ function createPrerequisite() {
         .filter((req) => "goal" in req)
         .map((req) => (req as SinglePrerequisite).goal);
 
-    triggerPrerequisiteDialog(thisLevelDependencies)
+    triggerPrerequisiteDialog(new Set([editedGoal.value!.id, ...thisLevelDependencies]), true)
         .then((newVal) => {
             updateData((workCopy) => {
                 workCopy.push(newVal);

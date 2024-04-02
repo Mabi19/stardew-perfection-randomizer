@@ -63,11 +63,23 @@
             />
         </div>
     </Teleport>
+
+    <TemplateEditorGoalPicker
+        :active="goalSelectorActive"
+        :disqualified="goalSelectorDisqualified"
+        :template
+        :use-multiplicity="goalSelectorUseMultiplicity"
+        v-if="template"
+        @finish="finishGoalSelector"
+        @cancel="cancelGoalSelector"
+    />
+
     <Body class="overlay-hack-active" v-if="template != null" />
 </template>
 
 <script setup lang="ts">
 import { TemplateEditorPane } from "#components";
+import { goalSelectorFunc } from "./template-editor-injects";
 
 defineExpose({
     start,
@@ -198,6 +210,55 @@ function addNewGoal(goal: Goal) {
 function createNewTag() {
     // TODO
 }
+
+// goal selector dialog
+// Extracted out to minimize amount of dialogs in the DOM
+let goalSelectorCallbacks: {
+    resolve: (v: SinglePrerequisite) => void;
+    reject: () => void;
+} | null = null;
+// used to queue up multiple dialogs, though that should never happen
+let goalSelectorPromise: Promise<SinglePrerequisite> | null = null;
+
+const goalSelectorActive = ref(false);
+const goalSelectorDisqualified = ref(new Set<string>());
+const goalSelectorUseMultiplicity = ref(false);
+
+async function triggerGoalSelector(
+    disqualified: Set<string>,
+    useMultiplicity: boolean,
+): Promise<SinglePrerequisite> {
+    // wait for previous to finish (if it somehow came up)
+    if (goalSelectorPromise) {
+        await goalSelectorPromise;
+    }
+
+    const promise = new Promise<SinglePrerequisite>((resolve, reject) => {
+        goalSelectorActive.value = true;
+        goalSelectorDisqualified.value = disqualified;
+        goalSelectorUseMultiplicity.value = useMultiplicity;
+        goalSelectorCallbacks = { resolve, reject };
+    });
+    goalSelectorPromise = promise;
+
+    return promise;
+}
+
+function finishGoalSelector(result: SinglePrerequisite) {
+    goalSelectorActive.value = false;
+    goalSelectorCallbacks?.resolve(result);
+    goalSelectorCallbacks = null;
+    goalSelectorPromise = null;
+}
+
+function cancelGoalSelector() {
+    goalSelectorActive.value = false;
+    goalSelectorCallbacks?.reject();
+    goalSelectorCallbacks = null;
+    goalSelectorPromise = null;
+}
+
+provide(goalSelectorFunc, triggerGoalSelector);
 
 // unload guards
 

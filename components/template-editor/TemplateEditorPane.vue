@@ -134,42 +134,11 @@
         </form>
         <div class="pane-content centered" v-else>Nothing selected</div>
     </div>
-
-    <AppDialog
-        title="Create prerequisite"
-        :open="prerequisiteDialogActive"
-        @close="cancelPrerequisiteCreate"
-    >
-        <form @submit.prevent="finishPrerequisiteCreate">
-            <div class="row">
-                <label for="new-prerequisite-goal">Goal:</label>
-                <TemplateEditorGoalPicker
-                    :template
-                    :disqualified="prerequisiteDisqualified"
-                    v-model="prerequisiteGoalID"
-                />
-            </div>
-            <div class="row">
-                <label for="new-prerequisite-multiplicity">Multiplicity:</label>
-                <!-- TODO: prevent setting this too high -->
-                <input
-                    type="number"
-                    id="new-prerequisite-multiplicity"
-                    v-model.number="prerequisiteMultiplicity"
-                    :disabled="prerequisiteIsTag"
-                    :placeholder="prerequisiteIsTag ? undefined : '1'"
-                    min="1"
-                />
-            </div>
-
-            <AppButton icon="add">Create</AppButton>
-        </form>
-    </AppDialog>
 </template>
 
 <script setup lang="ts">
 import { debounce } from "lodash-es";
-import { prerequisiteCreationFunc } from "./template-editor-injects";
+import { currentEditedGoal } from "./template-editor-injects";
 
 defineExpose({ setBaseGoal, createNewGoal, cancelEditing });
 
@@ -198,6 +167,8 @@ const skills = computed(() => {
 });
 
 const goal = ref<Goal | null>(null);
+// provide for deep-nested prerequisites component
+provide(currentEditedGoal, goal);
 const isNewGoal = ref(false);
 const isLevelGoal = computed(() => goal.value?.id?.startsWith("level:") ?? false);
 
@@ -317,52 +288,6 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
 
     goal.value.prerequisites = newData;
 }
-
-const prerequisiteDialogActive = ref(false);
-let prerequisiteDialogCallbacks: {
-    resolve: (v: SinglePrerequisite) => void;
-    reject: () => void;
-} | null = null;
-
-const prerequisiteDisqualified = ref(new Set<string>());
-const prerequisiteGoalID = ref("");
-const prerequisiteMultiplicity = ref<string | number>("");
-
-const prerequisiteIsTag = computed(() => prerequisiteGoalID.value.startsWith("#"));
-watchEffect(() => {
-    if (prerequisiteIsTag.value) {
-        prerequisiteMultiplicity.value = "";
-    }
-});
-
-// Extracted out to minimize amount of dialogs in the DOM
-function createPrerequisite(thisLevelDependencies: string[]): Promise<SinglePrerequisite> {
-    return new Promise((resolve, reject) => {
-        prerequisiteDialogActive.value = true;
-        prerequisiteDisqualified.value = new Set([goal.value!.id, ...thisLevelDependencies]);
-        prerequisiteDialogCallbacks = { resolve, reject };
-    });
-}
-
-function finishPrerequisiteCreate() {
-    prerequisiteDialogActive.value = false;
-    const result: SinglePrerequisite = { goal: prerequisiteGoalID.value };
-    if (
-        !prerequisiteIsTag.value &&
-        typeof prerequisiteMultiplicity.value == "number" &&
-        prerequisiteMultiplicity.value > 0
-    ) {
-        result.multiplicity = prerequisiteMultiplicity.value;
-    }
-    prerequisiteDialogCallbacks?.resolve(result);
-}
-
-function cancelPrerequisiteCreate() {
-    prerequisiteDialogActive.value = false;
-    prerequisiteDialogCallbacks?.reject();
-}
-
-provide(prerequisiteCreationFunc, createPrerequisite);
 </script>
 
 <style scoped lang="scss">
