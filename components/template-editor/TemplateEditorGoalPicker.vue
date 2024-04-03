@@ -20,7 +20,6 @@
             </div>
             <div class="row" v-if="useMultiplicity">
                 <label for="new-prerequisite-multiplicity">Multiplicity:</label>
-                <!-- TODO: prevent setting this too high -->
                 <input
                     type="number"
                     id="new-prerequisite-multiplicity"
@@ -28,6 +27,7 @@
                     :disabled="selectedIsTag"
                     :placeholder="selectedIsTag ? undefined : '1'"
                     min="1"
+                    :max="maxMultiplicity"
                 />
             </div>
 
@@ -38,6 +38,7 @@
 
 <script setup lang="ts">
 import { vInvalid, type SinglePrerequisite } from "#imports";
+import { template } from "lodash-es";
 
 const props = defineProps<{
     active: boolean;
@@ -91,6 +92,21 @@ const eligibleGoals = computed(() => {
     }
 
     return result;
+});
+
+const maxMultiplicity = computed(() => {
+    // This is a linear search, which is not the best.
+    // But it's only going to be done infrequently (only when the goal is valid)
+    if (!(selectedGoalID.value in eligibleGoals.value)) {
+        return undefined;
+    }
+
+    if (selectedGoalID.value.startsWith("#")) {
+        return undefined;
+    }
+
+    return props.template.goals.find((testGoal) => testGoal.id == selectedGoalID.value)
+        ?.multiplicity;
 });
 
 function finish() {
