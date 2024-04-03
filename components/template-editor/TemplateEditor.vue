@@ -74,12 +74,36 @@
         @cancel="cancelGoalSelector"
     />
 
+    <AppDialog
+        title="Create new tag"
+        :open="tagNameDialogActive"
+        @close="tagNameDialogActive = false"
+    >
+        <form @submit.prevent="finishNewTag">
+            <div class="row">
+                <label for="new-tag-name">Name:</label>
+                <span>
+                    #
+                    <input
+                        type="text"
+                        id="new-tag-name"
+                        v-model="newTagName"
+                        pattern="[a-z0-9_:]+"
+                        v-invalid="newTagName in (template?.tags ?? {}) ? 'Tag already exists' : ''"
+                    />
+                </span>
+            </div>
+            <AppButton icon="add" class="dialog-button-margin">Create</AppButton>
+        </form>
+    </AppDialog>
+
     <Body class="overlay-hack-active" v-if="template != null" />
 </template>
 
 <script setup lang="ts">
 import { TemplateEditorPane } from "#components";
 import { goalSelectorFunc } from "./template-editor-injects";
+import { vInvalid } from "#imports";
 
 defineExpose({
     start,
@@ -207,8 +231,17 @@ function addNewGoal(goal: Goal) {
 
 // tag things
 
+const tagNameDialogActive = ref(false);
+const newTagName = ref("");
+
 function createNewTag() {
-    // TODO
+    tagNameDialogActive.value = true;
+    newTagName.value = "";
+}
+
+function finishNewTag() {
+    template.value!.tags[newTagName.value] = [];
+    tagNameDialogActive.value = false;
 }
 
 // goal selector dialog

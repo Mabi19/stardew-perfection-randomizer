@@ -3,7 +3,7 @@
         <TemplateEditorTag
             v-for="(_contents, name) in tags"
             :name
-            :required-by="reverseDeps[`#${name}`]"
+            :required-by="reverseDeps[`#${name}`] ?? new Set()"
             :template
             v-model="tags[name]"
             @delete="deleteTag(name)"

@@ -12,7 +12,7 @@
                     :disabled="requiredBy.size > 0 || contents.length > 0"
                 />
             </summary>
-            <ul class="contents">
+            <ul class="contents" v-if="contents.length > 0">
                 <li v-for="(child, idx) in contents" class="contents-entry">
                     <code>
                         {{ child }}
@@ -25,6 +25,7 @@
                     />
                 </li>
             </ul>
+            <div class="contents" v-else>&lt;no entries&gt;</div>
         </details>
     </li>
 </template>
@@ -52,6 +53,8 @@ const cannotDeleteMessage = computed(() => {
         return `This tag is required by ${Array.from(props.requiredBy)
             .map((id) => "`" + id + "`")
             .join(", ")}.`;
+    } else if (contents.value.length > 0) {
+        return "Cannot delete tag with contents";
     } else {
         return "Delete tag";
     }
