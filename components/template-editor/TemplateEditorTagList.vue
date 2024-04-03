@@ -1,11 +1,12 @@
 <template>
     <ul class="tag-list">
         <TemplateEditorTag
-            v-for="(contents, name) in tags"
+            v-for="(_contents, name) in tags"
             :name
-            v-model="tags[name]"
             :required-by="reverseDeps[`#${name}`]"
             :template
+            v-model="tags[name]"
+            @delete="deleteTag(name)"
         />
     </ul>
 </template>
@@ -17,6 +18,10 @@ const props = defineProps<{
 }>();
 
 const tags = defineModel<Record<string, string[]>>({ required: true });
+
+function deleteTag(name: string) {
+    delete tags.value[name];
+}
 </script>
 
 <style scoped lang="scss">

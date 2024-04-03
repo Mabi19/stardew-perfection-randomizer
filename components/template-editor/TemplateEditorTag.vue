@@ -5,12 +5,24 @@
                 <code>#{{ name }}</code>
                 <span>({{ contents.length }} entries)</span>
                 <PlainIconButton icon="add" title="Add tag entry" @click="addEntry" />
+                <PlainIconButton
+                    icon="delete"
+                    :title="cannotDeleteMessage"
+                    @click="$emit('delete')"
+                    :disabled="requiredBy.size > 0 || contents.length > 0"
+                />
             </summary>
             <ul class="contents">
-                <li v-for="child in contents">
+                <li v-for="(child, idx) in contents" class="contents-entry">
                     <code>
                         {{ child }}
                     </code>
+                    <PlainIconButton
+                        icon="delete"
+                        title="Delete tag entry"
+                        @click="deleteEntry(idx)"
+                        class="delete-button"
+                    />
                 </li>
             </ul>
         </details>
@@ -26,10 +38,24 @@ const props = defineProps<{
     template: Template;
 }>();
 
+const emit = defineEmits<{
+    delete: [];
+}>();
+
 const contents = defineModel<string[]>({ required: true });
 const open = ref(false);
 
 const triggerGoalSelector = inject(goalSelectorFunc)!;
+
+const cannotDeleteMessage = computed(() => {
+    if (props.requiredBy.size > 0) {
+        return `This tag is required by ${Array.from(props.requiredBy)
+            .map((id) => "`" + id + "`")
+            .join(", ")}.`;
+    } else {
+        return "Delete tag";
+    }
+});
 
 const disqualifiedGoals = computed(
     () =>
@@ -38,6 +64,7 @@ const disqualifiedGoals = computed(
             ...contents.value,
         ]),
 );
+
 function addEntry() {
     open.value = true;
 
@@ -46,6 +73,10 @@ function addEntry() {
             contents.value.push(goal);
         })
         .catch(/* do nothing */);
+}
+
+function deleteEntry(idx: number) {
+    contents.value.splice(idx, 1);
 }
 </script>
 
@@ -72,5 +103,13 @@ function addEntry() {
     width: max-content;
     max-width: 100%;
     padding: 0.5rem 1rem;
+}
+
+.contents-entry * {
+    vertical-align: middle;
+}
+
+.delete-button {
+    margin-left: 0.25rem;
 }
 </style>
