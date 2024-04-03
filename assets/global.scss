@@ -98,6 +98,10 @@ a:active {
     color: var(--text-light);
 }
 
+.dialog-button-margin {
+    margin-top: 0.5rem;
+}
+
 .row {
     display: flex;
     flex-flow: row wrap;

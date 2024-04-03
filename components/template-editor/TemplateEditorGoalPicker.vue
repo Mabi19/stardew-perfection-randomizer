@@ -31,7 +31,7 @@
                 />
             </div>
 
-            <AppButton icon="check" class="top-margin">Confirm</AppButton>
+            <AppButton icon="check" class="dialog-button-margin">Confirm</AppButton>
         </form>
     </AppDialog>
 </template>
@@ -110,9 +110,3 @@ function cancel() {
     emit("cancel");
 }
 </script>
-
-<style scoped lang="scss">
-.top-margin {
-    margin-top: 0.5rem;
-}
-</style>

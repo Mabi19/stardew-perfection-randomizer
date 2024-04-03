@@ -14,7 +14,12 @@
                         <option value="hardcore">Hardcore Mode</option>
                         <option value="custom" v-if="customTemplate != null">Custom</option>
                     </select>
-                    <AppButton @click="openTemplateEditor()" icon="edit">Customize</AppButton>
+                    <AppButton
+                        @click="openTemplateEditor()"
+                        icon="edit"
+                        class="dialog-button-margin"
+                        >Customize</AppButton
+                    >
                 </li>
                 <li>
                     <label for="profile-name">Name your profile</label>
@@ -27,7 +32,7 @@
                     />
                 </li>
             </ol>
-            <AppButton icon="add">Create</AppButton>
+            <AppButton icon="add" class="dialog-button-margin">Create</AppButton>
         </form>
     </AppDialog>
     <TemplateEditor
@@ -128,10 +133,6 @@ function cancelTemplateEditor() {
             margin-top: 0.25rem;
             display: block;
             width: 100%;
-        }
-
-        :deep(button) {
-            margin-top: 0.5rem;
         }
     }
 }
