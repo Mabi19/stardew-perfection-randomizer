@@ -1,9 +1,12 @@
 <template>
+    <div class="part" v-if="store.templateData.ruleset">
+        This Randomizer uses {{ store.templateData.ruleset }} rules.
+        <a href="https://bit.ly/RandomPerfection">Perfection Randomizer Rules Document</a>
+    </div>
     <div class="part row">
         <label for="filter">Filter goals:</label>
         <input id="filter" type="search" v-model="searchTerm" ref="searchBox" />
     </div>
-    <!-- TODO: display template ruleset -->
     <div class="part">
         <GoalList :search-term="searchTerm"></GoalList>
     </div>
@@ -13,6 +16,8 @@
 useHead({
     title: "Goals",
 });
+
+const store = useRandomizerStore();
 
 const searchTerm = ref("");
 const searchBox = ref<HTMLInputElement | null>(null);
