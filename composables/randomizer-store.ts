@@ -109,7 +109,13 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
         // we're not substituting the XP threshold here because we're about to set it
         const previousXP = predictedSkillXP.value[skill] ?? 0;
-        const newXP = Math.max(previousXP, skillXPValues[completion.value[goalID]]);
+        const skillLevel = completion.value[goalID];
+        if (!skillLevel) {
+            throw new Error("Invalid skill level ID");
+        }
+
+        // cap skill levels
+        const newXP = Math.max(previousXP, skillXPValues[skillLevel] ?? 999999);
         predictedSkillXP.value[skill] = newXP;
     }
 
@@ -135,10 +141,10 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
                 return aggregateHandler.call(
                     tagGoals,
-                    (tagGoal) => completion.value[tagGoal] >= requiredCompletion,
+                    (tagGoal) => (completion.value[tagGoal] ?? 0) >= requiredCompletion,
                 );
             } else {
-                return completion.value[prerequisite.goal] >= requiredCompletion;
+                return (completion.value[prerequisite.goal] ?? 0) >= requiredCompletion;
             }
         } else {
             // prerequisite group
@@ -162,7 +168,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
             return false;
         }
         // do not roll completed goals
-        if (completion.value[goal.id] >= goal.multiplicity) {
+        if ((completion.value[goal.id] ?? 0) >= goal.multiplicity) {
             return false;
         }
 
@@ -174,11 +180,11 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
         // check for XP values
         for (const [skill, impliedXP] of Object.entries(goal.xp)) {
-            const level = completion.value[`level:${skill}`];
+            const level = completion.value[`level:${skill}`] ?? 0;
             // if there is no saved XP prediction, use the current level as a baseline
-            let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level];
+            let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level] ?? 0;
             currentXP += impliedXP;
-            if (currentXP >= skillXPValues[level + 1]) {
+            if (currentXP >= (skillXPValues[level + 1] ?? 999999)) {
                 return false;
             }
         }
@@ -190,7 +196,12 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         const eligibleGoals = Object.values(goals.value)
             .filter((goal) => isEligible(goal))
             // weigh goals by their remaining multiplicity
-            .flatMap((goal) => new Array(goal.multiplicity - completion.value[goal.id]).fill(goal));
+            .flatMap((goal) =>
+                new Array(
+                    goal.multiplicity -
+                        (completion.value[goal.id] ?? throwError(new Error("Could not find goal"))),
+                ).fill(goal),
+            );
         const index = Math.floor(Math.random() * eligibleGoals.length);
         currentGoalID.value = eligibleGoals[index].id;
     }
@@ -202,21 +213,23 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     function finishGoal() {
         if (currentGoal.value == null) return;
 
-        if (completion.value[currentGoal.value.id] < currentGoal.value.multiplicity) {
+        if ((completion.value[currentGoal.value.id] ?? 0) < currentGoal.value.multiplicity) {
             completion.value[currentGoal.value.id] += 1;
         }
 
         // update XP prediction for level goal
         let matches = currentGoal.value.id.match(/^level:(.+)$/);
         if (matches) {
-            const skill = matches[1];
+            const skill = matches[1]!;
             updatePredictedXPLevelUp(skill);
         }
 
         // add implied XP to the prediction
         for (const [skill, impliedXP] of Object.entries(currentGoal.value.xp)) {
             let currentXP =
-                predictedSkillXP.value[skill] ?? skillXPValues[completion.value[`level:${skill}`]];
+                predictedSkillXP.value[skill] ??
+                skillXPValues[completion.value[`level:${skill}`] ?? 0] ??
+                0;
             currentXP += impliedXP;
             predictedSkillXP.value[skill] = currentXP;
         }

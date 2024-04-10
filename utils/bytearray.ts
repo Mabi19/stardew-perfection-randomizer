@@ -11,7 +11,7 @@ namespace ByteArrayUtils {
     export function decodeInteger(data: Uint8Array) {
         let output = 0;
         for (let i = data.length - 1; i >= 0; i--) {
-            const byte = data[i];
+            const byte = data[i]!;
             const shift = (data.length - i - 1) * 8;
             output += byte << shift;
         }

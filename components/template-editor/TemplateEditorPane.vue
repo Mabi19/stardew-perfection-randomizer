@@ -155,6 +155,7 @@ defineExpose({ setBaseGoal, createNewGoal, cancelEditing });
 
 const props = defineProps<{
     template: Template;
+    goalsByID: Record<string, Goal>;
 }>();
 
 const emit = defineEmits<{
@@ -214,7 +215,7 @@ const newIDIsInvalid = computed(() => {
     if (!appliedGoalID) return false;
 
     // !! to convert to boolean
-    return !!props.template.goals.find((testGoal) => testGoal.id == appliedGoalID);
+    return !!props.goalsByID[appliedGoalID];
 });
 
 function setBaseGoal(newGoal: Goal) {

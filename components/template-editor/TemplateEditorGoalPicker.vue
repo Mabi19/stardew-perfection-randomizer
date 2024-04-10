@@ -43,6 +43,7 @@ import { template } from "lodash-es";
 const props = defineProps<{
     active: boolean;
     template: Template;
+    goalsByID: Record<string, Goal>;
     disqualified: Set<string>;
     useMultiplicity: boolean;
 }>();
@@ -108,8 +109,7 @@ const maxMultiplicity = computed(() => {
         return undefined;
     }
 
-    return props.template.goals.find((testGoal) => testGoal.id == selectedGoalID.value)
-        ?.multiplicity;
+    return props.goalsByID[selectedGoalID.value]?.multiplicity;
 });
 
 function finish() {

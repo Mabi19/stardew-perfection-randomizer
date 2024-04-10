@@ -57,6 +57,7 @@
             <TemplateEditorPane
                 v-if="template"
                 :template
+                :goals-by-i-d
                 ref="goalPane"
                 @finish-editing="replaceGoal"
                 @finish-create="addNewGoal"
@@ -68,6 +69,7 @@
         :active="goalSelectorActive"
         :disqualified="goalSelectorDisqualified"
         :template
+        :goals-by-i-d
         :use-multiplicity="goalSelectorUseMultiplicity"
         v-if="template"
         @finish="finishGoalSelector"
@@ -103,7 +105,7 @@
 <script setup lang="ts">
 import { TemplateEditorPane } from "#components";
 import { goalSelectorFunc } from "./template-editor-injects";
-import { vInvalid } from "#imports";
+import { vInvalid, type Template } from "#imports";
 
 defineExpose({
     start,
@@ -175,6 +177,9 @@ const reverseDeps = computed(() => {
 
     return result;
 });
+const goalsByID = computed(() =>
+    template.value ? Object.fromEntries(template.value.goals.map((goal) => [goal.id, goal])) : {},
+);
 const goalPane = ref<InstanceType<typeof TemplateEditorPane> | null>();
 watch(currentTab, () => goalPane.value?.cancelEditing());
 
