@@ -1,5 +1,6 @@
 <template>
-    <div class="pane">
+    <div class="pane-backdrop" :class="{ active: !!goal }"></div>
+    <div class="pane" :class="{ active: !!goal }">
         <div class="header" v-if="goal">
             <template v-if="isNewGoal">New goal</template>
             <template v-else
@@ -44,10 +45,11 @@
             </div>
             <div class="row">
                 <span>Multiplicity:</span>
-                <!-- TODO: prevent setting this too low -->
-                <!-- This may require a "goals by ID" table to be fast. Otherwise it's going to do tons of linear searches or be ugly -->
-                <!-- If one ends up being used, put it somewhere high up and also change all the other linear searches -->
                 <input type="number" v-model="goal.multiplicity" placeholder="1" min="1" max="99" />
+            </div>
+            <div class="note">
+                Be careful when lowering the multiplicity, as having other goals' prerequisites
+                possible is only enforced when saving.
             </div>
             <div class="xp" v-if="goal">
                 <div class="pad-edges">
@@ -130,7 +132,7 @@
                         <TemplateEditorPrerequisites
                             :value="goal.prerequisites"
                             @update="handlePrerequisiteUpdate"
-                            @delete="goal ? goal.prerequisites = {} : void"
+                            @delete="goal ? (goal.prerequisites = {}) : void 0"
                         />
                     </li>
                 </ul>
@@ -156,6 +158,7 @@ defineExpose({ setBaseGoal, createNewGoal, cancelEditing });
 const props = defineProps<{
     template: Template;
     goalsByID: Record<string, Goal>;
+    reverseDeps: Record<string, Set<string>>;
 }>();
 
 const emit = defineEmits<{
@@ -321,10 +324,9 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
 <style scoped lang="scss">
 @use "~/assets/base";
 
-// TODO: mobile slide-out and stuff i think
-
 .pane {
     width: 400px;
+    max-width: 90vw;
 
     background-color: var(--background-light);
     border-left: 2px solid var(--text-dim);
@@ -338,6 +340,48 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
     padding: 1rem;
     flex-grow: 1;
     overflow-y: auto;
+}
+
+.pane-backdrop {
+    display: none;
+}
+
+@media (max-width: 750px) {
+    .pane {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        transition: 0.5s ease transform;
+        transform: translateX(100%);
+
+        z-index: 11;
+    }
+
+    .pane.active {
+        transform: translateX(0);
+    }
+
+    .pane-backdrop {
+        display: block;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+
+        background-color: black;
+        opacity: 0;
+        transition: 0.5s ease opacity;
+    }
+
+    .pane-backdrop.active {
+        pointer-events: all;
+        opacity: 0.3;
+    }
 }
 
 .centered {
