@@ -346,7 +346,7 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
     display: none;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1000px) {
     .pane {
         position: fixed;
         top: 0;
@@ -371,6 +371,7 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
         left: 0;
         right: 0;
         bottom: 0;
+        // do not block clicks by default
         pointer-events: none;
 
         background-color: black;
@@ -379,6 +380,7 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
     }
 
     .pane-backdrop.active {
+        // block clicks when covering
         pointer-events: all;
         opacity: 0.3;
     }
