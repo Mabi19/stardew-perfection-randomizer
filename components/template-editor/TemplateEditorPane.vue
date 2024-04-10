@@ -45,6 +45,8 @@
             <div class="row">
                 <span>Multiplicity:</span>
                 <!-- TODO: prevent setting this too low -->
+                <!-- This may require a "goals by ID" table to be fast. Otherwise it's going to do tons of linear searches or be ugly -->
+                <!-- If one ends up being used, put it somewhere high up and also change all the other linear searches -->
                 <input type="number" v-model="goal.multiplicity" placeholder="1" min="1" max="99" />
             </div>
             <div class="xp" v-if="goal">
@@ -128,7 +130,7 @@
                         <TemplateEditorPrerequisites
                             :value="goal.prerequisites"
                             @update="handlePrerequisiteUpdate"
-                            @delete="goal.prerequisites = {}"
+                            @delete="goal ? goal.prerequisites = {} : void"
                         />
                     </li>
                 </ul>
@@ -167,7 +169,7 @@ const form = ref<HTMLFormElement | null>(null);
 const skills = computed(() => {
     const result: Record<string, { goalIndex: number }> = {};
     for (let i = 0; i < props.template.goals.length; i++) {
-        const goal = props.template.goals[i];
+        const goal = props.template.goals[i]!;
         if (goal.id.startsWith("level:")) {
             result[goal.id.slice("level:".length)] = { goalIndex: i };
         }
@@ -190,7 +192,7 @@ const defaultGoalID = computed(() => {
     const results = goal.value.name.match(/^Gain an? ([A-Za-z]+) Level$/i);
     if (results) {
         const [_fullMatch, skillName] = results;
-        return `level:${skillName.toLowerCase()}`;
+        return `level:${skillName!.toLowerCase()}`;
     }
 
     return goal.value.name

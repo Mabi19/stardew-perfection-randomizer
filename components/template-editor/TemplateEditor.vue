@@ -124,7 +124,7 @@ function* traversePrerequisites(reqs: Prerequisite): Generator<string, void, voi
         if (reqs.goal.startsWith("#")) {
             // tag: yield it and its contents (both are required)
             yield reqs.goal;
-            for (const goal of template.value!.tags[reqs.goal.slice(1)]) {
+            for (const goal of template.value!.tags[reqs.goal.slice(1)] ?? []) {
                 yield goal;
             }
         } else {
@@ -159,7 +159,7 @@ const reverseDeps = computed(() => {
             if (!(target in result)) {
                 result[target] = new Set();
             }
-            result[target].add(id);
+            result[target]!.add(id);
         }
     }
 
@@ -169,7 +169,7 @@ const reverseDeps = computed(() => {
             if (!(target in result)) {
                 result[target] = new Set();
             }
-            result[target].add(referenceName);
+            result[target]!.add(referenceName);
         }
     }
 
@@ -210,7 +210,8 @@ function createNewGoal() {
 }
 
 function handleEdit(goalIndex: number) {
-    goalPane.value!.setBaseGoal(template.value!.goals[goalIndex]);
+    const goal = template.value!.goals[goalIndex];
+    if (goal) goalPane.value!.setBaseGoal(goal);
 }
 
 function handleDelete(goalIndex: number) {

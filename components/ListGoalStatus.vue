@@ -60,7 +60,7 @@ function update(state: number) {
     // but there isn't an easy way to do that
     const matches = props.goal.id.match(/^level:(.+)$/);
     if (matches) {
-        store.updatePredictedXPLevelUp(matches[1]);
+        store.updatePredictedXPLevelUp(matches[1]!);
     }
 }
 </script>

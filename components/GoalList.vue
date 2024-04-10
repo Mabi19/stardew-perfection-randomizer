@@ -62,9 +62,9 @@
                     icon="tune"
                     :disabled="
                         infoGoal.id == store.currentGoalID ||
-                        store.completion[infoGoal.id] >= infoGoal.multiplicity
+                        (store.completion[infoGoal.id] ?? 0) >= infoGoal.multiplicity
                     "
-                    @click="store.currentGoalID = infoGoal.id"
+                    @click="store.currentGoalID = infoGoal!.id"
                 >
                     Set as current
                 </AppButton>
