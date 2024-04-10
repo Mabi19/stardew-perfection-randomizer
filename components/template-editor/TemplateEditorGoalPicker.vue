@@ -96,11 +96,6 @@ const eligibleGoals = computed(() => {
 });
 
 const maxMultiplicity = computed(() => {
-    // This is a linear search, which is not the best.
-    // But it's only going to be done infrequently (only when the goal is valid)
-    // TODO: if a "goals by ID" table is going to be computed somewhere anyway, use it here
-    // (and all the other places that do a linear search)
-
     if (!(selectedGoalID.value in eligibleGoals.value)) {
         return undefined;
     }

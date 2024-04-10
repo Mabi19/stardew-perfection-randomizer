@@ -4,6 +4,15 @@
             <div class="main-view">
                 <div class="row">
                     <AppButton icon="save" @click="saveAndQuit">Save and quit</AppButton>
+                    <AppButton icon="verified" @click="validate">Validate template</AppButton>
+                    <i v-if="validationState != null">
+                        <template v-if="validationState">Everything OK!</template>
+                        <template v-else>
+                            Template invalid.
+                            <!-- TODO: show reason -->
+                        </template>
+                    </i>
+                    <div class="divider"></div>
                     <AppButton type="destructive" icon="block" @click="quitWithoutSaving"
                         >Quit without saving</AppButton
                     >
@@ -57,7 +66,8 @@
             <TemplateEditorPane
                 v-if="template"
                 :template
-                :goals-by-i-d
+                :goalsByID
+                :reverseDeps
                 ref="goalPane"
                 @finish-editing="replaceGoal"
                 @finish-create="addNewGoal"
@@ -69,7 +79,7 @@
         :active="goalSelectorActive"
         :disqualified="goalSelectorDisqualified"
         :template
-        :goals-by-i-d
+        :goalsByID
         :use-multiplicity="goalSelectorUseMultiplicity"
         v-if="template"
         @finish="finishGoalSelector"
@@ -199,6 +209,12 @@ function saveAndQuit() {
         emit("finish", JSON.parse(JSON.stringify(template.value)));
         template.value = null;
     }
+}
+
+const validationState = ref<boolean | null>(null);
+watch(template, () => (validationState.value = null), { deep: true });
+function validate() {
+    validationState.value = template.value && validateTemplate(template.value);
 }
 
 function quitWithoutSaving() {
@@ -357,6 +373,18 @@ onUnmounted(() => {
     border-collapse: collapse;
     width: max-content;
     max-width: 100%;
+}
+
+.divider {
+    display: none;
+}
+
+@media (min-width: 750px) {
+    .divider {
+        display: block;
+        border-right: 1px solid var(--text-light);
+        height: 1.5em;
+    }
 }
 
 // Hide everything while the template editor's active.
