@@ -1,5 +1,10 @@
 <template>
-    <AppDialog title="Create a Profile" :open="open" @close="passEvent">
+    <AppDialog
+        title="Create a Profile"
+        :open="open"
+        @close="passEvent"
+        v-if="!templateEditorActive"
+    >
         <form @submit.prevent="submitForm">
             <ol class="task-list">
                 <li>
@@ -7,7 +12,14 @@
                     <select id="template" v-model="template" autofocus>
                         <option value="standard">Standard Mode</option>
                         <option value="hardcore">Hardcore Mode</option>
+                        <option value="custom" v-if="customTemplate != null">Custom</option>
                     </select>
+                    <AppButton
+                        @click="openTemplateEditor()"
+                        icon="edit"
+                        class="dialog-button-margin"
+                        >Customize</AppButton
+                    >
                 </li>
                 <li>
                     <label for="profile-name">Name your profile</label>
@@ -20,12 +32,19 @@
                     />
                 </li>
             </ol>
-            <AppButton icon="add">Create</AppButton>
+            <AppButton icon="add" class="dialog-button-margin">Create</AppButton>
         </form>
     </AppDialog>
+    <TemplateEditor
+        ref="templateEditor"
+        @finish="finishTemplateEditor"
+        @cancel="cancelTemplateEditor"
+    />
 </template>
 
 <script setup lang="ts">
+import type { TemplateEditor } from "#components";
+
 const props = defineProps<{
     open: boolean;
 }>();
@@ -46,6 +65,7 @@ const defaultProfileName = computed(() => {
     const templateNames = {
         standard: "Standard",
         hardcore: "Hardcore",
+        custom: "Custom",
     };
 
     // Check for already existing profile names.
@@ -70,6 +90,29 @@ function submitForm() {
         name: profileName.value || defaultProfileName.value,
     });
 }
+
+// template editor stuff
+const templateEditorActive = ref(false);
+const templateEditor = ref<InstanceType<typeof TemplateEditor> | null>(null);
+const customTemplate = shallowRef<Template | null>(null);
+function openTemplateEditor() {
+    templateEditorActive.value = true;
+    const templateToOpen =
+        template.value == "custom" ? customTemplate.value : getPredefinedTemplate(template.value);
+    if (templateToOpen != null) {
+        templateEditor.value?.start(templateToOpen);
+    }
+}
+
+function finishTemplateEditor(newTemplate: Template) {
+    cancelTemplateEditor();
+    customTemplate.value = newTemplate;
+    template.value = "custom";
+}
+
+function cancelTemplateEditor() {
+    templateEditorActive.value = false;
+}
 </script>
 
 <style scoped lang="scss">
@@ -87,7 +130,7 @@ function submitForm() {
 
         select,
         input {
-            margin-top: 0.2rem;
+            margin-top: 0.25rem;
             display: block;
             width: 100%;
         }

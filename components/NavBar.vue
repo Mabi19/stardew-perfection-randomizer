@@ -47,16 +47,16 @@
         box-sizing: content-box;
         height: 2.5rem;
     }
-}
 
-.fill {
-    flex-grow: 1;
-}
+    .fill {
+        flex-grow: 1;
+    }
 
-.divider {
-    height: 2rem;
-    border-right: 1px solid #a48cb9;
-    padding: 0;
-    margin: 0 0.5rem;
+    .divider {
+        height: 2rem;
+        border-right: 1px solid #a48cb9;
+        padding: 0;
+        margin: 0 0.5rem;
+    }
 }
 </style>

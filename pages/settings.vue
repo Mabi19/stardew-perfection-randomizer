@@ -218,13 +218,6 @@ function openOverlay() {
     }
 }
 
-.row {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .profiles-wrapper {
     display: flex;
     flex-flow: column nowrap;

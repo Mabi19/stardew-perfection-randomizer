@@ -9,7 +9,7 @@
         />
         <span>{{ goal.name }}</span>
         <span class="badge" v-if="showRepeatNumber && goal.multiplicity > 1"
-            >#{{ store.completion[goal.id] + 1 }}</span
+            >#{{ store.completion[goal.id]! + 1 }}</span
         >
     </div>
 </template>

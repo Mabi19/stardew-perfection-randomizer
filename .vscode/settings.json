@@ -3,5 +3,7 @@
         "./tools"
     ],
     "deno.lint": true,
-    "deno.unstable": false
+    "deno.unstable": false,
+    "lit-plugin.disable": true,
+    "vue.server.hybridMode": true
 }

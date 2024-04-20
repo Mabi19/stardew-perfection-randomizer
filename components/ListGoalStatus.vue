@@ -60,7 +60,7 @@ function update(state: number) {
     // but there isn't an easy way to do that
     const matches = props.goal.id.match(/^level:(.+)$/);
     if (matches) {
-        store.updatePredictedXPLevelUp(matches[1]);
+        store.updatePredictedXPLevelUp(matches[1]!);
     }
 }
 </script>
@@ -93,9 +93,5 @@ function update(state: number) {
     &::-webkit-outer-spin-button {
         display: none;
     }
-}
-
-.completion-input:invalid {
-    outline: 2px solid red;
 }
 </style>

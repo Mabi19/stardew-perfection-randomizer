@@ -4,7 +4,6 @@ name: CI/CD
 
 on:
     push:
-        branches: ["main"]
     pull_request:
         branches: ["main"]
     workflow_dispatch:
@@ -24,6 +23,8 @@ jobs:
 
             - name: Install node dependencies
               run: pnpm i
+            - name: Run tests
+              run: pnpm test
             - name: Build Nuxt app
               run: pnpm run generate
     deploy:

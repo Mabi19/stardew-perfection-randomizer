@@ -1,4 +1,8 @@
 <template>
+    <div class="part" v-if="store.templateData.ruleset">
+        This Randomizer uses {{ store.templateData.ruleset }} rules.
+        <a href="https://bit.ly/RandomPerfection">Perfection Randomizer Rules Document</a>
+    </div>
     <div class="part row">
         <label for="filter">Filter goals:</label>
         <input id="filter" type="search" v-model="searchTerm" ref="searchBox" />
@@ -13,6 +17,8 @@ useHead({
     title: "Goals",
 });
 
+const store = useRandomizerStore();
+
 const searchTerm = ref("");
 const searchBox = ref<HTMLInputElement | null>(null);
 
@@ -22,11 +28,5 @@ useKeyboardShortcut(KEY_MODIFIERS.CTRL, "F", () => searchBox.value?.focus());
 <style scoped lang="scss">
 .part {
     margin: 1rem;
-}
-
-.row {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 0.5rem;
 }
 </style>

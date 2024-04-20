@@ -101,19 +101,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         { deep: true },
     );
 
-    function isPrerequisiteMet(prerequisite: Prerequisite) {
-        const requiredCompletion = prerequisite.multiplicity ?? 1;
-
-        if (prerequisite.goal.startsWith("#")) {
-            // this is a tag
-            const tagName = prerequisite.goal.slice(1);
-            const tagGoals = templateData.value.tags[tagName];
-            return tagGoals.some((tagGoal) => completion.value[tagGoal] >= requiredCompletion);
-        } else {
-            return completion.value[prerequisite.goal] >= requiredCompletion;
-        }
-    }
-
     // This is extracted into an action because setting goals via the Goals tab
     // can also change level up goal completions
     // (I could also watch on level goals, but there's no easy way to detect them)
@@ -122,43 +109,99 @@ export const useRandomizerStore = defineStore("randomizer", () => {
 
         // we're not substituting the XP threshold here because we're about to set it
         const previousXP = predictedSkillXP.value[skill] ?? 0;
-        const newXP = Math.max(previousXP, skillXPValues[completion.value[goalID]]);
+        const skillLevel = completion.value[goalID];
+        if (!skillLevel) {
+            throw new Error("Invalid skill level ID");
+        }
+
+        // cap skill levels
+        const newXP = Math.max(previousXP, skillXPValues[skillLevel] ?? 999999);
         predictedSkillXP.value[skill] = newXP;
+    }
+
+    function isPrerequisiteMet(
+        prerequisite: Prerequisite,
+        // The function to aggregate tag contents with.
+        // All prerequisites supply Array.prototype.every,
+        // and any prerequisites supply Array.prototype.some.
+        aggregateHandler?: typeof Array.prototype.some,
+    ): boolean {
+        if ("goal" in prerequisite) {
+            // single prerequisite
+
+            const requiredCompletion = prerequisite.multiplicity ?? 1;
+
+            if (prerequisite.goal.startsWith("#")) {
+                // this is a tag
+                const tagName = prerequisite.goal.slice(1);
+                const tagGoals = templateData.value.tags[tagName];
+                if (!aggregateHandler) {
+                    throw new Error("Cannot evaluate tag prerequisite without context");
+                }
+
+                return aggregateHandler.call(
+                    tagGoals,
+                    (tagGoal) => (completion.value[tagGoal] ?? 0) >= requiredCompletion,
+                );
+            } else {
+                return (completion.value[prerequisite.goal] ?? 0) >= requiredCompletion;
+            }
+        } else {
+            // prerequisite group
+            if (prerequisite.all) {
+                return prerequisite.all.every((prerequisite) =>
+                    isPrerequisiteMet(prerequisite, Array.prototype.every),
+                );
+            } else if (prerequisite.any) {
+                return prerequisite.any.some((prerequisite) =>
+                    isPrerequisiteMet(prerequisite, Array.prototype.some),
+                );
+            }
+        }
+        // empty prerequisite
+        return true;
+    }
+
+    function isEligible(goal: Goal) {
+        // do not roll the current goal
+        if (goal.id == currentGoalID.value) {
+            return false;
+        }
+        // do not roll completed goals
+        if ((completion.value[goal.id] ?? 0) >= goal.multiplicity) {
+            return false;
+        }
+
+        // check for prerequisites
+        const reqs = goal.prerequisites;
+        if (!isPrerequisiteMet(reqs)) {
+            return false;
+        }
+
+        // check for XP values
+        for (const [skill, impliedXP] of Object.entries(goal.xp)) {
+            const level = completion.value[`level:${skill}`] ?? 0;
+            // if there is no saved XP prediction, use the current level as a baseline
+            let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level] ?? 0;
+            currentXP += impliedXP;
+            if (currentXP >= (skillXPValues[level + 1] ?? 999999)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     function rollGoal() {
         const eligibleGoals = Object.values(goals.value)
-            .filter((goal) => {
-                // do not roll the current goal
-                if (goal.id == currentGoalID.value) return false;
-                // do not roll completed goals
-                if (completion.value[goal.id] >= goal.multiplicity) return false;
-
-                // check for prerequisites
-                const reqs = goal.prerequisites;
-                if (reqs.all) {
-                    if (!reqs.all.every((prerequisite) => isPrerequisiteMet(prerequisite)))
-                        return false;
-                } else if (reqs.any) {
-                    if (!reqs.any.some((prerequisite) => isPrerequisiteMet(prerequisite)))
-                        return false;
-                }
-
-                // check for XP values
-                for (const [skill, impliedXP] of Object.entries(goal.xp)) {
-                    const level = completion.value[`level:${skill}`];
-                    // if there is no saved XP prediction, use the current level as a baseline
-                    let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level];
-                    currentXP += impliedXP;
-                    if (currentXP >= skillXPValues[level + 1]) {
-                        return false;
-                    }
-                }
-
-                return true;
-            })
+            .filter((goal) => isEligible(goal))
             // weigh goals by their remaining multiplicity
-            .flatMap((goal) => new Array(goal.multiplicity - completion.value[goal.id]).fill(goal));
+            .flatMap((goal) =>
+                new Array(
+                    goal.multiplicity -
+                        (completion.value[goal.id] ?? throwError(new Error("Could not find goal"))),
+                ).fill(goal),
+            );
         const index = Math.floor(Math.random() * eligibleGoals.length);
         currentGoalID.value = eligibleGoals[index].id;
     }
@@ -170,21 +213,23 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     function finishGoal() {
         if (currentGoal.value == null) return;
 
-        if (completion.value[currentGoal.value.id] < currentGoal.value.multiplicity) {
+        if ((completion.value[currentGoal.value.id] ?? 0) < currentGoal.value.multiplicity) {
             completion.value[currentGoal.value.id] += 1;
         }
 
         // update XP prediction for level goal
         let matches = currentGoal.value.id.match(/^level:(.+)$/);
         if (matches) {
-            const skill = matches[1];
+            const skill = matches[1]!;
             updatePredictedXPLevelUp(skill);
         }
 
         // add implied XP to the prediction
         for (const [skill, impliedXP] of Object.entries(currentGoal.value.xp)) {
             let currentXP =
-                predictedSkillXP.value[skill] ?? skillXPValues[completion.value[`level:${skill}`]];
+                predictedSkillXP.value[skill] ??
+                skillXPValues[completion.value[`level:${skill}`] ?? 0] ??
+                0;
             currentXP += impliedXP;
             predictedSkillXP.value[skill] = currentXP;
         }
@@ -208,5 +253,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         rollGoal,
         cancelGoal,
         finishGoal,
+        isEligible,
     };
 });

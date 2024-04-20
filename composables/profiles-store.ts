@@ -27,7 +27,8 @@ export const useProfilesStore = defineStore("profiles", () => {
     });
 
     function profileExists(name: string) {
-        return Boolean(allProfiles.value.find((existingProfile) => existingProfile.name == name));
+        // use !! to convert to boolean
+        return !!allProfiles.value.find((existingProfile) => existingProfile.name == name);
     }
 
     async function importProfile(data: ProfileImportData) {
