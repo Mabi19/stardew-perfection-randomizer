@@ -1,8 +1,10 @@
 <template>
     <NuxtPwaManifest />
-    <NuxtLayout>
-        <NuxtPage />
-    </NuxtLayout>
+    <DialogProvider>
+        <NuxtLayout>
+            <NuxtPage />
+        </NuxtLayout>
+    </DialogProvider>
 </template>
 
 <script setup lang="ts">

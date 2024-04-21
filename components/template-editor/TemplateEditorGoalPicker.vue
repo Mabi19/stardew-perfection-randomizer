@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import { vInvalid, type SinglePrerequisite } from "#imports";
-import { template } from "lodash-es";
 
 const props = defineProps<{
     active: boolean;
