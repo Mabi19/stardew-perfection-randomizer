@@ -13,7 +13,7 @@
                         </template>
                     </i>
                     <div class="divider"></div>
-                    <AppButton type="destructive" icon="block" @click="quitWithoutSaving"
+                    <AppButton type="secondary" icon="block" @click="quitWithoutSaving"
                         >Quit without saving</AppButton
                     >
                 </div>

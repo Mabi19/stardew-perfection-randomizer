@@ -94,7 +94,7 @@
                     </div>
                     <div class="row">
                         <AppButton icon="add" type="positive" small>Add</AppButton>
-                        <AppButton icon="block" type="destructive" small @click="cancelXPForm"
+                        <AppButton icon="block" type="secondary" small @click="cancelXPForm"
                             >Cancel</AppButton
                         >
                     </div>
@@ -139,7 +139,7 @@
             </div>
             <div class="row">
                 <AppButton icon="save">Save</AppButton>
-                <AppButton icon="block" type="destructive" @click.prevent="cancelEditing"
+                <AppButton icon="block" type="secondary" @click.prevent="cancelEditing"
                     >Cancel</AppButton
                 >
             </div>

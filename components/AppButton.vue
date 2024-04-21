@@ -8,7 +8,7 @@
 <script setup lang="ts">
 const props = withDefaults(
     defineProps<{
-        type?: "default" | "positive" | "destructive";
+        type?: "default" | "positive" | "destructive" | "secondary";
         icon?: string;
         small?: boolean;
     }>(),
@@ -66,6 +66,11 @@ const props = withDefaults(
 .button.destructive {
     background-color: base.$secondary-red;
     color: whitesmoke;
+}
+
+.button.secondary {
+    background-color: var(--background-lighter);
+    color: var(--text);
 }
 
 .dark-theme {
