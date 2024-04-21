@@ -122,7 +122,10 @@ function rollGoal() {
 
     setCooldown();
 
-    notificationArea.value?.send("Generated", store.goals[store.currentGoalID!]);
+    notificationArea.value?.send(
+        "Generated",
+        store.goals[store.currentGoalID!] ?? throwError(new Error("Current goal ID is invalid")),
+    );
 }
 
 function finishGoal() {
@@ -138,7 +141,10 @@ function finishGoal() {
     store.finishGoal();
     setCooldown();
 
-    notificationArea.value?.send("Finished", store.goals[goalID]);
+    notificationArea.value?.send(
+        "Finished",
+        store.goals[goalID] ?? throwError(new Error("Current goal ID is invalid")),
+    );
 }
 
 function cancelGoal() {
@@ -153,7 +159,10 @@ function cancelGoal() {
     store.cancelGoal();
     setCooldown();
 
-    notificationArea.value?.send("Canceled", store.goals[goalID]);
+    notificationArea.value?.send(
+        "Canceled",
+        store.goals[goalID] ?? throwError(new Error("Current goal ID is invalid")),
+    );
 }
 
 function undo() {
@@ -165,7 +174,10 @@ function redo() {
 
     if (effect) {
         // something was redone, generate a notification
-        notificationArea.value?.send(`(Redo) ${effect.type}`, store.goals[effect.goalID]);
+        notificationArea.value?.send(
+            `(Redo) ${effect.type}`,
+            store.goals[effect.goalID] ?? throwError(new Error("History goal ID is invalid")),
+        );
     }
 }
 
