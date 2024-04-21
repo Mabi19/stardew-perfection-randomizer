@@ -1,4 +1,5 @@
 <template>
+    <!-- TODO: use dialog manager for this -->
     <AppDialog title="Select goal" :open="active" @close="cancel">
         <form @submit.prevent="finish">
             <div class="row">
