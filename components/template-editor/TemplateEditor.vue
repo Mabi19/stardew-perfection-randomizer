@@ -218,8 +218,10 @@ function validate() {
     validationState.value = template.value && validateTemplate(template.value);
 }
 
-function quitWithoutSaving() {
-    if (window.confirm("Are you sure you want to quit?")) {
+async function quitWithoutSaving() {
+    if (
+        (await dialogs.confirm("Warning", "Are you sure you want to quit?", ["Yes", "No"])) == "ok"
+    ) {
         template.value = null;
         emit("cancel");
     }
@@ -333,6 +335,7 @@ watchEffect(() => {
 
 const removeJSNavigationHook = useRouter().beforeResolve((_to) => {
     if (template.value) {
+        // This has to be a native confirm because we need to block here
         if (!window.confirm("You have unsaved changes! Are you sure you want to quit?")) {
             return false;
         }

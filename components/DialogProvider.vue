@@ -6,6 +6,7 @@ interface Action<ID extends string> {
     id: ID;
     label: string;
     icon?: string;
+    type?: "default" | "positive" | "destructive" | "secondary";
 }
 
 function renderToValue(content: DialogContentRenderer | string): VNode[] | string {
@@ -75,6 +76,19 @@ export default defineComponent({
                     { id: "ok", label: "OK" },
                 ]);
             },
+
+            async confirm(
+                title: string,
+                message: DialogContentRenderer | string,
+                labels?: [string, string],
+            ) {
+                return (
+                    (await createRawDialog(title, () => [<>{renderToValue(message)}</>], [
+                        { id: "ok", label: labels?.[0] ?? "OK" },
+                        { id: "cancel", label: labels?.[1] ?? "Cancel", type: "secondary" },
+                    ])) ?? "cancel"
+                );
+            },
         };
 
         provide(dialogInjectKey, dialogs);
@@ -87,7 +101,11 @@ export default defineComponent({
                         <div class="content">{renderContent()}</div>
                         <div class="actions row">
                             {actions.value.map((action) => (
-                                <AppButton icon={action.icon} data-action-id={action.id}>
+                                <AppButton
+                                    icon={action.icon}
+                                    type={action.type}
+                                    data-action-id={action.id}
+                                >
                                     {action.label}
                                 </AppButton>
                             ))}

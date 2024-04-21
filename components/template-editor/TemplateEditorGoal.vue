@@ -53,11 +53,11 @@ function editGoal() {
     emit("edit");
 }
 
-function deleteGoal() {
+async function deleteGoal() {
     if (deleteBlocked.value) {
         const requiredBy = Array.from(props.requiredBy!);
 
-        dialogs.alert("Error", () => [
+        await dialogs.alert("Error", () => [
             <span>
                 This goal is required by&nbsp;
                 {requiredBy.map((id, index) => (
@@ -70,7 +70,13 @@ function deleteGoal() {
             </span>,
         ]);
     } else {
-        if (confirm(`Are you sure you want to delete \`${props.goal.id}\`?`)) {
+        if (
+            (await dialogs.confirm("Confirm deletion", () => [
+                <span>
+                    Are you sure you want to delete <code>{props.goal.id}</code>?
+                </span>,
+            ])) == "ok"
+        ) {
             emit("delete");
         }
     }

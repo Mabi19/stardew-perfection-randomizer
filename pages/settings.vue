@@ -117,6 +117,8 @@ useHead({
     title: "Settings",
 });
 
+const dialogs = useDialogs();
+
 const randomizer = useRandomizerStore();
 const settings = useSettingsStore();
 const profiles = useProfilesStore();
@@ -188,13 +190,16 @@ async function exportProfile() {
     URL.revokeObjectURL(blobURL);
 }
 
-function deleteProfile(name: string) {
-    // TODO: make this into a nice dialog
-    if (!window.confirm(`Are you sure you want to delete the profile '${name}'?`)) {
-        return;
+async function deleteProfile(name: string) {
+    if (
+        (await dialogs.confirm(
+            "Confirm deletion",
+            `Are you sure you want to delete the profile '${name}'? This is irreversible!`,
+            ["Delete", "Keep"],
+        )) == "ok"
+    ) {
+        profiles.deleteProfile(name);
     }
-
-    profiles.deleteProfile(name);
 }
 
 function openOverlay() {
