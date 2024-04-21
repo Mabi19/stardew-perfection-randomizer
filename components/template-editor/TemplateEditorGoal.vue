@@ -22,7 +22,7 @@
     </tr>
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 const props = defineProps<{
     goal: Goal;
     requiredBy?: Set<string>;
@@ -32,6 +32,8 @@ const emit = defineEmits<{
     edit: [];
     delete: [];
 }>();
+
+const dialogs = useDialogs();
 
 const deleteBlocked = computed(() => {
     return props.requiredBy && props.requiredBy.size > 0;
@@ -52,9 +54,21 @@ function editGoal() {
 }
 
 function deleteGoal() {
-    // TODO: replace these with custom dialogs
     if (deleteBlocked.value) {
-        alert(cannotDeleteMessage.value);
+        const requiredBy = Array.from(props.requiredBy!);
+
+        dialogs.alert("Error", () => [
+            <span>
+                This goal is required by&nbsp;
+                {requiredBy.map((id, index) => (
+                    <>
+                        <code>{id}</code>
+                        {index < requiredBy.length - 1 ? ", " : ""}
+                    </>
+                ))}
+                .
+            </span>,
+        ]);
     } else {
         if (confirm(`Are you sure you want to delete \`${props.goal.id}\`?`)) {
             emit("delete");

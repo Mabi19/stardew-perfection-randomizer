@@ -126,6 +126,8 @@ const emit = defineEmits<{
     cancel: [];
 }>();
 
+const dialogs = useDialogs();
+
 const currentTab = ref("Goals");
 
 // Traverse the prerequisite tree, returning all of the dependencies of this set of prerequisites
@@ -200,8 +202,7 @@ function start(baseTemplate: Template) {
 function saveAndQuit() {
     if (template.value) {
         if (!validateTemplate(template.value)) {
-            // TODO: Rework this into a custom dialog
-            window.alert("Template is invalid.");
+            dialogs.alert("Error", "Template is invalid.");
             return;
         }
 
