@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         version: packageInfo.version,
         buildID: commitID,
     },
+    spaLoadingTemplate: "./spa-loader.html",
     app: {
         baseURL: "/stardew-perfection-randomizer/",
         head: {
