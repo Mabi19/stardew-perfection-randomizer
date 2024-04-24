@@ -193,17 +193,20 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     }
 
     function rollGoal() {
-        const eligibleGoals = Object.values(goals.value)
-            .filter((goal) => isEligible(goal))
-            // weigh goals by their remaining multiplicity
-            .flatMap((goal) =>
-                new Array(
+        const eligibleGoals = [];
+        // use templateData goals directly to iterate easier
+        for (const goal of templateData.value.goals) {
+            if (isEligible(goal)) {
+                const remainingMultiplicity =
                     goal.multiplicity -
-                        (completion.value[goal.id] ?? throwError(new Error("Could not find goal"))),
-                ).fill(goal),
-            );
+                    (completion.value[goal.id] ?? throwError(new Error("Could not find goal")));
+                for (let i = 0; i < remainingMultiplicity; i++) {
+                    eligibleGoals.push(goal);
+                }
+            }
+        }
         const index = Math.floor(Math.random() * eligibleGoals.length);
-        currentGoalID.value = eligibleGoals[index].id;
+        currentGoalID.value = eligibleGoals[index]!.id;
     }
 
     function cancelGoal() {
