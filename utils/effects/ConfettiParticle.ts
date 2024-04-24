@@ -6,7 +6,7 @@ const confettiVerts = [
     { x: 0.005, y: -0.008 },
     { x: 0.005, y: 0.008 },
     { x: -0.005, y: 0.008 },
-];
+] as const;
 
 const LIFESPAN = 10;
 
@@ -24,16 +24,12 @@ export class ConfettiParticle extends Particle {
     age: number;
     hue: number;
 
-    constructor() {
+    constructor(x: number, y: number, vx: number, vy: number) {
         super();
-        this.x = 0.4 + Math.random() * 0.2;
-        this.y = 0.8 + Math.random() * 0.2;
-
-        const velMult = 0.3 + Math.random() * 1.3;
-        const velAngle = (Math.random() - 0.5) * CONFETTI_SPREAD_ANGLE;
-        this.vx = Math.sin(velAngle) * 0.01 * velMult;
-        this.vy = -Math.cos(velAngle) * 0.01 * velMult;
-
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
         this.orientation = randomUnitQuaternion();
         this.angularVelocity = scaleQuaternion(
             { w: 0, ...randomPointOnSphere() },
@@ -42,6 +38,18 @@ export class ConfettiParticle extends Particle {
 
         this.age = 0;
         this.hue = Math.floor(Math.random() * 10) * 36;
+    }
+
+    static randomOfExplosion() {
+        const x = 0.4 + Math.random() * 0.2;
+        const y = 0.8 + Math.random() * 0.2;
+
+        const velMult = 0.3 + Math.random() * 1.3;
+        const velAngle = (Math.random() - 0.5) * CONFETTI_SPREAD_ANGLE;
+        const vx = Math.sin(velAngle) * 0.01 * velMult;
+        const vy = -Math.cos(velAngle) * 0.01 * velMult;
+
+        return new this(x, y, vx, vy);
     }
 
     process(context: BaseEffectContext, deltaTime: number) {

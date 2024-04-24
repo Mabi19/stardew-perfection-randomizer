@@ -77,6 +77,7 @@
 import NullGoalIcon from "~/assets/null-goal-icon.png";
 import { GoalNotificationArea } from "#components";
 import { DashboardEffectContext } from "#imports";
+import { ConfettiParticle } from "~/utils/effects/ConfettiParticle";
 
 useHead({
     title: "Dashboard",
@@ -214,6 +215,16 @@ onMounted(() => {
         },
         { immediate: true },
     );
+});
+
+const intervalID = setInterval(() => {
+    if (effectContext.value && isFinished.value) {
+        effectContext.value.spawnConstantConfetti();
+    }
+}, 50);
+
+onUnmounted(() => {
+    clearInterval(intervalID);
 });
 
 // overlay
