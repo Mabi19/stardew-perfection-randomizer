@@ -58,6 +58,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
     (event: "close"): void;
+    (event: "finish"): void;
 }>();
 
 function passEvent() {
@@ -254,6 +255,8 @@ function submitForm() {
     if (!parsedFile.value || parsedFile.value.type == "invalid") {
         return;
     }
+
+    emit("finish");
 
     profilesStore.importProfile({
         name: (profileName.value || defaultProfileName.value)!.trim(),

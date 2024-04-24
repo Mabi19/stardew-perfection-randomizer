@@ -50,14 +50,24 @@
         <AppButton @click="showImportDialog" icon="file_upload">Import data</AppButton>
     </div>
 
-    <ProfileCreateDialog :open="createDialogOpen" @close="createDialogOpen = false" />
-    <DataImportDialog :open="importDialogOpen" @close="importDialogOpen = false" />
+    <ProfileCreateDialog
+        :open="createDialogOpen"
+        @close="createDialogOpen = false"
+        @finish="persistence.request"
+    />
+    <DataImportDialog
+        :open="importDialogOpen"
+        @close="importDialogOpen = false"
+        @finish="persistence.request"
+    />
 </template>
 
 <script setup lang="ts">
 definePageMeta({
     layout: "homepage",
 });
+
+const persistence = useStoragePersistence();
 
 const createDialogOpen = ref(false);
 const importDialogOpen = ref(false);

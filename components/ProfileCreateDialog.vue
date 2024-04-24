@@ -51,6 +51,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
     (event: "close"): void;
+    (event: "finish"): void;
 }>();
 
 function passEvent() {
@@ -85,6 +86,8 @@ watch(profileName, () => {
 });
 
 function submitForm() {
+    emit("finish");
+
     profilesStore.createProfile({
         template: template.value,
         name: profileName.value || defaultProfileName.value,
