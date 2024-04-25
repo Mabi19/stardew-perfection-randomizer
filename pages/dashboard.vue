@@ -211,20 +211,34 @@ onMounted(() => {
             // completion confetti
             if (store.completedCount == store.totalCount) {
                 effectContext.value?.completeHook();
+                cancelConstantConfetti();
+                startConstantConfetti();
+            } else {
+                cancelConstantConfetti();
             }
         },
         { immediate: true },
     );
 });
 
-const intervalID = setInterval(() => {
+let animID = 0;
+function startConstantConfetti() {
     if (effectContext.value && isFinished.value) {
         effectContext.value.spawnConstantConfetti();
     }
-}, 50);
+    animID = requestAnimationFrame(() => startConstantConfetti());
+}
+
+function cancelConstantConfetti() {
+    // Filled rAF IDs are always >0
+    if (animID) {
+        cancelAnimationFrame(animID);
+        animID = 0;
+    }
+}
 
 onUnmounted(() => {
-    clearInterval(intervalID);
+    cancelConstantConfetti();
 });
 
 // overlay

@@ -38,16 +38,23 @@ export class DashboardEffectContext extends BaseEffectContext {
     }
 
     lastConfettoSpawn = performance.now();
+    lastSpawnAttempt = performance.now();
 
     spawnConstantConfetti() {
         const divisors = {
             disabled: Infinity,
             low: 1.2,
             medium: 0.75,
-            high: 0.3,
+            high: 0.15,
         } as const;
 
+        // always spawn at a consistent rate
         const now = performance.now();
+        if (now - this.lastSpawnAttempt < 50) {
+            return;
+        }
+        this.lastSpawnAttempt = now;
+
         const secsSinceLast = (now - this.lastConfettoSpawn) / 1000;
         const spawnProbability = secsSinceLast / divisors[this.settings.particles];
         if (Math.random() < spawnProbability) {
