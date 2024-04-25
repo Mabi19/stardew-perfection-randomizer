@@ -60,7 +60,8 @@ export class DashboardEffectContext extends BaseEffectContext {
                 Math.random() * 0.002 - 0.001,
                 0.002 + 0.0003 * Math.random(),
             );
-            confetto.age = -10;
+            // hack to make them live longer
+            confetto.age = -2;
             this.particles.push(confetto);
             this.startTicking();
         }
