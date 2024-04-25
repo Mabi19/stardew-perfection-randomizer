@@ -50,14 +50,15 @@ export function randomPointOnSphere(): Vector3 {
     };
 }
 
-// https://www.wikiwand.com/en/Quaternion#Hamilton_product
+// https://mathworld.wolfram.com/Quaternion.html
 export function hamiltonProduct(a: Quaternion, b: Quaternion): Quaternion {
     // I hope I transcribed this correctly
+    // 2024-04-25 UPDATE: I did not, in fact, transcribe that correctly
     return {
         w: a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z,
         x: a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y,
-        y: a.w * b.y + a.x * b.z + a.y * b.w + a.z * b.x,
-        z: a.w * b.z + a.x * b.y + a.y * b.x + a.z * b.w,
+        y: a.w * b.y - a.x * b.z + a.y * b.w + a.z * b.x,
+        z: a.w * b.z + a.x * b.y - a.y * b.x + a.z * b.w,
     };
 }
 
