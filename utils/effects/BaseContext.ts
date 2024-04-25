@@ -77,7 +77,7 @@ export class BaseEffectContext {
     tick() {
         const currentTime = performance.now();
 
-        this.process((currentTime - this.lastTick) / 1000);
+        this.process(Math.min((currentTime - this.lastTick) / 1000, 0.1));
         this.render();
 
         this.lastTick = currentTime;
