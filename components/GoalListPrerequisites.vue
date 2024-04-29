@@ -3,7 +3,11 @@
     <ul v-if="!isEmpty">
         <li v-for="req in prerequisites.all ?? prerequisites.any ?? []">
             <template v-if="'goal' in req">
-                <Goal v-if="store.goals[req.goal]" :goal="store.goals[req.goal]!" class="inline" />
+                <Goal
+                    v-if="store.goals?.[req.goal]"
+                    :goal="store.goals[req.goal]!"
+                    class="inline"
+                />
                 <!-- this is required for tags to work -->
                 <code v-else>{{ req.goal }}</code>
                 <span v-if="req.multiplicity && req.multiplicity > 1" class="inline-goal-mult">

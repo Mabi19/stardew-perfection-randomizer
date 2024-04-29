@@ -126,7 +126,7 @@ class ParsedBackupFile {
             }
         }
 
-        if (!validateProfileData(decompressedProfile, parsedTemplate)) {
+        if (!(await validateProfileData(decompressedProfile, parsedTemplate))) {
             throw new Error("Invalid profile data");
         }
 
@@ -148,7 +148,7 @@ class ParsedSpreadsheetFile {
     static async parse(data: Uint8Array) {
         const module = await import("~~/spreadsheet-import/parse");
 
-        const { profileString, templateString } = module.parseSpreadsheet(data);
+        const { profileString, templateString } = await module.parseSpreadsheet(data);
 
         const parsedFile = new ParsedSpreadsheetFile(templateString, profileString);
 
@@ -160,7 +160,7 @@ class ParsedSpreadsheetFile {
             }
         }
 
-        if (!validateProfileData(profileString, parsedTemplate)) {
+        if (!(await validateProfileData(profileString, parsedTemplate))) {
             throw new Error("Converted profile does not validate");
         }
 

@@ -40,45 +40,51 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         },
     );
 
-    const templateData = shallowRef<Template>(undefined as unknown as Template);
+    const templateData = shallowRef<Template | null>(null);
     watch(
         currentTemplateName,
-        () => {
+        async () => {
             if (currentTemplateName.value == "custom") {
                 const serializedTemplate = localStorage.getItem(
                     `profileTemplate:${profiles.current}`,
                 );
                 templateData.value = JSON.parse(serializedTemplate ?? "null");
             } else {
-                templateData.value = getPredefinedTemplate(currentTemplateName.value)!;
+                try {
+                    templateData.value = await getPredefinedTemplate(currentTemplateName.value);
+                } catch (e) {
+                    throw new Error(`Could not find template ${currentTemplateName.value}`);
+                }
             }
         },
         { immediate: true },
     );
-    if (!templateData.value) {
-        throw new Error(`Could not find template ${currentTemplateName.value}`);
-    }
 
     // This is also tied to the current state of the save file.
     const completion = ref(data.completion);
 
     // we're not adding the completion in here for performance
     const goals = computed(() =>
-        Object.fromEntries(templateData.value!.goals.map((goal) => [goal.id, goal as Goal])),
+        templateData.value
+            ? Object.fromEntries(templateData.value.goals.map((goal) => [goal.id, goal as Goal]))
+            : null,
     );
 
     const currentGoal = computed(() => {
-        // @ts-ignore: TS is ignoring my nullish coalescing here for some reason
-        return (goals.value[currentGoalID.value] ?? null) as Goal | null;
+        return currentGoalID.value ? goals.value?.[currentGoalID.value] ?? null : null;
     });
 
     const completedCount = computed(() =>
         Object.values(completion.value).reduce((sum, current) => sum + current, 0),
     );
 
-    const totalCount = computed(() =>
-        templateData.value.goals.reduce((sum, goal) => sum + goal.multiplicity, 0),
-    );
+    const totalCount = computed(() => {
+        if (!templateData.value) {
+            return 0;
+        }
+
+        return templateData.value.goals.reduce((sum, goal) => sum + goal.multiplicity, 0);
+    });
 
     watch(
         [currentGoalID, predictedSkillXP, completion],
@@ -126,6 +132,10 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         // and any prerequisites supply Array.prototype.some.
         aggregateHandler?: typeof Array.prototype.some,
     ): boolean {
+        if (!templateData.value) {
+            throw new Error("Cannot evaluate prerequisites without template");
+        }
+
         if ("goal" in prerequisite) {
             // single prerequisite
 
@@ -193,6 +203,10 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     }
 
     function rollGoal() {
+        if (!templateData.value) {
+            throw new Error("Cannot roll goal without template");
+        }
+
         const eligibleGoals = [];
         // use templateData goals directly to iterate easier
         for (const goal of templateData.value.goals) {
@@ -240,6 +254,20 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         cancelGoal();
     }
 
+    // Returns a promise that resolves when the template has loaded.
+    // Useful to block component rendering until everything is ready
+    async function waitForReady() {
+        if (templateData.value) {
+            return Promise.resolve();
+        }
+        return new Promise<void>((res) => {
+            const cancel = watch(templateData, () => {
+                cancel();
+                res();
+            });
+        });
+    }
+
     return {
         // state & getters
         currentTemplateName,
@@ -257,5 +285,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         cancelGoal,
         finishGoal,
         isEligible,
+        waitForReady,
     };
 });

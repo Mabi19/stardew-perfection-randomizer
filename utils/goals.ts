@@ -1,5 +1,5 @@
-import hardcoreTemplate from "~/templates/hardcore.json";
-import standardTemplate from "~/templates/standard.json";
+import hardcoreTemplate from "~/templates/hardcore.json?url";
+import standardTemplate from "~/templates/standard.json?url";
 
 export interface SinglePrerequisite {
     goal: string;
@@ -29,18 +29,22 @@ export interface Template {
     goals: TemplateGoal[];
 }
 
-const templates: Record<string, Template> = {
-    // The auto-generated JSON types don't quite match here
-    // so force them to behave
-    standard: standardTemplate as unknown as Template,
-    hardcore: hardcoreTemplate as unknown as Template,
+const templateURLs: Record<string, string> = {
+    standard: standardTemplate,
+    hardcore: hardcoreTemplate,
 };
 
-export function getPredefinedTemplate(templateName: string) {
-    if (templateName in templates) {
-        // TODO: dynamically fetch the templates
-        return templates[templateName];
-    }
+const templateCache = new Map<string, Template>();
 
-    return null;
+export async function getPredefinedTemplate(name: string): Promise<Template> {
+    if (templateCache.has(name)) {
+        return templateCache.get(name)!;
+    } else {
+        const template = await (
+            await fetch(templateURLs[name] ?? throwError(new Error("Invalid template")))
+        ).json();
+
+        templateCache.set(name, template);
+        return template;
+    }
 }

@@ -7,7 +7,7 @@ function convertNameToID(name: string) {
     const levelGoalMatch = name.match(/^Gain an? ([A-Za-z]+) Level$/);
     if (levelGoalMatch) {
         const [_full, skill] = levelGoalMatch;
-        return `level:${skill.toLowerCase()}`;
+        return `level:${skill!.toLowerCase()}`;
     }
 
     return name
@@ -19,7 +19,7 @@ function convertNameToID(name: string) {
 function parsePrerequisites(
     prerequisites: string,
     goalsByName: Record<string, TemplateGoal>,
-): Prerequisites {
+): PrerequisiteGroup {
     const TAGS: Record<string, string> = {
         "Catch a Valid Fish": "#demetrius_fish",
         "Befriend a Marriage Candidate": "#marriage_capable",
@@ -40,8 +40,8 @@ function parsePrerequisites(
         if (skillMatch) {
             const [_full, skill, level] = skillMatch;
             return {
-                goal: `level:${skill.toLowerCase()}`,
-                multiplicity: parseInt(level),
+                goal: `level:${skill!.toLowerCase()}`,
+                multiplicity: parseInt(level!),
             };
         }
 
@@ -112,7 +112,7 @@ function objectsEqual(obj1: unknown, obj2: unknown) {
     return true;
 }
 
-export function parseSpreadsheet(data: Uint8Array) {
+export async function parseSpreadsheet(data: Uint8Array) {
     console.log("parsing spreadsheet");
 
     const workbook = read(data, { dense: true, cellHTML: false, cellText: false });
@@ -127,8 +127,8 @@ export function parseSpreadsheet(data: Uint8Array) {
         throw new Error("Could not find all required worksheets");
     }
 
-    const metadata = workbook.Sheets["Metadata"];
-    const testCell = metadata["!data"]![12][0];
+    const metadata = workbook.Sheets["Metadata"]!;
+    const testCell = metadata["!data"]![12]![0]!;
 
     let randomizerType = "";
 
@@ -142,15 +142,15 @@ export function parseSpreadsheet(data: Uint8Array) {
 
     console.log(randomizerType);
 
-    const baseTemplate = getPredefinedTemplate(randomizerType);
+    const baseTemplate = await getPredefinedTemplate(randomizerType);
 
     if (!baseTemplate) {
         throw new Error("Could not get base template");
     }
 
     const baseGoalsByName = Object.fromEntries(baseTemplate.goals.map((goal) => [goal.name, goal]));
-    const rawSpreadsheetGoals = workbook.Sheets["List of Goals"]["!data"]!.slice(1).map((row) => ({
-        name: row[0].v!.toString().trim(),
+    const rawSpreadsheetGoals = workbook.Sheets["List of Goals"]!["!data"]!.slice(1).map((row) => ({
+        name: row[0]!.v!.toString().trim(),
         prerequisites: row[1]?.v?.toString(),
         imageFormula: row[2]?.f?.toString().trim(),
         complete: row[3]?.v == "Y",
@@ -179,10 +179,10 @@ export function parseSpreadsheet(data: Uint8Array) {
             } as unknown as TemplateGoal;
         }
 
-        spreadsheetGoals[rawGoal.name].multiplicity += 1;
+        spreadsheetGoals[rawGoal.name]!.multiplicity += 1;
 
         // completion
-        const goalID = spreadsheetGoals[rawGoal.name].id;
+        const goalID = spreadsheetGoals[rawGoal.name]!.id;
         if (!(goalID in completion)) {
             completion[goalID] = 0;
         }
@@ -204,7 +204,7 @@ export function parseSpreadsheet(data: Uint8Array) {
 
     const currentGoalIndex = Number(metadata["!data"]![1]?.[1]?.v);
     const currentGoalID = currentGoalIndex
-        ? spreadsheetGoals[rawSpreadsheetGoals[currentGoalIndex - 2].name].id
+        ? spreadsheetGoals[rawSpreadsheetGoals[currentGoalIndex - 2]!.name]!.id
         : null;
 
     // The spreadsheet stores XP remaining, but this version stores total XP
@@ -222,7 +222,7 @@ export function parseSpreadsheet(data: Uint8Array) {
 
         const skillLevels: Record<string, number> = {};
         for (const [skill, row] of LEVEL_ROWS) {
-            skillLevels[skill] = Number(metadata["!data"]![row][1].v!);
+            skillLevels[skill] = Number(metadata["!data"]![row]![1]!.v!);
         }
 
         const XP_THRESHOLD_ROWS = [
@@ -231,14 +231,14 @@ export function parseSpreadsheet(data: Uint8Array) {
         ] as const;
 
         for (const [skill, row] of XP_THRESHOLD_ROWS) {
-            const level = skillLevels[skill];
+            const level = skillLevels[skill]!;
 
             if (level == 10) {
                 // set the total XP manually to not go out of bounds
                 predictedSkillXP[skill] = skillXPValues[10];
             } else {
-                const xpRemaining = Number(metadata["!data"]![row][1].v!);
-                predictedSkillXP[skill] = skillXPValues[level + 1] - xpRemaining;
+                const xpRemaining = Number(metadata["!data"]![row]![1]!.v!);
+                predictedSkillXP[skill] = skillXPValues[level + 1]! - xpRemaining;
             }
         }
     }

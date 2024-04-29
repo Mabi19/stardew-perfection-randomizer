@@ -1,5 +1,5 @@
 <template>
-    <div class="part" v-if="store.templateData.ruleset">
+    <div class="part" v-if="store.templateData?.ruleset">
         This Randomizer uses {{ store.templateData.ruleset }} rules.
         <a href="https://bit.ly/RandomPerfection">Perfection Randomizer Rules Document</a>
     </div>
@@ -18,6 +18,7 @@ useHead({
 });
 
 const store = useRandomizerStore();
+await store.waitForReady();
 
 const searchTerm = ref("");
 const searchBox = ref<HTMLInputElement | null>(null);

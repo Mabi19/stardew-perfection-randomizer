@@ -77,13 +77,13 @@
 import NullGoalIcon from "~/assets/null-goal-icon.png";
 import { GoalNotificationArea } from "#components";
 import { DashboardEffectContext } from "#imports";
-import { ConfettiParticle } from "~/utils/effects/ConfettiParticle";
 
 useHead({
     title: "Dashboard",
 });
 
 const store = useRandomizerStore();
+await store.waitForReady();
 
 const nullGoal: Goal = {
     id: "null_placeholder",
@@ -125,7 +125,7 @@ function rollGoal() {
 
     notificationArea.value?.send(
         "Generated",
-        store.goals[store.currentGoalID!] ?? throwError(new Error("Current goal ID is invalid")),
+        store.goals?.[store.currentGoalID!] ?? throwError(new Error("Current goal ID is invalid")),
     );
 }
 
@@ -144,7 +144,7 @@ function finishGoal() {
 
     notificationArea.value?.send(
         "Finished",
-        store.goals[goalID] ?? throwError(new Error("Current goal ID is invalid")),
+        store.goals?.[goalID] ?? throwError(new Error("Current goal ID is invalid")),
     );
 }
 
@@ -162,7 +162,7 @@ function cancelGoal() {
 
     notificationArea.value?.send(
         "Canceled",
-        store.goals[goalID] ?? throwError(new Error("Current goal ID is invalid")),
+        store.goals?.[goalID] ?? throwError(new Error("Current goal ID is invalid")),
     );
 }
 
@@ -177,7 +177,7 @@ function redo() {
         // something was redone, generate a notification
         notificationArea.value?.send(
             `(Redo) ${effect.type}`,
-            store.goals[effect.goalID] ?? throwError(new Error("History goal ID is invalid")),
+            store.goals?.[effect.goalID] ?? throwError(new Error("History goal ID is invalid")),
         );
     }
 }

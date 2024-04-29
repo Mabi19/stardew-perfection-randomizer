@@ -98,10 +98,12 @@ function submitForm() {
 const templateEditorActive = ref(false);
 const templateEditor = ref<InstanceType<typeof TemplateEditor> | null>(null);
 const customTemplate = shallowRef<Template | null>(null);
-function openTemplateEditor() {
+async function openTemplateEditor() {
     templateEditorActive.value = true;
     const templateToOpen =
-        template.value == "custom" ? customTemplate.value : getPredefinedTemplate(template.value);
+        template.value == "custom"
+            ? customTemplate.value
+            : await getPredefinedTemplate(template.value);
     if (templateToOpen != null) {
         templateEditor.value?.start(templateToOpen);
     }

@@ -145,7 +145,7 @@ export function validateTemplate(template: Template) {
                 // tags don't have multiplicities
                 if (req.goal.startsWith("#")) return false;
 
-                if (req.multiplicity > goalMultiplicities[req.goal]) {
+                if (req.multiplicity > goalMultiplicities[req.goal]!) {
                     return false;
                 }
 
@@ -165,7 +165,7 @@ export function validateTemplate(template: Template) {
     return true;
 }
 
-export function validateProfileData(profile: string, customTemplate?: Template) {
+export async function validateProfileData(profile: string, customTemplate?: Template) {
     console.time("profile validation");
 
     const parsedProfile = deserializeSaveData(profile);
@@ -178,7 +178,7 @@ export function validateProfileData(profile: string, customTemplate?: Template) 
     const template =
         parsedProfile.templateName == "custom"
             ? customTemplate
-            : getPredefinedTemplate(parsedProfile.templateName);
+            : await getPredefinedTemplate(parsedProfile.templateName);
     if (!template) {
         return false;
     }

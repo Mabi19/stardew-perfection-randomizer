@@ -1,5 +1,5 @@
 <template>
-    <table class="goal-list" v-if="filteredGoals.length > 0">
+    <table class="goal-list" v-if="filteredGoals && filteredGoals.length > 0">
         <thead>
             <tr>
                 <th>Comp.</th>
@@ -79,15 +79,16 @@ const props = defineProps<{
 }>();
 
 const store = useRandomizerStore();
+await store.waitForReady();
 
 const filteredGoals = computed(() => {
     const lowerSearchTerm = props.searchTerm.toLowerCase();
 
     if (lowerSearchTerm.length < 4) {
-        return store.templateData.goals;
+        return store.templateData?.goals;
     }
 
-    return store.templateData.goals.filter((goal) =>
+    return store.templateData?.goals?.filter((goal) =>
         goal.name.toLowerCase().includes(lowerSearchTerm),
     );
 });
