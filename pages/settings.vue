@@ -204,15 +204,7 @@ async function exportProfile() {
     const blob = new Blob([encodedHeader, ...templateParts, saveDataLength, compressedSaveData], {
         type: "application/octet-stream",
     });
-    const blobURL = URL.createObjectURL(blob);
-
-    console.log(blobURL);
-
-    const link = document.createElement("a");
-    link.href = blobURL;
-    link.download = `${profiles.current}.randomizer`;
-    link.click();
-    URL.revokeObjectURL(blobURL);
+    downloadBlob(blob, `${profiles.current}.randomizer`);
 }
 
 async function deleteProfile(name: string) {
