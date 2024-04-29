@@ -206,7 +206,7 @@ const defaultGoalID = computed(() => {
 });
 watch(
     () => goal.value?.imageURL,
-    debounce(() => (debouncedImageURL.value = goal.value?.imageURL ?? ""), undefined, {}),
+    debounce(() => (debouncedImageURL.value = goal.value?.imageURL ?? ""), 300, {}),
 );
 
 const newIDIsInvalid = computed(() => {

@@ -48,8 +48,9 @@ export const useProfilesStore = defineStore("profiles", () => {
         await navigateTo("/dashboard");
     }
 
-    async function createProfile(options: Profile) {
-        const templateData = await getPredefinedTemplate(options.template);
+    async function createProfile(options: Profile & { customTemplate?: Template }) {
+        const templateData =
+            options.customTemplate ?? (await getPredefinedTemplate(options.template));
 
         if (!templateData) {
             throw new Error("Unknown template");
@@ -69,6 +70,13 @@ export const useProfilesStore = defineStore("profiles", () => {
 
         const serialized = serializeSaveData(data);
         localStorage.setItem(`profile:${options.name}`, serialized);
+
+        if (options.customTemplate) {
+            localStorage.setItem(
+                `profileTemplate:${options.name}`,
+                JSON.stringify(options.customTemplate),
+            );
+        }
 
         await navigateTo("/dashboard");
     }

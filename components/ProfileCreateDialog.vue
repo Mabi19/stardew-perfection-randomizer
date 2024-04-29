@@ -12,12 +12,25 @@
                     <select id="template" v-model="template" autofocus>
                         <option value="standard">Standard Mode</option>
                         <option value="hardcore">Hardcore Mode</option>
+                        <option value="url">Use template from URL</option>
                         <option value="custom" v-if="customTemplate != null">Custom</option>
                     </select>
+                    <div class="template-url-picker" v-if="template == 'url'">
+                        <label for="template-url">Template file URL</label>
+                        <input type="url" id="template-url" required v-model="templateURL" />
+                    </div>
+                    <div
+                        class="template-url-status"
+                        v-if="templateURLStatus != URLTemplateStatus.NONE"
+                    >
+                        {{ urlTemplateStatusMessages[templateURLStatus] }}
+                    </div>
+
                     <AppButton
                         @click="openTemplateEditor()"
                         icon="edit"
                         class="dialog-button-margin"
+                        :disabled="template == 'url'"
                         >Customize</AppButton
                     >
                 </li>
@@ -44,6 +57,7 @@
 
 <script setup lang="ts">
 import type { TemplateEditor } from "#components";
+import debounce from "lodash-es/debounce";
 
 const props = defineProps<{
     open: boolean;
@@ -62,11 +76,75 @@ const profilesStore = useProfilesStore();
 const template = ref("standard");
 const profileName = ref("");
 
+enum URLTemplateStatus {
+    // Everything OK
+    OK,
+    // No URL entered
+    NONE,
+    // Loading
+    LOADING,
+    // URL is invalid
+    INVALID_URL,
+    // Network-type error (e.g. 404)
+    ERROR_NETWORK,
+    // Not a valid template
+    ERROR_INVALID_TEMPLATE,
+}
+
+const urlTemplateStatusMessages = {
+    [URLTemplateStatus.OK]: "Everything OK!",
+    [URLTemplateStatus.NONE]: "",
+    [URLTemplateStatus.LOADING]: "Loading...",
+    [URLTemplateStatus.INVALID_URL]: "Error: invalid URL",
+    [URLTemplateStatus.ERROR_NETWORK]: "Error: can't load template; is the URL correct?",
+    [URLTemplateStatus.ERROR_INVALID_TEMPLATE]: "Error: template is invalid",
+};
+
+const templateURL = ref("");
+const debouncedTemplateURL = ref("");
+watch(
+    templateURL,
+    debounce(() => (debouncedTemplateURL.value = templateURL.value), 300, {}),
+);
+const templateURLStatus = ref(URLTemplateStatus.NONE);
+const loadedURLTemplate = shallowRef<Template | null>(null);
+watch(debouncedTemplateURL, async () => {
+    if (debouncedTemplateURL.value == "") {
+        templateURLStatus.value = URLTemplateStatus.NONE;
+        return;
+    }
+
+    try {
+        const url = new URL(debouncedTemplateURL.value);
+        templateURLStatus.value = URLTemplateStatus.LOADING;
+
+        try {
+            const templateJSON = await fetch(url).then((response) => response.text());
+            const urlTemplate = JSON.parse(templateJSON);
+            console.log(urlTemplate);
+
+            if (!validateTemplate(urlTemplate)) {
+                templateURLStatus.value = URLTemplateStatus.ERROR_INVALID_TEMPLATE;
+            }
+
+            loadedURLTemplate.value = urlTemplate;
+            templateURLStatus.value = URLTemplateStatus.OK;
+        } catch (e) {
+            console.log(e);
+            templateURLStatus.value = URLTemplateStatus.ERROR_NETWORK;
+        }
+    } catch (e) {
+        console.log(e);
+        templateURLStatus.value = URLTemplateStatus.INVALID_URL;
+    }
+});
+
 const defaultProfileName = computed(() => {
     const templateNames = {
         standard: "Standard",
         hardcore: "Hardcore",
         custom: "Custom",
+        url: "Custom",
     };
 
     // Check for already existing profile names.
@@ -88,8 +166,22 @@ watch(profileName, () => {
 function submitForm() {
     emit("finish");
 
+    let usedTemplate: Template | undefined = undefined;
+    if (template.value == "custom") {
+        if (!customTemplate.value) {
+            return;
+        }
+        usedTemplate = customTemplate.value;
+    } else if (template.value == "url") {
+        if (!loadedURLTemplate.value || templateURLStatus.value != URLTemplateStatus.OK) {
+            return;
+        }
+        usedTemplate = loadedURLTemplate.value;
+    }
+
     profilesStore.createProfile({
-        template: template.value,
+        template: template.value == "url" ? "custom" : template.value,
+        customTemplate: usedTemplate,
         name: profileName.value || defaultProfileName.value,
     });
 }
@@ -140,5 +232,9 @@ function cancelTemplateEditor() {
             width: 100%;
         }
     }
+}
+
+.template-url-picker {
+    margin-top: 0.5rem;
 }
 </style>
