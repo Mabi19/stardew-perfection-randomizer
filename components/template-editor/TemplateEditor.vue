@@ -18,6 +18,10 @@
                     >
                 </div>
                 <div class="row">
+                    <AppButton icon="file_download" @click="exportFile">Export file</AppButton>
+                    <AppButton icon="file_upload" @click="importFile">Import file</AppButton>
+                </div>
+                <div class="row">
                     <label for="template-ruleset">Ruleset</label>
                     <select id="template-ruleset" v-model="template.ruleset">
                         <option value="hardcore">Hardcore</option>
@@ -108,6 +112,12 @@
             <AppButton icon="add" class="dialog-button-margin">Create</AppButton>
         </form>
     </AppDialog>
+
+    <TemplateEditorImportDialog
+        :open="importOpen"
+        @close="importOpen = false"
+        @finish="finishFileImport"
+    />
 
     <Body class="overlay-hack-active" v-if="template != null" />
 </template>
@@ -226,6 +236,30 @@ async function quitWithoutSaving() {
         template.value = null;
         emit("cancel");
     }
+}
+
+async function exportFile() {
+    if (!template.value || !validateTemplate(template.value)) {
+        dialogs.alert("Can't export file", "Template is invalid");
+        return;
+    }
+
+    const json = JSON.stringify(template.value, undefined, 4);
+    const blob = new Blob([new TextEncoder().encode(json)], {
+        type: "application/json",
+    });
+    downloadBlob(blob, "template.json");
+}
+
+const importOpen = ref(false);
+function importFile() {
+    importOpen.value = true;
+}
+
+function finishFileImport(newTemplate: Template) {
+    // newTemplate is already validated.
+    template.value = newTemplate;
+    importOpen.value = false;
 }
 
 // editing actions
