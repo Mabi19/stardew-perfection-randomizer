@@ -57,7 +57,7 @@ async function deleteGoal() {
     if (deleteBlocked.value) {
         const requiredBy = Array.from(props.requiredBy!);
 
-        await dialogs.alert("Error", () => [
+        await dialogs.alert("Can't delete goal", () => [
             <span>
                 This goal is required by&nbsp;
                 {requiredBy.map((id, index) => (

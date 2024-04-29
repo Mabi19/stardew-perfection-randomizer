@@ -202,7 +202,7 @@ function start(baseTemplate: Template) {
 function saveAndQuit() {
     if (template.value) {
         if (!validateTemplate(template.value)) {
-            dialogs.alert("Error", "Template is invalid.");
+            dialogs.alert("Can't save template", "Template is invalid.");
             return;
         }
 
@@ -220,7 +220,8 @@ function validate() {
 
 async function quitWithoutSaving() {
     if (
-        (await dialogs.confirm("Warning", "Are you sure you want to quit?", ["Yes", "No"])) == "ok"
+        (await dialogs.confirm("Confirm quit", "Are you sure you want to quit?", ["Yes", "No"])) ==
+        "ok"
     ) {
         template.value = null;
         emit("cancel");
