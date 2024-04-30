@@ -1,0 +1,34 @@
+@use "base";
+
+input, select {
+    appearance: none;
+    border: none;
+    background-color: var(--background-light);
+    font-family: inherit;
+    font-size: 1rem;
+
+    padding: 0.25em 0.5em;
+    border-radius: 0.25em;
+    border: 2px solid var(--background-lighter);
+
+    &:focus {
+        border-color: base.$accent;
+        outline: 1px solid base.$accent-light;
+    }
+}
+
+select {
+    background-image: url("~/assets/select-arrow-light.svg");
+    background-position: calc(100% - 0.3em) 50%;
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    padding-right: 1.6em;
+}
+
+.dark-theme select {
+    background-image: url("~/assets/select-arrow-dark.svg")
+}
+
+input:user-invalid {
+    border: 2px solid red;
+}
