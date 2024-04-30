@@ -40,9 +40,17 @@ export async function getPredefinedTemplate(name: string): Promise<Template> {
     if (templateCache.has(name)) {
         return templateCache.get(name)!;
     } else {
-        const template = await (
-            await fetch(templateURLs[name] ?? throwError(new Error("Invalid template")))
-        ).json();
+        const template = await $fetch<Template>(
+            templateURLs[name] ?? throwError(new Error("Invalid template")),
+            {
+                responseType: "json",
+            },
+        );
+
+        // quick check
+        if (typeof template != "object") {
+            throw new Error("Loaded template is invalid");
+        }
 
         templateCache.set(name, template);
         return template;
