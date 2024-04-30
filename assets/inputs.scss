@@ -1,6 +1,6 @@
 @use "base";
 
-input, select {
+input:not([type=checkbox]), select {
     appearance: none;
     border: none;
     background-color: var(--background-light);
