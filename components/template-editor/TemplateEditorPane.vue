@@ -327,8 +327,8 @@ function handlePrerequisiteUpdate(newData: PrerequisiteGroup) {
     width: 400px;
     max-width: 90vw;
 
-    background-color: var(--background-light);
-    border-left: 2px solid var(--text-dim);
+    background-color: var(--background);
+    border-left: 2px solid var(--background-lighter);
 
     max-height: 100%;
     display: flex;
