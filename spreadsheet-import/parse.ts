@@ -130,7 +130,7 @@ export async function parseSpreadsheet(data: Uint8Array) {
     const metadata = workbook.Sheets["Metadata"]!;
     const testCell = metadata["!data"]![12]![0]!;
 
-    let randomizerType = "";
+    let randomizerType: "standard" | "hardcore";
 
     if (testCell.v == "Bundles Completed") {
         randomizerType = "standard";
@@ -247,7 +247,7 @@ export async function parseSpreadsheet(data: Uint8Array) {
 
     const profileObject = {
         currentGoalID,
-        templateName: isCustom ? "custom" : randomizerType,
+        templateName: isCustom ? ("custom" as const) : randomizerType,
         predictedSkillXP,
         completion,
     };

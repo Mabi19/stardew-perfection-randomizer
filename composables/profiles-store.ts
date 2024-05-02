@@ -50,7 +50,9 @@ export const useProfilesStore = defineStore("profiles", () => {
 
     async function createProfile(options: Profile & { customTemplate?: Template }) {
         const templateData =
-            options.customTemplate ?? (await getPredefinedTemplate(options.template));
+            options.template == "custom"
+                ? options.customTemplate
+                : await getPredefinedTemplate(options.template);
 
         if (!templateData) {
             throw new Error("Unknown template");

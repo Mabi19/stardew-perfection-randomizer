@@ -1,13 +1,13 @@
 interface SavedData {
     currentGoalID: string | null;
-    templateName: string;
+    templateName: TemplateID;
     predictedSkillXP: Record<string, number>;
     completion: Record<string, number>;
 }
 
 export interface Profile {
     name: string;
-    template: string;
+    template: TemplateID;
 }
 
 // Base64 utilities, mostly used as an escape hatch for controlling user input
@@ -53,7 +53,7 @@ export function deserializeSaveData(stringified: string): SavedData {
 
     return {
         currentGoalID: currentGoalID == "@@null" ? null : currentGoalID!,
-        templateName: templateName!,
+        templateName: templateName! as TemplateID,
         predictedSkillXP,
         completion,
     };

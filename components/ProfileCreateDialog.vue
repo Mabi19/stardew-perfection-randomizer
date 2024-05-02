@@ -73,7 +73,7 @@ function passEvent() {
 }
 const profilesStore = useProfilesStore();
 
-const template = ref("standard");
+const template = ref<TemplateID | "url">("standard");
 const profileName = ref("");
 
 enum URLTemplateStatus {
@@ -191,6 +191,10 @@ const templateEditorActive = ref(false);
 const templateEditor = ref<InstanceType<typeof TemplateEditor> | null>(null);
 const customTemplate = shallowRef<Template | null>(null);
 async function openTemplateEditor() {
+    if (template.value == "url") {
+        return;
+    }
+
     templateEditorActive.value = true;
     const templateToOpen =
         template.value == "custom"
