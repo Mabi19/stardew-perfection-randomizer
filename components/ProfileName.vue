@@ -1,7 +1,7 @@
 <template>
     <div class="profile-name">
         <span>{{ profile.name }}</span>
-        <span class="badge" :class="badgeColor">{{ profile.template }}</span>
+        <span class="badge" :class="badgeColor">{{ templateNames[profile.template] }}</span>
     </div>
 </template>
 
@@ -10,13 +10,17 @@ const props = defineProps<{
     profile: Profile;
 }>();
 
-const badgeColors: Record<string, string> = {
+const badgeColors = {
     standard: "green",
     hardcore: "red",
     custom: "blue",
-};
+} as const;
 
-const badgeColor = computed(() => badgeColors[props.profile.template]);
+const badgeColor = computed(() => {
+    const templateID = props.profile.template;
+    const ruleset = templateID == "custom" ? "custom" : templateRulesets[templateID];
+    return badgeColors[ruleset];
+});
 </script>
 
 <style scoped lang="scss">

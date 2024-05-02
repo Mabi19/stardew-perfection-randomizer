@@ -10,8 +10,10 @@
                 <li>
                     <label for="template">Select the template</label>
                     <select id="template" v-model="template" autofocus>
-                        <option value="standard">Standard Mode</option>
-                        <option value="hardcore">Hardcore Mode</option>
+                        <option value="standard_1_6">Standard Mode</option>
+                        <option value="hardcore_1_6">Hardcore Mode</option>
+                        <option value="standard">Standard Mode (1.5)</option>
+                        <option value="hardcore">Hardcore Mode (1.5)</option>
                         <option value="url">Use template from URL</option>
                         <option value="custom" v-if="customTemplate != null">Custom</option>
                     </select>
@@ -140,16 +142,9 @@ watch(debouncedTemplateURL, async () => {
 });
 
 const defaultProfileName = computed(() => {
-    const templateNames = {
-        standard: "Standard",
-        hardcore: "Hardcore",
-        custom: "Custom",
-        url: "Custom",
-    };
-
     // Check for already existing profile names.
     return profilesStore.findGoodProfileName(
-        `${templateNames[template.value as keyof typeof templateNames] || "<unknown>"} Randomizer`,
+        `${template.value == "url" ? "Custom" : templateNames[template.value] || "<unknown>"} Randomizer`,
     );
 });
 

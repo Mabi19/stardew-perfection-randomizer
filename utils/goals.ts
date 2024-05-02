@@ -34,8 +34,8 @@ export interface Template {
 const templateURLs = {
     standard: standardTemplate,
     hardcore: hardcoreTemplate,
-    hardcore_1_6: hardcoreTemplate1_6,
     standard_1_6: standardTemplate1_6,
+    hardcore_1_6: hardcoreTemplate1_6,
 } as const;
 
 export type PredefinedTemplateID = keyof typeof templateURLs;
@@ -44,9 +44,16 @@ export type TemplateID = PredefinedTemplateID | "custom";
 export const templateNames: Record<TemplateID, string> = {
     standard: "Standard (1.5)",
     hardcore: "Hardcore (1.5)",
-    hardcore_1_6: "Hardcore",
     standard_1_6: "Standard",
+    hardcore_1_6: "Hardcore",
     custom: "Custom",
+};
+
+export const templateRulesets: Record<PredefinedTemplateID, "hardcore" | "standard"> = {
+    standard: "standard",
+    hardcore: "hardcore",
+    standard_1_6: "standard",
+    hardcore_1_6: "hardcore",
 };
 
 const templateCache = new Map<string, Template>();

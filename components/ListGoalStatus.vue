@@ -79,6 +79,7 @@ function update(state: number) {
     border-radius: 4px;
     border: none;
     width: 2ch;
+    padding: 0 0.1rem;
     box-sizing: content-box;
     text-align: right;
     font: inherit;
