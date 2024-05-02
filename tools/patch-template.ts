@@ -607,7 +607,7 @@ if (data.ruleset == "hardcore") {
             },
         ].map((book) => {
             const isWOTW2 = book.name == "Way of the Wind pt. 2";
-            const prerequisites = isWOTW2 ? { all: [{ goal: "read_way_of_the_wind_pt_2" }] } : {};
+            const prerequisites = isWOTW2 ? { all: [{ goal: "read_way_of_the_wind_pt_1" }] } : {};
             return {
                 id: `read_${convertNameToID(book.name)}`,
                 name: `Read ${book.name}`,

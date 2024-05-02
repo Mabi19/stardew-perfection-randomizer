@@ -6230,7 +6230,7 @@
             "prerequisites": {
                 "all": [
                     {
-                        "goal": "read_way_of_the_wind_pt_2"
+                        "goal": "read_way_of_the_wind_pt_1"
                     }
                 ]
             },
