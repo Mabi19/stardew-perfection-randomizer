@@ -1,6 +1,5 @@
 @use "base";
 
-// TODO: disabled styles
 
 input:not([type=checkbox]), select {
     appearance: none;
@@ -16,6 +15,11 @@ input:not([type=checkbox]), select {
     &:focus {
         border-color: base.$accent;
         outline: 1px solid base.$accent-light;
+    }
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
     }
 }
 
