@@ -93,12 +93,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
             // saves will be ~150 kB max, so if we allow up to 5 profiles, we're still good
             console.time("save");
 
-            const saveData = serializeSaveData({
-                currentGoalID: currentGoalID.value,
-                templateName: currentTemplateName.value,
-                predictedSkillXP: predictedSkillXP.value,
-                completion: completion.value,
-            });
+            const saveData = serializeSaveData(generateSaveData());
             localStorage.setItem(`profile:${profiles.current}`, saveData);
 
             console.timeEnd("save");
@@ -106,6 +101,16 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         // I'm not sure why this is required.
         { deep: true },
     );
+
+    function generateSaveData(): SavedData {
+        return {
+            currentGoalID: currentGoalID.value,
+            templateName: currentTemplateName.value,
+            // get rid of reactivity
+            predictedSkillXP: JSON.parse(JSON.stringify(predictedSkillXP.value)),
+            completion: JSON.parse(JSON.stringify(completion.value)),
+        };
+    }
 
     // This is extracted into an action because setting goals via the Goals tab
     // can also change level up goal completions
@@ -280,6 +285,7 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         completedCount,
         totalCount,
         // actions
+        generateSaveData,
         updatePredictedXPLevelUp,
         rollGoal,
         cancelGoal,

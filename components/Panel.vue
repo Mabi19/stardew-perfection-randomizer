@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    type: "warning";
+    type: "warning" | "info";
 }>();
 </script>
 
@@ -23,5 +23,9 @@ const props = defineProps<{
 
 .warning {
     @include panel-color(#ffda0b);
+}
+
+.info {
+    @include panel-color(#6bc9ff);
 }
 </style>

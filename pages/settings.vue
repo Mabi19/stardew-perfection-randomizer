@@ -73,6 +73,21 @@
             </div>
         </div>
 
+        <Panel
+            v-if="templateHasMigrations(randomizer.currentTemplateName)"
+            type="info"
+            class="migration-notice"
+        >
+            <strong>You can migrate this profile to 1.6!</strong>
+            <span>
+                Just press the button and your save data will be converted for the new 1.6 content.
+                This will also make a backup in case anything goes wrong.
+            </span>
+            <AppButton icon="upgrade" @click="migrateProfile" :disabled="migrating"
+                >Migrate</AppButton
+            >
+        </Panel>
+
         <template v-if="nonCurrentProfiles.length > 0">
             <h3>Other Profiles</h3>
             <div class="profiles-wrapper">
@@ -219,6 +234,25 @@ async function deleteProfile(name: string) {
     }
 }
 
+const migrating = ref(false);
+async function migrateProfile() {
+    migrating.value = true;
+    // make a backup
+    await exportProfile();
+    const saveData = randomizer.generateSaveData();
+    await migrateCurrentSaveFile(saveData);
+    // patch the store
+    randomizer.currentGoalID = saveData.currentGoalID;
+    randomizer.currentTemplateName = saveData.templateName;
+    randomizer.predictedSkillXP = saveData.predictedSkillXP;
+    randomizer.completion = saveData.completion;
+    // set the template ID
+    profiles.allProfiles.find((profile) => profile.name == profiles.current)!.template =
+        saveData.templateName;
+
+    migrating.value = false;
+}
+
 function openOverlay() {
     window.open(
         new URL("/stardew-perfection-randomizer/stream-overlay/", document.location.origin),
@@ -255,6 +289,10 @@ function openOverlay() {
     background-color: base.$accent-background;
     padding: 1rem;
     border-radius: 1rem;
+}
+
+.migration-notice {
+    margin-top: 1rem;
 }
 
 .spacer {

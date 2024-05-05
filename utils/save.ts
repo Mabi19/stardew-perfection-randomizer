@@ -1,4 +1,4 @@
-interface SavedData {
+export interface SavedData {
     currentGoalID: string | null;
     templateName: TemplateID;
     predictedSkillXP: Record<string, number>;
