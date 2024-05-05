@@ -75,7 +75,7 @@ function passEvent() {
 }
 const profilesStore = useProfilesStore();
 
-const template = ref<TemplateID | "url">("standard");
+const template = ref<TemplateID | "url">("standard_1_6");
 const profileName = ref("");
 
 enum URLTemplateStatus {
