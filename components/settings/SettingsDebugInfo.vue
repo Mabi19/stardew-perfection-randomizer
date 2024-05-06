@@ -1,9 +1,6 @@
 <template>
-    <details>
-        <summary>Debug Info</summary>
-        <h3>XP Prediction</h3>
-        <pre><code>{{ JSON.stringify(randomizer.predictedSkillXP) }}</code></pre>
-    </details>
+    <h2>XP Prediction</h2>
+    <pre><code>{{ JSON.stringify(randomizer.predictedSkillXP) }}</code></pre>
 </template>
 
 <script setup lang="ts">

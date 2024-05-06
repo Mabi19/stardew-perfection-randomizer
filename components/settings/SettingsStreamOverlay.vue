@@ -1,5 +1,4 @@
 <template>
-    <h2>Stream Overlay</h2>
     <p>
         This app supports rendering a stream overlay in an auxiliary window, based on ArgonMatrix's
         templates. It includes cropping guides (red border) and a green background for chromakeying.

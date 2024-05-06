@@ -1,6 +1,4 @@
 <template>
-    <h2>Profile Management</h2>
-
     <div class="row">
         <AppButton
             icon="add"

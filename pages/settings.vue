@@ -19,11 +19,20 @@
             <div v-if="persistenceRejected">Request was rejected. Try again later.</div>
         </Panel>
 
-        <SettingsAppearance />
-        <SettingsProfileManagement />
-        <SettingsStreamOverlay />
-        <SettingsAbout />
-        <SettingsDebugInfo />
+        <TabSwitcher
+            v-model="selectedTab"
+            :options="['Appearance', 'Profile Management', 'Stream Overlay', 'About', 'Debug Info']"
+        />
+
+        <div class="settings-content">
+            <KeepAlive>
+                <SettingsAppearance v-if="selectedTab == 'Appearance'" />
+                <SettingsProfileManagement v-else-if="selectedTab == 'Profile Management'" />
+                <SettingsStreamOverlay v-else-if="selectedTab == 'Stream Overlay'" />
+                <SettingsAbout v-else-if="selectedTab == 'About'" />
+                <SettingsDebugInfo v-else-if="selectedTab == 'Debug Info'" />
+            </KeepAlive>
+        </div>
     </div>
 </template>
 
@@ -39,6 +48,8 @@ async function requestPersistence() {
         persistenceRejected.value = true;
     }
 }
+
+const selectedTab = ref("Appearance");
 </script>
 
 <style scoped lang="scss">
@@ -48,5 +59,9 @@ async function requestPersistence() {
     h1 {
         margin-top: 0;
     }
+}
+
+.settings-content {
+    margin: 0.75rem 0;
 }
 </style>

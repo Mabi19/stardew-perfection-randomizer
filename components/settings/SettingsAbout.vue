@@ -1,5 +1,4 @@
 <template>
-    <h2>About</h2>
     <p>
         This web app is based on the spreadsheet version of the randomizer made by
         <NuxtLink to="https://www.youtube.com/@ArgonMatrix">ArgonMatrix</NuxtLink>.

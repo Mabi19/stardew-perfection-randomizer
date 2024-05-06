@@ -1,5 +1,4 @@
 <template>
-    <h2>Appearance</h2>
     <div class="row">
         <label for="theme">Theme</label>
         <select v-model="settings.selectedTheme" id="theme">
