@@ -25,6 +25,15 @@ jobs:
               run: pnpm test
             - name: Build Nuxt app
               run: pnpm run generate
+            - name: Upload artifact
+              if: |
+                  github.ref == 'refs/heads/main' &&
+                  github.repository_owner == 'Mabi19' &&
+                  github.event_name == 'workflow_dispatch'
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: .output/public/
+
     deploy:
         runs-on: ubuntu-latest
         needs: build
@@ -42,10 +51,6 @@ jobs:
             id-token: write
 
         steps:
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v2
-              with:
-                  path: .output/public/
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v2
+              uses: actions/deploy-pages@v4
