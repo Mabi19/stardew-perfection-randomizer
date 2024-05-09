@@ -39,7 +39,12 @@
             </tr>
         </tbody>
     </table>
+
     <p>Ready to take the challenge?</p>
+    <strong>
+        Keep in mind that you can't change between Standard Mode and Hardcore Mode after starting
+        the challenge.
+    </strong>
     <div class="start">
         <AppButton @click="showCreateDialog" icon="start">Start your adventure!</AppButton>
         <AppButton @click="showImportDialog" icon="file_upload">Import data</AppButton>
