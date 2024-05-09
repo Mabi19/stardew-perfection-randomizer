@@ -431,7 +431,7 @@ insertGoalsAfter(data, "cook_squid_ink_ravioli", [
     {
         id: "cook_moss_soup",
         name: "Cook Moss Soup",
-        prerequisites: guardXP(data, { all: [{ goal: "level:fishing", multiplicity: 3 }] }),
+        prerequisites: guardXP(data, { all: [{ goal: "level:foraging", multiplicity: 3 }] }),
         imageURL: "https://stardewvalleywiki.com/mediawiki/images/d/df/Moss_Soup.png",
         multiplicity: 1,
         xp: {},
