@@ -194,7 +194,7 @@ export async function validateProfileData(profile: string, customTemplate?: Temp
             ([skill, xp]) =>
                 // check for corresponding level goal
                 typeof skill == "string" &&
-                validGoals.has(`level:${skill}`) &&
+                (validGoals.has(`level:${skill}`) || skill == "luck") &&
                 // XP has to be nonnegative
                 typeof xp == "number" &&
                 xp >= 0,
