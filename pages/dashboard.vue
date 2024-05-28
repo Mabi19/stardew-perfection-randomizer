@@ -36,13 +36,6 @@
                         >
                             Cancel Goal
                         </AppButton>
-                        <input
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.001"
-                            v-model.number="completionPercent"
-                        />
                     </div>
                 </template>
                 <div class="main-goal" v-else>All goals completed! 🎉</div>
@@ -108,8 +101,7 @@ const nullGoal: Goal = {
     multiplicity: 0,
 };
 
-// const completionPercent = computed(() => store.completedCount / store.totalCount);
-const completionPercent = ref(0);
+const completionPercent = computed(() => store.completedCount / store.totalCount);
 const isFinished = computed(() => store.completedCount == store.totalCount);
 
 const numberFormatter = new Intl.NumberFormat("en-US", {
