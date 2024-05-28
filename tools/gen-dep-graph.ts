@@ -1,4 +1,40 @@
-import type { Template } from "../utils/goals.ts";
+import type { Template, Prerequisite } from "../utils/goals.ts";
+
+interface Dependency {
+    goalID: string;
+    multiplicity: number;
+    context: "all" | "any";
+}
+
+function* traversePrerequisites(
+    reqs: Prerequisite,
+    context?: "all" | "any",
+): Generator<Dependency, void, void> {
+    if ("goal" in reqs) {
+        if (!context) {
+            throw new Error("Can't define dependency without context");
+        }
+        // single goal
+        yield { goalID: reqs.goal, multiplicity: reqs.multiplicity ?? 1, context };
+    } else {
+        // prerequisite list
+        let list: Prerequisite[] = [];
+        let newContext: "all" | "any" | undefined = undefined;
+        if (reqs.all) {
+            newContext = "all";
+            list = reqs.all;
+        } else if (reqs.any) {
+            newContext = "any";
+            list = reqs.any;
+        }
+
+        if (newContext) {
+            for (const req of list) {
+                yield* traversePrerequisites(req, newContext);
+            }
+        }
+    }
+}
 
 if (Deno.args.length < 2) {
     console.log("Usage: gen-dep-graph <template file path> <output path>");
@@ -24,24 +60,14 @@ for (const [name, deps] of Object.entries(data.tags)) {
 
 for (const goal of data.goals) {
     const id = goal.id;
-    file.write(encoder.encode(`    ${id}`));
-    if (goal.prerequisites.all) {
-        for (const prerequisite of goal.prerequisites.all) {
-            const multiplicity = prerequisite.multiplicity ?? 1;
-            const label = multiplicity == 1 ? "" : `,label="${multiplicity}"`;
-            file.write(
-                encoder.encode(`    "${id}" -> "${prerequisite.goal}" [color=red${label}]\n`),
-            );
-        }
-    }
-    if (goal.prerequisites.any) {
-        for (const prerequisite of goal.prerequisites.any) {
-            const multiplicity = prerequisite.multiplicity ?? 1;
-            const label = multiplicity == 1 ? "" : `,label="${multiplicity}"`;
-            file.write(
-                encoder.encode(`    "${id}" -> "${prerequisite.goal}" [color=blue${label}]\n`),
-            );
-        }
+    file.write(encoder.encode(`    ${id}\n`));
+
+    for (const prerequisite of traversePrerequisites(goal.prerequisites)) {
+        const color = prerequisite.context == "all" ? "red" : "blue";
+        const label = prerequisite.multiplicity == 1 ? "" : `,label="${prerequisite.multiplicity}"`;
+        file.write(
+            encoder.encode(`    "${id}" -> "${prerequisite.goalID}" [color=${color}${label}]\n`),
+        );
     }
 }
 
