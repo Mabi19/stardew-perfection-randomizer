@@ -1,5 +1,11 @@
 <template>
-    <div ref="dashboardElem" class="dashboard" :class="{ complete: isFinished }">
+    <div
+        ref="dashboardElem"
+        id="dashboard"
+        class="dashboard"
+        :class="{ transitioning: nextBackground != null }"
+        @transitionend="endBackgroundTransition"
+    >
         <div class="main">
             <div class="goal-area">
                 <template v-if="!isFinished">
@@ -30,6 +36,13 @@
                         >
                             Cancel Goal
                         </AppButton>
+                        <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.001"
+                            v-model.number="completionPercent"
+                        />
                     </div>
                 </template>
                 <div class="main-goal" v-else>All goals completed! 🎉</div>
@@ -38,10 +51,10 @@
         <div class="completion">
             <div class="label">
                 Completed Goals: {{ store.completedCount }}/{{ store.totalCount }} ({{
-                    numberFormatter.format((100 * store.completedCount) / store.totalCount)
+                    numberFormatter.format(100 * completionPercent)
                 }}%)
             </div>
-            <ChallengeProgressBar :fill="store.completedCount / store.totalCount" />
+            <ChallengeProgressBar :fill="completionPercent" />
         </div>
         <GoalNotificationArea
             ref="notificationArea"
@@ -84,6 +97,7 @@ useHead({
 
 const store = useRandomizerStore();
 await store.waitForReady();
+const settings = useSettingsStore();
 
 const nullGoal: Goal = {
     id: "null_placeholder",
@@ -94,6 +108,8 @@ const nullGoal: Goal = {
     multiplicity: 0,
 };
 
+// const completionPercent = computed(() => store.completedCount / store.totalCount);
+const completionPercent = ref(0);
 const isFinished = computed(() => store.completedCount == store.totalCount);
 
 const numberFormatter = new Intl.NumberFormat("en-US", {
@@ -253,6 +269,101 @@ watch(
 
 // help dialog
 const helpDialog = ref(false);
+
+// backgrounds
+import bgEggFestival from "~/assets/backgrounds/egg-festival.png";
+import bgDesertFestival from "~/assets/backgrounds/desert-festival.png";
+import bgFlowerDance from "~/assets/backgrounds/flower-dance.png";
+import bgLuau from "~/assets/backgrounds/luau.png";
+import bgTroutDerby from "~/assets/backgrounds/trout-derby.png";
+import bgMoonlightJellies from "~/assets/backgrounds/moonlight-jellies.png";
+import bgFair from "~/assets/backgrounds/fair.png";
+import bgSpiritsEve from "~/assets/backgrounds/spirits-eve.png";
+import bgFestivalOfIce from "~/assets/backgrounds/festival-of-ice.png";
+import bgSquidFest from "~/assets/backgrounds/squidfest.png";
+import bgNightMarket from "~/assets/backgrounds/night-market.png";
+import bgWinterStar from "~/assets/backgrounds/winter-star.png";
+
+import bgSummit from "~/assets/backgrounds/summit.png";
+
+const backgroundSequences = {
+    light: [bgEggFestival, bgFlowerDance, bgLuau, bgFair, bgFestivalOfIce, bgWinterStar, bgSummit],
+    // prettier-ignore
+    dark: [bgDesertFestival, bgTroutDerby, bgMoonlightJellies, bgSpiritsEve, bgSquidFest, bgNightMarket, bgSummit],
+    // prettier-ignore
+    light_1_5: [bgEggFestival, bgFlowerDance, bgLuau, bgFair, bgFestivalOfIce, bgWinterStar, bgSummit],
+    dark_1_5: [bgMoonlightJellies, bgSpiritsEve, bgNightMarket, bgSummit],
+};
+
+const usedSequence = computed(() => {
+    const theme = settings.theme;
+    const isLegacyTemplate = ["standard", "hardcore"].includes(store.currentTemplateName);
+    if (theme == "dark") {
+        if (isLegacyTemplate) {
+            return backgroundSequences.dark_1_5;
+        } else {
+            return backgroundSequences.dark;
+        }
+    } else {
+        if (isLegacyTemplate) {
+            return backgroundSequences.light_1_5;
+        } else {
+            return backgroundSequences.light;
+        }
+    }
+});
+
+const currentIndex = computed(() =>
+    Math.floor(completionPercent.value * (usedSequence.value.length - 1)),
+);
+
+const currentBackground = ref(usedSequence.value[currentIndex.value]);
+const nextBackground = ref<string | null>(null);
+
+watch([currentIndex, usedSequence], () => {
+    if (nextBackground.value == null) {
+        nextBackground.value = usedSequence.value[currentIndex.value]!;
+    } else {
+        // failsafe: to not break future transitions, cancel everything
+        currentBackground.value = usedSequence.value[currentIndex.value]!;
+        nextBackground.value = null;
+    }
+});
+
+// predictively cache the images that will be shown next
+const nextPrevImageCache = {
+    prev: null as HTMLImageElement | null,
+    next: null as HTMLImageElement | null,
+};
+watch(
+    [currentIndex, usedSequence],
+    () => {
+        if (currentIndex.value > 0) {
+            nextPrevImageCache.prev = new Image();
+            nextPrevImageCache.prev.src = usedSequence.value[currentIndex.value - 1]!;
+        }
+
+        if (currentIndex.value < usedSequence.value.length - 1) {
+            nextPrevImageCache.next = new Image();
+            nextPrevImageCache.next.src = usedSequence.value[currentIndex.value + 1]!;
+        }
+    },
+    { immediate: true },
+);
+
+function endBackgroundTransition(ev: TransitionEvent) {
+    // skip handling for any nested elements
+    if (!(ev.target instanceof HTMLElement) || ev.target.id != "dashboard") {
+        return;
+    }
+    currentBackground.value = nextBackground.value ?? usedSequence.value[currentIndex.value];
+    nextBackground.value = null;
+}
+
+const currentBackgroundCSS = computed(() => `url("${currentBackground.value}")`);
+const nextBackgroundCSS = computed(() =>
+    nextBackground.value ? `url("${nextBackground.value}")` : undefined,
+);
 </script>
 
 <style scoped lang="scss">
@@ -263,7 +374,7 @@ const helpDialog = ref(false);
     flex-flow: column nowrap;
     height: 100%;
 
-    background: url("~/assets/background-light.png");
+    background: v-bind(currentBackgroundCSS);
     image-rendering: pixelated;
     background-position: 50% 50%;
     background-size: cover;
@@ -288,7 +399,7 @@ const helpDialog = ref(false);
     right: 0;
     bottom: 0;
 
-    background: url("~/assets/background-complete.png");
+    background: v-bind(nextBackgroundCSS);
 
     image-rendering: pixelated;
     background-position: 50% 50%;
@@ -300,7 +411,7 @@ const helpDialog = ref(false);
     z-index: 1;
 }
 
-.dashboard.complete::after {
+.dashboard.transitioning::after {
     opacity: 1;
 }
 
@@ -381,10 +492,6 @@ const helpDialog = ref(false);
 .dark-theme {
     .goal-area {
         background-color: rgb(43, 49, 43);
-    }
-
-    .dashboard {
-        background-image: url("~/assets/background-dark.png");
     }
 }
 </style>
