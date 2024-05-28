@@ -21,7 +21,7 @@
 
         <TabSwitcher
             v-model="selectedTab"
-            :options="['Appearance', 'Profile Management', 'Stream Overlay', 'About', 'Debug Info']"
+            :options="['Appearance', 'Profile Management', 'Stream Overlay', 'About']"
         />
 
         <div class="settings-content">
@@ -30,7 +30,6 @@
                 <SettingsProfileManagement v-else-if="selectedTab == 'Profile Management'" />
                 <SettingsStreamOverlay v-else-if="selectedTab == 'Stream Overlay'" />
                 <SettingsAbout v-else-if="selectedTab == 'About'" />
-                <SettingsDebugInfo v-else-if="selectedTab == 'Debug Info'" />
             </KeepAlive>
         </div>
     </div>
