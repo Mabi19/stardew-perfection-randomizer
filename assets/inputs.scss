@@ -6,6 +6,7 @@ input:not([type=checkbox]), select {
     border: none;
     background-color: var(--background-light);
     font-family: inherit;
+    color: inherit;
     font-size: 1rem;
 
     padding: 0.25em 0.5em;
@@ -29,6 +30,7 @@ select {
     background-repeat: no-repeat;
     background-size: 1em 1em;
     padding-right: 1.6em;
+    color: inherit;
 }
 
 .dark-theme select {
