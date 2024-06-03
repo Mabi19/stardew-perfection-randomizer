@@ -38,9 +38,10 @@
             </div>
             <div>
                 <strong>Prerequisites:</strong>
-                <div class="prerequisites" v-if="infoGoal.prerequisites">
+                <div class="prerequisites" v-if="Object.keys(infoGoal.prerequisites).length > 0">
                     <GoalListPrerequisites :prerequisites="infoGoal.prerequisites" />
                 </div>
+                <span v-else>&lt;none&gt;</span>
             </div>
             <div>
                 <strong>Implied XP:</strong>
