@@ -207,25 +207,47 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         return true;
     }
 
-    function rollGoal() {
+    function rollGoal(cancelledGoals: Set<string>) {
         if (!templateData.value) {
             throw new Error("Cannot roll goal without template");
         }
 
-        const eligibleGoals = [];
+        let eligibleGoals = new Set<Goal>();
         // use templateData goals directly to iterate easier
         for (const goal of templateData.value.goals) {
             if (isEligible(goal)) {
-                const remainingMultiplicity =
-                    goal.multiplicity -
-                    (completion.value[goal.id] ?? throwError(new Error("Could not find goal")));
-                for (let i = 0; i < remainingMultiplicity; i++) {
-                    eligibleGoals.push(goal);
-                }
+                eligibleGoals.add(goal);
             }
         }
-        const index = Math.floor(Math.random() * eligibleGoals.length);
-        currentGoalID.value = eligibleGoals[index]!.id;
+
+        // To prevent all the eligible goals being excluded,
+        // only disqualify the cancelled goals if they can't exclude all the goals
+        // This check is not quite correct, but it's good enough
+        // (it only produces false positives, no false negatives)
+        const applyCancels = cancelledGoals.size < eligibleGoals.size;
+
+        const weightedGoals: string[] = [];
+        for (const goal of eligibleGoals) {
+            if (applyCancels && cancelledGoals.has(goal.id)) {
+                // Prevent recently cancelled goals from reappearing
+                continue;
+            }
+
+            const remainingMultiplicity =
+                goal.multiplicity -
+                (completion.value[goal.id] ?? throwError(new Error("Could not find goal")));
+            for (let i = 0; i < remainingMultiplicity; i++) {
+                weightedGoals.push(goal.id);
+            }
+        }
+
+        if (weightedGoals.length == 0) {
+            alert("There are no eligible goals. Please report this");
+            return;
+        }
+
+        const index = Math.floor(Math.random() * weightedGoals.length);
+        currentGoalID.value = weightedGoals[index]!;
     }
 
     function cancelGoal() {

@@ -92,6 +92,8 @@ const store = useRandomizerStore();
 await store.waitForReady();
 const settings = useSettingsStore();
 
+const recentlyCancelledGoals = ref(new Set<string>());
+
 const nullGoal: Goal = {
     id: "null_placeholder",
     name: "No Goal Active!",
@@ -125,7 +127,8 @@ function rollGoal() {
 
     const previousGoalID = store.currentGoalID;
 
-    store.rollGoal();
+    store.rollGoal(recentlyCancelledGoals.value);
+
     // this needs extra context in the form of the previous goal
     historyContext.hookGenerate(previousGoalID);
 
@@ -147,6 +150,9 @@ function finishGoal() {
 
     const goalID = store.currentGoalID!;
 
+    // goal was finished, so this chain of cancels no longer applies
+    recentlyCancelledGoals.value.clear();
+
     store.finishGoal();
     setCooldown();
 
@@ -164,6 +170,7 @@ function cancelGoal() {
     historyContext.hookCancel();
 
     const goalID = store.currentGoalID!;
+    recentlyCancelledGoals.value.add(goalID);
 
     store.cancelGoal();
     setCooldown();
