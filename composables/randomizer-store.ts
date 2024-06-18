@@ -223,7 +223,8 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         // To prevent all the eligible goals being excluded,
         // only disqualify the cancelled goals if they can't exclude all the goals
         // This check is not quite correct, but it's good enough
-        // (it only produces false positives, no false negatives)
+        // (it can only produce false positives, no false negatives)
+        // and some funky stuff would need to happen for it to fail in the first place
         const applyCancels = cancelledGoals.size < eligibleGoals.size;
 
         const weightedGoals: string[] = [];
