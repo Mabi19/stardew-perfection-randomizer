@@ -58,3 +58,36 @@ export function deserializeSaveData(stringified: string): SavedData {
         completion,
     };
 }
+
+export async function exportProfile(profileID: string) {
+    const saveData = localStorage.getItem(`profile:${profileID}`);
+    if (!saveData) {
+        throw new Error("Could not load current profile");
+    }
+
+    const encoder = new TextEncoder();
+    const encodedHeader = encoder.encode("sdvpr_v1_packed;");
+
+    const encodedSaveData = encoder.encode(saveData);
+    const compressedSaveData = await ByteArrayUtils.compressData(encodedSaveData);
+    const saveDataLength = ByteArrayUtils.encodeInteger(compressedSaveData.size);
+
+    const templateParts: BlobPart[] = [];
+    const template = localStorage.getItem(`profileTemplate:${profileID}`);
+    if (template) {
+        const encodedTemplate = encoder.encode(template);
+        const compressedTemplate = await ByteArrayUtils.compressData(encodedTemplate);
+        const templateLength = ByteArrayUtils.encodeInteger(compressedTemplate.size);
+
+        templateParts.push(templateLength);
+        templateParts.push(compressedTemplate);
+    } else {
+        // 0 bytes
+        templateParts.push(ByteArrayUtils.encodeInteger(0));
+    }
+
+    const blob = new Blob([encodedHeader, ...templateParts, saveDataLength, compressedSaveData], {
+        type: "application/octet-stream",
+    });
+    downloadBlob(blob, `${profileID}.randomizer`);
+}
