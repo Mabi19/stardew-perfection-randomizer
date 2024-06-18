@@ -1,4 +1,9 @@
 <template>
+    <div class="part">
+        <AppButton icon="edit" @click="templateUpdateActive = true"
+            >Edit goal definitions</AppButton
+        >
+    </div>
     <div class="part" v-if="store.templateData?.ruleset">
         This Randomizer uses {{ store.templateData.ruleset }} rules.
         <a href="https://bit.ly/RandomPerfection">Perfection Randomizer Rules Document</a>
@@ -30,6 +35,7 @@
     </div>
 
     <XPUpdateDialog :open="xpPredictionDialogActive" @finish="xpPredictionDialogActive = false" />
+    <TemplateUpdateDialog :open="templateUpdateActive" @finish="templateUpdateActive = false" />
 </template>
 
 <script setup lang="ts">
@@ -67,6 +73,8 @@ const xpEntries = computed(() =>
         };
     }),
 );
+
+const templateUpdateActive = ref(false);
 </script>
 
 <style scoped lang="scss">
