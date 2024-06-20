@@ -3,7 +3,7 @@
         title="Create a Profile"
         :open="open"
         @close="passEvent"
-        v-show="!templateEditorActive"
+        :style="{ display: templateEditorActive ? 'none' : undefined }"
     >
         <form @submit.prevent="submitForm">
             <ol class="task-list">

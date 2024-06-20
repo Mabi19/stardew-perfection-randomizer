@@ -4,7 +4,7 @@ interface Migration {
 }
 
 // Automatically try to match completion format to template goals.
-function autofix(template: Template, data: SavedData) {
+export function autofix(template: Template, data: SavedData) {
     const templateGoalIDs = new Set(template.goals.map((goal) => goal.id));
     const newCompletion: Record<string, number> = {};
     for (const goalID of templateGoalIDs) {

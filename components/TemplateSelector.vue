@@ -19,35 +19,24 @@
         @click.stop.prevent="openTemplateEditor()"
         icon="edit"
         class="dialog-button-margin"
-        :disabled="templateID == 'url'"
+        :disabled="templateID == 'url' && templateURLStatus != URLTemplateStatus.OK"
         >Customize</AppButton
     >
-    <!--
-        TODO: refactor this so it works
-        the dialog needs to hide itself when the template editor is up.
-        however, this component is included inside the dialog, so the template editor would be hidden with it.
-        so, the template editor will likely need to be extracted outside it
-        this will be pain
-    -->
-    <TemplateEditor
-        ref="templateEditor"
-        @finish="finishTemplateEditor"
-        @cancel="cancelTemplateEditor"
-    />
 </template>
 
 <script setup lang="ts">
-import type { TemplateEditor } from "#components";
 import debounce from "lodash-es/debounce";
 
 // defined via props-emits because this is a fake v-model
 // (only receives values)
 const props = defineProps<{
     editorActive: boolean;
+    isOk: boolean;
 }>();
 
 const emit = defineEmits<{
     "update:editorActive": [active: boolean];
+    "update:isOk": [ok: boolean];
 }>();
 
 const templateID = defineModel<TemplateID | "url">("id", { required: true });
@@ -117,32 +106,45 @@ watch(debouncedTemplateURL, async () => {
 
 // template editor stuff
 const templateEditorActive = ref(false);
-watch(templateEditorActive, () => emit("update:editorActive", templateEditorActive.value));
-const templateEditor = ref<InstanceType<typeof TemplateEditor> | null>(null);
+const templateEditor = useTemplateEditor();
 async function openTemplateEditor() {
-    if (templateID.value == "url") {
+    if (templateID.value == "url" && customTemplate.value != null) {
         return;
     }
 
     templateEditorActive.value = true;
     const templateToOpen =
-        templateID.value == "custom"
+        templateID.value == "custom" || templateID.value == "url"
             ? customTemplate.value
             : await getPredefinedTemplate(templateID.value);
     if (templateToOpen != null) {
-        templateEditor.value?.start(templateToOpen);
+        try {
+            const newTemplate = await templateEditor.start(templateToOpen);
+            customTemplate.value = newTemplate;
+            templateID.value = "custom";
+        } catch (_) {
+            console.log("template editor cancelled");
+        }
+        templateEditorActive.value = false;
     }
 }
 
-function finishTemplateEditor(newTemplate: Template) {
-    cancelTemplateEditor();
-    customTemplate.value = newTemplate;
-    templateID.value = "custom";
-}
-
-function cancelTemplateEditor() {
-    templateEditorActive.value = false;
-}
+watch(templateEditorActive, () => emit("update:editorActive", templateEditorActive.value));
+watch([templateID, templateURLStatus, customTemplate], () => {
+    if (templateID.value == "url") {
+        emit("update:isOk", templateURLStatus.value == URLTemplateStatus.OK);
+    } else if (templateID.value == "custom") {
+        emit("update:isOk", customTemplate.value != null);
+    } else {
+        // predefined template, always available
+        emit("update:isOk", true);
+    }
+});
+watch(templateID, () => {
+    if (templateID.value != "url") {
+        templateURLStatus.value = URLTemplateStatus.NONE;
+    }
+});
 </script>
 
 <style scoped lang="scss">

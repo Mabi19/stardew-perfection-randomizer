@@ -1,7 +1,7 @@
 <template>
     <Teleport to="#modals">
         <Transition>
-            <div class="darkenator" v-if="open" @click="closeDialog">
+            <div class="darkenator" v-if="open" @click="closeDialog" v-bind="$attrs">
                 <div class="dialog" @click.stop>
                     <div class="title">
                         <span>{{ title }}</span>
@@ -25,6 +25,10 @@ const _props = defineProps<{
 const emit = defineEmits<{
     (event: "close"): boolean;
 }>();
+
+defineOptions({
+    inheritAttrs: false,
+});
 
 function closeDialog() {
     emit("close");

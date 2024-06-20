@@ -1,9 +1,11 @@
 <template>
     <NuxtPwaManifest />
     <DialogProvider>
-        <NuxtLayout>
-            <NuxtPage />
-        </NuxtLayout>
+        <TemplateEditorProvider>
+            <NuxtLayout>
+                <NuxtPage />
+            </NuxtLayout>
+        </TemplateEditorProvider>
     </DialogProvider>
 </template>
 
