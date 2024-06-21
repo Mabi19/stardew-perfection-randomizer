@@ -59,11 +59,20 @@ async function submitForm() {
     }
 
     // create a migration and apply it
-    const migration: Migration = {
-        fixer: autofix,
-        to: templateID.value == "custom" || templateID.value == "url" ? template : templateID.value,
-    };
     const saveData = randomizer.generateSaveData();
+    // if there's an existing migration like this, use that as it will have a better save fixer
+    const existingMigration = findMigration(saveData);
+    let migration: Migration =
+        existingMigration?.to == templateID.value
+            ? existingMigration
+            : {
+                  fixer: autofix,
+                  to:
+                      templateID.value == "custom" || templateID.value == "url"
+                          ? template
+                          : templateID.value,
+              };
+
     await applyMigration(randomizer, profiles, saveData, migration);
 
     passFinishEvent();
