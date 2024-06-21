@@ -49,7 +49,11 @@ await store.waitForReady();
 const searchTerm = ref("");
 const searchBox = ref<HTMLInputElement | null>(null);
 
-useKeyboardShortcut(KEY_MODIFIERS.CTRL, "F", () => searchBox.value?.focus());
+useKeyboardShortcut(
+    KEY_MODIFIERS.CTRL,
+    "F",
+    () => !templateUpdateActive.value && searchBox.value?.focus(),
+);
 
 const hasLevelUpGoals = computed(() =>
     store.templateData?.goals.some((goal) => goal.id.startsWith("level:")),

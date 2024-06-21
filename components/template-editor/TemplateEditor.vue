@@ -38,6 +38,16 @@
                         <AppButton icon="add" @click="createNewGoal">Create new goal</AppButton>
                     </div>
 
+                    <div class="row">
+                        <label for="template-editor-filter">Filter goals:</label>
+                        <input
+                            id="template-editor-filter"
+                            type="search"
+                            v-model="searchTerm"
+                            ref="searchBox"
+                        />
+                    </div>
+
                     <table class="goal-list">
                         <thead>
                             <tr>
@@ -49,7 +59,7 @@
                         </thead>
                         <tbody>
                             <TemplateEditorGoal
-                                v-for="(goal, idx) in template.goals"
+                                v-for="(goal, idx) in filteredGoals"
                                 :goal="goal"
                                 :required-by="reverseDeps[goal.id]"
                                 @edit="handleEdit(idx)"
@@ -202,6 +212,22 @@ const reverseDeps = computed(() => {
 const goalsByID = computed(() =>
     template.value ? Object.fromEntries(template.value.goals.map((goal) => [goal.id, goal])) : {},
 );
+
+const searchTerm = ref("");
+const searchBox = ref<HTMLInputElement | null>(null);
+useKeyboardShortcut(KEY_MODIFIERS.CTRL, "F", () => searchBox.value?.focus());
+const filteredGoals = computed(() => {
+    const lowerSearchTerm = searchTerm.value.toLowerCase();
+
+    if (lowerSearchTerm.length < 4) {
+        return template.value?.goals;
+    }
+
+    return template.value?.goals?.filter((goal) =>
+        goal.name.toLowerCase().includes(lowerSearchTerm),
+    );
+});
+
 const goalPane = ref<InstanceType<typeof TemplateEditorPane> | null>();
 watch(currentTab, () => goalPane.value?.cancelEditing());
 
