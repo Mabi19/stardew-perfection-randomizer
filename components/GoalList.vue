@@ -1,20 +1,22 @@
 <template>
-    <table class="goal-list" v-if="filteredGoals && filteredGoals.length > 0">
-        <thead>
-            <tr>
-                <th>Comp.</th>
-                <th>Name</th>
-                <th><!-- settings button --></th>
-            </tr>
-        </thead>
-        <tbody>
-            <ListGoal
-                v-for="goal in filteredGoals"
-                :goal="goal"
-                @info-click="openGoalInfo"
-            ></ListGoal>
-        </tbody>
-    </table>
+    <div class="goal-list" v-if="filteredGoals && filteredGoals.length > 0">
+        <div class="goal-list-header">
+            <span class="goal-list-completion">Comp.</span>
+            <span class="goal-list-name">Name</span>
+            <span class="goal-list-action"><!-- more info button --></span>
+        </div>
+        <RecycleScroller
+            class="goal-list-body"
+            page-mode
+            :buffer="300"
+            :items="filteredGoals"
+            :item-size="30"
+            key-field="id"
+            v-slot="{ item }"
+        >
+            <ListGoal :goal="item" @info-click="openGoalInfo"></ListGoal>
+        </RecycleScroller>
+    </div>
     <div v-else>No goals matching filter!</div>
 
     <AppDialog
@@ -75,6 +77,9 @@
 </template>
 
 <script setup lang="ts">
+import { RecycleScroller } from "vue-virtual-scroller";
+import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
+
 const props = defineProps<{
     searchTerm: string;
 }>();
@@ -106,6 +111,28 @@ function isEmpty(o: {}) {
 </script>
 
 <style scoped lang="scss">
+.goal-list {
+    max-width: 100%;
+
+    .goal-list-header {
+        display: flex;
+        flex-flow: row nowrap;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    :deep(.goal-list-completion) {
+        width: 72px;
+    }
+    :deep(.goal-list-name) {
+        max-width: 25rem;
+        flex-grow: 1;
+    }
+    :deep(.goal-list-action) {
+        width: 32px;
+    }
+}
+
 .goal-info-wrapper {
     & > div {
         & > strong {

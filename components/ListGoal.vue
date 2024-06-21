@@ -1,13 +1,13 @@
 <template>
-    <tr class="goal">
+    <div class="goal">
         <ListGoalStatus :goal="goal"></ListGoalStatus>
-        <td class="name">
+        <div class="goal-list-name">
             <label :for="`goal:${goal.id}`"><Goal :goal="goal" /></label>
-        </td>
-        <td class="info">
+        </div>
+        <div class="info goal-list-action">
             <PlainIconButton @click="openDialog" icon="more_horiz" />
-        </td>
-    </tr>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -24,3 +24,28 @@ function openDialog() {
     emit("infoClick", props.goal);
 }
 </script>
+
+<style scoped lang="scss">
+.info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.goal {
+    // needs to be set in pixels for virtual scroller
+    // 1em = 16px
+    height: 30px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    * {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+</style>

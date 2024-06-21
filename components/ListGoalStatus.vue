@@ -1,5 +1,5 @@
 <template>
-    <td class="status">
+    <div class="status goal-list-completion">
         <template v-if="store.currentGoalID != goal.id">
             <input
                 v-if="goal.multiplicity == 1"
@@ -8,7 +8,7 @@
                 :id="`goal:${goal.id}`"
                 @change="handleCheckbox"
             />
-            <span class="badge" v-else>
+            <span class="badge status-value" v-else>
                 <input
                     class="completion-input"
                     type="number"
@@ -20,10 +20,14 @@
                 /><span>/{{ goal.multiplicity }}</span>
             </span>
         </template>
-        <span class="badge" title="Cancel or finish this goal to edit its completion." v-else>
+        <span
+            class="badge status-value"
+            title="Cancel or finish this goal to edit its completion."
+            v-else
+        >
             current
         </span>
-    </td>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -72,6 +76,12 @@ function update(state: number) {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    align-items: center;
+}
+
+.status-value {
+    display: inline-flex;
+    flex-flow: row nowrap;
     align-items: center;
 }
 

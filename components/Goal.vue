@@ -3,6 +3,7 @@
         <img
             v-if="goal.imageURL"
             :src="goal.imageURL"
+            :key="goal.imageURL"
             class="icon"
             role="presentation"
             loading="lazy"

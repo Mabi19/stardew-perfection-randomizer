@@ -17,6 +17,9 @@ importers:
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(vue@3.4.29)
+      vue-virtual-scroller:
+        specifier: 2.0.0-beta.8
+        version: 2.0.0-beta.8(vue@3.4.29)
       xlsx:
         specifier: https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz
         version: https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz
