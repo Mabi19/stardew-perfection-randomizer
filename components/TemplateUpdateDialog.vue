@@ -58,6 +58,9 @@ async function submitForm() {
         return;
     }
 
+    // make a backup
+    await exportProfile(profiles.current!);
+
     // create a migration and apply it
     const saveData = randomizer.generateSaveData();
     // if there's an existing migration like this, use that as it will have a better save fixer
