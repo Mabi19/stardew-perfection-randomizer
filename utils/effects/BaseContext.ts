@@ -16,6 +16,8 @@ export class BaseEffectContext {
         height: number;
     };
     particles: Particle[];
+    // particles to be added after processing
+    particleQueue: Particle[];
 
     lastTick: number;
     isTicking: boolean;
@@ -35,6 +37,7 @@ export class BaseEffectContext {
         // @ts-ignore
         this.sizeInfo = {};
         this.particles = [];
+        this.particleQueue = [];
         this.lastTick = performance.now();
         this.isTicking = false;
 
@@ -93,8 +96,11 @@ export class BaseEffectContext {
     }
 
     process(deltaTime: number) {
-        //* This function has side effects, but doing this without filter() is very clunky
-        this.particles = this.particles.filter((particle) => !particle.process(this, deltaTime));
+        //! This function has side effects, but doing this without filter() is very clunky
+        this.particles = this.particles
+            .filter((particle) => !particle.process(this, deltaTime))
+            .concat(this.particleQueue);
+        this.particleQueue = [];
     }
 
     render() {
@@ -103,5 +109,10 @@ export class BaseEffectContext {
         for (const particle of this.particles) {
             particle.draw(this);
         }
+    }
+
+    spawnParticle(particle: Particle) {
+        this.particleQueue.push(particle);
+        this.startTicking();
     }
 }

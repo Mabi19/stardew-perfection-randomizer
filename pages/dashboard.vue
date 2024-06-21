@@ -206,6 +206,22 @@ const effectsCanvasElem = ref<HTMLCanvasElement | null>(null);
 
 const effectContext = shallowRef<DashboardEffectContext | null>(null);
 
+let secretModule: typeof import("~/utils/effects/secret-particles") | undefined = undefined;
+async function getSecretModule() {
+    if (!secretModule) {
+        secretModule = await import("~/utils/effects/secret-particles");
+        // preload image
+        secretModule.getBaseImage();
+    }
+    return secretModule;
+}
+// TODO: do this if there's Luck XP
+async function spawnSecretParticle() {
+    const mod = await getSecretModule();
+    const settings = mod.SECRET_PARTICLES.qiPlane();
+    effectContext?.value?.spawnParticle(new mod.SpriteParticle(settings));
+}
+
 onMounted(() => {
     if (!dashboardElem.value || !effectsCanvasElem.value) {
         console.error("Could not get effect elements");

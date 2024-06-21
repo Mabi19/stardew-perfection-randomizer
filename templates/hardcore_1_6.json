@@ -3193,19 +3193,7 @@
         {
             "id": "craft_a_fish_smoker",
             "name": "Craft a Fish Smoker",
-            "prerequisites": {
-                "all": [
-                    {
-                        "goal": "catch_sea_jelly"
-                    },
-                    {
-                        "goal": "catch_river_jelly"
-                    },
-                    {
-                        "goal": "catch_cave_jelly"
-                    }
-                ]
-            },
+            "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/79/Fish_Smoker.png",
             "multiplicity": 1,
             "xp": {}

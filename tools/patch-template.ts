@@ -1,3 +1,6 @@
+/// <reference lib="deno.ns" />
+/// <reference lib="dom" />
+
 import type { PrerequisiteGroup, Template, TemplateGoal } from "../utils/goals.ts";
 import { validateTemplate } from "../utils/validate.ts";
 import { convertNameToID } from "./utils.ts";
@@ -309,13 +312,17 @@ insertGoalsAfter(data, "craft_a_cask", [
     {
         id: "craft_a_fish_smoker",
         name: "Craft a Fish Smoker",
-        prerequisites: {
-            all: [
-                { goal: "catch_sea_jelly" },
-                { goal: "catch_river_jelly" },
-                { goal: "catch_cave_jelly" },
-            ],
-        },
+        prerequisites:
+            // Hardcore only: get the jellies through pet gifts
+            data.ruleset == "hardcore"
+                ? {}
+                : {
+                      all: [
+                          { goal: "catch_sea_jelly" },
+                          { goal: "catch_river_jelly" },
+                          { goal: "catch_cave_jelly" },
+                      ],
+                  },
         imageURL: "https://stardewvalleywiki.com/mediawiki/images/7/79/Fish_Smoker.png",
         multiplicity: 1,
         xp: {},
