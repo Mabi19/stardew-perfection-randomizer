@@ -17,10 +17,10 @@
                     v-model:id="templateID"
                     v-model:custom-template="customTemplate"
                     v-model:editor-active="templateEditorActive"
-                    v-model:is-ok="templateIsOK"
+                    v-model:is-ok="templateIsOk"
                 />
             </div>
-            <AppButton icon="done" class="confirm" :disabled="!templateIsOK">Confirm</AppButton>
+            <AppButton icon="done" class="confirm" :disabled="!templateIsOk">Confirm</AppButton>
         </form>
     </AppDialog>
 </template>
@@ -40,7 +40,7 @@ const profiles = useProfilesStore();
 const templateID = ref<TemplateID | "url">("standard_1_6");
 const customTemplate = ref<Template | null>(null);
 const templateEditorActive = ref(false);
-const templateIsOK = ref(true);
+const templateIsOk = ref(true);
 
 function passFinishEvent() {
     emit("finish");
@@ -58,20 +58,13 @@ async function submitForm() {
         return;
     }
 
-    // make a backup
-    await exportProfile(profiles.current!);
-    // modify save data
+    // create a migration and apply it
+    const migration: Migration = {
+        fixer: autofix,
+        to: templateID.value == "custom" || templateID.value == "url" ? template : templateID.value,
+    };
     const saveData = randomizer.generateSaveData();
-    autofix(template, saveData);
-    saveData.templateName = templateID.value == "url" ? "custom" : templateID.value;
-    // patch the store
-    randomizer.currentGoalID = saveData.currentGoalID;
-    randomizer.currentTemplateName = saveData.templateName;
-    randomizer.predictedSkillXP = saveData.predictedSkillXP;
-    randomizer.completion = saveData.completion;
-    // set the template ID
-    profiles.allProfiles.find((profile) => profile.name == profiles.current)!.template =
-        saveData.templateName;
+    await applyMigration(randomizer, profiles, saveData, migration);
 
     passFinishEvent();
 }

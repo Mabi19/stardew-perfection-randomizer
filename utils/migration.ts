@@ -1,5 +1,5 @@
-interface Migration {
-    to: PredefinedTemplateID;
+export interface Migration {
+    to: PredefinedTemplateID | Template;
     fixer: (newTemplate: Template, data: SavedData) => void;
 }
 
@@ -36,12 +36,35 @@ export function templateHasMigrations(template: TemplateID) {
     return template in migrations;
 }
 
-export async function migrateCurrentSaveFile(data: SavedData) {
+export async function applyMigration(
+    randomizer: ReturnType<typeof useRandomizerStore>,
+    profiles: ReturnType<typeof useProfilesStore>,
+    saveData: SavedData,
+    migration: Migration,
+) {
+    if (typeof migration.to == "string") {
+        migration.fixer(await getPredefinedTemplate(migration.to), saveData);
+        saveData.templateName = migration.to;
+    } else {
+        migration.fixer(migration.to, saveData);
+        saveData.templateName = "custom";
+        localStorage.setItem(`profileTemplate:${profiles.current}`, JSON.stringify(migration.to));
+    }
+
+    // patch the store
+    randomizer.currentGoalID = saveData.currentGoalID;
+    randomizer.currentTemplateName = saveData.templateName;
+    randomizer.predictedSkillXP = saveData.predictedSkillXP;
+    randomizer.completion = saveData.completion;
+    // set the template ID
+    profiles.allProfiles.find((profile) => profile.name == profiles.current)!.template =
+        saveData.templateName;
+}
+
+export function findMigration(data: SavedData) {
     if (!templateHasMigrations(data.templateName)) {
         return;
     }
     const migration = migrations[data.templateName as keyof typeof migrations]!;
-    migration.fixer(await getPredefinedTemplate(migration.to), data);
-
-    data.templateName = migration.to;
+    return migration;
 }

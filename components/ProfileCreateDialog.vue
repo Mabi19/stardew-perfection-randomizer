@@ -14,6 +14,7 @@
                             v-model:id="templateID"
                             v-model:custom-template="customTemplate"
                             v-model:editor-active="templateEditorActive"
+                            v-model:is-ok="templateIsOk"
                         />
                     </div>
                 </li>
@@ -28,7 +29,9 @@
                     />
                 </li>
             </ol>
-            <AppButton icon="add" class="dialog-button-margin">Create</AppButton>
+            <AppButton icon="add" class="dialog-button-margin" :disabled="!templateIsOk"
+                >Create</AppButton
+            >
         </form>
     </AppDialog>
 </template>
@@ -52,6 +55,7 @@ const profileName = ref("");
 const templateID = ref<TemplateID | "url">("standard_1_6");
 const customTemplate = ref<Template | null>(null);
 const templateEditorActive = ref(false);
+const templateIsOk = ref(true);
 
 const defaultProfileName = computed(() => {
     // Check for already existing profile names.

@@ -116,18 +116,17 @@ async function deleteProfile(name: string) {
 const migrating = ref(false);
 async function migrateProfile() {
     migrating.value = true;
+
     // make a backup
     await exportProfile(profiles.current!);
     const saveData = randomizer.generateSaveData();
-    await migrateCurrentSaveFile(saveData);
-    // patch the store
-    randomizer.currentGoalID = saveData.currentGoalID;
-    randomizer.currentTemplateName = saveData.templateName;
-    randomizer.predictedSkillXP = saveData.predictedSkillXP;
-    randomizer.completion = saveData.completion;
-    // set the template ID
-    profiles.allProfiles.find((profile) => profile.name == profiles.current)!.template =
-        saveData.templateName;
+    const migration = findMigration(saveData);
+    if (!migration) {
+        migrating.value = false;
+        return;
+    }
+
+    await applyMigration(randomizer, profiles, saveData, migration);
 
     migrating.value = false;
 }
