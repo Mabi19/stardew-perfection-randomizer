@@ -22,6 +22,10 @@
         :disabled="templateID == 'url' && templateURLStatus != URLTemplateStatus.OK"
         >Customize</AppButton
     >
+    <div class="customization-note">
+        Note that customizing your template will lock you out of future updates to the built-in
+        templates (unless you apply them yourself)
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -154,5 +158,10 @@ watch(templateID, () => {
     flex-flow: row wrap;
     gap: 0.5rem;
     align-items: center;
+}
+
+.customization-note {
+    margin-top: 0.5rem;
+    font-style: italic;
 }
 </style>
