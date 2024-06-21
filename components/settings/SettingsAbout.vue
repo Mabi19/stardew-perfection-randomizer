@@ -11,6 +11,8 @@
     </p>
     <h3>Version</h3>
     <p>{{ config.version }} ({{ config.buildID }})</p>
+
+    <KofiButton id="M4M8YVF9I" color="#29abe0" />
 </template>
 
 <script setup lang="ts">

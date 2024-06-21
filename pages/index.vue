@@ -57,6 +57,10 @@
         @close="importDialogOpen = false"
         @finish="persistence.request"
     />
+
+    <div class="kofi-button-box">
+        <KofiButton id="M4M8YVF9I" color="#29abe0" />
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -140,5 +144,12 @@ function showImportDialog() {
     flex-flow: row wrap;
     justify-content: center;
     gap: 0.5rem;
+}
+
+.kofi-button-box {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 2rem;
 }
 </style>
