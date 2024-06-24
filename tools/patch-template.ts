@@ -314,8 +314,12 @@ insertGoalsAfter(data, "craft_a_cask", [
         name: "Craft a Fish Smoker",
         prerequisites:
             // Hardcore only: get the jellies through pet gifts
+            // BUT: Getting the River Jelly from a cat is horrifically jank, and is not possible on some save files without catching fish.
+            // Turtles are not subject to this weakness.
             data.ruleset == "hardcore"
-                ? {}
+                ? {
+                      all: [{ goal: "catch_river_jelly" }],
+                  }
                 : {
                       all: [
                           { goal: "catch_sea_jelly" },

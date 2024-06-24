@@ -207,6 +207,9 @@ const effectsCanvasElem = ref<HTMLCanvasElement | null>(null);
 const effectContext = shallowRef<DashboardEffectContext | null>(null);
 
 let secretModule: typeof import("~/utils/effects/secret-particles") | undefined = undefined;
+let secretSpawnerInterval: ReturnType<typeof setInterval> | undefined = undefined;
+import type { SpriteParticleSettings } from "~/utils/effects/SpriteParticle";
+type SecretParticleID = keyof typeof import("~/utils/effects/secret-particles").SECRET_PARTICLES;
 async function getSecretModule() {
     if (!secretModule) {
         secretModule = await import("~/utils/effects/secret-particles");
@@ -215,12 +218,65 @@ async function getSecretModule() {
     }
     return secretModule;
 }
-// TODO: do this if there's Luck XP
-async function spawnSecretParticle() {
+async function spawnSecretParticle(id?: SecretParticleID) {
     const mod = await getSecretModule();
-    const settings = mod.SECRET_PARTICLES.qiPlane();
-    effectContext?.value?.spawnParticle(new mod.SpriteParticle(settings));
+
+    const validKeys = Object.keys(mod.SECRET_PARTICLES);
+    const filledID =
+        id ?? (validKeys[Math.floor(Math.random() * validKeys.length)]! as SecretParticleID);
+
+    const settings = mod.SECRET_PARTICLES[filledID]?.();
+    if (!settings) {
+        return;
+    }
+
+    effectContext?.value?.spawnParticle(
+        new mod.SpriteParticle(settings as SpriteParticleSettings<{}>),
+    );
 }
+onMounted(() => {
+    (window as any)["imFeelingLucky"] = function () {
+        // hide presence of the argument
+        spawnSecretParticle(arguments[0]);
+    };
+
+    if ("luck" in store.predictedSkillXP && store.predictedSkillXP["luck"] > 0) {
+        console.log("registering interval");
+        // preload module
+        getSecretModule();
+        secretSpawnerInterval = setInterval(() => {
+            if (Math.random() > 0.05) {
+                return;
+            }
+            const REQUIREMENT_MAP: Partial<Record<SecretParticleID, string>> = {
+                jet: "befriend_harvey",
+                marilda: "befriend_maru",
+                seaMonster: "befriend_krobus",
+                gopher: "complete_fectors_challenge",
+                qiPlane: "read_book_of_mysteries",
+                luckyPurpleShorts: "befriend_lewis",
+            };
+            const particles = Object.keys(REQUIREMENT_MAP);
+            const particle = particles[
+                Math.floor(Math.random() * particles.length)
+            ]! as SecretParticleID;
+            const reqGoal = REQUIREMENT_MAP[particle];
+            if (!reqGoal) {
+                return;
+            }
+            if (store.completion[reqGoal] ?? 0 > 0) {
+                spawnSecretParticle(particle);
+            }
+        }, 5000);
+    }
+});
+onUnmounted(() => {
+    delete (window as any)["imFeelingLucky"];
+    if (secretSpawnerInterval) {
+        clearInterval(secretSpawnerInterval);
+    }
+    effectContext.value?.clearEvents();
+});
 
 onMounted(() => {
     if (!dashboardElem.value || !effectsCanvasElem.value) {

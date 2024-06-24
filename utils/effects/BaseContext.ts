@@ -8,6 +8,7 @@ export abstract class Particle {
 export class BaseEffectContext {
     canvas: HTMLCanvasElement;
     draw: CanvasRenderingContext2D;
+    abortController: AbortController;
     dashboard: HTMLDivElement;
     settings: ReturnType<typeof useSettingsStore>;
 
@@ -15,6 +16,11 @@ export class BaseEffectContext {
         width: number;
         height: number;
     };
+    mousePos: {
+        x: number;
+        y: number;
+    };
+
     particles: Particle[];
     // particles to be added after processing
     particleQueue: Particle[];
@@ -31,6 +37,18 @@ export class BaseEffectContext {
     ) {
         this.canvas = canvas;
         this.draw = canvas.getContext("2d")!;
+        this.abortController = new AbortController();
+        this.mousePos = { x: 0.5, y: 0.5 };
+        document.addEventListener(
+            "mousemove",
+            (ev) => {
+                const bbox = this.canvas.getBoundingClientRect();
+                this.mousePos.x = (ev.clientX - bbox.left - window.scrollX) / this.sizeInfo.width;
+                this.mousePos.y = (ev.clientY - bbox.top - window.scrollY) / this.sizeInfo.height;
+            },
+            { signal: this.abortController.signal },
+        );
+
         this.dashboard = dashboard;
         this.settings = settings;
 
@@ -48,6 +66,10 @@ export class BaseEffectContext {
         });
         resizeObserver.observe(canvas);
         this.recalculatePositions();
+    }
+
+    clearEvents() {
+        this.abortController.abort();
     }
 
     recalculatePositions() {
@@ -97,9 +119,9 @@ export class BaseEffectContext {
 
     process(deltaTime: number) {
         //! This function has side effects, but doing this without filter() is very clunky
-        this.particles = this.particles
-            .filter((particle) => !particle.process(this, deltaTime))
-            .concat(this.particleQueue);
+        this.particles = this.particleQueue.concat(
+            this.particles.filter((particle) => !particle.process(this, deltaTime)),
+        );
         this.particleQueue = [];
     }
 

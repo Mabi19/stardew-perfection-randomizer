@@ -183,7 +183,7 @@ export const SECRET_PARTICLES = {
                 self.storage.lastMysteryBoxSpawn = now;
 
                 const spawnX = self.x - (40 * self.scale) / context.sizeInfo.width;
-                const spawnY = self.y + (24 * self.scale) / context.sizeInfo.height;
+                const spawnY = self.y + (16 * self.scale) / context.sizeInfo.height;
                 if (spawnX > 0 && spawnX < 1) {
                     context.spawnParticle(
                         new SpriteParticle(SECRET_PARTICLES.mysteryBox(spawnX, spawnY)),
@@ -196,7 +196,7 @@ export const SECRET_PARTICLES = {
     }),
     mysteryBox: (
         x: number = 0.5,
-        y: number = 0.5,
+        y: number = 0,
     ): SpriteParticleSettings<{ vx: number; vy: number }> => ({
         x,
         y,
@@ -210,7 +210,7 @@ export const SECRET_PARTICLES = {
         animFrames: 1,
         frameInterval: 1,
         storage: {
-            vx: (Math.sqrt(Math.random() + 0.5) / 5) * Math.sign(Math.random() - 0.5),
+            vx: (Math.sqrt(Math.random() + 0.1) / 6) * Math.sign(Math.random() - 0.5) + 0.05,
             vy: 0,
         },
         processFunc(self, context, deltaTime) {
@@ -242,6 +242,62 @@ export const SECRET_PARTICLES = {
             return false;
         },
     }),
+    luckyPurpleShorts: (): SpriteParticleSettings<{ vx: number; vy: number }> => {
+        const angle = Math.random() * 2 * Math.PI;
+        const MAX_SCREEN_LEN = Math.SQRT2 / 2;
+        return {
+            x: 0.5 + Math.cos(angle) * MAX_SCREEN_LEN,
+            y: 0.5 + Math.sin(angle) * MAX_SCREEN_LEN,
+            originX: 8,
+            originY: 8,
+            imageX: 80,
+            imageY: 42,
+            imageWidth: 16,
+            imageHeight: 16,
+            scale: 3,
+            animFrames: 1,
+            frameInterval: 1,
+            storage: {
+                vx: 0,
+                vy: 0,
+            },
+            processFunc(self, context, deltaTime) {
+                if (self.age > 15) {
+                    return true;
+                }
+
+                const targetX = context.mousePos.x;
+                const targetY = context.mousePos.y;
+                let dx = targetX - self.x;
+                let dy = targetY - self.y;
+                const len = Math.hypot(dx, dy);
+                if (len == 0) {
+                    return false;
+                }
+                dx /= len;
+                dy /= len;
+
+                const velLen = Math.hypot(self.storage.vx, self.storage.vy);
+                const drag = velLen ** 2 * deltaTime;
+                self.storage.vx -= self.storage.vx * drag;
+                self.storage.vy -= self.storage.vy * drag;
+
+                // stop following after a while
+                if (self.age < 8) {
+                    self.storage.vx += dx * 1 * deltaTime;
+                    self.storage.vy += dy * 1 * deltaTime;
+                } else {
+                    self.storage.vx *= 1 + deltaTime ** 1.05;
+                    self.storage.vy *= 1 + deltaTime ** 1.05;
+                }
+
+                self.x += self.storage.vx * deltaTime;
+                self.y += self.storage.vy * deltaTime;
+
+                return false;
+            },
+        };
+    },
 };
 
 export { SpriteParticle, getBaseImage } from "./SpriteParticle";
