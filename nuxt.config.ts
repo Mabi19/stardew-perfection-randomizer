@@ -13,8 +13,15 @@ export default defineNuxtConfig({
     appConfig: {
         version: packageInfo.version,
         buildID: commitID,
+        kofiID: "M4M8YVF9I",
     },
     spaLoadingTemplate: "./spa-loader.html",
+    //? without this, nuxt generate breaks. why does it do that
+    nitro: {
+        prerender: {
+            failOnError: false,
+        },
+    },
     app: {
         baseURL: "/stardew-perfection-randomizer/",
         head: {
