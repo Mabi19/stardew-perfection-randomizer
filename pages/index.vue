@@ -59,7 +59,7 @@
     />
 
     <div class="kofi-button-box">
-        <KofiButton id="M4M8YVF9I" color="#29abe0" />
+        <KofiButton color="#29abe0" />
     </div>
 </template>
 

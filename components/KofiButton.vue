@@ -21,8 +21,9 @@
 <script setup lang="ts">
 defineProps<{
     color: string;
-    id: string;
 }>();
+
+const id = useAppConfig().kofiID;
 </script>
 
 <style scoped>
