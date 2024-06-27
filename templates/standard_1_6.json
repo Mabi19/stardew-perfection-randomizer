@@ -3536,7 +3536,14 @@
                         "goal": "craft_a_mystic_tree_seed"
                     },
                     {
-                        "goal": "craft_a_tapper"
+                        "any": [
+                            {
+                                "goal": "craft_a_tapper"
+                            },
+                            {
+                                "goal": "craft_a_heavy_tapper"
+                            }
+                        ]
                     }
                 ]
             },

@@ -105,7 +105,22 @@
         {
             "id": "ship_a_parsnip",
             "name": "Ship a Parsnip",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    },
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/db/Parsnip.png",
             "multiplicity": 1,
             "xp": {}
@@ -137,7 +152,19 @@
         {
             "id": "ship_a_banana",
             "name": "Ship a Banana",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/69/Banana.png",
             "multiplicity": 1,
             "xp": {}
@@ -201,7 +228,19 @@
         {
             "id": "ship_a_green_bean",
             "name": "Ship a Green Bean",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5c/Green_Bean.png",
             "multiplicity": 1,
             "xp": {}
@@ -217,7 +256,22 @@
         {
             "id": "ship_a_potato",
             "name": "Ship a Potato",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    },
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c2/Potato.png",
             "multiplicity": 1,
             "xp": {}
@@ -225,7 +279,19 @@
         {
             "id": "ship_garlic",
             "name": "Ship Garlic",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cc/Garlic.png",
             "multiplicity": 1,
             "xp": {}
@@ -233,7 +299,19 @@
         {
             "id": "ship_kale",
             "name": "Ship Kale",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d1/Kale.png",
             "multiplicity": 1,
             "xp": {}
@@ -241,7 +319,19 @@
         {
             "id": "ship_rhubarb",
             "name": "Ship Rhubarb",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Rhubarb.png",
             "multiplicity": 1,
             "xp": {}
@@ -257,7 +347,19 @@
         {
             "id": "ship_a_tomato",
             "name": "Ship a Tomato",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9d/Tomato.png",
             "multiplicity": 1,
             "xp": {}
@@ -273,7 +375,19 @@
         {
             "id": "ship_a_blueberry",
             "name": "Ship a Blueberry",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9e/Blueberry.png",
             "multiplicity": 1,
             "xp": {}
@@ -289,7 +403,19 @@
         {
             "id": "ship_a_hot_pepper",
             "name": "Ship a Hot Pepper",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Hot_Pepper.png",
             "multiplicity": 1,
             "xp": {}
@@ -297,7 +423,19 @@
         {
             "id": "ship_wheat",
             "name": "Ship Wheat",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/e2/Wheat.png",
             "multiplicity": 1,
             "xp": {}
@@ -305,7 +443,19 @@
         {
             "id": "ship_a_radish",
             "name": "Ship a Radish",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d5/Radish.png",
             "multiplicity": 1,
             "xp": {}
@@ -313,7 +463,19 @@
         {
             "id": "ship_a_red_cabbage",
             "name": "Ship a Red Cabbage",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2d/Red_Cabbage.png",
             "multiplicity": 1,
             "xp": {}
@@ -329,7 +491,19 @@
         {
             "id": "ship_corn",
             "name": "Ship Corn",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f8/Corn.png",
             "multiplicity": 1,
             "xp": {}
@@ -337,7 +511,19 @@
         {
             "id": "ship_unmilled_rice",
             "name": "Ship Unmilled Rice",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fe/Unmilled_Rice.png",
             "multiplicity": 1,
             "xp": {}
@@ -345,7 +531,19 @@
         {
             "id": "ship_an_eggplant",
             "name": "Ship an Eggplant",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8f/Eggplant.png",
             "multiplicity": 1,
             "xp": {}
@@ -353,7 +551,19 @@
         {
             "id": "ship_an_artichoke",
             "name": "Ship an Artichoke",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/dd/Artichoke.png",
             "multiplicity": 1,
             "xp": {}
@@ -369,7 +579,19 @@
         {
             "id": "ship_bok_choy",
             "name": "Ship Bok Choy",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/40/Bok_Choy.png",
             "multiplicity": 1,
             "xp": {}
@@ -380,7 +602,9 @@
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/52/Yam.png",
             "multiplicity": 1,
-            "xp": {}
+            "xp": {
+                "combat": 10
+            }
         },
         {
             "id": "ship_a_chanterelle",
@@ -393,7 +617,19 @@
         {
             "id": "ship_cranberries",
             "name": "Ship Cranberries",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6e/Cranberries.png",
             "multiplicity": 1,
             "xp": {}
@@ -409,7 +645,19 @@
         {
             "id": "ship_a_beet",
             "name": "Ship a Beet",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a4/Beet.png",
             "multiplicity": 1,
             "xp": {}
@@ -417,7 +665,19 @@
         {
             "id": "ship_an_ostrich_egg",
             "name": "Ship an Ostrich Egg",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c3/Ostrich_Egg.png",
             "multiplicity": 1,
             "xp": {}
@@ -433,7 +693,19 @@
         {
             "id": "ship_amaranth",
             "name": "Ship Amaranth",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f6/Amaranth.png",
             "multiplicity": 1,
             "xp": {}
@@ -441,7 +713,19 @@
         {
             "id": "ship_a_pale_ale",
             "name": "Ship a Pale Ale",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/78/Pale_Ale.png",
             "multiplicity": 1,
             "xp": {}
@@ -449,7 +733,19 @@
         {
             "id": "ship_hops",
             "name": "Ship Hops",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/59/Hops.png",
             "multiplicity": 1,
             "xp": {}
@@ -493,7 +789,16 @@
         {
             "id": "ship_void_mayonnaise",
             "name": "Ship Void Mayonnaise",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f3/Void_Mayonnaise.png",
             "multiplicity": 1,
             "xp": {
@@ -599,7 +904,19 @@
         {
             "id": "ship_a_poppy",
             "name": "Ship a Poppy",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/37/Poppy.png",
             "multiplicity": 1,
             "xp": {}
@@ -719,7 +1036,19 @@
         {
             "id": "ship_a_strawberry",
             "name": "Ship a Strawberry",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/6d/Strawberry.png",
             "multiplicity": 1,
             "xp": {}
@@ -791,7 +1120,19 @@
         {
             "id": "ship_a_sweet_gem_berry",
             "name": "Ship a Sweet Gem Berry",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/88/Sweet_Gem_Berry.png",
             "multiplicity": 1,
             "xp": {}
@@ -815,7 +1156,19 @@
         {
             "id": "ship_a_sunflower",
             "name": "Ship a Sunflower",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/81/Sunflower.png",
             "multiplicity": 1,
             "xp": {}
@@ -883,7 +1236,9 @@
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/33/Coffee_Bean.png",
             "multiplicity": 1,
-            "xp": {}
+            "xp": {
+                "combat": 2
+            }
         },
         {
             "id": "ship_goat_milk",
@@ -952,7 +1307,19 @@
         {
             "id": "ship_an_ancient_fruit",
             "name": "Ship an Ancient Fruit",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Ancient_Fruit.png",
             "multiplicity": 1,
             "xp": {}
@@ -968,7 +1335,19 @@
         {
             "id": "ship_a_tulip",
             "name": "Ship a Tulip",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cf/Tulip.png",
             "multiplicity": 1,
             "xp": {}
@@ -976,7 +1355,19 @@
         {
             "id": "ship_a_summer_spangle",
             "name": "Ship a Summer Spangle",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9f/Summer_Spangle.png",
             "multiplicity": 1,
             "xp": {}
@@ -984,7 +1375,19 @@
         {
             "id": "ship_a_fairy_rose",
             "name": "Ship a Fairy Rose",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/5c/Fairy_Rose.png",
             "multiplicity": 1,
             "xp": {}
@@ -992,7 +1395,19 @@
         {
             "id": "ship_a_blue_jazz",
             "name": "Ship a Blue Jazz",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2f/Blue_Jazz.png",
             "multiplicity": 1,
             "xp": {}
@@ -1194,7 +1609,19 @@
         {
             "id": "ship_ginger",
             "name": "Ship Ginger",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/85/Ginger.png",
             "multiplicity": 1,
             "xp": {}
@@ -1202,7 +1629,19 @@
         {
             "id": "ship_a_taro_root",
             "name": "Ship a Taro Root",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/01/Taro_Root.png",
             "multiplicity": 1,
             "xp": {}
@@ -1210,7 +1649,19 @@
         {
             "id": "ship_a_pineapple",
             "name": "Ship a Pineapple",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fb/Pineapple.png",
             "multiplicity": 1,
             "xp": {}
@@ -1218,7 +1669,19 @@
         {
             "id": "ship_a_mango",
             "name": "Ship a Mango",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/38/Mango.png",
             "multiplicity": 1,
             "xp": {}
@@ -1226,7 +1689,19 @@
         {
             "id": "ship_a_cinder_shard",
             "name": "Ship a Cinder Shard",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fd/Cinder_Shard.png",
             "multiplicity": 1,
             "xp": {}
@@ -1359,7 +1834,19 @@
         {
             "id": "ship_a_carrot",
             "name": "Ship a Carrot",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c3/Carrot.png",
             "multiplicity": 1,
             "xp": {}
@@ -1367,7 +1854,19 @@
         {
             "id": "ship_a_summer_squash",
             "name": "Ship a Summer Squash",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/43/Summer_Squash.png",
             "multiplicity": 1,
             "xp": {}
@@ -1375,7 +1874,19 @@
         {
             "id": "ship_broccoli",
             "name": "Ship Broccoli",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f1/Broccoli.png",
             "multiplicity": 1,
             "xp": {}
@@ -1415,7 +1926,19 @@
         {
             "id": "build_an_island_obelisk",
             "name": "Build an Island Obelisk",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/1/18/Island_Obelisk.png/100px-Island_Obelisk.png",
             "multiplicity": 1,
             "xp": {}
@@ -1541,7 +2064,19 @@
         {
             "id": "slay_150_magma_sprites",
             "name": "Slay 150 Magma Sprites",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Magma_Sprite_Anim.gif",
             "multiplicity": 1,
             "xp": {
@@ -1711,7 +2246,19 @@
         {
             "id": "befriend_leo",
             "name": "Befriend Leo",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1d/Leo.png",
             "multiplicity": 1,
             "xp": {}
@@ -1901,7 +2448,19 @@
         {
             "id": "acquire_old_master_cannolis_stardrop",
             "name": "Acquire Old Master Cannoli's Stardrop",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a5/Stardrop.png",
             "multiplicity": 1,
             "xp": {}
@@ -1961,16 +2520,7 @@
         {
             "id": "cook_baked_fish",
             "name": "Cook Baked Fish",
-            "prerequisites": {
-                "all": [
-                    {
-                        "goal": "catch_a_sunfish"
-                    },
-                    {
-                        "goal": "catch_a_bream"
-                    }
-                ]
-            },
+            "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/94/Baked_Fish.png",
             "multiplicity": 1,
             "xp": {}
@@ -1996,6 +2546,19 @@
                 "all": [
                     {
                         "goal": "befriend_caroline"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2037,7 +2600,14 @@
                         "goal": "befriend_shane"
                     },
                     {
-                        "goal": "catch_a_periwinkle"
+                        "any": [
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2078,7 +2648,19 @@
         {
             "id": "cook_a_pizza",
             "name": "Cook a Pizza",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f4/Pizza.png",
             "multiplicity": 1,
             "xp": {}
@@ -2090,6 +2672,19 @@
                 "all": [
                     {
                         "goal": "befriend_clint"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2103,18 +2698,14 @@
             "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/30/Glazed_Yams.png",
             "multiplicity": 1,
-            "xp": {}
+            "xp": {
+                "combat": 10
+            }
         },
         {
             "id": "cook_carp_surprise",
             "name": "Cook Carp Surprise",
-            "prerequisites": {
-                "all": [
-                    {
-                        "goal": "catch_a_carp"
-                    }
-                ]
-            },
+            "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/cc/Carp_Surprise.png",
             "multiplicity": 1,
             "xp": {}
@@ -2122,7 +2713,22 @@
         {
             "id": "cook_hashbrowns",
             "name": "Cook Hashbrowns",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    },
+                    {
+                        "goal": "befriend_caroline"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8f/Hashbrowns.png",
             "multiplicity": 1,
             "xp": {}
@@ -2139,12 +2745,15 @@
             "id": "cook_a_salmon_dinner",
             "name": "Cook a Salmon Dinner",
             "prerequisites": {
-                "all": [
+                "any": [
                     {
-                        "goal": "befriend_gus"
+                        "goal": "#tutorial_fish"
                     },
                     {
-                        "goal": "catch_a_salmon"
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
                     }
                 ]
             },
@@ -2162,9 +2771,6 @@
                     },
                     {
                         "goal": "craft_a_mayonnaise_machine"
-                    },
-                    {
-                        "goal": "catch_a_tuna"
                     }
                 ]
             },
@@ -2179,9 +2785,6 @@
                 "all": [
                     {
                         "goal": "befriend_kent"
-                    },
-                    {
-                        "goal": "catch_a_largemouth_bass"
                     }
                 ]
             },
@@ -2196,6 +2799,19 @@
                 "all": [
                     {
                         "goal": "befriend_shane"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2218,9 +2834,6 @@
                 "all": [
                     {
                         "goal": "befriend_sandy"
-                    },
-                    {
-                        "goal": "catch_a_shrimp"
                     }
                 ]
             },
@@ -2231,13 +2844,7 @@
         {
             "id": "cook_trout_soup",
             "name": "Cook Trout Soup",
-            "prerequisites": {
-                "all": [
-                    {
-                        "goal": "catch_a_rainbow_trout"
-                    }
-                ]
-            },
+            "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/48/Trout_Soup.png",
             "multiplicity": 1,
             "xp": {}
@@ -2265,6 +2872,19 @@
                 "all": [
                     {
                         "goal": "befriend_marnie"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2293,6 +2913,19 @@
                 "all": [
                     {
                         "goal": "befriend_lewis"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2359,7 +2992,19 @@
         {
             "id": "cook_a_tortilla",
             "name": "Cook a Tortilla",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/d/d7/Tortilla.png",
             "multiplicity": 1,
             "xp": {}
@@ -2371,6 +3016,19 @@
                 "all": [
                     {
                         "goal": "befriend_emily"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2385,6 +3043,19 @@
                 "all": [
                     {
                         "goal": "befriend_lewis"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2427,6 +3098,19 @@
                 "all": [
                     {
                         "goal": "befriend_pierre"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2446,7 +3130,9 @@
             },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/f4/Autumn%27s_Bounty.png",
             "multiplicity": 1,
-            "xp": {}
+            "xp": {
+                "combat": 10
+            }
         },
         {
             "id": "cook_pumpkin_soup",
@@ -2469,6 +3155,19 @@
                 "all": [
                     {
                         "goal": "befriend_kent"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2483,6 +3182,19 @@
                 "all": [
                     {
                         "goal": "befriend_gus"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2497,6 +3209,19 @@
                 "all": [
                     {
                         "goal": "befriend_pam"
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2512,6 +3237,22 @@
                     {
                         "goal": "level:farming",
                         "multiplicity": 3
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            },
+                            {
+                                "goal": "befriend_caroline"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2527,6 +3268,19 @@
                     {
                         "goal": "level:foraging",
                         "multiplicity": 8
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2650,7 +3404,19 @@
         {
             "id": "cook_artichoke_dip",
             "name": "Cook Artichoke Dip",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/7/77/Artichoke_Dip.png",
             "multiplicity": 1,
             "xp": {}
@@ -2658,7 +3424,19 @@
         {
             "id": "cook_stir_fry",
             "name": "Cook Stir Fry",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/e/ed/Stir_Fry.png",
             "multiplicity": 1,
             "xp": {}
@@ -2690,7 +3468,19 @@
         {
             "id": "cook_a_fruit_salad",
             "name": "Cook a Fruit Salad",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9e/Fruit_Salad.png",
             "multiplicity": 1,
             "xp": {}
@@ -2706,7 +3496,19 @@
         {
             "id": "cook_cranberry_candy",
             "name": "Cook Cranberry Candy",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/9/9d/Cranberry_Candy.png",
             "multiplicity": 1,
             "xp": {}
@@ -2714,7 +3516,19 @@
         {
             "id": "cook_bruschetta",
             "name": "Cook Bruschetta",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/ca/Bruschetta.png",
             "multiplicity": 1,
             "xp": {}
@@ -2736,7 +3550,19 @@
         {
             "id": "cook_fiddlehead_risotto",
             "name": "Cook Fiddlehead Risotto",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/2/2d/Fiddlehead_Risotto.png",
             "multiplicity": 1,
             "xp": {}
@@ -2744,7 +3570,19 @@
         {
             "id": "cook_a_poppyseed_muffin",
             "name": "Cook a Poppyseed Muffin",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/8/8e/Poppyseed_Muffin.png",
             "multiplicity": 1,
             "xp": {}
@@ -2772,10 +3610,17 @@
                         "goal": "befriend_willy"
                     },
                     {
-                        "goal": "catch_a_crayfish"
-                    },
-                    {
-                        "goal": "catch_a_periwinkle"
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2792,7 +3637,17 @@
                         "goal": "befriend_willy"
                     },
                     {
-                        "goal": "catch_a_snail"
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2803,13 +3658,7 @@
         {
             "id": "cook_lobster_bisque",
             "name": "Cook Lobster Bisque",
-            "prerequisites": {
-                "all": [
-                    {
-                        "goal": "catch_a_lobster"
-                    }
-                ]
-            },
+            "prerequisites": {},
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/0/0a/Lobster_Bisque.png",
             "multiplicity": 1,
             "xp": {}
@@ -2834,9 +3683,15 @@
             "id": "cook_shrimp_cocktail",
             "name": "Cook Shrimp Cocktail",
             "prerequisites": {
-                "all": [
+                "any": [
                     {
-                        "goal": "catch_a_shrimp"
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
                     }
                 ]
             },
@@ -2847,7 +3702,19 @@
         {
             "id": "cook_ginger_ale",
             "name": "Cook Ginger Ale",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/1/1a/Ginger_Ale.png",
             "multiplicity": 1,
             "xp": {}
@@ -2855,7 +3722,19 @@
         {
             "id": "cook_banana_pudding",
             "name": "Cook Banana Pudding",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/4/40/Banana_Pudding.png",
             "multiplicity": 1,
             "xp": {}
@@ -2891,7 +3770,19 @@
         {
             "id": "cook_tropical_curry",
             "name": "Cook Tropical Curry",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/3/32/Tropical_Curry.png",
             "multiplicity": 1,
             "xp": {}
@@ -2904,6 +3795,19 @@
                     {
                         "goal": "level:combat",
                         "multiplicity": 9
+                    },
+                    {
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
@@ -3333,7 +4237,19 @@
         {
             "id": "craft_deluxe_retaining_soil",
             "name": "Craft Deluxe Retaining Soil",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/c/c3/Deluxe_Retaining_Soil.png",
             "multiplicity": 1,
             "xp": {}
@@ -3441,7 +4357,14 @@
                         "goal": "craft_a_mystic_tree_seed"
                     },
                     {
-                        "goal": "craft_a_tapper"
+                        "any": [
+                            {
+                                "goal": "craft_a_tapper"
+                            },
+                            {
+                                "goal": "craft_a_heavy_tapper"
+                            }
+                        ]
                     }
                 ]
             },
@@ -3975,7 +4898,19 @@
         {
             "id": "craft_fairy_dust",
             "name": "Craft Fairy Dust",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/f/fc/Fairy_Dust.png",
             "multiplicity": 1,
             "xp": {}
@@ -4036,7 +4971,19 @@
         {
             "id": "craft_an_island_warp_totem",
             "name": "Craft an Island Warp Totem",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b9/Warp_Totem_Island.png",
             "multiplicity": 1,
             "xp": {}
@@ -4318,7 +5265,19 @@
         {
             "id": "craft_an_ostrich_incubator",
             "name": "Craft an Ostrich Incubator",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/5/51/Ostrich_Incubator.png",
             "multiplicity": 1,
             "xp": {}
@@ -6030,7 +6989,19 @@
         {
             "id": "enter_the_walnut_room",
             "name": "Enter the Walnut Room",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/b/b4/Mr._Qi.png",
             "multiplicity": 1,
             "xp": {}
@@ -6307,7 +7278,19 @@
         {
             "id": "read_the_diamond_hunter",
             "name": "Read The Diamond Hunter",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/a/a7/The_Diamond_Hunter.png",
             "multiplicity": 1,
             "xp": {}

@@ -1,4 +1,4 @@
-import { BaseEffectContext, type Particle } from "./effects/BaseContext";
+import { BaseEffectContext } from "./effects/BaseContext";
 import { PurpleBlobParticle } from "./effects/PurpleBlobParticle";
 import { ConfettiParticle } from "./effects/ConfettiParticle";
 

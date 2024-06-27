@@ -1,7 +1,7 @@
 /// <reference lib="deno.ns" />
 /// <reference lib="dom" />
 
-import type { PrerequisiteGroup, Template, TemplateGoal } from "../utils/goals.ts";
+import type { Prerequisite, PrerequisiteGroup, Template, TemplateGoal } from "../utils/goals.ts";
 import { validateTemplate } from "../utils/validate.ts";
 import { convertNameToID } from "./utils.ts";
 
@@ -428,7 +428,7 @@ insertGoalsAfter(data, "craft_a_grass_starter", [
             all: [
                 { goal: "enter_the_walnut_room" },
                 { goal: "craft_a_mystic_tree_seed" },
-                { goal: "craft_a_tapper" },
+                { any: [{ goal: "craft_a_tapper" }, { goal: "craft_a_heavy_tapper" }] },
             ],
         },
         imageURL: "https://stardewvalleywiki.com/mediawiki/images/1/18/Blue_Grass_Starter.png",
@@ -659,7 +659,7 @@ if (data.ruleset == "hardcore") {
         // 1.6 rebalances
         craft_a_charcoal_kiln: { all: [{ goal: "level:foraging", multiplicity: 2 }] },
         craft_a_cookout_kit: { all: [{ goal: "level:foraging", multiplicity: 3 }] },
-        cook_a_survival_burger: { all: [{ goal: "level:foraging", multiplicity: 8 }] },
+        // Cook a Survival Burger: overridden later,
         craft_a_tapper: { all: [{ goal: "level:foraging", multiplicity: 4 }] },
         craft_a_worm_bin: { all: [{ goal: "level:fishing", multiplicity: 4 }] },
         // goals requiring Slay 80 Cave Insects, whose ID changed because there are less cave insects to kill
@@ -682,6 +682,32 @@ if (data.ruleset == "hardcore") {
                 },
             ],
         },
+        // Cats can give fish for recipes now!
+        cook_baked_fish: {},
+        // Cook a Strange Bun: overridden later
+        cook_carp_surprise: {},
+        // Cook Salmon Dinner: overridden later
+        cook_a_fish_taco: {
+            all: [
+                {
+                    goal: "befriend_linus",
+                },
+                {
+                    goal: "craft_a_mayonnaise_machine",
+                },
+            ],
+        },
+        cook_a_crispy_bass: {
+            all: [{ goal: "befriend_kent" }],
+        },
+        cook_tom_kha_soup: {
+            all: [{ goal: "befriend_sandy" }],
+        },
+        cook_trout_soup: {},
+        // Cook Fish Stew: overridden later
+        // Cook Escargot: overridden later
+        cook_lobster_bisque: {},
+        // Cook Shrimp Cocktail: overridden later
     };
 } else {
     prerequisitePatches = {
@@ -712,6 +738,166 @@ if (data.ruleset == "hardcore") {
     };
 }
 
+// Completing any of these goals allows for building a Junimo Hut.
+const VOID_MAYO_OBTAINABLE: Prerequisite[] = [
+    { goal: "#tutorial_fish" },
+    { goal: "befriend_krobus" },
+    { goal: "craft_a_mayonnaise_machine" },
+];
+const VOID_MAYO_PREREQUISITE = { any: VOID_MAYO_OBTAINABLE };
+const VOID_MAYO_OR_CAROLINE = { any: [...VOID_MAYO_OBTAINABLE, { goal: "befriend_caroline" }] };
+
+const voidMayoPatches: Record<string, PrerequisiteGroup> = {
+    // non-quest void mayo is considered missable
+    ship_void_mayonnaise: {
+        any: [{ goal: "befriend_krobus" }, { goal: "craft_a_mayonnaise_machine" }],
+    },
+    cook_a_strange_bun: {
+        all: [
+            { goal: "befriend_shane" },
+            { any: [{ goal: "befriend_krobus" }, { goal: "craft_a_mayonnaise_machine" }] },
+        ],
+    }, // Would be satisfied by Periwinkle, but (a) non-quest void mayo is considered missable, and (b) periwinkles are obtainable through cats
+
+    ship_a_parsnip: VOID_MAYO_OR_CAROLINE,
+    // Cook Parsnip Soup already requires Befriend Caroline, which is enough
+    cook_a_farmers_lunch: {
+        all: [{ goal: "level:farming", multiplicity: 3 }, VOID_MAYO_OR_CAROLINE],
+    }, // Requires Parsnip
+    ship_a_green_bean: VOID_MAYO_PREREQUISITE,
+    cook_bean_hotpot: { all: [{ goal: "befriend_clint" }, VOID_MAYO_PREREQUISITE] }, // Requires Green Bean
+    // Ship a Cauliflower: none (from Giant Crop)
+    // Cook Cheese Cauliflower already requires Befriend Pam, which is enough
+    ship_a_potato: VOID_MAYO_OR_CAROLINE,
+    cook_hashbrowns: VOID_MAYO_OR_CAROLINE, // Requires Potato
+    ship_garlic: VOID_MAYO_PREREQUISITE,
+    cook_fiddlehead_risotto: VOID_MAYO_PREREQUISITE, // Requires Garlic
+    cook_escargot: { all: [{ goal: "befriend_willy" }, VOID_MAYO_PREREQUISITE] }, // Requires Garlic. Would be satisfied by Snail, but those are obtainable through cats
+    ship_kale: VOID_MAYO_PREREQUISITE,
+    cook_stir_fry: VOID_MAYO_PREREQUISITE, // Requires Kale
+    ship_rhubarb: VOID_MAYO_PREREQUISITE,
+    cook_a_rhubarb_pie: { all: [{ goal: "befriend_marnie" }, VOID_MAYO_PREREQUISITE] }, // Requires Rhubarb
+    // Ship a Melon: none (from Giant Crop)
+    ship_a_tomato: VOID_MAYO_PREREQUISITE,
+    cook_spaghetti: { all: [{ goal: "befriend_lewis" }, VOID_MAYO_PREREQUISITE] }, // Requires Tomato
+    cook_a_pizza: VOID_MAYO_PREREQUISITE, // Requires Tomato
+    cook_bruschetta: VOID_MAYO_PREREQUISITE, // Requires Tomato
+    cook_fish_stew: { all: [{ goal: "befriend_willy" }, VOID_MAYO_PREREQUISITE] }, // Requires Tomato. Would be satisfied by Crayfish & Periwinkle, but those are obtainable through pets
+    cook_squid_ink_ravioli: {
+        all: [{ goal: "level:combat", multiplicity: 9 }, VOID_MAYO_PREREQUISITE],
+    }, // Requires Tomato
+    cook_shrimp_cocktail: VOID_MAYO_PREREQUISITE, // Requires Tomato. Would be satisfied by Shrimp, but those are obtainable through turtles
+    ship_a_blueberry: VOID_MAYO_PREREQUISITE,
+    cook_a_blueberry_tart: { all: [{ goal: "befriend_pierre" }, VOID_MAYO_PREREQUISITE] }, // Requires Blueberry
+    cook_a_fruit_salad: VOID_MAYO_PREREQUISITE, // Requires Blueberry
+    ship_a_hot_pepper: VOID_MAYO_PREREQUISITE,
+    cook_pepper_poppers: { all: [{ goal: "befriend_shane" }, VOID_MAYO_PREREQUISITE] }, // Requires Hot Pepper
+    // Cook a Spicy Eel: Requires Hot Pepper, satisfied by Eel
+    ship_wheat: VOID_MAYO_PREREQUISITE,
+    ship_a_radish: VOID_MAYO_PREREQUISITE,
+    ship_a_red_cabbage: VOID_MAYO_PREREQUISITE,
+    // Cook Coleslaw: Requires Red Cabbage, satisfied by Mayo
+    // Cook a Fish Taco: Requires Red Cabbage, satisfied by Mayo
+    cook_a_red_plate: { all: [{ goal: "befriend_emily" }, VOID_MAYO_PREREQUISITE] }, // Requires Red Cabbage & Radish
+    // Ship a Starfruit: none (buy from Luau)
+    ship_corn: VOID_MAYO_PREREQUISITE,
+    cook_a_tortilla: VOID_MAYO_PREREQUISITE, // Requires Corn
+    ship_unmilled_rice: VOID_MAYO_PREREQUISITE,
+    ship_an_eggplant: VOID_MAYO_PREREQUISITE,
+    cook_eggplant_parmesan: { all: [{ goal: "befriend_lewis" }, VOID_MAYO_PREREQUISITE] }, // Requires Eggplant & Tomato
+    cook_a_survival_burger: {
+        all: [{ goal: "level:foraging", multiplicity: 8 }, VOID_MAYO_PREREQUISITE],
+    }, // Requires Eggplant
+    ship_an_artichoke: VOID_MAYO_PREREQUISITE,
+    cook_artichoke_dip: VOID_MAYO_PREREQUISITE, // Requires Artichoke
+    ship_bok_choy: VOID_MAYO_PREREQUISITE,
+    // Ship a Pumpkin: none (from Giant Crop)
+    // Cook Autumn's Bounty: Pumpkin from Giant Crop, Yam from Duggy (10 XP)
+    // Pumpkin Soup: Pumpkin from Giant Crop
+    // Pumpkin Pie: Pumpkin from Giant Crop
+    // Jack-o-Lantern: Pumpkin from Giant Crop
+    // Ship a Yam: none (but 10 Combat XP)
+    // Cook Glazed Yams: none (but 10 Combat XP)
+    ship_cranberries: VOID_MAYO_PREREQUISITE,
+    cook_a_super_meal: { all: [{ goal: "befriend_kent" }, VOID_MAYO_PREREQUISITE] }, // Requires Bok Choy, Cranberries & Artichoke
+    cook_cranberry_sauce: { all: [{ goal: "befriend_gus" }, VOID_MAYO_PREREQUISITE] }, // Requires Cranberries
+    cook_stuffing: { all: [{ goal: "befriend_pam" }, VOID_MAYO_PREREQUISITE] }, // Requires Cranberries
+    cook_cranberry_candy: VOID_MAYO_PREREQUISITE, // Requires Cranberries
+    ship_a_beet: VOID_MAYO_PREREQUISITE,
+    cook_vegetable_medley: { all: [{ goal: "befriend_caroline" }, VOID_MAYO_PREREQUISITE] }, // Requires Tomato & Beet
+    ship_amaranth: VOID_MAYO_PREREQUISITE,
+    cook_a_salmon_dinner: { all: [{ goal: "befriend_gus" }, VOID_MAYO_PREREQUISITE] }, // Requires Amaranth & Kale. Would be satisfied by Salmon, but salmon is obtainable through cats
+    ship_hops: VOID_MAYO_PREREQUISITE,
+    ship_a_pale_ale: VOID_MAYO_PREREQUISITE, // Requires Hops
+    ship_a_poppy: VOID_MAYO_PREREQUISITE,
+    cook_a_poppyseed_muffin: VOID_MAYO_PREREQUISITE, // Requires Poppy
+    ship_a_strawberry: VOID_MAYO_PREREQUISITE,
+    ship_a_sweet_gem_berry: VOID_MAYO_PREREQUISITE,
+    acquire_old_master_cannolis_stardrop: VOID_MAYO_PREREQUISITE, // Requires Sweet Gem Berry
+    ship_a_sunflower: VOID_MAYO_PREREQUISITE,
+    // Ship a Coffee Bean: none (but 2 Combat XP)
+    ship_an_ancient_fruit: VOID_MAYO_PREREQUISITE,
+    ship_a_tulip: VOID_MAYO_PREREQUISITE,
+    ship_a_summer_spangle: VOID_MAYO_PREREQUISITE,
+    ship_a_fairy_rose: VOID_MAYO_PREREQUISITE,
+    ship_a_blue_jazz: VOID_MAYO_PREREQUISITE,
+    // Cook a Lucky Lunch already requires Catch a Sea Cucumber, which is enough
+    ship_a_carrot: VOID_MAYO_PREREQUISITE,
+    ship_a_summer_squash: VOID_MAYO_PREREQUISITE,
+    ship_broccoli: VOID_MAYO_PREREQUISITE,
+    // Ship a Powdermelon: none (from Giant Crop)
+
+    // Junimo Huts are required to get to Ginger Island.
+    enter_the_walnut_room: VOID_MAYO_PREREQUISITE,
+    // Finish Golden Walnuts: satisfied by Walnut Room
+    ship_a_banana: VOID_MAYO_PREREQUISITE,
+    ship_an_ostrich_egg: VOID_MAYO_PREREQUISITE,
+    ship_ginger: VOID_MAYO_PREREQUISITE,
+    ship_a_taro_root: VOID_MAYO_PREREQUISITE,
+    ship_a_pineapple: VOID_MAYO_PREREQUISITE,
+    ship_a_mango: VOID_MAYO_PREREQUISITE,
+    ship_a_cinder_shard: VOID_MAYO_PREREQUISITE,
+    build_an_island_obelisk: VOID_MAYO_PREREQUISITE,
+    slay_150_magma_sprites: VOID_MAYO_PREREQUISITE,
+    befriend_leo: VOID_MAYO_PREREQUISITE,
+    cook_ginger_ale: VOID_MAYO_PREREQUISITE,
+    cook_banana_pudding: VOID_MAYO_PREREQUISITE,
+    // Cook Poi: satisfied by Befriend Leo
+    // Cook Mango Sticky Rice: satisfied by Befriend Leo
+    cook_tropical_curry: VOID_MAYO_PREREQUISITE,
+    // Craft Deluxe Fertilizer: satisfied by Walnut Room
+    // Craft Hyper Speed-Gro: satisfied by Walnut Room
+    craft_deluxe_retaining_soil: VOID_MAYO_PREREQUISITE,
+    // Craft a Blue Grass Starter: satisfied by Walnut Room
+    // Craft Magic Bait: satisfied by Walnut Room
+    craft_fairy_dust: VOID_MAYO_PREREQUISITE,
+    craft_an_island_warp_totem: VOID_MAYO_PREREQUISITE,
+    // Craft a Solar Panel: satisfied by its individual crops
+    craft_an_ostrich_incubator: VOID_MAYO_PREREQUISITE,
+    // Craft a Heavy Tappper: satisfied by Walnut Room
+    // Craft a Hopper: satisfied by Walnut Room
+    // Obtain a Horse Flute: satisfied by Walnut Room
+    // Obtain the Key to the Town: satisfied by Walnut Room
+    // Obtain Pierre's Missing Stocklist: satisfied by Walnut Room
+    // Forge an Infinity Weapon: satisfied by Walnut Room
+    read_the_diamond_hunter: VOID_MAYO_PREREQUISITE,
+};
+
+const voidMayoXPReqs: Record<string, Record<string, number>> = {
+    ship_a_yam: { combat: 10 },
+    cook_glazed_yams: { combat: 10 },
+    cook_autumns_bounty: { combat: 10 },
+    ship_a_coffee_bean: { combat: 2 },
+};
+
+const unappliedPrerequisitePatches = new Set(Object.keys(prerequisitePatches));
+const unappliedVoidMayoPatches = new Set(Object.keys(voidMayoPatches));
+
+const intersection = unappliedPrerequisitePatches.intersection(unappliedVoidMayoPatches);
+if (intersection.size > 0) {
+    console.warn("Patches overlap:", intersection);
+}
+
 for (const goal of data.goals) {
     if (nonTutorialFish.has(goal.id)) {
         // add #tutorial_fish to prerequisites
@@ -734,6 +920,25 @@ for (const goal of data.goals) {
     // apply prerequisite patches
     if (goal.id in prerequisitePatches) {
         goal.prerequisites = prerequisitePatches[goal.id];
+        unappliedPrerequisitePatches.delete(goal.id);
+    }
+
+    if (data.ruleset == "hardcore") {
+        if (goal.id in voidMayoPatches) {
+            if (Object.keys(goal.prerequisites).length > 0) {
+                console.warn(
+                    `overriding for goal ${goal.id}:`,
+                    goal.prerequisites,
+                    "->",
+                    voidMayoPatches[goal.id],
+                );
+            }
+            unappliedVoidMayoPatches.delete(goal.id);
+            goal.prerequisites = voidMayoPatches[goal.id];
+        }
+        if (goal.id in voidMayoXPReqs) {
+            goal.xp = voidMayoXPReqs[goal.id];
+        }
     }
 
     if (goal.id == "slay_125_cave_insects") {
@@ -750,6 +955,14 @@ for (const goal of data.goals) {
             goal.xp = { combat: 200 };
         }
     }
+}
+
+if (unappliedPrerequisitePatches.size > 0) {
+    console.warn("Unapplied prerequisite patches:", unappliedPrerequisitePatches);
+}
+
+if (data.ruleset == "hardcore" && unappliedVoidMayoPatches.size > 0) {
+    console.warn("Unapplied void mayo patches:", unappliedVoidMayoPatches);
 }
 
 // test if it validates
