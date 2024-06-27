@@ -59,7 +59,7 @@
                         </thead>
                         <tbody>
                             <TemplateEditorGoal
-                                v-for="(goal, idx) in filteredGoals"
+                                v-for="[goal, idx] in filteredGoals"
                                 :goal="goal"
                                 :required-by="reverseDeps[goal.id]"
                                 @edit="handleEdit(idx)"
@@ -216,16 +216,25 @@ const goalsByID = computed(() =>
 const searchTerm = ref("");
 const searchBox = ref<HTMLInputElement | null>(null);
 useKeyboardShortcut(KEY_MODIFIERS.CTRL, "F", () => searchBox.value?.focus());
-const filteredGoals = computed(() => {
+const filteredGoals = computed<[Goal, number][]>(() => {
     const lowerSearchTerm = searchTerm.value.toLowerCase();
 
-    if (lowerSearchTerm.length < 4) {
-        return template.value?.goals;
+    if (!template.value) {
+        return [];
     }
 
-    return template.value?.goals?.filter((goal) =>
-        goal.name.toLowerCase().includes(lowerSearchTerm),
-    );
+    if (lowerSearchTerm.length < 4) {
+        return template.value?.goals.map((goal, idx) => [goal, idx]);
+    }
+
+    const result: [Goal, number][] = [];
+    for (let i = 0; i < template.value?.goals.length; i++) {
+        const goal = template.value.goals[i]!;
+        if (goal.name.toLowerCase().includes(lowerSearchTerm)) {
+            result.push([goal, i]);
+        }
+    }
+    return result;
 });
 
 const goalPane = ref<InstanceType<typeof TemplateEditorPane> | null>();
