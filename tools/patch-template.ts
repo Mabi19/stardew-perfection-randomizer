@@ -759,6 +759,12 @@ const voidMayoPatches: Record<string, PrerequisiteGroup> = {
         ],
     }, // Would be satisfied by Periwinkle, but (a) non-quest void mayo is considered missable, and (b) periwinkles are obtainable through cats
 
+    build_an_earth_obelisk: VOID_MAYO_PREREQUISITE,
+    build_a_water_obelisk: VOID_MAYO_PREREQUISITE,
+    build_a_desert_obelisk: VOID_MAYO_PREREQUISITE,
+    build_an_island_obelisk: VOID_MAYO_PREREQUISITE,
+    build_a_gold_clock: VOID_MAYO_PREREQUISITE,
+
     ship_a_parsnip: VOID_MAYO_OR_CAROLINE,
     // Cook Parsnip Soup already requires Befriend Caroline, which is enough
     cook_a_farmers_lunch: {
@@ -857,7 +863,6 @@ const voidMayoPatches: Record<string, PrerequisiteGroup> = {
     ship_a_pineapple: VOID_MAYO_PREREQUISITE,
     ship_a_mango: VOID_MAYO_PREREQUISITE,
     ship_a_cinder_shard: VOID_MAYO_PREREQUISITE,
-    build_an_island_obelisk: VOID_MAYO_PREREQUISITE,
     slay_150_magma_sprites: VOID_MAYO_PREREQUISITE,
     befriend_leo: VOID_MAYO_PREREQUISITE,
     cook_ginger_ale: VOID_MAYO_PREREQUISITE,

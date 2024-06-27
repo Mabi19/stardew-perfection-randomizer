@@ -1902,7 +1902,19 @@
         {
             "id": "build_an_earth_obelisk",
             "name": "Build an Earth Obelisk",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/3/3c/Earth_Obelisk.png/100px-Earth_Obelisk.png",
             "multiplicity": 1,
             "xp": {}
@@ -1910,7 +1922,19 @@
         {
             "id": "build_a_water_obelisk",
             "name": "Build a Water Obelisk",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/b/b7/Water_Obelisk.png/100px-Water_Obelisk.png",
             "multiplicity": 1,
             "xp": {}
@@ -1918,7 +1942,19 @@
         {
             "id": "build_a_desert_obelisk",
             "name": "Build a Desert Obelisk",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/6/60/Desert_Obelisk.png/100px-Desert_Obelisk.png",
             "multiplicity": 1,
             "xp": {}
@@ -1946,7 +1982,19 @@
         {
             "id": "build_a_gold_clock",
             "name": "Build a Gold Clock",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/b/b5/Gold_Clock.png/100px-Gold_Clock.png",
             "multiplicity": 1,
             "xp": {}
@@ -2745,15 +2793,22 @@
             "id": "cook_a_salmon_dinner",
             "name": "Cook a Salmon Dinner",
             "prerequisites": {
-                "any": [
+                "all": [
                     {
-                        "goal": "#tutorial_fish"
+                        "goal": "befriend_gus"
                     },
                     {
-                        "goal": "befriend_krobus"
-                    },
-                    {
-                        "goal": "craft_a_mayonnaise_machine"
+                        "any": [
+                            {
+                                "goal": "#tutorial_fish"
+                            },
+                            {
+                                "goal": "befriend_krobus"
+                            },
+                            {
+                                "goal": "craft_a_mayonnaise_machine"
+                            }
+                        ]
                     }
                 ]
             },
