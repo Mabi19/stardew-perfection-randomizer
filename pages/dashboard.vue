@@ -248,6 +248,11 @@ onMounted(() => {
             if (Math.random() > 0.05) {
                 return;
             }
+
+            if (!document.hasFocus()) {
+                return;
+            }
+
             const REQUIREMENT_MAP: Partial<Record<SecretParticleID, string>> = {
                 jet: "befriend_harvey",
                 marilda: "befriend_maru",
@@ -310,7 +315,7 @@ onMounted(() => {
 
 let animID = 0;
 function startConstantConfetti() {
-    if (effectContext.value && isFinished.value) {
+    if (effectContext.value && isFinished.value && document.hasFocus()) {
         effectContext.value.spawnConstantConfetti();
     }
     animID = requestAnimationFrame(() => startConstantConfetti());
