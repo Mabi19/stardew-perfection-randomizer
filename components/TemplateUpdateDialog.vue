@@ -37,7 +37,7 @@ const emit = defineEmits<{
 const randomizer = useRandomizerStore();
 const profiles = useProfilesStore();
 
-const templateID = ref<TemplateID | "url">("standard_1_6");
+const templateID = ref<TemplateID | "url">(randomizer.currentTemplateName);
 const customTemplate = ref<Template | null>(null);
 const templateEditorActive = ref(false);
 const templateIsOk = ref(true);
