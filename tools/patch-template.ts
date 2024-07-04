@@ -758,6 +758,9 @@ const voidMayoPatches: Record<string, PrerequisiteGroup> = {
             { any: [{ goal: "befriend_krobus" }, { goal: "craft_a_mayonnaise_machine" }] },
         ],
     }, // Would be satisfied by Periwinkle, but (a) non-quest void mayo is considered missable, and (b) periwinkles are obtainable through cats
+    obtain_meowmere: {
+        any: [{ goal: "befriend_the_wizard" }, ...VOID_MAYO_OBTAINABLE],
+    },
 
     build_an_earth_obelisk: VOID_MAYO_PREREQUISITE,
     build_a_water_obelisk: VOID_MAYO_PREREQUISITE,

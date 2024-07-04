@@ -60,7 +60,7 @@ for (const [name, deps] of Object.entries(data.tags)) {
 
 for (const goal of data.goals) {
     const id = goal.id;
-    file.write(encoder.encode(`    ${id}\n`));
+    // file.write(encoder.encode(`    ${id}\n`));
 
     for (const prerequisite of traversePrerequisites(goal.prerequisites)) {
         const color = prerequisite.context == "all" ? "red" : "blue";

@@ -7215,7 +7215,22 @@
         {
             "id": "obtain_meowmere",
             "name": "Obtain Meowmere",
-            "prerequisites": {},
+            "prerequisites": {
+                "any": [
+                    {
+                        "goal": "befriend_the_wizard"
+                    },
+                    {
+                        "goal": "#tutorial_fish"
+                    },
+                    {
+                        "goal": "befriend_krobus"
+                    },
+                    {
+                        "goal": "craft_a_mayonnaise_machine"
+                    }
+                ]
+            },
             "imageURL": "https://stardewvalleywiki.com/mediawiki/images/6/63/Meowmere.png",
             "multiplicity": 1,
             "xp": {}
