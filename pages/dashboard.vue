@@ -80,9 +80,10 @@
 </template>
 
 <script setup lang="ts">
-import NullGoalIcon from "~/assets/null-goal-icon.png";
 import { GoalNotificationArea } from "#components";
 import { DashboardEffectContext } from "#imports";
+import NullGoalIcon from "~/assets/null-goal-icon.png";
+import type { SpriteParticleSettings } from "~/utils/effects/SpriteParticle";
 
 useHead({
     title: "Dashboard",
@@ -208,7 +209,6 @@ const effectContext = shallowRef<DashboardEffectContext | null>(null);
 
 let secretModule: typeof import("~/utils/effects/secret-particles") | undefined = undefined;
 let secretSpawnerInterval: ReturnType<typeof setInterval> | undefined = undefined;
-import type { SpriteParticleSettings } from "~/utils/effects/SpriteParticle";
 type SecretParticleID = keyof typeof import("~/utils/effects/secret-particles").SECRET_PARTICLES;
 async function getSecretModule() {
     if (!secretModule) {
@@ -347,17 +347,18 @@ watch(
 const helpDialog = ref(false);
 
 // backgrounds
-import bgEggFestival from "~/assets/backgrounds/egg-festival.png";
 import bgDesertFestival from "~/assets/backgrounds/desert-festival.png";
+import bgEggFestival from "~/assets/backgrounds/egg-festival.png";
+import bgFair from "~/assets/backgrounds/fair.png";
+import bgFestivalOfIce from "~/assets/backgrounds/festival-of-ice.png";
 import bgFlowerDance from "~/assets/backgrounds/flower-dance.png";
 import bgLuau from "~/assets/backgrounds/luau.png";
-import bgTroutDerby from "~/assets/backgrounds/trout-derby.png";
 import bgMoonlightJellies from "~/assets/backgrounds/moonlight-jellies.png";
-import bgFair from "~/assets/backgrounds/fair.png";
-import bgSpiritsEve from "~/assets/backgrounds/spirits-eve.png";
-import bgFestivalOfIce from "~/assets/backgrounds/festival-of-ice.png";
-import bgSquidFest from "~/assets/backgrounds/squidfest.png";
 import bgNightMarket from "~/assets/backgrounds/night-market.png";
+import bgSpiritsEve from "~/assets/backgrounds/spirits-eve.png";
+import bgSquidFestButBetter from "~/assets/backgrounds/squidfest-but-better.png";
+import bgSquidFest from "~/assets/backgrounds/squidfest.png";
+import bgTroutDerby from "~/assets/backgrounds/trout-derby.png";
 import bgWinterStar from "~/assets/backgrounds/winter-star.png";
 
 import bgSummit from "~/assets/backgrounds/summit.png";
@@ -365,7 +366,7 @@ import bgSummit from "~/assets/backgrounds/summit.png";
 const backgroundSequences = {
     light: [bgEggFestival, bgFlowerDance, bgLuau, bgFair, bgFestivalOfIce, bgWinterStar, bgSummit],
     // prettier-ignore
-    dark: [bgDesertFestival, bgTroutDerby, bgMoonlightJellies, bgSpiritsEve, bgSquidFest, bgNightMarket, bgSummit],
+    dark: [bgDesertFestival, bgTroutDerby, bgMoonlightJellies, bgSpiritsEve, Math.random() < 0.1 ? bgSquidFestButBetter : bgSquidFest, bgNightMarket, bgSummit],
     // prettier-ignore
     light_1_5: [bgEggFestival, bgFlowerDance, bgLuau, bgFair, bgFestivalOfIce, bgWinterStar, bgSummit],
     dark_1_5: [bgMoonlightJellies, bgSpiritsEve, bgNightMarket, bgSummit],
