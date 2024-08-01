@@ -59,4 +59,10 @@
         margin: 0 0.5rem;
     }
 }
+
+@media (max-width: 750px) {
+    .nav-bar {
+        padding: 0;
+    }
+}
 </style>
