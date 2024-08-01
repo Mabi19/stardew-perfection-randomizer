@@ -1,6 +1,22 @@
 <template>
     <h1 class="part">Log</h1>
-    <div class="part">// TODO: filters</div>
+    <div class="part">
+        <div class="row">
+            <label for="filter-start">From</label>
+            <input id="filter-start" type="date" v-model="filters.start" />
+        </div>
+        <div class="row">
+            <label for="filter-end">To</label>
+            <input id="filter-end" type="date" v-model="filters.end" />
+        </div>
+        <div class="row">
+            <label for="filter-sort">Sort</label>
+            <select id="filter-sort" v-model="filters.sort">
+                <option value="descending">Latest first</option>
+                <option value="ascending">Earliest first</option>
+            </select>
+        </div>
+    </div>
     <div class="part" v-if="logStore.isError">
         An error occurred! Please report this and refresh the page to try again!
     </div>
@@ -27,6 +43,8 @@
     </div>
 </template>
 
+<!-- TODO: Button to clear log (and auto-clear when deleting and creating) -->
+
 <script setup lang="ts">
 import { RecycleScroller } from "vue-virtual-scroller";
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
@@ -36,8 +54,8 @@ useHead({
 });
 
 interface LogFilters {
-    start?: Date;
-    end?: Date;
+    start?: string;
+    end?: string;
     sort: "ascending" | "descending";
 }
 
@@ -56,12 +74,32 @@ const logEntries = shallowRef<LogEntry[]>([]);
 const isLoading = ref(false);
 watchEffect(async () => {
     if (logStore.isReady) {
+        console.log(filters.value);
+
+        const startDate = filters.value.start ? new Date(filters.value.start) : undefined;
+        const endDate = filters.value.end ? new Date(filters.value.end) : undefined;
+        // TODO: set endDate to end of the day to make it more natural
+
+        if (startDate && isNaN(startDate.valueOf())) {
+            return;
+        }
+
+        if (endDate && isNaN(endDate.valueOf())) {
+            return;
+        }
+
+        if (startDate && endDate && endDate.valueOf() < startDate.valueOf()) {
+            // end is before start, there are no entries which satisfy that
+            logEntries.value = [];
+            return;
+        }
+
         isLoading.value = true;
         logEntries.value = await logStore.load(
             profiles.current!,
             filters.value.sort,
-            filters.value.start,
-            filters.value.end,
+            startDate,
+            endDate,
         );
         isLoading.value = false;
     }

@@ -46,14 +46,16 @@ export const useLogStore = defineStore("log", () => {
             const result: LogEntry[] = [];
 
             let bound: IDBKeyRange | undefined;
-            if (start) {
-                if (end) {
+            const hasStart = start && !isNaN(start.valueOf());
+            const hasEnd = end && !isNaN(end.valueOf());
+            if (hasStart) {
+                if (hasEnd) {
                     bound = IDBKeyRange.bound(start, end);
                 } else {
                     bound = IDBKeyRange.lowerBound(start);
                 }
             } else {
-                if (end) {
+                if (hasEnd) {
                     bound = IDBKeyRange.upperBound(end);
                 } else {
                     bound = undefined;
