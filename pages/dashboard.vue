@@ -92,6 +92,8 @@ useHead({
 const store = useRandomizerStore();
 await store.waitForReady();
 const settings = useSettingsStore();
+const profiles = useProfilesStore();
+const log = useLogStore();
 
 const recentlyCancelledGoals = ref(new Set<string>());
 
@@ -149,17 +151,29 @@ function finishGoal() {
     historyContext.hookFinish();
     effectContext.value?.finishGoalHook();
 
-    const goalID = store.currentGoalID!;
+    const goal = store.currentGoal!;
 
     // goal was finished, so this chain of cancels no longer applies
     recentlyCancelledGoals.value.clear();
+
+    log.addEntry({
+        profile: profiles.current!,
+        timestamp: new Date(),
+        type: "complete",
+        goal: {
+            id: goal.id,
+            name: goal.name,
+            imageURL: goal.imageURL,
+        },
+        repeat: (store.completion[goal.id] ?? 0) + 1,
+    });
 
     store.finishGoal();
     setCooldown();
 
     notificationArea.value?.send(
         "Finished",
-        store.goals?.[goalID] ?? throwError(new Error("Current goal ID is invalid")),
+        store.goals?.[goal.id] ?? throwError(new Error("Current goal ID is invalid")),
     );
 }
 
@@ -170,15 +184,26 @@ function cancelGoal() {
 
     historyContext.hookCancel();
 
-    const goalID = store.currentGoalID!;
-    recentlyCancelledGoals.value.add(goalID);
+    const goal = store.currentGoal!;
+    recentlyCancelledGoals.value.add(goal.id);
+
+    log.addEntry({
+        profile: profiles.current!,
+        timestamp: new Date(),
+        type: "cancel",
+        goal: {
+            id: goal.id,
+            name: goal.name,
+            imageURL: goal.imageURL,
+        },
+    });
 
     store.cancelGoal();
     setCooldown();
 
     notificationArea.value?.send(
         "Canceled",
-        store.goals?.[goalID] ?? throwError(new Error("Current goal ID is invalid")),
+        store.goals?.[goal.id] ?? throwError(new Error("Current goal ID is invalid")),
     );
 }
 

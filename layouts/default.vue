@@ -10,6 +10,9 @@
             <NuxtLink to="/goals"
                 ><span class="material-icons">list</span><span>Goals</span></NuxtLink
             >
+            <NuxtLink to="/log"
+                ><span class="material-icons">receipt_long</span><span>Log</span></NuxtLink
+            >
             <div class="fill"></div>
             <div class="divider"></div>
             <NuxtLink to="/settings"

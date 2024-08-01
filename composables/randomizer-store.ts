@@ -258,8 +258,12 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     function finishGoal() {
         if (currentGoal.value == null) return;
 
-        if ((completion.value[currentGoal.value.id] ?? 0) < currentGoal.value.multiplicity) {
-            completion.value[currentGoal.value.id] += 1;
+        if (!completion.value[currentGoal.value.id]) {
+            completion.value[currentGoal.value.id] = 0;
+        }
+
+        if (completion.value[currentGoal.value.id]! < currentGoal.value.multiplicity) {
+            completion.value[currentGoal.value.id]! += 1;
         }
 
         // update XP prediction for level goal
