@@ -38,6 +38,8 @@ const props = defineProps<{
 // For performance, the completion is not injected into the goals data, but stored separately
 // so, we need to get it manually
 const store = useRandomizerStore();
+const profiles = useProfilesStore();
+const logStore = useLogStore();
 
 function handleCheckbox(event: Event) {
     update(Number((event.target as HTMLInputElement).checked));
@@ -57,7 +59,20 @@ function update(state: number) {
         return;
     }
 
+    const oldState = store.completion[props.goal.id] ?? 0;
     store.completion[props.goal.id] = state;
+
+    logStore.addEntry({
+        profile: profiles.current!,
+        timestamp: new Date(),
+        type: state >= oldState ? "mark" : "unmark",
+        goal: {
+            id: props.goal.id,
+            name: props.goal.name,
+            multiplicity: props.goal.multiplicity,
+            imageURL: props.goal.imageURL,
+        },
+    });
 
     // If this is a level up goal, update the XP values
     // This isn't great code (Ideally I'd be watching on setting level up completions),

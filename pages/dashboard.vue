@@ -198,6 +198,7 @@ function cancelGoal() {
             multiplicity: goal.multiplicity,
             imageURL: goal.imageURL,
         },
+        repeatNumber: (store.completion[goal.id] ?? 0) + 1,
     });
 
     store.cancelGoal();
