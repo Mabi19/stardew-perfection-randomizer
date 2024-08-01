@@ -202,7 +202,7 @@ function cancelGoal() {
     setCooldown();
 
     notificationArea.value?.send(
-        "Canceled",
+        "Cancelled",
         store.goals?.[goal.id] ?? throwError(new Error("Current goal ID is invalid")),
     );
 }
