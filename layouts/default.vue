@@ -2,7 +2,7 @@
     <div class="layout">
         <NavBar>
             <img class="app-logo" src="~/assets/logo.webp" alt="Randomizer logo" />
-            <span class="app-name">Stardew Perfection Randomizer</span>
+            <span class="app-name small-hide">Stardew Perfection Randomizer</span>
             <div class="divider tiny-hide"></div>
             <NuxtLink to="/dashboard"
                 ><span class="material-icons">flag</span><span>Dashboard</span></NuxtLink
@@ -30,11 +30,6 @@
 @use "~/assets/base";
 
 @media (max-width: 750px) {
-    .app-name,
-    .small-hide {
-        display: none;
-    }
-
     .divider {
         margin: 0 0.25rem;
     }

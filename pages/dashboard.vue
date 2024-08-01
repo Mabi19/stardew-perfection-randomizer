@@ -163,9 +163,10 @@ function finishGoal() {
         goal: {
             id: goal.id,
             name: goal.name,
+            multiplicity: goal.multiplicity,
             imageURL: goal.imageURL,
         },
-        repeat: (store.completion[goal.id] ?? 0) + 1,
+        repeatNumber: (store.completion[goal.id] ?? 0) + 1,
     });
 
     store.finishGoal();
@@ -194,6 +195,7 @@ function cancelGoal() {
         goal: {
             id: goal.id,
             name: goal.name,
+            multiplicity: goal.multiplicity,
             imageURL: goal.imageURL,
         },
     });

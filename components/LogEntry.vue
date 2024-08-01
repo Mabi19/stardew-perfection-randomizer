@@ -1,15 +1,51 @@
 <template>
-    <div class="log-entry">{{ entry.type }} {{ entry.goal.id }}</div>
+    <div class="log-entry">
+        <span>{{ dateTimeFormat.format(entry.timestamp) }}:</span>
+        <span>{{ types[entry.type].label }}</span>
+        <Goal
+            :goal="{ ...entry.goal, prerequisites: {}, xp: {} }"
+            :repeat-number="entry.repeatNumber"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
     entry: LogEntry;
 }>();
+
+const types = {
+    complete: {
+        icon: "done",
+        label: "Completed",
+    },
+    cancel: {
+        icon: "block",
+        label: "Cancelled",
+    },
+    mark: {
+        icon: "check_box",
+        label: "Marked",
+    },
+    unmark: {
+        icon: "check_box_outline_blank",
+        label: "Unmarked",
+    },
+} as const;
+
+const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+});
 </script>
 
 <style scoped lang="scss">
 .log-entry {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.25rem;
+    align-items: center;
+
     height: 30px;
 }
 </style>

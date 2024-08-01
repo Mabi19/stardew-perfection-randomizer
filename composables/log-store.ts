@@ -5,9 +5,10 @@ export interface LogEntry {
     goal: {
         id: string;
         name: string;
+        multiplicity: number;
         imageURL?: string;
     };
-    repeat?: number;
+    repeatNumber?: number;
 }
 
 export const useLogStore = defineStore("log", () => {
@@ -31,7 +32,12 @@ export const useLogStore = defineStore("log", () => {
         isReady.value = true;
     });
 
-    function load(profile: string, start?: Date, end?: Date): Promise<LogEntry[]> {
+    function load(
+        profile: string,
+        sort: "ascending" | "descending",
+        start?: Date,
+        end?: Date,
+    ): Promise<LogEntry[]> {
         if (!db) {
             return Promise.reject(new Error("DB not initialized"));
         }
@@ -39,8 +45,25 @@ export const useLogStore = defineStore("log", () => {
         return new Promise((resolve) => {
             const result: LogEntry[] = [];
 
+            let bound: IDBKeyRange | undefined;
+            if (start) {
+                if (end) {
+                    bound = IDBKeyRange.bound(start, end);
+                } else {
+                    bound = IDBKeyRange.lowerBound(start);
+                }
+            } else {
+                if (end) {
+                    bound = IDBKeyRange.upperBound(end);
+                } else {
+                    bound = undefined;
+                }
+            }
+
             const logStore = db!.transaction(["log"], "readonly").objectStore("log");
-            logStore.openCursor().onsuccess = (event) => {
+            logStore.openCursor(bound, sort == "ascending" ? "next" : "prev").onsuccess = (
+                event,
+            ) => {
                 // @ts-ignore
                 const cursor: IDBCursorWithValue | undefined = event.target.result;
                 if (cursor) {
@@ -52,7 +75,6 @@ export const useLogStore = defineStore("log", () => {
 
                     cursor.continue();
                 } else {
-                    console.log(result);
                     resolve(result);
                 }
             };
