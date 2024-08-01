@@ -14,7 +14,7 @@
                         class="main-goal"
                         v-if="store.currentGoal"
                         :goal="store.currentGoal"
-                        :show-repeat-number="true"
+                        :repeat-number="store.completion[store.currentGoal.id]! + 1"
                     />
                     <Goal class="main-goal" v-else :goal="nullGoal" />
 

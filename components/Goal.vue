@@ -9,22 +9,15 @@
             loading="lazy"
         />
         <span>{{ goal.name }}</span>
-        <span class="badge" v-if="showRepeatNumber && goal.multiplicity > 1"
-            >#{{ store.completion[goal.id]! + 1 }}</span
-        >
+        <span class="badge" v-if="repeatNumber && goal.multiplicity > 1">#{{ repeatNumber }}</span>
     </div>
 </template>
 
 <script setup lang="ts">
-const props = withDefaults(
-    defineProps<{
-        goal: Goal;
-        showRepeatNumber?: boolean;
-    }>(),
-    {
-        showRepeatNumber: false,
-    },
-);
+const props = defineProps<{
+    goal: Goal;
+    repeatNumber?: number;
+}>();
 
 const store = useRandomizerStore();
 </script>
