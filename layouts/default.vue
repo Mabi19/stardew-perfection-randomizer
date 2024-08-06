@@ -8,7 +8,7 @@
                 ><span class="material-icons">flag</span><span>Dashboard</span></NuxtLink
             >
             <NuxtLink to="/goals"
-                ><span class="material-icons">list</span><span>Goals</span></NuxtLink
+                ><span class="material-icons">checklist</span><span>Goals</span></NuxtLink
             >
             <NuxtLink to="/log"
                 ><span class="material-icons">receipt_long</span><span>Log</span></NuxtLink
