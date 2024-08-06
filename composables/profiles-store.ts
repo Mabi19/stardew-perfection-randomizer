@@ -7,6 +7,8 @@ interface ProfileImportData {
 }
 
 export const useProfilesStore = defineStore("profiles", () => {
+    const logStore = useLogStore();
+
     const allProfiles = ref<Profile[]>(JSON.parse(localStorage.getItem("allProfiles") ?? "[]"));
     const current = ref<string | null>(localStorage.getItem("currentProfile"));
 
@@ -95,6 +97,7 @@ export const useProfilesStore = defineStore("profiles", () => {
         // localStorage is idempotent, so we can always delete the template even if it does not exist
         localStorage.removeItem(`profile:${name}`);
         localStorage.removeItem(`profileTemplate:${name}`);
+        logStore.deleteEntriesForProfile(name);
 
         // remove the profile from the profiles list
         allProfiles.value = allProfiles.value.filter((profile) => profile.name != name);
