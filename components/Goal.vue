@@ -8,7 +8,7 @@
             role="presentation"
             loading="lazy"
         />
-        <span>{{ goal.name }}</span>
+        <span class="goal-name">{{ goal.name }}</span>
         <span class="badge" v-if="repeatNumber && goal.multiplicity > 1">#{{ repeatNumber }}</span>
     </div>
 </template>

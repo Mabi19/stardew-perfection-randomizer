@@ -48,6 +48,17 @@ const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
     align-items: center;
 
     height: 30px;
+
+    & > * {
+        flex-shrink: 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    :deep(.goal-wrapper) {
+        flex-shrink: 1;
+        text-overflow: ellipsis;
+    }
 }
 
 .material-icons {

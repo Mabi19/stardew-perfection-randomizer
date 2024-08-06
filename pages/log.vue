@@ -123,4 +123,8 @@ watchEffect(async () => {
 .part {
     margin: 1rem;
 }
+
+.log-list-body {
+    min-width: 500px;
+}
 </style>
