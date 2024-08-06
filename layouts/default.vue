@@ -5,13 +5,16 @@
             <span class="app-name small-hide">Stardew Perfection Randomizer</span>
             <div class="divider tiny-hide"></div>
             <NuxtLink to="/dashboard"
-                ><span class="material-icons">flag</span><span>Dashboard</span></NuxtLink
+                ><span class="material-icons">flag</span
+                ><span class="tab-name">Dashboard</span></NuxtLink
             >
             <NuxtLink to="/goals"
-                ><span class="material-icons">checklist</span><span>Goals</span></NuxtLink
+                ><span class="material-icons">checklist</span
+                ><span class="tab-name">Goals</span></NuxtLink
             >
             <NuxtLink to="/log"
-                ><span class="material-icons">receipt_long</span><span>Log</span></NuxtLink
+                ><span class="material-icons">receipt_long</span
+                ><span class="tab-name">Log</span></NuxtLink
             >
             <div class="fill"></div>
             <div class="divider"></div>
@@ -28,19 +31,6 @@
 
 <style scoped lang="scss">
 @use "~/assets/base";
-
-@media (max-width: 750px) {
-    .divider {
-        margin: 0 0.25rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .app-logo,
-    .divider {
-        display: none;
-    }
-}
 
 .content {
     flex-grow: 1;

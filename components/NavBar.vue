@@ -27,10 +27,12 @@
     &.nav-bar a {
         color: whitesmoke;
         text-decoration: none;
+        min-width: 2.5rem;
         height: 100%;
 
         display: flex;
         flex-flow: row nowrap;
+        justify-content: center;
         align-items: center;
 
         &:hover,
@@ -60,9 +62,9 @@
     }
 }
 
-@media (max-width: 750px) {
-    .nav-bar {
-        padding: 0;
+@media (max-width: 480px) {
+    .nav-bar .tab-name {
+        display: none;
     }
 }
 </style>
