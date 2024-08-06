@@ -20,7 +20,7 @@
     <div class="part" v-if="logStore.isError">
         An error occurred! Please report this and refresh the page to try again!
     </div>
-    <div class="part" v-if="isLoading">Loading...</div>
+    <div class="part" v-if="!logStore.isReady || isLoading">Loading...</div>
     <div class="part" v-else>
         <RecycleScroller
             v-if="logEntries.length"
@@ -72,13 +72,27 @@ const logStore = useLogStore();
 
 const logEntries = shallowRef<LogEntry[]>([]);
 const isLoading = ref(false);
+
+/** Assumes the date is in `<input type="date">` format (YYYY-MM-DD) */
+function parseDateInLocalTime(dateString: string) {
+    const parts = dateString.split("-").map((part) => parseInt(part, 10));
+    if (parts.length < 3) {
+        throw new Error("Invalid date format");
+    }
+
+    return new Date(parts[0]!, parts[1]! - 1, parts[2]!);
+}
+
 watchEffect(async () => {
     if (logStore.isReady) {
         console.log(filters.value);
 
-        const startDate = filters.value.start ? new Date(filters.value.start) : undefined;
-        const endDate = filters.value.end ? new Date(filters.value.end) : undefined;
-        // TODO: set endDate to end of the day to make it more natural
+        const startDate = filters.value.start
+            ? parseDateInLocalTime(filters.value.start)
+            : undefined;
+        const endDate = filters.value.end ? parseDateInLocalTime(filters.value.end) : undefined;
+        // This makes the endDate inclusive
+        endDate?.setHours(23, 59, 59, 999);
 
         if (startDate && isNaN(startDate.valueOf())) {
             return;
