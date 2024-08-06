@@ -18,8 +18,9 @@
             </select>
         </div>
     </div>
-    <div class="part">
-        <AppButton icon="delete_forever" @click="clearLog">Clear log</AppButton>
+    <div class="part row">
+        <AppButton icon="file_download" @click="exportAsCSV">Export as CSV</AppButton>
+        <AppButton icon="delete_forever" type="destructive" @click="clearLog">Clear log</AppButton>
     </div>
     <div class="part" v-if="logStore.isError">
         An error occurred! Please report this and refresh the page to try again!
@@ -46,8 +47,6 @@
         </div>
     </div>
 </template>
-
-<!-- TODO: Button to clear log (and auto-clear when deleting and creating) -->
 
 <script setup lang="ts">
 import { RecycleScroller } from "vue-virtual-scroller";
@@ -134,6 +133,24 @@ async function clearLog() {
         // trigger a rerender
         triggerRef(filters);
     }
+}
+
+function quoteCSVValue(value: string): string {
+    return `"${value.replaceAll('"', '""')}"`;
+}
+
+async function exportAsCSV() {
+    const rows = ["Timestamp,Goal,Type"];
+    for (const entry of logEntries.value) {
+        rows.push(
+            [entry.timestamp.toISOString(), entry.goal.name, entry.type]
+                .map((value) => quoteCSVValue(value))
+                .join(","),
+        );
+    }
+
+    const content = rows.join("\n");
+    downloadBlob(new Blob([content]), `Log for ${profiles.current}.csv`);
 }
 </script>
 
