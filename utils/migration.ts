@@ -11,6 +11,11 @@ export function autofix(template: Template, data: SavedData) {
         newCompletion[goalID] = data.completion[goalID] ?? 0;
     }
     data.completion = newCompletion;
+
+    // if current goal is now invalid, stop that
+    if (data.currentGoalID && !templateGoalIDs.has(data.currentGoalID)) {
+        data.currentGoalID = null;
+    }
 }
 
 function renameGoal(data: SavedData, oldID: string, newID: string) {
