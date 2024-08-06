@@ -121,6 +121,10 @@ a:active {
     flex-flow: column nowrap;
 }
 
+.material-icons {
+    user-select: none;
+}
+
 @media (max-width: 750px) {
     .small-hide {
         display: none;
