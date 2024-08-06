@@ -85,8 +85,6 @@ function parseDateInLocalTime(dateString: string) {
 
 watchEffect(async () => {
     if (logStore.isReady) {
-        console.log(filters.value);
-
         const startDate = filters.value.start
             ? parseDateInLocalTime(filters.value.start)
             : undefined;
