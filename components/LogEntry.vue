@@ -1,6 +1,7 @@
 <template>
     <div class="log-entry">
         <span>{{ dateTimeFormat.format(entry.timestamp) }}:</span>
+        <span class="material-icons">{{ types[entry.type].icon }}</span>
         <span>{{ types[entry.type].label }}</span>
         <Goal
             :goal="{ ...entry.goal, prerequisites: {}, xp: {} }"
@@ -47,5 +48,9 @@ const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
     align-items: center;
 
     height: 30px;
+}
+
+.material-icons {
+    font-size: 1.25rem;
 }
 </style>
