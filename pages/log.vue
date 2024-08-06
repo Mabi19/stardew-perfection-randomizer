@@ -18,6 +18,9 @@
             </select>
         </div>
     </div>
+    <div class="part">
+        <AppButton icon="delete_forever" @click="clearLog">Clear log</AppButton>
+    </div>
     <div class="part" v-if="logStore.isError">
         An error occurred! Please report this and refresh the page to try again!
     </div>
@@ -117,6 +120,21 @@ watchEffect(async () => {
         isLoading.value = false;
     }
 });
+
+const dialogs = useDialogs();
+async function clearLog() {
+    if (
+        (await dialogs.confirm(
+            "Confirm log deletion",
+            "Are you sure you want to delete all the logs for this profile?",
+            ["Yes", "No"],
+        )) == "ok"
+    ) {
+        await logStore.deleteEntriesForProfile(profiles.current!);
+        // trigger a rerender
+        triggerRef(filters);
+    }
+}
 </script>
 
 <style scoped lang="scss">

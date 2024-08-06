@@ -89,12 +89,43 @@ export const useLogStore = defineStore("log", () => {
             return;
         }
 
-        const logStore = db!.transaction(["log"], "readwrite").objectStore("log");
+        const logStore = db.transaction(["log"], "readwrite").objectStore("log");
         logStore.add(entry);
     }
 
-    function deleteEntriesForProfile(profile: string) {
-        // TODO: remove from IDB
+    async function deleteEntriesForProfile(profile: string): Promise<void> {
+        if (!db) {
+            console.warn("Entries deleted without DB init, will not be applied");
+            return;
+        }
+
+        const logStore = db.transaction(["log"], "readwrite").objectStore("log");
+        const request = logStore.index("profile").getAllKeys(profile);
+        return new Promise((resolve) => {
+            request.onsuccess = () => {
+                const keysToDelete = request.result;
+
+                if (keysToDelete.length == 0) {
+                    console.log("No log entries to delete");
+                    resolve();
+                }
+
+                let processed = 0;
+                const finishDelete = () => {
+                    processed++;
+                    if (processed == keysToDelete.length) {
+                        console.log(`Deleted ${processed} log entries`);
+                        resolve();
+                    }
+                };
+
+                for (const key of keysToDelete) {
+                    const deleteRequest = logStore.delete(key);
+                    deleteRequest.onsuccess = finishDelete;
+                    deleteRequest.onerror = finishDelete;
+                }
+            };
+        });
     }
 
     return {
