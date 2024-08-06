@@ -1,5 +1,6 @@
 <template>
     <h1 class="part">Log</h1>
+    <StoragePersistenceWarning />
     <div class="part">
         <div class="row">
             <label for="filter-start">From</label>
