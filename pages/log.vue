@@ -139,6 +139,9 @@ function quoteCSVValue(value: string): string {
     return `"${value.replaceAll('"', '""')}"`;
 }
 
+const filenameDateFormatter = new Intl.DateTimeFormat(undefined, {
+    dateStyle: "short",
+});
 async function exportAsCSV() {
     const rows = ["Timestamp,Goal,Type"];
     for (const entry of logEntries.value) {
@@ -150,7 +153,23 @@ async function exportAsCSV() {
     }
 
     const content = rows.join("\n");
-    downloadBlob(new Blob([content]), `Log for ${profiles.current}.csv`);
+
+    let datePart: string;
+    if (filters.value.start) {
+        if (filters.value.end) {
+            datePart = ` ${filenameDateFormatter.formatRange(parseDateInLocalTime(filters.value.start), parseDateInLocalTime(filters.value.end))}`;
+        } else {
+            datePart = ` from ${filenameDateFormatter.format(parseDateInLocalTime(filters.value.start))}`;
+        }
+    } else {
+        if (filters.value.end) {
+            datePart = ` until ${filenameDateFormatter.format(parseDateInLocalTime(filters.value.end))}`;
+        } else {
+            datePart = "";
+        }
+    }
+
+    downloadBlob(new Blob([content]), `Log for ${profiles.current}${datePart}.csv`);
 }
 </script>
 
