@@ -99,7 +99,15 @@ const filteredGoals = computed(() => {
     );
 });
 
-const infoGoal = ref<Goal | null>(null);
+const selectedGoalQuery = useRoute().query.selected;
+const selectedGoalID = selectedGoalQuery
+    ? Array.isArray(selectedGoalQuery)
+        ? selectedGoalQuery[0]!
+        : selectedGoalQuery
+    : undefined;
+const selectedGoal = selectedGoalID ? store.goals?.[selectedGoalID] ?? null : null;
+
+const infoGoal = ref<Goal | null>(selectedGoal);
 
 function openGoalInfo(goal: Goal) {
     infoGoal.value = goal;
