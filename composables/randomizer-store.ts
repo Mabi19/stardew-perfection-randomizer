@@ -178,10 +178,6 @@ export const useRandomizerStore = defineStore("randomizer", () => {
     }
 
     function isEligible(goal: Goal) {
-        // do not roll the current goal
-        if (goal.id == currentGoalID.value) {
-            return false;
-        }
         // do not roll completed goals
         if ((completion.value[goal.id] ?? 0) >= goal.multiplicity) {
             return false;
