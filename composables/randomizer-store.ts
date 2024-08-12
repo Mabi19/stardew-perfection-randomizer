@@ -1,5 +1,12 @@
 import { defineStore } from "pinia";
 
+export enum GoalEligibilityStatus {
+    ELIGIBLE,
+    ALREADY_COMPLETED,
+    NO_PREREQUISITES,
+    NOT_ENOUGH_XP_LEEWAY,
+}
+
 export const useRandomizerStore = defineStore("randomizer", () => {
     const profiles = useProfilesStore();
 
@@ -177,16 +184,16 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         return true;
     }
 
-    function isEligible(goal: Goal) {
+    function getEligibilityStatus(goal: Goal): GoalEligibilityStatus {
         // do not roll completed goals
         if ((completion.value[goal.id] ?? 0) >= goal.multiplicity) {
-            return false;
+            return GoalEligibilityStatus.ALREADY_COMPLETED;
         }
 
         // check for prerequisites
         const reqs = goal.prerequisites;
         if (!isPrerequisiteMet(reqs)) {
-            return false;
+            return GoalEligibilityStatus.NO_PREREQUISITES;
         }
 
         // check for XP values
@@ -196,11 +203,15 @@ export const useRandomizerStore = defineStore("randomizer", () => {
             let currentXP = predictedSkillXP.value[skill] ?? skillXPValues[level] ?? 0;
             currentXP += impliedXP;
             if (currentXP >= (skillXPValues[level + 1] ?? 999999)) {
-                return false;
+                return GoalEligibilityStatus.NOT_ENOUGH_XP_LEEWAY;
             }
         }
 
-        return true;
+        return GoalEligibilityStatus.ELIGIBLE;
+    }
+
+    function isEligible(goal: Goal) {
+        return getEligibilityStatus(goal) == GoalEligibilityStatus.ELIGIBLE;
     }
 
     function rollGoal(cancelledGoals: Set<string>) {
@@ -313,7 +324,9 @@ export const useRandomizerStore = defineStore("randomizer", () => {
         rollGoal,
         cancelGoal,
         finishGoal,
+        getEligibilityStatus,
         isEligible,
+        isPrerequisiteMet,
         waitForReady,
     };
 });

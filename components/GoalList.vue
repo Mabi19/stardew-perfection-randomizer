@@ -58,7 +58,7 @@
             </div>
             <div>
                 <strong>Currently eligible:</strong>
-                <span>{{ store.isEligible(infoGoal) ? "✅ Yes" : "❌ No" }}</span>
+                <span>{{ formatEligibilityStatus(infoGoal) }}</span>
             </div>
             <div class="button-box">
                 <AppButton
@@ -115,6 +115,17 @@ function openGoalInfo(goal: Goal) {
 
 function isEmpty(o: {}) {
     return Object.keys(o).length == 0;
+}
+
+function formatEligibilityStatus(goal: Goal) {
+    const names = {
+        [GoalEligibilityStatus.ELIGIBLE]: "✅ Yes",
+        [GoalEligibilityStatus.ALREADY_COMPLETED]: "❌ No (already completed)",
+        [GoalEligibilityStatus.NO_PREREQUISITES]: "❌ No (prerequisites not completed)",
+        [GoalEligibilityStatus.NOT_ENOUGH_XP_LEEWAY]: "❌ No (not enough XP leeway)",
+    };
+
+    return names[store.getEligibilityStatus(goal)];
 }
 </script>
 

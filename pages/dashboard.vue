@@ -64,8 +64,14 @@
                 Mayonnaise or chair glitching.
             </p>
             <p>
-                If you're stuck, you can try looking at the tips-and-tricks document (coming
-                soon&trade;) or asking for help in
+                If you're stuck, you can try
+                <template v-if="store.currentGoalID">
+                    looking at
+                    <NuxtLink :to="`./goals?selected=${store.currentGoalID}`"
+                        >how your current goal's prerequisites are satisfied</NuxtLink
+                    >,
+                </template>
+                looking at the tips-and-tricks document (coming soon&trade;) or asking for help in
                 <a href="https://discord.gg/nxqNcCaJ93">ArgonMatrix's Discord server</a>.
             </p>
             <p>

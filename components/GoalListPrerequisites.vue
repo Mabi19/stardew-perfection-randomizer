@@ -1,5 +1,8 @@
 <template>
-    <span> {{ prerequisites.all ? "All" : "Any" }} of: </span>
+    <span
+        >{{ prerequisites.all ? "All" : "Any" }} of:
+        {{ store.isPrerequisiteMet(prerequisites) ? "✅" : "❌" }}</span
+    >
     <ul v-if="!isEmpty">
         <li v-for="req in prerequisites.all ?? prerequisites.any ?? []">
             <template v-if="'goal' in req">
@@ -13,6 +16,14 @@
                 <span v-if="req.multiplicity && req.multiplicity > 1" class="inline-goal-mult">
                     (x{{ req.multiplicity }})
                 </span>
+                <span class="prerequisite-status">{{
+                    store.isPrerequisiteMet(
+                        req,
+                        prerequisites.all ? Array.prototype.every : Array.prototype.some,
+                    )
+                        ? "✅"
+                        : "❌"
+                }}</span>
             </template>
             <!-- recurse down -->
             <GoalListPrerequisites v-else :prerequisites="req" />
@@ -39,6 +50,11 @@ const isEmpty = computed(() => {
 }
 
 .inline-goal-mult {
+    vertical-align: middle;
+}
+
+.prerequisite-status {
+    margin-left: 0.25rem;
     vertical-align: middle;
 }
 </style>
