@@ -19,7 +19,9 @@
         </div>
     </div>
     <div class="part row">
-        <AppButton icon="file_download" @click="exportAsCSV">Export as CSV</AppButton>
+        <AppButton icon="file_download" @click="exportAsCSV" :disabled="logEntries.length == 0"
+            >Export as CSV</AppButton
+        >
         <AppButton icon="delete_forever" type="destructive" @click="clearLog">Clear log</AppButton>
     </div>
     <div class="part" v-if="logStore.isError">
