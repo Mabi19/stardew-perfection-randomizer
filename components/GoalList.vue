@@ -80,8 +80,11 @@
 import { RecycleScroller } from "vue-virtual-scroller";
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 
+type FilterType = "everything" | "complete" | "incomplete" | "eligible";
+
 const props = defineProps<{
     searchTerm: string;
+    filterType: FilterType;
 }>();
 
 const store = useRandomizerStore();
@@ -90,13 +93,33 @@ await store.waitForReady();
 const filteredGoals = computed(() => {
     const lowerSearchTerm = props.searchTerm.toLowerCase();
 
-    if (lowerSearchTerm.length < 4) {
+    if (lowerSearchTerm.length < 4 && props.filterType == "everything") {
         return store.templateData?.goals;
     }
 
-    return store.templateData?.goals?.filter((goal) =>
-        goal.name.toLowerCase().includes(lowerSearchTerm),
+    function goalMatchesFilter(goal: Goal, filter: FilterType): boolean {
+        switch (filter) {
+            case "everything":
+                return true;
+            case "complete":
+                return (store.completion[goal.id] ?? -1) >= goal.multiplicity;
+            case "incomplete":
+                return (store.completion[goal.id] ?? -1) < goal.multiplicity;
+            case "eligible":
+                return store.isEligible(goal);
+        }
+    }
+
+    console.time("filter");
+    const result = store.templateData?.goals?.filter(
+        (goal) =>
+            goal.name.toLowerCase().includes(lowerSearchTerm) &&
+            goalMatchesFilter(goal, props.filterType),
     );
+    console.timeEnd("filter");
+    console.log(result?.length);
+
+    return result;
 });
 
 const selectedGoalQuery = useRoute().query.selected;

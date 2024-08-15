@@ -26,12 +26,57 @@
             >Update XP predictions</AppButton
         >
     </div>
-    <div class="part row">
-        <label for="filter">Filter goals:</label>
-        <input id="filter" type="search" v-model="searchTerm" ref="searchBox" />
+    <div class="part">
+        <div class="row">
+            <label for="filter">Search by name:</label>
+            <input id="filter" type="search" v-model="searchTerm" ref="searchBox" />
+        </div>
+        <div class="row">
+            <span>Filter:</span>
+            <div>
+                <input
+                    type="radio"
+                    id="show_everything"
+                    value="everything"
+                    name="goal_list_filter"
+                    v-model="filterType"
+                />
+                <label for="show_everything">Everything</label>
+            </div>
+            <div>
+                <input
+                    type="radio"
+                    id="show_complete"
+                    value="complete"
+                    name="goal_list_filter"
+                    v-model="filterType"
+                />
+                <label for="show_complete">Complete</label>
+            </div>
+            <div>
+                <input
+                    type="radio"
+                    id="show_incomplete"
+                    value="incomplete"
+                    name="goal_list_filter"
+                    v-model="filterType"
+                />
+                <label for="show_incomplete">Incomplete</label>
+            </div>
+            <div>
+                <input
+                    type="radio"
+                    id="show_eligible"
+                    value="eligible"
+                    name="goal_list_filter"
+                    v-model="filterType"
+                />
+                <label for="show_eligible">Currently eligible</label>
+            </div>
+        </div>
     </div>
     <div class="part">
-        <GoalList :search-term="searchTerm"></GoalList>
+        <GoalList :search-term="searchTerm" :filter-type="filterType"></GoalList>
     </div>
 
     <XPUpdateDialog :open="xpPredictionDialogActive" @finish="xpPredictionDialogActive = false" />
@@ -48,6 +93,7 @@ await store.waitForReady();
 
 const searchTerm = ref("");
 const searchBox = ref<HTMLInputElement | null>(null);
+const filterType = ref<"everything" | "complete" | "incomplete" | "eligible">("everything");
 
 useKeyboardShortcut(
     KEY_MODIFIERS.CTRL,
