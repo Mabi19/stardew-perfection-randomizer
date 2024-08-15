@@ -1,5 +1,8 @@
 <template>
     <div class="goal-list" v-if="filteredGoals && filteredGoals.length > 0">
+        <div v-if="searchTerm != '' || filterType != 'everything'" class="result-count">
+            {{ filteredGoals.length }} goals match filter.
+        </div>
         <div class="goal-list-header">
             <span class="goal-list-completion">Comp.</span>
             <span class="goal-list-name">Name</span>
@@ -173,6 +176,10 @@ function formatEligibilityStatus(goal: Goal) {
     :deep(.goal-list-action) {
         width: 32px;
     }
+}
+
+.result-count {
+    margin: 0.5rem 0;
 }
 
 .goal-info-wrapper {
