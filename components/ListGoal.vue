@@ -1,6 +1,6 @@
 <template>
     <div class="goal">
-        <ListGoalStatus :goal="goal"></ListGoalStatus>
+        <ListGoalStatus :goal="goal" :key="goal.id"></ListGoalStatus>
         <div class="goal-list-name">
             <label :for="`goal:${goal.id}`"><Goal :goal="goal" /></label>
         </div>

@@ -4,7 +4,7 @@
             <input
                 v-if="goal.multiplicity == 1"
                 type="checkbox"
-                :checked="Boolean(store.completion[goal.id])"
+                :checked="completion > 0"
                 :id="`goal:${goal.id}`"
                 @change="handleCheckbox"
             />
@@ -14,7 +14,7 @@
                     type="number"
                     min="0"
                     :max="goal.multiplicity"
-                    :value="store.completion[goal.id]"
+                    :value="completion"
                     :id="`goal:${goal.id}`"
                     @input="handleInput"
                 /><span>/{{ goal.multiplicity }}</span>
@@ -40,6 +40,8 @@ const props = defineProps<{
 const store = useRandomizerStore();
 const profiles = useProfilesStore();
 const logStore = useLogStore();
+
+const completion = computed(() => store.completion[props.goal.id] ?? 0);
 
 function handleCheckbox(event: Event) {
     update(Number((event.target as HTMLInputElement).checked));

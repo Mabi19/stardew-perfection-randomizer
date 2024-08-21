@@ -8,17 +8,12 @@
             <span class="goal-list-name">Name</span>
             <span class="goal-list-action"><!-- more info button --></span>
         </div>
-        <RecycleScroller
-            class="goal-list-body"
-            page-mode
-            :buffer="300"
-            :items="filteredGoals"
-            :item-size="30"
-            key-field="id"
-            v-slot="{ item }"
-        >
-            <ListGoal :goal="item" @info-click="openGoalInfo"></ListGoal>
-        </RecycleScroller>
+        <ListGoal
+            v-for="goal in filteredGoals"
+            :key="goal.id"
+            :goal="goal"
+            @info-click="openGoalInfo"
+        ></ListGoal>
     </div>
     <div v-else>No goals matching filter!</div>
 
@@ -80,9 +75,6 @@
 </template>
 
 <script setup lang="ts">
-import { RecycleScroller } from "vue-virtual-scroller";
-import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
-
 type FilterType = "everything" | "complete" | "incomplete" | "eligible";
 
 const props = defineProps<{
