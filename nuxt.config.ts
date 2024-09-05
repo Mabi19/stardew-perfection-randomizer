@@ -1,5 +1,5 @@
-import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
 const packageJSON = readFileSync("./package.json", "utf-8");
 const packageInfo = JSON.parse(packageJSON);
@@ -8,6 +8,7 @@ const commitID = execSync('git log --format="%H" -n 1').toString("utf8").slice(0
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    compatibilityDate: "2024-05-09",
     devtools: { enabled: true },
     ssr: false,
     appConfig: {
