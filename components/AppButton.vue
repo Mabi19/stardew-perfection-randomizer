@@ -32,14 +32,15 @@ const props = withDefaults(
     padding: 0.5rem 0.75rem;
     border-radius: 0.25rem;
     transition: background-color 0.2s ease;
-    &:hover {
-        opacity: 0.9;
-    }
 
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 0.4rem;
+
+    &:hover {
+        opacity: 0.9;
+    }
 
     &.small {
         /* the icon is a square with whitespace on the sides, so cut some of it off  */
