@@ -109,7 +109,7 @@ export class BaseEffectContext {
 
         // only redo when necessary
         requestAnimationFrame(() => {
-            if (this.particles.length) {
+            if (this.particles.length && !this.abortController.signal.aborted) {
                 this.tick();
             } else {
                 this.isTicking = false;
