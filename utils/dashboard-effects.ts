@@ -1,6 +1,8 @@
 import { BaseEffectContext } from "./effects/BaseContext";
-import { PurpleBlobParticle } from "./effects/PurpleBlobParticle";
 import { ConfettiParticle } from "./effects/ConfettiParticle";
+import { PurpleBlobParticle } from "./effects/PurpleBlobParticle";
+import { rarePurpleBlobShorts } from "./effects/secret-particles";
+import { SpriteParticle } from "./effects/SpriteParticle";
 
 export class DashboardEffectContext extends BaseEffectContext {
     finishGoalHook() {
@@ -13,8 +15,14 @@ export class DashboardEffectContext extends BaseEffectContext {
 
         const count = amounts[this.settings.particles];
 
-        for (let i = 0; i < count; i++) {
-            this.particles.push(new PurpleBlobParticle());
+        if (Math.random() < 1 / 333) {
+            for (let i = 0; i < count; i++) {
+                this.particles.push(new SpriteParticle(rarePurpleBlobShorts()));
+            }
+        } else {
+            for (let i = 0; i < count; i++) {
+                this.particles.push(new PurpleBlobParticle());
+            }
         }
 
         this.startTicking();

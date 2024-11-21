@@ -300,4 +300,42 @@ export const SECRET_PARTICLES = {
     },
 };
 
-export { SpriteParticle, getBaseImage } from "./SpriteParticle";
+export const rarePurpleBlobShorts = (): SpriteParticleSettings<{ vx: number; vy: number }> => {
+    const speedMult = 1.5 * Math.random() + 0.3;
+    const direction = Math.random() * 2 * Math.PI;
+    return {
+        x: 0.5,
+        y: 0.5,
+        originX: 8,
+        originY: 8,
+        imageX: 80,
+        imageY: 42,
+        imageWidth: 16,
+        imageHeight: 16,
+        scale: 3,
+        animFrames: 1,
+        frameInterval: 1,
+        storage: {
+            vx: 0.5 * Math.cos(direction) * speedMult,
+            vy: 0.5 * Math.sin(direction) * speedMult - 0.2,
+        },
+        processFunc(self, context, deltaTime) {
+            const barXPosition = context.challengeFinishPercent;
+            const barYPosition = 1.0;
+
+            const dx = barXPosition - this.x;
+            // only move down
+            const dy = Math.abs(barYPosition - this.y);
+            const length = Math.sqrt(dx ** 2 + dy ** 2);
+            self.storage.vx = lerp(this.storage.vx, dx / length, 2 * deltaTime);
+            self.storage.vy = lerp(this.storage.vy, dy / length, 2 * deltaTime);
+
+            self.x += this.storage.vx * deltaTime;
+            self.y += this.storage.vy * deltaTime;
+
+            return this.y > 1.1;
+        },
+    };
+};
+
+export type SecretParticleID = keyof typeof SECRET_PARTICLES;

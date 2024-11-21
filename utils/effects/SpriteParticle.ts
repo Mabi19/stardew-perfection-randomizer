@@ -1,7 +1,8 @@
-import { Particle, BaseEffectContext } from "./BaseContext";
 import spriteImage from "~/assets/objects.png";
+import { BaseEffectContext, Particle } from "./BaseContext";
 
 let baseImage: HTMLImageElement | undefined = undefined;
+
 export function getBaseImage() {
     if (!baseImage) {
         baseImage = new Image();

@@ -3,6 +3,4 @@
         "./tools"
     ],
     "deno.lint": true,
-    "deno.unstable": false,
-    "typescript.suggest.autoImports": false
 }

@@ -89,7 +89,12 @@
 import { GoalNotificationArea } from "#components";
 import { DashboardEffectContext } from "#imports";
 import NullGoalIcon from "~/assets/null-goal-icon.png";
-import type { SpriteParticleSettings } from "~/utils/effects/SpriteParticle";
+import {
+    getBaseImage,
+    SpriteParticle,
+    type SpriteParticleSettings,
+} from "~/utils/effects/SpriteParticle";
+import { SECRET_PARTICLES, type SecretParticleID } from "~/utils/effects/secret-particles";
 
 useHead({
     title: "Dashboard",
@@ -240,33 +245,20 @@ const dashboardElem = ref<HTMLDivElement | null>(null);
 const effectsCanvasElem = ref<HTMLCanvasElement | null>(null);
 
 const effectContext = shallowRef<DashboardEffectContext | null>(null);
-
-let secretModule: typeof import("~/utils/effects/secret-particles") | undefined = undefined;
+// preload image
+getBaseImage();
 let secretSpawnerInterval: ReturnType<typeof setInterval> | undefined = undefined;
-type SecretParticleID = keyof typeof import("~/utils/effects/secret-particles").SECRET_PARTICLES;
-async function getSecretModule() {
-    if (!secretModule) {
-        secretModule = await import("~/utils/effects/secret-particles");
-        // preload image
-        secretModule.getBaseImage();
-    }
-    return secretModule;
-}
 async function spawnSecretParticle(id?: SecretParticleID) {
-    const mod = await getSecretModule();
-
-    const validKeys = Object.keys(mod.SECRET_PARTICLES);
+    const validKeys = Object.keys(SECRET_PARTICLES);
     const filledID =
         id ?? (validKeys[Math.floor(Math.random() * validKeys.length)]! as SecretParticleID);
 
-    const settings = mod.SECRET_PARTICLES[filledID]?.();
+    const settings = SECRET_PARTICLES[filledID]?.();
     if (!settings) {
         return;
     }
 
-    effectContext?.value?.spawnParticle(
-        new mod.SpriteParticle(settings as SpriteParticleSettings<{}>),
-    );
+    effectContext?.value?.spawnParticle(new SpriteParticle(settings as SpriteParticleSettings<{}>));
 }
 onMounted(() => {
     (window as any)["imFeelingLucky"] = function () {
@@ -276,8 +268,6 @@ onMounted(() => {
 
     if ("luck" in store.predictedSkillXP && store.predictedSkillXP["luck"] > 0) {
         console.log("registering interval");
-        // preload module
-        getSecretModule();
         secretSpawnerInterval = setInterval(() => {
             if (Math.random() > 0.05) {
                 return;
