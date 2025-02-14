@@ -170,7 +170,7 @@ export async function validateProfileData(profile: string, customTemplate?: Temp
 
     const parsedProfile = deserializeSaveData(profile);
 
-    const validTemplates = new Set(["hardcore", "standard", "custom"]);
+    const validTemplates = new Set(Object.keys(templateNames));
     if (!validTemplates.has(parsedProfile.templateName)) {
         return false;
     }
