@@ -4,7 +4,7 @@
         <option value="hardcore_1_6">Hardcore Mode</option>
         <option value="standard">Standard Mode (1.5)</option>
         <option value="hardcore">Hardcore Mode (1.5)</option>
-        <option value="url">Use template from URL</option>
+        <option value="url" disabled>Use template from URL</option>
         <option value="custom" v-if="customTemplate != null">Custom</option>
     </select>
     <div class="template-url-picker" v-if="templateID == 'url'">
