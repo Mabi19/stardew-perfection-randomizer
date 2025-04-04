@@ -7,7 +7,7 @@
         <form @submit.prevent="submitForm">
             <FileInput
                 @change="updateFile"
-                accept=".randomizer, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                accept=".randomizer, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, .bin, application/octet-stream"
                 >Choose a backup or spreadsheet export file...</FileInput
             >
             <div class="loading" v-if="fileContents && !parsedFile">Loading...</div>
