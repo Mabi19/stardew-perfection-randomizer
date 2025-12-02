@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
-import { validateTemplate } from "./validate";
 import { readFile } from "node:fs/promises";
+import { expect, test } from "vitest";
+import { validateTemplate } from "../utils/validate";
 
 async function getTemplateFromFile(path: string) {
     const templateString = await readFile(`./templates/${path}`, { encoding: "utf-8" });

@@ -19,7 +19,7 @@
         "nuxt": "^3.20.1",
         "prettier": "^3.7.3",
         "sass": "^1.94.2",
-        "vitest": "^1.6.1"
+        "vitest": "^3.2.4"
     },
     "dependencies": {
         "@pinia/nuxt": "^0.5.5",

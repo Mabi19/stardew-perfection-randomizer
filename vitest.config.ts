@@ -1,3 +1,15 @@
-import { defineVitestConfig } from "@nuxt/test-utils/config";
+import { defineConfig } from "vitest/config";
 
-export default defineVitestConfig({});
+export default defineConfig({
+    test: {
+        projects: [
+            {
+                test: {
+                    name: "unit",
+                    include: ["test/*.test.ts"],
+                    environment: "node",
+                },
+            },
+        ],
+    },
+});
